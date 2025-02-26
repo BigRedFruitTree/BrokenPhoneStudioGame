@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     public float groundDetectDistance = 1.5f;
     public bool sprintMode = false;
     public bool isGrounded = true;
+    public float stamina = 150f;
 
 
     [Header("User Settings")]
