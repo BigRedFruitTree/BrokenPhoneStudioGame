@@ -7,10 +7,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    public GameObject PlayerObject;
-    private Rigidbody myRB;
-    public Camera playerCam;
-    Transform cameraHolder;
+    
 
     [Header("Player Stats")]
     public int health = 5;
@@ -25,19 +22,21 @@ public class PlayerController : MonoBehaviour
     public bool isGrounded = true;
     public float stamina = 150f;
 
-    [Header("User Settings")]
-    public float mouseSensitivity = 2.0f;
-    public float Xsensitivity = 2.0f;
-    public float Ysensitivity = 2.0f;
-    public bool GameOver = false;
-
     [Header("Input System")]
     public InputActionAsset playerCntrols;
     public InputHandler inputHandler;
 
+    [Header("Misc Refrences")]
+    public GameObject PlayerObject;
+    private Rigidbody myRB;
+    public Camera playerCam;
+    Transform cameraHolder;
+    public GameManager gm;
+    public GameObject weaponHolder;
+    public GameObject sword;
+    public GameObject bow;
 
 
-   
     // Start is called before the first frame update
     void Start()
     {
@@ -45,37 +44,35 @@ public class PlayerController : MonoBehaviour
         myRB = GetComponent<Rigidbody>();
         playerCam = Camera.main;
         cameraHolder = transform.GetChild(0);
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(gm.GameOn == true)
+        {
+            playerCam.transform.position = cameraHolder.position;
 
-        playerCam.transform.position = cameraHolder.position;
+            Vector3 temp = myRB.velocity;
 
-        Vector3 temp = myRB.velocity;
+            float verticalMove = Input.GetAxisRaw("Vertical");
+            float horizontalMove = Input.GetAxisRaw("Horizontal");
 
-        float verticalMove = Input.GetAxisRaw("Vertical");
-        float horizontalMove = Input.GetAxisRaw("Horizontal");
+            temp.x = verticalMove * speed;
+            temp.z = horizontalMove * speed;
 
-    
-        temp.x = verticalMove * speed;
-        temp.z = horizontalMove * speed;
-        
+            myRB.velocity = (temp.x * transform.forward) + (temp.z * transform.right) + (temp.y * transform.up);
 
-        myRB.velocity = (temp.x * transform.forward) + (temp.z * transform.right) + (temp.y * transform.up);
+            sword.transform.position = weaponHolder.transform.position;
+            sword.transform.position = weaponHolder.transform.position;
 
-        if (health < 0)
-            health = 0;
+            if (health < 0)
+                health = 0;
 
-        if (health == 0)
-            GameOver = true;
-    }
-
-    public IEnumerator Wait()
-    {
-        yield return new WaitForSeconds(10f);
+            if (health == 0)
+                gm.GameOver = true;
+        }
     }
 }

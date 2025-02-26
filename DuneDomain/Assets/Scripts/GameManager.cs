@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public float Time = 0f;
+    public bool GameOn = false;
+    public bool GameOver = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +18,10 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void ChooseWeapon()
+    {
+
     }
 }
