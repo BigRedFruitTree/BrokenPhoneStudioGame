@@ -25,7 +25,6 @@ public class PlayerController : MonoBehaviour
     public bool isGrounded = true;
     public float stamina = 150f;
 
-
     [Header("User Settings")]
     public float mouseSensitivity = 2.0f;
     public float Xsensitivity = 2.0f;
@@ -35,6 +34,8 @@ public class PlayerController : MonoBehaviour
     [Header("Input System")]
     public InputActionAsset playerCntrols;
     public InputHandler inputHandler;
+
+
 
    
     // Start is called before the first frame update
