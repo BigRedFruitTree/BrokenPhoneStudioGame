@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     public int health = 5;
     public int maxHealth = 5;
     public int healthRestore = 5;
+    public int weapon = 0;
 
     [Header("Movement Settings")]
     public float speed = 10.0f;
@@ -51,8 +52,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(gm.GameOn == true)
+        if(gm.GameOn == true && gm.GameOver == false)
         {
+            weapon = gm.weapon;
+
             playerCam.transform.position = cameraHolder.position;
 
             Vector3 temp = myRB.velocity;
@@ -66,13 +69,18 @@ public class PlayerController : MonoBehaviour
             myRB.velocity = (temp.x * transform.forward) + (temp.z * transform.right) + (temp.y * transform.up);
 
             sword.transform.position = weaponHolder.transform.position;
-            sword.transform.position = weaponHolder.transform.position;
+            bow.transform.position = weaponHolder.transform.position;
 
             if (health < 0)
                 health = 0;
 
             if (health == 0)
                 gm.GameOver = true;
+
+            
+            weaponHolder.transform.position = transform.position + new Vector3(horizontalMove, 0,  verticalMove);
+
         }
+
     }
 }

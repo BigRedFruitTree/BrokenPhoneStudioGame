@@ -675,9 +675,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2eb34eb6c8d3eb4fa4f227d7c3a5ee2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerControler: {fileID: 1652962759}
   Time: 0
   GameOn: 0
   GameOver: 0
+  weapon: 0
+  weaponScreen: {fileID: 1287532232}
 --- !u!4 &624562656
 Transform:
   m_ObjectHideFlags: 0
@@ -743,7 +746,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.7882353}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -785,7 +788,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!23 &888124990
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -972,7 +975,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 888515331}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 624562655}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: ChooseWeapon
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1101506555
 GameObject:
   m_ObjectHideFlags: 0
@@ -1273,7 +1288,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!23 &1384098046
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1447,7 +1462,7 @@ Transform:
   m_GameObject: {fileID: 1652962752}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.71, y: 1.73, z: 1031.39}
+  m_LocalPosition: {x: 0.71, y: 1.57, z: 1031.39}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1527,6 +1542,7 @@ MonoBehaviour:
   health: 5
   maxHealth: 5
   healthRestore: 5
+  weapon: 0
   speed: 10
   jumpHeight: 10
   groundDetectDistance: 1.5
@@ -1660,7 +1676,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1701830766}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 624562655}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: ChooseWeapon
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1922781031
 GameObject:
   m_ObjectHideFlags: 0
@@ -2049,6 +2077,6 @@ SceneRoots:
   - {fileID: 1964590172}
   - {fileID: 282891390}
   - {fileID: 624562656}
-  - {fileID: 1183865436}
   - {fileID: 888124992}
   - {fileID: 1384098048}
+  - {fileID: 1183865436}
