@@ -1544,7 +1544,6 @@ MonoBehaviour:
   healthRestore: 5
   weapon: 0
   speed: 10
-  jumpHeight: 10
   groundDetectDistance: 1.5
   sprintMode: 0
   isGrounded: 1

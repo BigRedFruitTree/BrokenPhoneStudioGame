@@ -17,7 +17,6 @@ public class PlayerController : MonoBehaviour
 
     [Header("Movement Settings")]
     public float speed = 10.0f;
-    public float jumpHeight = 10.0f;
     public float groundDetectDistance = 1.5f;
     public bool sprintMode = false;
     public bool isGrounded = true;
@@ -68,8 +67,65 @@ public class PlayerController : MonoBehaviour
 
             myRB.velocity = (temp.x * transform.forward) + (temp.z * transform.right) + (temp.y * transform.up);
 
-            sword.transform.position = weaponHolder.transform.position;
-            bow.transform.position = weaponHolder.transform.position;
+            if(horizontalMove > 0) 
+            {
+               sword.transform.position = weaponHolder.transform.position;
+               sword.transform.rotation = Quaternion.Euler(90f, 0f, 90f);
+               bow.transform.position = weaponHolder.transform.position;
+               bow.transform.rotation = Quaternion.Euler(90f, 0f, 90f);
+            }
+            if(horizontalMove > 0 && verticalMove > 0) 
+            {
+               sword.transform.position = weaponHolder.transform.position;
+               sword.transform.rotation = Quaternion.Euler(90f, 0f, -45f);
+               bow.transform.position = weaponHolder.transform.position;
+               bow.transform.rotation = Quaternion.Euler(90f, 0f, -45f);
+            }
+            if(horizontalMove > 0 && verticalMove < 0) 
+            {
+               sword.transform.position = weaponHolder.transform.position;
+               sword.transform.rotation = Quaternion.Euler(90f, 0f, 45f);
+               bow.transform.position = weaponHolder.transform.position;
+               bow.transform.rotation = Quaternion.Euler(90f, 0f, 45f);
+            }
+
+            if(horizontalMove < 0) 
+            {
+               sword.transform.position = weaponHolder.transform.position;
+               sword.transform.rotation = Quaternion.Euler(90f, 0f, 90f);
+               bow.transform.position = weaponHolder.transform.position;
+               bow.transform.rotation = Quaternion.Euler(90f, 0f, 90f);
+            }
+            if(horizontalMove < 0 && verticalMove > 0) 
+            {
+               sword.transform.position = weaponHolder.transform.position;
+               sword.transform.rotation = Quaternion.Euler(90f, 0f, 45f);
+               bow.transform.position = weaponHolder.transform.position;
+               bow.transform.rotation = Quaternion.Euler(90f, 0f, 45f);
+            }
+            if(horizontalMove < 0 && verticalMove < 0) 
+            {
+               sword.transform.position = weaponHolder.transform.position;
+               sword.transform.rotation = Quaternion.Euler(90f, 0f, -45f);
+               bow.transform.position = weaponHolder.transform.position;
+               bow.transform.rotation = Quaternion.Euler(90f, 0f, -45f);
+            }
+            if(verticalMove > 0 && horizontalMove == 0) 
+            {
+               sword.transform.position = weaponHolder.transform.position;
+               sword.transform.rotation = Quaternion.Euler(90f, 0f, 0f);
+               bow.transform.position = weaponHolder.transform.position;
+               bow.transform.rotation = Quaternion.Euler(90f, 0f, 0f);
+            }
+            if(verticalMove < 0 && horizontalMove == 0) 
+            {
+               sword.transform.position = weaponHolder.transform.position;
+               sword.transform.rotation = Quaternion.Euler(90f, 0f, 180f);
+               bow.transform.position = weaponHolder.transform.position;
+               bow.transform.rotation = Quaternion.Euler(90f, 0f, 180f);
+            }
+              
+            
 
             if (health < 0)
                 health = 0;
