@@ -6,9 +6,9 @@ using UnityEngine;
 public class BossManager : MonoBehaviour
 {
 
-    GameManager gm;
+    public GameManager gm;
 
-    GameObject bossSpawn;
+    public GameObject bossSpawn;
     public GameObject bossObject;
 
     public PlayerController Player;
@@ -18,8 +18,8 @@ public class BossManager : MonoBehaviour
     public float health = 50f;
     public float maxHealth = 50f;
     public int damage = 5;
-    public float timer = 60f;
-    public float timer2 = 60f;
+    public float timer;
+    public float timer2;
     public int round = 0;
 
     // Start is called before the first frame update
@@ -30,6 +30,9 @@ public class BossManager : MonoBehaviour
 
         round = 0;
         bossObject.transform.position = bossSpawn.transform.position;
+
+        timer = 60f;
+        timer2 = 60f;
     }
 
     // Update is called once per frame
@@ -37,21 +40,24 @@ public class BossManager : MonoBehaviour
     {
        if(gm.GameOn == true && gm.GameOver == false)
        {
-           if(timer > 0f)
+           
+           if (timer > 0f)
            {
               StartCoroutine("Wait");
               timer--;
            }
-           if(timer <= 0f)
+           if (timer <= 0f)
            {
                timer = 0f;
                round++;
                bossObject.SetActive(true);
+               Agent.destination = Player.transform.position;
                StartCoroutine("Wait");
                timer2--;
+
            }
 
-           if(timer2 <= 0f)
+           if (timer2 <= 0f)
            {
               bossObject.SetActive(false);   
               timer = 60f + round;
@@ -59,7 +65,6 @@ public class BossManager : MonoBehaviour
            }
        }
 
-        Agent.destination = Player.transform.position;
     }
 
     public void OnCollisionEnter(Collision collision)
@@ -78,8 +83,9 @@ public class BossManager : MonoBehaviour
             Destroy(collision.gameObject);
         }
     }
+
     IEnumerator Wait()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(5f);
     }
 }

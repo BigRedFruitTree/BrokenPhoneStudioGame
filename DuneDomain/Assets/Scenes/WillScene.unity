@@ -1844,14 +1844,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4a71fb83499a104eb404456ab840319, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gm: {fileID: 238953377}
+  bossSpawn: {fileID: 16746450}
   bossObject: {fileID: 1642785912}
   Player: {fileID: 0}
   Agent: {fileID: 0}
   health: 50
   maxHealth: 50
   damage: 5
-  timer: 60
-  timer2: 60
   round: 0
 --- !u!54 &1642785914
 Rigidbody:
@@ -1862,7 +1862,7 @@ Rigidbody:
   m_GameObject: {fileID: 1642785912}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 5
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -1962,7 +1962,7 @@ Transform:
   m_GameObject: {fileID: 1642785912}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.1, y: 2.0204146, z: 1049.2}
+  m_LocalPosition: {x: -0.1, y: 1.207, z: 1049.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -6,8 +6,7 @@ public class GameManager : MonoBehaviour
 {
     [Header("Player Stuff")]
     public PlayerController playerControler;
-    
-    public float Time = 0f;
+  
     public bool GameOn = false;
     public bool GameOver = false;
     public int weapon = 0;
