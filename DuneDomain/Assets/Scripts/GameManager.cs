@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public float Time = 0f;
     public bool GameOn = false;
     public bool GameOver = false;
-    [SerializeField] public int weapon = 0;
+    public int weapon = 0;
     public GameObject weaponScreen;
 
     // Start is called before the first frame update
@@ -31,14 +31,12 @@ public class GameManager : MonoBehaviour
     {
         if(chosenWeapon == 1)
         {
-            playerControler.sword.SetActive(true);
             weaponScreen.SetActive(false);
             weapon = chosenWeapon;
             GameOn = true;
         }
         if(chosenWeapon == 2)
         {
-            playerControler.bow.SetActive(true);
             weaponScreen.SetActive(false);
             weapon = chosenWeapon;
             GameOn = true;

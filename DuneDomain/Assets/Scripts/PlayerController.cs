@@ -12,14 +12,12 @@ public class PlayerController : MonoBehaviour
     [Header("Player Stats")]
     public int health = 5;
     public int maxHealth = 5;
-    public int healthRestore = 5;
     public int weapon = 0;
+    public bool canAttack = true;
+    public int arrowSpeed;
 
     [Header("Movement Settings")]
     public float speed = 10.0f;
-    public float groundDetectDistance = 1.5f;
-    public bool sprintMode = false;
-    public bool isGrounded = true;
     public float stamina = 150f;
 
     [Header("Input System")]
@@ -35,6 +33,7 @@ public class PlayerController : MonoBehaviour
     public GameObject weaponHolder;
     public GameObject sword;
     public GameObject bow;
+    public GameObject arrow;
 
 
     // Start is called before the first frame update
@@ -124,8 +123,28 @@ public class PlayerController : MonoBehaviour
                bow.transform.position = weaponHolder.transform.position;
                bow.transform.rotation = Quaternion.Euler(90f, 0f, 180f);
             }
-              
-            
+
+            if (Input.GetMouseButtonDown(0) && canAttack == true)
+            {
+               if(weapon == 1)
+               {
+                   canAttack = false;
+                   sword.SetActive(true);
+                   StartCoroutine("WaitForWeapons");
+                   StartCoroutine("AttackCoolDown");
+               }
+               if (weapon == 2)
+               {
+                   arrowSpeed = 2000;
+                   arrow.SetActive(true);
+                   GameObject arrowSummon = Instantiate(arrow, bow.transform.position, bow.transform.rotation);
+                   arrowSummon.GetComponent<Rigidbody>().AddForce(arrowSummon.transform.up * arrowSpeed);
+                   canAttack = false;
+                   bow.SetActive(true);
+                   StartCoroutine("WaitForWeapons");
+                   StartCoroutine("AttackCoolDown");
+               }
+            }
 
             if (health < 0)
                 health = 0;
@@ -138,5 +157,18 @@ public class PlayerController : MonoBehaviour
 
         }
 
+    }
+
+    IEnumerator WaitForWeapons()
+    {
+        yield return new WaitForSeconds(1f);
+        sword.SetActive(false);
+        bow.SetActive(false);
+    }
+
+    IEnumerator AttackCoolDown()
+    {
+        yield return new WaitForSeconds(3f);
+        canAttack = true;
     }
 }
