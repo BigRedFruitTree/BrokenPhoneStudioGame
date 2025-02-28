@@ -57,11 +57,27 @@ public class BossManager : MonoBehaviour
               timer = 60f + round;
               timer2 = 60f;
            }
-
-            Agent.destination = Player.transform.position;
        }
+
+        Agent.destination = Player.transform.position;
     }
 
+    public void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            Player.health--;
+        }
+
+        if (collision.gameObject.tag == "Shot")
+        {
+            health--;
+        }
+        if (health <= 0)
+        {
+            Destroy(collision.gameObject);
+        }
+    }
     IEnumerator Wait()
     {
         yield return new WaitForSeconds(1f);
