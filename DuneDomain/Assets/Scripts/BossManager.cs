@@ -1,14 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.AI;
 using UnityEngine;
 
 public class BossManager : MonoBehaviour
 {
+
     GameManager gm;
 
     GameObject bossSpawn;
     public GameObject bossObject;
 
+    public PlayerController Player;
+    public NavMeshAgent Agent;
+
+    [Header("Stats")]
     public float health = 50f;
     public float maxHealth = 50f;
     public int damage = 5;
@@ -19,6 +25,9 @@ public class BossManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Player = GameObject.Find("Player").GetComponent<PlayerController>();
+        Agent = GetComponent<NavMeshAgent>();
+
         round = 0;
         bossObject.transform.position = bossSpawn.transform.position;
     }
@@ -49,6 +58,7 @@ public class BossManager : MonoBehaviour
               timer2 = 60f;
            }
 
+            Agent.destination = Player.transform.position;
        }
     }
 
