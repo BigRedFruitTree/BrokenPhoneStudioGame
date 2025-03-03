@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Cinemachine;
 
 
 public class PlayerController : MonoBehaviour
@@ -29,7 +30,7 @@ public class PlayerController : MonoBehaviour
     public GameObject playerObject;
     public GameObject playerRotationHolder;
     private Rigidbody myRB;
-    public Camera playerCam;
+    public CinemachineVirtualCamera playerCam;
     public GameObject cameraHolder;
     public GameManager gm;
     public GameObject weaponHolder;
@@ -43,7 +44,6 @@ public class PlayerController : MonoBehaviour
     {
         inputHandler = InputHandler.Instance;
         myRB = GetComponent<Rigidbody>();
-        playerCam = Camera.main;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         canMove = true;

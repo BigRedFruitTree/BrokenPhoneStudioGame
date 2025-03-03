@@ -406,12 +406,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2eb34eb6c8d3eb4fa4f227d7c3a5ee2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerControler: {fileID: 1542107763}
-  Time: 0
+  playerController: {fileID: 1542107763}
+  timer: 0
+  timer2: 0
+  rounds: 0
+  bossAgent: {fileID: 1642785919}
+  bossObject: {fileID: 1642785912}
+  bossSpawn: {fileID: 16746450}
   GameOn: 0
   GameOver: 0
   weapon: 0
   weaponScreen: {fileID: 597668181}
+  started: 0
 --- !u!4 &238953378
 Transform:
   m_ObjectHideFlags: 0
@@ -1558,12 +1564,16 @@ MonoBehaviour:
   weapon: 0
   canAttack: 1
   arrowSpeed: 0
+  canMove: 1
+  drawSpeed: 0
   speed: 10
   stamina: 150
   playerCntrols: {fileID: -944628639613478452, guid: c4f52b3abbe18ef4db31932b2cd0502d, type: 3}
   inputHandler: {fileID: 1493740711}
-  PlayerObject: {fileID: 1542107762}
+  playerObject: {fileID: 1542107762}
+  playerRotationHolder: {fileID: 0}
   playerCam: {fileID: 1607829741}
+  cameraHolder: {fileID: 0}
   gm: {fileID: 238953377}
   weaponHolder: {fileID: 915846719}
   sword: {fileID: 304607782}
@@ -1847,12 +1857,12 @@ MonoBehaviour:
   gm: {fileID: 238953377}
   bossSpawn: {fileID: 16746450}
   bossObject: {fileID: 1642785912}
-  Player: {fileID: 0}
-  Agent: {fileID: 0}
+  player: {fileID: 0}
+  bossAgent: {fileID: 0}
   health: 50
   maxHealth: 50
   damage: 5
-  round: 0
+  canTakeDamage: 1
 --- !u!54 &1642785914
 Rigidbody:
   m_ObjectHideFlags: 0
