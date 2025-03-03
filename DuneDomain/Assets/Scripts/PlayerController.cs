@@ -197,6 +197,11 @@ public class PlayerController : MonoBehaviour
         bow.SetActive(false);
     }
 
+    IEnumerator WaitDamage()
+    {
+        yield return new WaitForSeconds(1f);
+    }
+
     IEnumerator WaitDraw()
     {
         yield return new WaitForSeconds(2f);

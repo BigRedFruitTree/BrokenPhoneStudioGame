@@ -1,12 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class GameManager : MonoBehaviour
 {
     [Header("Player Stuff")]
-    public PlayerController playerControler;
-  
+    public PlayerController playerController;
+
+    [Header("Boss Stuff")]
+    public float timer;
+    public float timer2;
+    public int rounds;
+    public NavMeshAgent bossAgent;
+    public GameObject bossObject;
+    public GameObject bossSpawn;
+    
+    [Header("GameManager Stuff")]
     public bool GameOn = false;
     public bool GameOver = false;
     public int weapon = 0;
@@ -16,13 +26,41 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        timer = 120f;
+        timer2 = 120f;
+        rounds = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+       if(GameOn == true && GameOver == false && started == true)
+       {
+           
+           if (timer > 0f)
+           {
+              StartCoroutine("Wait");
+              timer--;
+           }
+           if (timer <= 0f)
+           {
+               timer = 0f;
+               bossObject.SetActive(true);
+               bossAgent.destination = playerController.transform.position;
+               StartCoroutine("Wait");
+               timer2--;
+
+           }
+
+           if (timer2 <= 0f)
+           {
+              bossObject.transform.position = bossSpawn.transform.position;
+              rounds++;
+              bossObject.SetActive(false);   
+              timer = 120f;
+              timer2 = 120f+ rounds;
+           }
+       }
     }
 
 
@@ -35,6 +73,7 @@ public class GameManager : MonoBehaviour
             weapon = chosenWeapon;
             GameOn = true;
             StartCoroutine("Wait");
+            started = true;
         }
         if(chosenWeapon == 2)
         {
@@ -42,12 +81,12 @@ public class GameManager : MonoBehaviour
             weapon = chosenWeapon;
             GameOn = true;
             StartCoroutine("Wait");
+            started = true;
         }
     }
 
     IEnumerator Wait()
     {
         yield return new WaitForSeconds(2f);
-        started = true;
     }
 }

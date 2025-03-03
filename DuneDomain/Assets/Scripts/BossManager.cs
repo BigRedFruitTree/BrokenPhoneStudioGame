@@ -11,28 +11,23 @@ public class BossManager : MonoBehaviour
     public GameObject bossSpawn;
     public GameObject bossObject;
 
-    public PlayerController Player;
-    public NavMeshAgent Agent;
+    public PlayerController player;
+    public NavMeshAgent bossAgent;
 
     [Header("Stats")]
     public float health = 50f;
     public float maxHealth = 50f;
     public int damage = 5;
-    public float timer;
-    public float timer2;
-    public int round = 0;
+    public bool canTakeDamage = true;
 
     // Start is called before the first frame update
     void Start()
     {
-        Player = GameObject.Find("Player").GetComponent<PlayerController>();
-        Agent = GetComponent<NavMeshAgent>();
+        player = GameObject.Find("Player").GetComponent<PlayerController>();
+        bossAgent = GetComponent<NavMeshAgent>();
 
-        round = 0;
         bossObject.transform.position = bossSpawn.transform.position;
 
-        timer = 60f;
-        timer2 = 60f;
     }
 
     // Update is called once per frame
@@ -40,29 +35,10 @@ public class BossManager : MonoBehaviour
     {
        if(gm.GameOn == true && gm.GameOver == false)
        {
-           
-           if (timer > 0f)
-           {
-              StartCoroutine("Wait");
-              timer--;
-           }
-           if (timer <= 0f)
-           {
-               timer = 0f;
-               round++;
-               bossObject.SetActive(true);
-               Agent.destination = Player.transform.position;
-               StartCoroutine("Wait");
-               timer2--;
-
-           }
-
-           if (timer2 <= 0f)
-           {
-              bossObject.SetActive(false);   
-              timer = 60f + round;
-              timer2 = 60f;
-           }
+         if (health <= 0)
+         {
+            Destroy(bossObject);
+         }
        }
 
     }
@@ -71,21 +47,32 @@ public class BossManager : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            Player.health--;
-        }
-
-        if (collision.gameObject.tag == "Shot")
-        {
-            health--;
-        }
-        if (health <= 0)
-        {
-            Destroy(collision.gameObject);
+            player.health--;
         }
     }
 
-    IEnumerator Wait()
+    public void OnTriggerEnter(Collider other)
     {
-        yield return new WaitForSeconds(5f);
+        if (other.gameObject.tag == "Shot" && canTakeDamage == true)
+        {
+            canTakeDamage = false;
+            health--;
+            StartCoroutine("WaitDamage");
+           
+        }
+        
+        if (other.gameObject.name == "Sword" && canTakeDamage == true)
+        {
+            canTakeDamage = false;
+            health--;
+            StartCoroutine("WaitDamage");
+            
+        }
+    }
+
+    IEnumerator WaitDamage()
+    {
+        yield return new WaitForSeconds(1f);
+        canTakeDamage = true;
     }
 }
