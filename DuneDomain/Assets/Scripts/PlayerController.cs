@@ -141,10 +141,7 @@ public class PlayerController : MonoBehaviour
                    canMove = false;
                    canAttack = false;
                    sword.SetActive(true);
-                   myRB.AddForce(playerRotationHolder.transform.forward * 5000f, ForceMode.Force);
-                   sword.transform.position = weaponHolder.transform.position;
-                   StartCoroutine("Wait");
-                   myRB.AddForce(playerRotationHolder.transform.forward * 5000f, ForceMode.Force);
+                   myRB.AddForce(playerRotationHolder.transform.forward * 50f, ForceMode.Impulse);
                    sword.transform.position = weaponHolder.transform.position;
                    canMove = true;
                    StartCoroutine("WaitForWeapons");
