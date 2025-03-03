@@ -6,6 +6,8 @@ TagManager:
   tags:
   - BossSpawn
   - Shot
+  - MeleeEnemy
+  - MeleeEnemySpawn
   layers:
   - Default
   - TransparentFX

@@ -26,8 +26,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        timer = 120f;
-        timer2 = 120f;
+        timer = 300f;
+        timer2 = 600f;
         rounds = 0;
     }
 
@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
               rounds++;
               bossObject.SetActive(false);   
               timer = 120f;
-              timer2 = 120f+ rounds;
+              timer2 = 600f + rounds;
            }
        }
     }
