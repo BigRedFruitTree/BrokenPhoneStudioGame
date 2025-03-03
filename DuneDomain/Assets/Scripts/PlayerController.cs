@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     public int arrowSpeed;
     public bool canMove = true;
     public float drawSpeed;
+    public bool canDash = true;
 
     [Header("Movement Settings")]
     public float speed = 10.0f;
@@ -47,6 +48,7 @@ public class PlayerController : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         canMove = true;
+        canDash = true;
     }
 
     // Update is called once per frame
@@ -141,7 +143,7 @@ public class PlayerController : MonoBehaviour
                    canMove = false;
                    canAttack = false;
                    sword.SetActive(true);
-                   myRB.AddForce(playerRotationHolder.transform.forward * 50f, ForceMode.Impulse);
+                   //myRB.AddForce(playerRotationHolder.transform.forward * 50f, ForceMode.Force);
                    sword.transform.position = weaponHolder.transform.position;
                    canMove = true;
                    StartCoroutine("WaitForWeapons");
@@ -178,6 +180,14 @@ public class PlayerController : MonoBehaviour
                    StartCoroutine("WaitForWeapons");
                    StartCoroutine("AttackCoolDown");
                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.E) && canDash == true && gm.started == true)
+            {
+                canDash = false;
+                myRB.AddForce(playerRotationHolder.transform.forward * 200f, ForceMode.Force);
+                StartCoroutine("Wait");
+                canDash = true;
             }
 
             if (health < 0)
