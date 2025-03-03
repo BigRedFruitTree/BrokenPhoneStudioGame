@@ -15,6 +15,9 @@ public class GameManager : MonoBehaviour
     public NavMeshAgent bossAgent;
     public GameObject bossObject;
     public GameObject bossSpawn;
+    public NavMeshAgent EnemyAgent;
+    public GameObject EnemyObject;
+    public GameObject EnemySpawn;
     
     [Header("GameManager Stuff")]
     public bool GameOn = false;
@@ -49,7 +52,6 @@ public class GameManager : MonoBehaviour
                bossAgent.destination = playerController.transform.position;
                StartCoroutine("Wait");
                timer2--;
-
            }
 
            if (timer2 <= 0f)
@@ -60,6 +62,12 @@ public class GameManager : MonoBehaviour
               timer = 120f;
               timer2 = 600f + rounds;
            }
+           if (timer <= 0f)
+            {
+                EnemyObject.SetActive(true);
+                EnemyAgent.destination = playerController.transform.position;
+                StartCoroutine("Wait");
+            }
        }
     }
 
