@@ -776,7 +776,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!195 &443017036
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -904,7 +904,7 @@ Transform:
   m_GameObject: {fileID: 443017035}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.8913326, y: 1.48, z: 1037.13}
+  m_LocalPosition: {x: 5.8913326, y: 1.59, z: 1037.13}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2304,7 +2304,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 6fa11b8383844124aa3d2294d3c70c68, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 3258fbb8baf0a3d4394ff3a33c7e9515, type: 2}
   m_BuildHeightMesh: 0
 --- !u!65 &1627148906
 BoxCollider:
@@ -3001,6 +3001,7 @@ MonoBehaviour:
   arrowSpeed: 0
   canMove: 0
   drawSpeed: 0
+  canDash: 1
   speed: 10
   stamina: 150
   playerCntrols: {fileID: -944628639613478452, guid: c4f52b3abbe18ef4db31932b2cd0502d, type: 3}

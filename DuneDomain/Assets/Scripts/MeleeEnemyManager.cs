@@ -7,7 +7,6 @@ public class MeleeEnemyManager : MonoBehaviour
 {
     public GameManager gm;
 
-    public GameObject EnemySpawn;
     public GameObject EnemyObject;
 
     public PlayerController player;
@@ -24,8 +23,6 @@ public class MeleeEnemyManager : MonoBehaviour
     {
         player = GameObject.Find("Player").GetComponent<PlayerController>();
         EnemyAgent = GetComponent<NavMeshAgent>();
-
-        EnemyObject.transform.position = EnemySpawn.transform.position;
         EnemyAgent.destination = player.transform.position;
     }
 

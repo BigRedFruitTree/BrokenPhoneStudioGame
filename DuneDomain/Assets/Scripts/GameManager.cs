@@ -15,9 +15,12 @@ public class GameManager : MonoBehaviour
     public NavMeshAgent bossAgent;
     public GameObject bossObject;
     public GameObject bossSpawn;
+  
+    [Header("Enemy Stuff")]
     public NavMeshAgent EnemyAgent;
     public GameObject EnemyObject;
-    public GameObject EnemySpawn;
+    public float spawnRange = 40f;
+    public GameObject enemyPrefab;
     
     [Header("GameManager Stuff")]
     public bool GameOn = false;
@@ -32,6 +35,7 @@ public class GameManager : MonoBehaviour
         timer = 300f;
         timer2 = 600f;
         rounds = 0;
+        spawnRange = 40f;
     }
 
     // Update is called once per frame
@@ -63,15 +67,22 @@ public class GameManager : MonoBehaviour
               timer2 = 600f + rounds;
            }
            if (timer <= 0f)
-            {
+           {
+                Instantiate(enemyPrefab, GenerateSpawnPos(), enemyPrefab.transform.rotation);
                 EnemyObject.SetActive(true);
                 EnemyAgent.destination = playerController.transform.position;
-                StartCoroutine("Wait");
-            }
+           }
        }
     }
 
+    public Vector3 GenerateSpawnPos()
+    {
+        float spawnPosX = Random.Range(-spawnRange, spawnRange);
+        float spawnPosZ = Random.Range(-spawnRange, spawnRange);
+        Vector3 randomPos = new Vector3(spawnPosX, 1.5f, spawnPosZ);
+        return randomPos;
 
+    }
 
     public void ChooseWeapon(int chosenWeapon)
     {

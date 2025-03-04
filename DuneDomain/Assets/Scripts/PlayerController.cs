@@ -185,7 +185,7 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E) && canDash == true && gm.started == true)
             {
                 canDash = false;
-                myRB.AddForce(playerRotationHolder.transform.forward * 200f, ForceMode.Force);
+                myRB.AddForce(playerRotationHolder.transform.forward * 10000f, ForceMode.Force);
                 StartCoroutine("Wait");
                 canDash = true;
             }
