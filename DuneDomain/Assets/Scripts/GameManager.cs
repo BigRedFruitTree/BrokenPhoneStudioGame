@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        timer = 300f;
+        timer = 1000f;
         timer2 = 600f;
         rounds = 0;
         spawnRange = 20f;
@@ -64,7 +64,7 @@ public class GameManager : MonoBehaviour
               bossObject.transform.position = bossSpawn.transform.position;
               rounds++;
               bossObject.SetActive(false);   
-              timer = 120f;
+              timer = 1000f;
               timer2 = 600f + rounds;
            }
           
