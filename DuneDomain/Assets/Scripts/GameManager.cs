@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     [Header("Player Stuff")]
     public PlayerController playerController;
+    public GameObject playerObject;
 
     [Header("Boss Stuff")]
     public float timer;
@@ -15,10 +16,10 @@ public class GameManager : MonoBehaviour
     public NavMeshAgent bossAgent;
     public GameObject bossObject;
     public GameObject bossSpawn;
-  
+
     [Header("Enemy Stuff")]
-    public NavMeshAgent EnemyAgent;
-    public GameObject EnemyObject;
+    public MeleeEnemyManager enemyScript;
+    public GameObject enemyObject;
     public float spawnRange;
     public GameObject enemyPrefab;
     
@@ -36,6 +37,7 @@ public class GameManager : MonoBehaviour
         timer2 = 600f;
         rounds = 0;
         spawnRange = 20f;
+        enemyObject = enemyPrefab;
     }
 
     // Update is called once per frame
@@ -43,7 +45,7 @@ public class GameManager : MonoBehaviour
     {
        if(GameOn == true && GameOver == false && started == true)
        {
-           
+
            if (timer > 0f)
            {
               StartCoroutine("Wait");
@@ -68,10 +70,6 @@ public class GameManager : MonoBehaviour
               timer2 = 600f + rounds;
            }
           
-           if (timer > 0f)
-           {
-               EnemyAgent.destination = playerController.transform.position;
-           }
        }
     }
 
@@ -87,7 +85,7 @@ public class GameManager : MonoBehaviour
     {
         float spawnPosX = Random.Range(-spawnRange, spawnRange);
         float spawnPosZ = Random.Range(-spawnRange, spawnRange);
-        Vector3 randomPos = new Vector3(spawnPosX, 1.58f, spawnPosZ);
+        Vector3 randomPos = new Vector3(spawnPosX, 1.5f, spawnPosZ);
         return randomPos;
 
     }

@@ -7,23 +7,28 @@ public class MeleeEnemyManager : MonoBehaviour
 {
     public GameManager gm;
 
-    public GameObject EnemyObject;
+    public GameObject enemyObject;
+    public Rigidbody enemyRidigbody;
 
     public PlayerController player;
-    public NavMeshAgent EnemyAgent;
+    public GameObject playerObject;
 
     [Header("Stats")]
-    public float health = 10f;
-    public float maxHealth = 10f;
-    public int damage = 2;
+    public int health;
+    public int maxHealth;
+    public float speed;
     public bool canTakeDamage = true;
 
     // Start is called before the first frame update
     void Start()
     {
+        health = 5;
+        maxHealth = 5;
         player = GameObject.Find("Player").GetComponent<PlayerController>();
+        playerObject = GameObject.Find("Player");
+        enemyRidigbody = GetComponent<Rigidbody>();
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
-        EnemyAgent = GetComponent<NavMeshAgent>();
+        speed = 10f;
     }
 
     // Update is called once per frame
@@ -31,9 +36,16 @@ public class MeleeEnemyManager : MonoBehaviour
     {
         if (gm.GameOn == true && gm.GameOver == false)
         {
+
+            if(gm.timer > 0f)
+            {
+                Vector3 lookDirection = (playerObject.transform.position - enemyObject.transform.position).normalized;
+                enemyRidigbody.AddForce(lookDirection * speed);
+            }
+
             if (health <= 0)
             {
-                Destroy(EnemyObject);
+                Destroy(enemyObject);
             }
         }
 
