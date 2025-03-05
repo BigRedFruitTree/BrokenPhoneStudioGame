@@ -22,8 +22,8 @@ public class MeleeEnemyManager : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player").GetComponent<PlayerController>();
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
         EnemyAgent = GetComponent<NavMeshAgent>();
-        EnemyAgent.destination = player.transform.position;
     }
 
     // Update is called once per frame

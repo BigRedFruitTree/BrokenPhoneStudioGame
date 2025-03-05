@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     [Header("Enemy Stuff")]
     public NavMeshAgent EnemyAgent;
     public GameObject EnemyObject;
-    public float spawnRange = 40f;
+    public float spawnRange;
     public GameObject enemyPrefab;
     
     [Header("GameManager Stuff")]
@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
         timer = 300f;
         timer2 = 600f;
         rounds = 0;
-        spawnRange = 40f;
+        spawnRange = 20f;
     }
 
     // Update is called once per frame
@@ -60,26 +60,34 @@ public class GameManager : MonoBehaviour
 
            if (timer2 <= 0f)
            {
+              SpawnEnemies(rounds + 1);
               bossObject.transform.position = bossSpawn.transform.position;
               rounds++;
               bossObject.SetActive(false);   
               timer = 120f;
               timer2 = 600f + rounds;
            }
-           if (timer <= 0f)
+          
+           if (timer > 0f)
            {
-                Instantiate(enemyPrefab, GenerateSpawnPos(), enemyPrefab.transform.rotation);
-                EnemyObject.SetActive(true);
-                EnemyAgent.destination = playerController.transform.position;
+               EnemyAgent.destination = playerController.transform.position;
            }
        }
+    }
+
+    public void SpawnEnemies(int numberToSpawn)
+    {
+        for (int i = 0; i < numberToSpawn; i++)
+        {
+             Instantiate(enemyPrefab, GenerateSpawnPos(), enemyPrefab.transform.rotation);
+        }
     }
 
     public Vector3 GenerateSpawnPos()
     {
         float spawnPosX = Random.Range(-spawnRange, spawnRange);
         float spawnPosZ = Random.Range(-spawnRange, spawnRange);
-        Vector3 randomPos = new Vector3(spawnPosX, 1.5f, spawnPosZ);
+        Vector3 randomPos = new Vector3(spawnPosX, 1.58f, spawnPosZ);
         return randomPos;
 
     }
