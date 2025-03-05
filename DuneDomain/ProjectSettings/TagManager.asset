@@ -8,6 +8,7 @@ TagManager:
   - Shot
   - MeleeEnemy
   - MeleeEnemySpawn
+  - Wall
   layers:
   - Default
   - TransparentFX
