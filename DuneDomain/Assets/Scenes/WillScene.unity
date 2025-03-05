@@ -812,7 +812,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gm: {fileID: 1615265257}
-  EnemySpawn: {fileID: 1786448806}
   EnemyObject: {fileID: 443017035}
   player: {fileID: 2042903831}
   EnemyAgent: {fileID: 443017036}
@@ -2233,7 +2232,8 @@ MonoBehaviour:
   bossSpawn: {fileID: 1327628517}
   EnemyAgent: {fileID: 443017036}
   EnemyObject: {fileID: 443017035}
-  EnemySpawn: {fileID: 1786448806}
+  spawnRange: 0
+  enemyPrefab: {fileID: 443017035}
   GameOn: 0
   GameOver: 0
   weapon: 0

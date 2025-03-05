@@ -8,6 +8,7 @@ using Cinemachine;
 
 public class PlayerController : MonoBehaviour
 {
+    RaycastHit raycast;
 
     [Header("Player Stats")]
     public int health = 10;
