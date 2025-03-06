@@ -962,7 +962,7 @@ Transform:
   m_GameObject: {fileID: 575334150}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 2}
+  m_LocalPosition: {x: 0, y: 0, z: 1.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2274,8 +2274,10 @@ MonoBehaviour:
   canMove: 0
   drawSpeed: 0
   canDash: 1
+  canTakeDamage: 1
   speed: 10
   stamina: 10
+  isDashing: 0
   playerCntrols: {fileID: -944628639613478452, guid: c4f52b3abbe18ef4db31932b2cd0502d, type: 3}
   inputHandler: {fileID: 1964590173}
   playerObject: {fileID: 1652962752}
