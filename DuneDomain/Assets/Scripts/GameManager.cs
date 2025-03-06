@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.AI;
 
 public class GameManager : MonoBehaviour
@@ -108,6 +109,11 @@ public class GameManager : MonoBehaviour
             StartCoroutine("Wait");
             started = true;
         }
+    }
+
+    private void StartGame()
+    {
+        SceneManager
     }
 
     IEnumerator Wait()
