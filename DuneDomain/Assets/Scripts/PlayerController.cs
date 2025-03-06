@@ -7,8 +7,7 @@ using Cinemachine;
 
 
 public class PlayerController : MonoBehaviour
-{
-    RaycastHit raycast;
+{ 
 
     [Header("Player Stats")]
     public int health = 10;
@@ -19,6 +18,7 @@ public class PlayerController : MonoBehaviour
     public bool canMove = true;
     public float drawSpeed;
     public bool canDash = true;
+    public bool canTakeDamage = true;
 
     [Header("Movement Settings")]
     public float speed = 10.0f;
@@ -40,6 +40,7 @@ public class PlayerController : MonoBehaviour
     public GameObject sword;
     public GameObject bow;
     public GameObject arrow;
+    RaycastHit raycast;
 
 
     // Start is called before the first frame update
@@ -141,7 +142,7 @@ public class PlayerController : MonoBehaviour
                bow.transform.rotation = weaponHolder.transform.rotation;
             }
 
-            if (Input.GetMouseButtonDown(0) && canAttack == true && weapon > 0 && gm.started == true)
+            if (Input.GetMouseButtonDown(0) && canAttack == true && weapon > 0 && gm.started == true && isDashing == false)
             {
                if(weapon == 1)
                {
@@ -161,7 +162,7 @@ public class PlayerController : MonoBehaviour
                }
             }
 
-            if (Input.GetMouseButton(0) && canAttack == true && weapon > 0 && gm.started == true)
+            if (Input.GetMouseButton(0) && canAttack == true && weapon > 0 && gm.started == true && isDashing == false)
             {
                if (weapon == 2)
                {
@@ -170,7 +171,7 @@ public class PlayerController : MonoBehaviour
                }
             }
 
-            if (Input.GetMouseButtonUp(0) && drawSpeed <= 0 && weapon > 0 && gm.started == true)
+            if (Input.GetMouseButtonUp(0) && drawSpeed <= 0 && weapon > 0 && gm.started == true && isDashing == false)
             {
                if (weapon == 2)
                {
@@ -187,18 +188,20 @@ public class PlayerController : MonoBehaviour
                }
             }
 
-            if (Input.GetKeyDown(KeyCode.E) && gm.started == true && stamina > 1)
+            if (Input.GetKeyDown(KeyCode.E) && gm.started == true && stamina >= 5)
             {
+                canTakeDamage = false;
                 isDashing = true;
                 stamina -= 10;
                 //canDash = false;
                 myRB.AddForce(playerRotationHolder.transform.forward * 10000f, ForceMode.Force);
                 StartCoroutine("WaitDash");
+                StartCoroutine("WaitDamage");
             }
             
             if (!Input.GetKeyDown(KeyCode.E) && gm.started == true && gm.GameOn == true && isDashing == false)
             {
-                if(stamina <= 10 && stamina != 11)
+                if(stamina <= 10 && stamina < 10.0001)
                 {
                     StartCoroutine("WaitStamina");
                 }
@@ -254,7 +257,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator WaitStamina()
     {
-        yield return new WaitForSeconds(0.5f);
-        stamina += 1;
+        yield return new WaitForSeconds(2f);
+        stamina += 0.1f;
     }
 }
