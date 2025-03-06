@@ -53,7 +53,7 @@ public class MeleeEnemyManager : MonoBehaviour
 
     public void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player" && player.canTakeDamage == true)
         {
             player.health--;
         }
