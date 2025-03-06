@@ -13,6 +13,8 @@ public class MeleeEnemyManager : MonoBehaviour
     public PlayerController player;
     public GameObject playerObject;
 
+    public GameObject[] enemyNumber;
+
     [Header("Stats")]
     public int health;
     public int maxHealth;
@@ -22,6 +24,7 @@ public class MeleeEnemyManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        enemyNumber = GameObject.FindGameObjectsWithTag("MeleeEnemy");
         health = 5;
         maxHealth = 5;
         player = GameObject.Find("Player").GetComponent<PlayerController>();
@@ -36,6 +39,10 @@ public class MeleeEnemyManager : MonoBehaviour
     {
         if (gm.GameOn == true && gm.GameOver == false)
         {
+            if(enemyNumber.Length > 15)
+            {
+                
+            }
 
             if(gm.timer > 0f)
             {
