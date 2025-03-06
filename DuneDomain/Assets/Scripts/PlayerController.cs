@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour
     public GameObject sword;
     public GameObject bow;
     public GameObject arrow;
+    public Canvas Pausemenu;
     RaycastHit raycast;
 
 
@@ -225,7 +226,7 @@ public class PlayerController : MonoBehaviour
             {
                 gm.PauseGame();
             }
-            
+    
         }
 
     }
@@ -265,5 +266,10 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         stamina += 0.1f;
+    }
+
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(1f);
     }
 }
