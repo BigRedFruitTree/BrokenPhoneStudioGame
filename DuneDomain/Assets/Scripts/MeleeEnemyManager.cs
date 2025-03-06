@@ -60,7 +60,7 @@ public class MeleeEnemyManager : MonoBehaviour
 
     public void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Player" && player.canTakeDamage == true)
+        if (collision.gameObject.tag == "Player" && player.canTakeDamage == true && gm.GameOn == true)
         {
             player.health--;
         }
@@ -68,7 +68,7 @@ public class MeleeEnemyManager : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Shot" && canTakeDamage == true)
+        if (other.gameObject.tag == "Shot" && canTakeDamage == true && gm.GameOn == true)
         {
             canTakeDamage = false;
             health--;
@@ -76,7 +76,7 @@ public class MeleeEnemyManager : MonoBehaviour
 
         }
 
-        if (other.gameObject.name == "Sword" && canTakeDamage == true)
+        if (other.gameObject.name == "Sword" && canTakeDamage == true && gm.GameOn == true)
         {
             canTakeDamage = false;
             health--;

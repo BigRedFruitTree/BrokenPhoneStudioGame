@@ -45,7 +45,7 @@ public class BossManager : MonoBehaviour
 
     public void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player" && gm.GameOn == true)
         {
             player.health--;
         }
@@ -53,7 +53,7 @@ public class BossManager : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Shot" && canTakeDamage == true)
+        if (other.gameObject.tag == "Shot" && canTakeDamage == true && gm.GameOn == true)
         {
             canTakeDamage = false;
             health--;
@@ -61,7 +61,7 @@ public class BossManager : MonoBehaviour
            
         }
         
-        if (other.gameObject.name == "Sword" && canTakeDamage == true)
+        if (other.gameObject.name == "Sword" && canTakeDamage == true && gm.GameOn == true)
         {
             canTakeDamage = false;
             health--;
