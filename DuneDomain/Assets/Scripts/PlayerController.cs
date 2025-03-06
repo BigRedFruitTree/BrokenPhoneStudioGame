@@ -22,7 +22,8 @@ public class PlayerController : MonoBehaviour
 
     [Header("Movement Settings")]
     public float speed = 10.0f;
-    public float stamina = 150f;
+    public float stamina = 50f;
+    public bool isDashing = false;
 
     [Header("Input System")]
     public InputActionAsset playerCntrols;
@@ -44,6 +45,9 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        stamina = 10;
+        health = 10;
+        maxHealth = 10;
         inputHandler = InputHandler.Instance;
         myRB = GetComponent<Rigidbody>();
         Cursor.visible = true;
@@ -141,10 +145,10 @@ public class PlayerController : MonoBehaviour
             {
                if(weapon == 1)
                {
+                   
                    canMove = false;
                    canAttack = false;
                    sword.SetActive(true);
-                   //myRB.AddForce(playerRotationHolder.transform.forward * 50f, ForceMode.Force);
                    sword.transform.position = weaponHolder.transform.position;
                    canMove = true;
                    StartCoroutine("WaitForWeapons");
@@ -183,13 +187,29 @@ public class PlayerController : MonoBehaviour
                }
             }
 
-            if (Input.GetKeyDown(KeyCode.E) && canDash == true && gm.started == true)
+            if (Input.GetKeyDown(KeyCode.E) && gm.started == true && stamina > 1)
             {
-                canDash = false;
+                isDashing = true;
+                stamina -= 10;
+                //canDash = false;
                 myRB.AddForce(playerRotationHolder.transform.forward * 10000f, ForceMode.Force);
-                StartCoroutine("Wait");
-                canDash = true;
+                StartCoroutine("WaitDash");
             }
+            
+            if (!Input.GetKeyDown(KeyCode.E) && gm.started == true && gm.GameOn == true && isDashing == false)
+            {
+                if(stamina <= 10 && stamina != 11)
+                {
+                    StartCoroutine("WaitStamina");
+                }
+
+                if(stamina > 10)
+                  stamina = 10;
+            }
+            
+            if (stamina <= 0)
+                stamina = 0;
+
 
             if (health < 0)
                 health = 0;
@@ -225,8 +245,16 @@ public class PlayerController : MonoBehaviour
         canAttack = true;
     }
 
-    IEnumerator Wait()
+    IEnumerator WaitDash()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
+        isDashing = false;
+        //canDash = true;
+    }
+
+    IEnumerator WaitStamina()
+    {
+        yield return new WaitForSeconds(0.5f);
+        stamina += 1;
     }
 }

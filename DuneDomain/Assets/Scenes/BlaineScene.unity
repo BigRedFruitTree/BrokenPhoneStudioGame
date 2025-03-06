@@ -683,8 +683,8 @@ Transform:
   m_GameObject: {fileID: 243251500}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.65, y: 18.68, z: 65.79}
-  m_LocalScale: {x: 1, y: 5, z: 50}
+  m_LocalPosition: {x: -4.89, y: 18.68, z: 65.79}
+  m_LocalScale: {x: 6, y: 5, z: 50}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1101506556}
@@ -1142,7 +1142,7 @@ MonoBehaviour:
   bossObject: {fileID: 104712137}
   bossSpawn: {fileID: 1594994284}
   enemyScript: {fileID: 2032745260}
-  EnemyObject: {fileID: 2032745258}
+  enemyObject: {fileID: 0}
   spawnRange: 0
   enemyPrefab: {fileID: 232766443740596227, guid: dbb47fb935dcd884a92b5bea53302ed0, type: 3}
   GameOn: 0
@@ -1867,8 +1867,8 @@ Transform:
   m_GameObject: {fileID: 1223360049}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 22.86, y: 18.68, z: 41.06}
-  m_LocalScale: {x: 1, y: 5, z: 50}
+  m_LocalPosition: {x: 22.86, y: 18.68, z: 38.71}
+  m_LocalScale: {x: 6, y: 5, z: 50}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1101506556}
@@ -2253,7 +2253,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 116
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &1652962759
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2275,7 +2275,7 @@ MonoBehaviour:
   drawSpeed: 0
   canDash: 1
   speed: 10
-  stamina: 150
+  stamina: 10
   playerCntrols: {fileID: -944628639613478452, guid: c4f52b3abbe18ef4db31932b2cd0502d, type: 3}
   inputHandler: {fileID: 1964590173}
   playerObject: {fileID: 1652962752}
@@ -2519,8 +2519,8 @@ Transform:
   m_GameObject: {fileID: 1922781031}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 48.34, y: 18.68, z: 66.44}
-  m_LocalScale: {x: 1, y: 5, z: 50}
+  m_LocalPosition: {x: 50.55, y: 18.68, z: 66.44}
+  m_LocalScale: {x: 6, y: 5, z: 50}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1101506556}
@@ -2654,17 +2654,12 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
---- !u!1 &2032745258 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 232766443740596227, guid: dbb47fb935dcd884a92b5bea53302ed0, type: 3}
-  m_PrefabInstance: {fileID: 4502582142273999504}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2032745260 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8906918789904399867, guid: dbb47fb935dcd884a92b5bea53302ed0, type: 3}
   m_PrefabInstance: {fileID: 4502582142273999504}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2032745258}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d3897c7218b21f4db221c72c538550f, type: 3}
@@ -2698,8 +2693,8 @@ Transform:
   m_GameObject: {fileID: 2107191194}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 22.61, y: 18.68, z: 91.31}
-  m_LocalScale: {x: 1, y: 5, z: 50}
+  m_LocalPosition: {x: 22.61, y: 18.68, z: 93.36}
+  m_LocalScale: {x: 6, y: 5, z: 50}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1101506556}
