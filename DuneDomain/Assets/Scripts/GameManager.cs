@@ -39,6 +39,9 @@ public class GameManager : MonoBehaviour
         rounds = 0;
         spawnRange = 20f;
         enemyObject = enemyPrefab;
+
+        if (SceneManager.GetActiveScene().buildIndex > 0)
+            playerController = GameObject.Find("Player").GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
@@ -111,9 +114,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void StartGame()
+    public void StartGame(int SceneID)
     {
-        SceneManager
+        SceneManager.LoadScene(SceneID);
     }
 
     IEnumerator Wait()
