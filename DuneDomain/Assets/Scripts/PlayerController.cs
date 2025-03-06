@@ -268,8 +268,4 @@ public class PlayerController : MonoBehaviour
         stamina += 0.1f;
     }
 
-    IEnumerator Wait()
-    {
-        yield return new WaitForSeconds(1f);
-    }
 }
