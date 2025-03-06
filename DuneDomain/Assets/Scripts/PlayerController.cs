@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using Cinemachine;
 
 
@@ -220,6 +221,11 @@ public class PlayerController : MonoBehaviour
             if (health == 0)
                 gm.GameOver = true;
 
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                gm.PauseGame();
+            }
+            
         }
 
     }

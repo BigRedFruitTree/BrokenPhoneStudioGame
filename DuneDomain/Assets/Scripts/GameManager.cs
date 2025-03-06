@@ -119,6 +119,16 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneID);
     }
 
+    public void PauseGame()
+    {
+        Time.timeScale = 0;
+    }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1;
+    }
+
     IEnumerator Wait()
     {
         yield return new WaitForSeconds(2f);
