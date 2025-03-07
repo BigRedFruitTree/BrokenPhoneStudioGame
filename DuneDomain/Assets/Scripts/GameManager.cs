@@ -23,7 +23,9 @@ public class GameManager : MonoBehaviour
     public GameObject enemyObject;
     public float spawnRange;
     public GameObject enemyPrefab;
-    
+    public GameObject[] enemyNumber;
+    public bool enemyCanMove = false;
+
     [Header("GameManager Stuff")]
     public bool GameOn = false;
     public bool GameOver = false;
@@ -34,11 +36,12 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        timer = 1000f;
-        timer2 = 600f;
+        timer = 3000f;
+        timer2 = 2000f;
         rounds = 0;
         spawnRange = 20f;
         enemyObject = enemyPrefab;
+        enemyNumber = GameObject.FindGameObjectsWithTag("MeleeEnemy");
 
         if (SceneManager.GetActiveScene().buildIndex > 0)
             playerController = GameObject.Find("Player").GetComponent<PlayerController>();
@@ -49,9 +52,22 @@ public class GameManager : MonoBehaviour
     {
        if(GameOn == true && GameOver == false && started == true)
        {
-
+            while (enemyNumber.Length > 14) 
+            {
+               Destroy(GameObject.FindGameObjectWithTag("MeleeEnemy"));
+            }
+            
+            if(enemyNumber.Length == enemyNumber.Length/2)
+            {
+                enemyCanMove = false;
+            }
+            else
+            {
+                enemyCanMove = true;
+            }
+ 
            if (timer > 0f)
-           {
+           { 
               StartCoroutine("Wait");
               timer--;
            }
@@ -66,12 +82,15 @@ public class GameManager : MonoBehaviour
 
            if (timer2 <= 0f)
            {
-              SpawnEnemies(rounds + 1);
+              if(enemyNumber.Length < 15)
+              {
+                 SpawnEnemies(rounds);
+              }
               bossObject.transform.position = bossSpawn.transform.position;
               rounds++;
               bossObject.SetActive(false);   
-              timer = 1000f;
-              timer2 = 600f + rounds;
+              timer = 3000f;
+              timer2 = 2000f + rounds;
            }
           
        }

@@ -13,8 +13,6 @@ public class MeleeEnemyManager : MonoBehaviour
     public PlayerController player;
     public GameObject playerObject;
 
-    public GameObject[] enemyNumber;
-
     [Header("Stats")]
     public int health;
     public int maxHealth;
@@ -24,14 +22,14 @@ public class MeleeEnemyManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        enemyNumber = GameObject.FindGameObjectsWithTag("MeleeEnemy");
+
         health = 5;
         maxHealth = 5;
         player = GameObject.Find("Player").GetComponent<PlayerController>();
         playerObject = GameObject.Find("Player");
         enemyRidigbody = GetComponent<Rigidbody>();
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
-        speed = 10f;
+        speed = 15f;
     }
 
     // Update is called once per frame
@@ -39,12 +37,12 @@ public class MeleeEnemyManager : MonoBehaviour
     {
         if (gm.GameOn == true && gm.GameOver == false)
         {
-            if(enemyNumber.Length > 15)
+            if (gm.enemyCanMove == false)
             {
-                
+                Vector3 lookDirection = (playerObject.transform.position + enemyObject.transform.position).normalized;
+                enemyRidigbody.AddForce(lookDirection * speed);
             }
-
-            if(gm.timer > 0f)
+            else
             {
                 Vector3 lookDirection = (playerObject.transform.position - enemyObject.transform.position).normalized;
                 enemyRidigbody.AddForce(lookDirection * speed);

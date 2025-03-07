@@ -64,6 +64,7 @@ public class PlayerController : MonoBehaviour
     {
         if(gm.GameOn == true && gm.GameOver == false && canMove == true)
         {
+
             weapon = gm.weapon;
 
             playerCam.transform.position = cameraHolder.transform.position;
@@ -78,71 +79,114 @@ public class PlayerController : MonoBehaviour
 
             myRB.velocity = (temp.x * transform.forward) + (temp.z * transform.right) + (temp.y * transform.up);
 
-            if(horizontalMove > 0 && canMove == true) 
+            if (weapon == 1)
             {
-               playerRotationHolder.transform.rotation = Quaternion.Euler(0f, 90f, 0f);
-               sword.transform.position = weaponHolder.transform.position;
-               bow.transform.position = weaponHolder.transform.position;
-               sword.transform.rotation = weaponHolder.transform.rotation;
-               bow.transform.rotation = weaponHolder.transform.rotation;
+                sword.SetActive(true);
+
             }
-            if(horizontalMove > 0 && verticalMove > 0 && canMove == true) 
+            if (weapon == 2)
             {
-               playerRotationHolder.transform.rotation = Quaternion.Euler(0f, 45f, 0f);
-               sword.transform.position = weaponHolder.transform.position;
-               bow.transform.position = weaponHolder.transform.position;
-               sword.transform.rotation = weaponHolder.transform.rotation;
-               bow.transform.rotation = weaponHolder.transform.rotation;
-            }
-            if(horizontalMove > 0 && verticalMove < 0 && canMove == true) 
-            {
-               playerRotationHolder.transform.rotation = Quaternion.Euler(0f, 145f, 0f);
-               sword.transform.position = weaponHolder.transform.position;
-               bow.transform.position = weaponHolder.transform.position;
-               sword.transform.rotation = weaponHolder.transform.rotation;
-               bow.transform.rotation = weaponHolder.transform.rotation;
+                bow.SetActive(true);
+
             }
 
-            if(horizontalMove < 0 && canMove == true) 
+            if (!Input.GetKeyDown(KeyCode.E) && gm.started == true && gm.GameOn == true)
             {
-               playerRotationHolder.transform.rotation = Quaternion.Euler(0f, -90f, 0f);
-               sword.transform.position = weaponHolder.transform.position;
-               bow.transform.position = weaponHolder.transform.position;
-               sword.transform.rotation = weaponHolder.transform.rotation;
-               bow.transform.rotation = weaponHolder.transform.rotation;
+                sword.transform.position = weaponHolder.transform.position;
+                sword.transform.rotation = weaponHolder.transform.rotation;
+                bow.transform.position = weaponHolder.transform.position;
+                bow.transform.rotation = weaponHolder.transform.rotation;
+                if (horizontalMove > 0 && canMove == true)
+                {
+                    playerRotationHolder.transform.rotation = Quaternion.Euler(90f, 90f, 0f);
+                    weaponHolder.transform.rotation = Quaternion.Euler(0f, playerRotationHolder.transform.rotation.y, playerRotationHolder.transform.rotation.z);
+                }
+                if (horizontalMove > 0 && verticalMove > 0 && canMove == true)
+                {
+                    playerRotationHolder.transform.rotation = Quaternion.Euler(0f, 45f, 0f);
+                    weaponHolder.transform.rotation = Quaternion.Euler(0f, playerRotationHolder.transform.rotation.y, playerRotationHolder.transform.rotation.z);
+                }
+                if (horizontalMove > 0 && verticalMove < 0 && canMove == true)
+                {
+                    playerRotationHolder.transform.rotation = Quaternion.Euler(0f, 145f, 0f);
+                    weaponHolder.transform.rotation = Quaternion.Euler(0f, playerRotationHolder.transform.rotation.y, playerRotationHolder.transform.rotation.z);
+                }
+                if (horizontalMove < 0 && canMove == true)
+                {
+                    playerRotationHolder.transform.rotation = Quaternion.Euler(0f, -90f, 0f);
+                    weaponHolder.transform.rotation = Quaternion.Euler(0f, playerRotationHolder.transform.rotation.y, playerRotationHolder.transform.rotation.z);
+                }
+                if (horizontalMove < 0 && verticalMove > 0 && canMove == true)
+                {
+                    playerRotationHolder.transform.rotation = Quaternion.Euler(0f, -45f, 0f);
+                    weaponHolder.transform.rotation = Quaternion.Euler(0f, playerRotationHolder.transform.rotation.y, playerRotationHolder.transform.rotation.z);
+                }
+                if (horizontalMove < 0 && verticalMove < 0 && canMove == true)
+                {
+                    playerRotationHolder.transform.rotation = Quaternion.Euler(0f, -145f, 0f);
+                    weaponHolder.transform.rotation = Quaternion.Euler(0f, playerRotationHolder.transform.rotation.y, playerRotationHolder.transform.rotation.z);
+                }
+                if (verticalMove > 0 && horizontalMove == 0 && canMove == true)
+                {
+                    playerRotationHolder.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+                    weaponHolder.transform.rotation = Quaternion.Euler(0f, playerRotationHolder.transform.rotation.y, playerRotationHolder.transform.rotation.z);
+                }
+                if (verticalMove < 0 && horizontalMove == 0 && canMove == true)
+                {
+                    playerRotationHolder.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+                    weaponHolder.transform.rotation = Quaternion.Euler(0f, playerRotationHolder.transform.rotation.y, playerRotationHolder.transform.rotation.z);
+                }
             }
-            if(horizontalMove < 0 && verticalMove > 0 && canMove == true) 
+
+            if (Input.GetKeyDown(KeyCode.E) && gm.started == true && gm.GameOn == true && isDashing == false)
             {
-               playerRotationHolder.transform.rotation = Quaternion.Euler(0f, -45f, 0f);
-               sword.transform.position = weaponHolder.transform.position;
-               bow.transform.position = weaponHolder.transform.position;
-               sword.transform.rotation = weaponHolder.transform.rotation;
-               bow.transform.rotation = weaponHolder.transform.rotation;
+                sword.transform.position = weaponHolder.transform.position;
+                bow.transform.position = weaponHolder.transform.position;
+                sword.transform.rotation = weaponHolder.transform.rotation;
+                bow.transform.rotation = weaponHolder.transform.rotation;
+                
+               if (horizontalMove > 0 && canMove == true) 
+               {
+                   playerRotationHolder.transform.rotation = Quaternion.Euler(0f, 90f, 0f);
+                   weaponHolder.transform.rotation = Quaternion.Euler(90f, playerRotationHolder.transform.rotation.y, playerRotationHolder.transform.rotation.z);
+               }
+               if(horizontalMove > 0 && verticalMove > 0 && canMove == true) 
+               {
+                   playerRotationHolder.transform.rotation = Quaternion.Euler(0f, 45f, 0f);
+                   weaponHolder.transform.rotation = Quaternion.Euler(90f, playerRotationHolder.transform.rotation.y, playerRotationHolder.transform.rotation.z);
+               }
+               if(horizontalMove > 0 && verticalMove < 0 && canMove == true) 
+               {
+                   playerRotationHolder.transform.rotation = Quaternion.Euler(0f, 145f, 0f);
+                   weaponHolder.transform.rotation = Quaternion.Euler(90f, playerRotationHolder.transform.rotation.y, playerRotationHolder.transform.rotation.z);
+               }
+               if(horizontalMove < 0 && canMove == true) 
+               {
+                   playerRotationHolder.transform.rotation = Quaternion.Euler(0f, -90f, 0f);
+                   weaponHolder.transform.rotation = Quaternion.Euler(90f, playerRotationHolder.transform.rotation.y, playerRotationHolder.transform.rotation.z);
+               }
+               if(horizontalMove < 0 && verticalMove > 0 && canMove == true) 
+               {
+                   playerRotationHolder.transform.rotation = Quaternion.Euler(0f, -45f, 0f);
+                   weaponHolder.transform.rotation = Quaternion.Euler(90f, playerRotationHolder.transform.rotation.y, playerRotationHolder.transform.rotation.z);
+               }
+               if(horizontalMove < 0 && verticalMove < 0 && canMove == true) 
+               {
+                   playerRotationHolder.transform.rotation = Quaternion.Euler(0f, -145f, 0f);
+                   weaponHolder.transform.rotation = Quaternion.Euler(90f, playerRotationHolder.transform.rotation.y, playerRotationHolder.transform.rotation.z);
+               }
+               if(verticalMove > 0 && horizontalMove == 0 && canMove == true) 
+               {
+                   playerRotationHolder.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+                   weaponHolder.transform.rotation = Quaternion.Euler(90f, playerRotationHolder.transform.rotation.y, playerRotationHolder.transform.rotation.z);
+               }
+               if(verticalMove < 0 && horizontalMove == 0 && canMove == true) 
+               {
+                   playerRotationHolder.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+                   weaponHolder.transform.rotation = Quaternion.Euler(90f, playerRotationHolder.transform.rotation.y, playerRotationHolder.transform.rotation.z);
+               }
             }
-            if(horizontalMove < 0 && verticalMove < 0 && canMove == true) 
-            {
-               playerRotationHolder.transform.rotation = Quaternion.Euler(0f, -145f, 0f);
-               sword.transform.position = weaponHolder.transform.position;
-               bow.transform.position = weaponHolder.transform.position;
-               sword.transform.rotation = weaponHolder.transform.rotation;
-               bow.transform.rotation = weaponHolder.transform.rotation;
-            }
-            if(verticalMove > 0 && horizontalMove == 0 && canMove == true) 
-            {
-               playerRotationHolder.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-               sword.transform.position = weaponHolder.transform.position;
-               bow.transform.position = weaponHolder.transform.position;
-               sword.transform.rotation = weaponHolder.transform.rotation;
-               bow.transform.rotation = weaponHolder.transform.rotation;
-            }
-            if(verticalMove < 0 && horizontalMove == 0 && canMove == true) 
-            {
-               playerRotationHolder.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
-               sword.transform.position = weaponHolder.transform.position;
-               bow.transform.position = weaponHolder.transform.position;
-               sword.transform.rotation = weaponHolder.transform.rotation;
-               bow.transform.rotation = weaponHolder.transform.rotation;
-            }
+           
 
             if (Input.GetMouseButtonDown(0) && canAttack == true && weapon > 0 && gm.started == true && isDashing == false)
             {
@@ -151,10 +195,8 @@ public class PlayerController : MonoBehaviour
                    
                    canMove = false;
                    canAttack = false;
-                   sword.SetActive(true);
                    sword.transform.position = weaponHolder.transform.position;
                    canMove = true;
-                   StartCoroutine("WaitForWeapons");
                    StartCoroutine("AttackCoolDown");
                }
                if (weapon == 2)
@@ -185,7 +227,6 @@ public class PlayerController : MonoBehaviour
                    canAttack = false;
                    drawSpeed = 60f;
                    myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
-                   StartCoroutine("WaitForWeapons");
                    StartCoroutine("AttackCoolDown");
                }
             }
@@ -229,13 +270,6 @@ public class PlayerController : MonoBehaviour
     
         }
 
-    }
-
-    IEnumerator WaitForWeapons()
-    {
-        yield return new WaitForSeconds(1f);
-        sword.SetActive(false);
-        bow.SetActive(false);
     }
 
     IEnumerator WaitDamage()

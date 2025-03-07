@@ -1145,6 +1145,8 @@ MonoBehaviour:
   enemyObject: {fileID: 0}
   spawnRange: 0
   enemyPrefab: {fileID: 232766443740596227, guid: dbb47fb935dcd884a92b5bea53302ed0, type: 3}
+  enemyNumber: []
+  enemyCanMove: 0
   GameOn: 0
   GameOver: 0
   weapon: 0
@@ -1643,7 +1645,7 @@ Transform:
   m_GameObject: {fileID: 1000120863}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.028, z: 0}
+  m_LocalPosition: {x: 0, y: 0.027, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2289,6 +2291,7 @@ MonoBehaviour:
   sword: {fileID: 888124988}
   bow: {fileID: 325042273}
   arrow: {fileID: 8278388404425105339, guid: 8637a1b38a835a142bf4cdce50316ac1, type: 3}
+  Pausemenu: {fileID: 0}
 --- !u!1 &1701830764
 GameObject:
   m_ObjectHideFlags: 0
@@ -2969,6 +2972,10 @@ PrefabInstance:
     - target: {fileID: 4267874088305988965, guid: dbb47fb935dcd884a92b5bea53302ed0, type: 3}
       propertyPath: m_Constraints
       value: 84
+      objectReference: {fileID: 0}
+    - target: {fileID: 7684431855697915427, guid: dbb47fb935dcd884a92b5bea53302ed0, type: 3}
+      propertyPath: m_Radius
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8906918789904399867, guid: dbb47fb935dcd884a92b5bea53302ed0, type: 3}
       propertyPath: gm
