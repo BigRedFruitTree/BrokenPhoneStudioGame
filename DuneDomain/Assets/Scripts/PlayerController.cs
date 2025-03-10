@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     public float drawSpeed;
     public bool canDash = true;
     public bool canTakeDamage = true;
+    public bool Attacker = false;
 
     [Header("Movement Settings")]
     public float speed = 10.0f;
@@ -90,15 +91,15 @@ public class PlayerController : MonoBehaviour
 
             }
 
-            if (!Input.GetKeyDown(KeyCode.E) && gm.started == true && gm.GameOn == true)
+            if (!Input.GetMouseButtonDown(0) && gm.started == true && gm.GameOn == true)
             {
                 sword.transform.position = weaponHolder.transform.position;
-                sword.transform.rotation = weaponHolder.transform.rotation;
+                sword.transform.rotation = weaponHolder.transform.rotation ;
                 bow.transform.position = weaponHolder.transform.position;
                 bow.transform.rotation = weaponHolder.transform.rotation;
                 if (horizontalMove > 0 && canMove == true)
                 {
-                    playerRotationHolder.transform.rotation = Quaternion.Euler(90f, 90f, 0f);
+                    playerRotationHolder.transform.rotation = Quaternion.Euler(0f, 90f, 0f);
                     weaponHolder.transform.rotation = Quaternion.Euler(0f, playerRotationHolder.transform.rotation.y, playerRotationHolder.transform.rotation.z);
                 }
                 if (horizontalMove > 0 && verticalMove > 0 && canMove == true)
@@ -138,7 +139,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.E) && gm.started == true && gm.GameOn == true && isDashing == false)
+            if (Input.GetMouseButton(0) && gm.started == true && gm.GameOn == true && isDashing == false && canAttack == false)
             {
                 sword.transform.position = weaponHolder.transform.position;
                 bow.transform.position = weaponHolder.transform.position;
