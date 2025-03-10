@@ -380,10 +380,10 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 6
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 200
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
@@ -1164,6 +1164,7 @@ MonoBehaviour:
   playerObject: {fileID: 1652962752}
   timer: 0
   timer2: 0
+  timer3: 0
   rounds: 0
   bossAgent: {fileID: 104712144}
   bossObject: {fileID: 104712137}
@@ -1173,7 +1174,7 @@ MonoBehaviour:
   spawnRange: 0
   enemyPrefab: {fileID: 232766443740596227, guid: dbb47fb935dcd884a92b5bea53302ed0, type: 3}
   enemyNumber: []
-  enemyCanMove: 0
+  enemyMovePattern: 0
   GameOn: 0
   GameOver: 0
   weapon: 0
@@ -2007,7 +2008,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1287532233
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3047,18 +3048,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4267874088305988965, guid: dbb47fb935dcd884a92b5bea53302ed0, type: 3}
-      propertyPath: m_Constraints
-      value: 84
-      objectReference: {fileID: 0}
-    - target: {fileID: 7684431855697915427, guid: dbb47fb935dcd884a92b5bea53302ed0, type: 3}
-      propertyPath: m_Radius
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8906918789904399867, guid: dbb47fb935dcd884a92b5bea53302ed0, type: 3}
-      propertyPath: gm
-      value: 
-      objectReference: {fileID: 624562655}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

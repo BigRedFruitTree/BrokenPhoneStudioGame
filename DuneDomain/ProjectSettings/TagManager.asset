@@ -9,6 +9,7 @@ TagManager:
   - MeleeEnemy
   - MeleeEnemySpawn
   - Wall
+  - EnemyCorpse
   layers:
   - Default
   - TransparentFX

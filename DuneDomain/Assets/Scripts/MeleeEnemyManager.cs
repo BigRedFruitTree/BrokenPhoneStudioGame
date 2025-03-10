@@ -14,10 +14,14 @@ public class MeleeEnemyManager : MonoBehaviour
     public GameObject playerObject;
 
     [Header("Stats")]
+    public GameObject corpsePrefab;
+
+    [Header("Stats")]
     public int health;
     public int maxHealth;
     public float speed;
     public bool canTakeDamage = true;
+    public bool dead = false;
 
     // Start is called before the first frame update
     void Start()
@@ -37,21 +41,24 @@ public class MeleeEnemyManager : MonoBehaviour
     {
         if (gm.GameOn == true && gm.GameOver == false)
         {
-            if (gm.enemyCanMove == false)
+            if (gm.enemyMovePattern == 2 && dead == false)
             {
-                Vector3 lookDirection = (playerObject.transform.position + enemyObject.transform.position).normalized;
+                Vector3 lookDirection = (-playerObject.transform.position - -enemyObject.transform.position).normalized;
                 enemyRidigbody.AddForce(lookDirection * speed);
             }
-            else
+            else if (gm.enemyMovePattern == 1 && dead == false)
             {
                 Vector3 lookDirection = (playerObject.transform.position - enemyObject.transform.position).normalized;
                 enemyRidigbody.AddForce(lookDirection * speed);
             }
 
-            if (health <= 0)
+            if (health <= 0 && dead == false)
             {
                 Destroy(enemyObject);
+                Instantiate(corpsePrefab, new Vector3(enemyObject.transform.position.x, enemyObject.transform.position.y - 0.59f, enemyObject.transform.position.z), Quaternion.Euler(90, 0, 0));
+                dead = true;
             }
+
         }
 
     }
@@ -77,7 +84,7 @@ public class MeleeEnemyManager : MonoBehaviour
         if (other.gameObject.name == "Sword" && canTakeDamage == true && gm.GameOn == true)
         {
             canTakeDamage = false;
-            health--;
+            health -= 5;
             StartCoroutine("WaitDamage");
 
         }

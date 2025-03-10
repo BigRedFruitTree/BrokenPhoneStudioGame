@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     [Header("Boss Stuff")]
     public float timer;
     public float timer2;
+    public float timer3;
     public int rounds;
     public NavMeshAgent bossAgent;
     public GameObject bossObject;
@@ -24,7 +25,8 @@ public class GameManager : MonoBehaviour
     public float spawnRange;
     public GameObject enemyPrefab;
     public GameObject[] enemyNumber;
-    public bool enemyCanMove = false;
+    public GameObject[] corpseNumber;
+    public int enemyMovePattern = 0;
 
     [Header("GameManager Stuff")]
     public bool GameOn = false;
@@ -36,8 +38,10 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        weaponScreen.SetActive(true);
         timer = 3000f;
         timer2 = 2000f;
+        timer3 = 2000f;
         rounds = 0;
         spawnRange = 20f;
         enemyObject = enemyPrefab;
@@ -52,6 +56,8 @@ public class GameManager : MonoBehaviour
     {
        if(GameOn == true && GameOver == false && started == true)
        {
+            enemyNumber = GameObject.FindGameObjectsWithTag("MeleeEnemy");
+
             while (enemyNumber.Length > 14) 
             {
                Destroy(GameObject.FindGameObjectWithTag("MeleeEnemy"));
@@ -59,11 +65,11 @@ public class GameManager : MonoBehaviour
             
             if(enemyNumber.Length == enemyNumber.Length/2)
             {
-                enemyCanMove = false;
+                enemyMovePattern = 2;
             }
             else
             {
-                enemyCanMove = true;
+                enemyMovePattern = 1;
             }
  
            if (timer > 0f)
@@ -82,6 +88,7 @@ public class GameManager : MonoBehaviour
 
            if (timer2 <= 0f)
            {
+              
               if(enemyNumber.Length < 15)
               {
                  SpawnEnemies(rounds);
@@ -92,7 +99,7 @@ public class GameManager : MonoBehaviour
               timer = 3000f;
               timer2 = 2000f + rounds;
            }
-          
+
        }
     }
 
@@ -151,5 +158,10 @@ public class GameManager : MonoBehaviour
     IEnumerator Wait()
     {
         yield return new WaitForSeconds(2f);
+    }
+
+    IEnumerator WaitForEating()
+    {
+        yield return new WaitForSeconds(enemyNumber.Length);
     }
 }
