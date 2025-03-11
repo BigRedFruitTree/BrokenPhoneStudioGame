@@ -66,7 +66,7 @@ public class BossManager : MonoBehaviour
            
         }
         
-        if (other.gameObject.name == "Sword" && canTakeDamage == true && gm.GameOn == true)
+        if (other.gameObject.name == "Sword" && canTakeDamage == true && gm.GameOn == true && player.attacking == true)
         {
             canTakeDamage = false;
             health--;
