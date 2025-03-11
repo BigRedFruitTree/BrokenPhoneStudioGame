@@ -243,7 +243,7 @@ public class PlayerController : MonoBehaviour
                    canAttack = false;
                    drawSpeed = 60f;
                    myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
-                   StartCoroutine("AttackCoolDown");
+                   StartCoroutine("BowCoolDown");
                }
             }
 
@@ -298,9 +298,16 @@ public class PlayerController : MonoBehaviour
         drawSpeed--;
     }
 
-    IEnumerator AttackCoolDown()
+    IEnumerator SwordCoolDown()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1f);
+        canAttack = true;
+        attacking = false;
+    }
+    
+    IEnumerator BowCoolDown()
+    {
+        yield return new WaitForSeconds(2f);
         canAttack = true;
         attacking = false;
     }
