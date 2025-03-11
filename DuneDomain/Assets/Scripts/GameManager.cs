@@ -13,11 +13,12 @@ public class GameManager : MonoBehaviour
     [Header("Boss Stuff")]
     public float timer;
     public float timer2;
-    public float timer3;
     public int rounds;
     public NavMeshAgent bossAgent;
     public GameObject bossObject;
     public GameObject bossSpawn;
+    public bool bossEating = false;
+    private GameObject currentTarget;
 
     [Header("Enemy Stuff")]
     public MeleeEnemyManager enemyScript;
@@ -33,19 +34,29 @@ public class GameManager : MonoBehaviour
     public bool GameOver = false;
     public int weapon = 0;
     public GameObject weaponScreen;
+    public GameObject weaponKeepButton;
+    public GameObject weaponKeepTXT;
     public bool started = false;
 
     // Start is called before the first frame update
     void Start()
     {
         weaponScreen.SetActive(true);
+        if(rounds <= 0)
+        {
+           weaponKeepButton.SetActive(false);
+           weaponKeepTXT.SetActive(false);
+        }
+       
         timer = 3000f;
         timer2 = 2000f;
-        timer3 = 2000f;
         rounds = 0;
         spawnRange = 20f;
         enemyObject = enemyPrefab;
-        enemyNumber = GameObject.FindGameObjectsWithTag("MeleeEnemy");
+
+        if (corpseNumber == null || corpseNumber.Length == 0) return;
+
+        SetNextTarget();
 
         if (SceneManager.GetActiveScene().buildIndex > 0)
             playerController = GameObject.Find("Player").GetComponent<PlayerController>();
@@ -56,6 +67,7 @@ public class GameManager : MonoBehaviour
     {
        if(GameOn == true && GameOver == false && started == true)
        {
+            corpseNumber = GameObject.FindGameObjectsWithTag("EnemyCorpse");
             enemyNumber = GameObject.FindGameObjectsWithTag("MeleeEnemy");
 
             while (enemyNumber.Length > 14) 
@@ -77,7 +89,7 @@ public class GameManager : MonoBehaviour
               StartCoroutine("Wait");
               timer--;
            }
-           if (timer <= 0f)
+           if (timer <= 0f && timer2 > 0f)
            {
                timer = 0f;
                bossObject.SetActive(true);
@@ -88,7 +100,31 @@ public class GameManager : MonoBehaviour
 
            if (timer2 <= 0f)
            {
-              
+              timer2 = 0f;
+              if(corpseNumber.Length > 0)
+              {
+                 if(bossEating == false)
+                 {
+                    bossEating = true;
+                    SetNextTarget();
+                 }
+                 
+                 if (bossAgent.remainingDistance <= bossAgent.stoppingDistance)
+                 {
+                   StartCoroutine("WaitForEating");
+                   Destroy(currentTarget);
+                   SetNextTarget();
+                 }
+                 
+              }
+              else
+              {
+                 bossEating = false;
+              }
+           }
+
+           if(bossEating == false && timer2 <= 0f && corpseNumber.Length == 0)
+           {
               if(enemyNumber.Length < 15)
               {
                  SpawnEnemies(rounds);
@@ -98,6 +134,14 @@ public class GameManager : MonoBehaviour
               bossObject.SetActive(false);   
               timer = 3000f;
               timer2 = 2000f + rounds;
+             
+              if(rounds > 0)
+              {
+                weaponScreen.SetActive(true);
+                weaponKeepButton.SetActive(true);
+                weaponKeepTXT.SetActive(true);
+              }
+             
            }
 
        }
@@ -140,6 +184,53 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void KeepWeapon()
+    {
+        if(weapon == 1)
+        {
+            weaponScreen.SetActive(false);
+            GameOn = true;
+            StartCoroutine("Wait");
+            started = true;
+        }
+        if(weapon == 2)
+        {
+            weaponScreen.SetActive(false);
+            GameOn = true;
+            StartCoroutine("Wait");
+            started = true;
+        }
+    }
+
+    public void SetNextTarget()
+    {
+        if (corpseNumber.Length == 0) return;
+
+        currentTarget = GetNearestTarget();
+        
+        bossAgent.destination = currentTarget.transform.position;
+    }
+
+
+
+    public GameObject GetNearestTarget()
+    {
+        GameObject nearestTarget = null;
+        float nearestDistance = Mathf.Infinity;
+
+        foreach (var corpse in corpseNumber)
+        {
+            float distance = Vector3.Distance(bossObject.transform.position, corpse.transform.position);
+            if (distance < nearestDistance)
+            {
+                nearestDistance = distance;
+                nearestTarget = corpse;
+            }
+        }
+
+        return nearestTarget;
+    }
+
     public void StartGame(int SceneID)
     {
         SceneManager.LoadScene(SceneID);
@@ -162,6 +253,6 @@ public class GameManager : MonoBehaviour
 
     IEnumerator WaitForEating()
     {
-        yield return new WaitForSeconds(enemyNumber.Length);
+        yield return new WaitForSeconds(5f);
     }
 }

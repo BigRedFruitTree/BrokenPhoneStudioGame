@@ -35,6 +35,11 @@ public class BossManager : MonoBehaviour
     {
        if(gm.GameOn == true && gm.GameOver == false)
        {
+         if(gm.bossEating == true)
+         {
+             
+         }
+
          if (health <= 0)
          {
             Destroy(bossObject);
