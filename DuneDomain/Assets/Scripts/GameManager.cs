@@ -125,12 +125,13 @@ public class GameManager : MonoBehaviour
 
            if(bossEating == false && timer2 <= 0f && corpseNumber.Length == 0)
            {
-              if(rounds > 0)
+              if(rounds > 0 && startCycle == false)
               {
                  GameOn = false;
                  bossObject.transform.position = bossSpawn.transform.position;
                  bossObject.SetActive(false);
                  StartCoroutine("WaitWeaponScreen");
+                 startCycle = true;
               }
            }
 
