@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     public GameObject bossObject;
     public GameObject bossSpawn;
     public bool bossEating = false;
+    public bool startCycle;
     private GameObject currentTarget;
 
     [Header("Enemy Stuff")]
@@ -41,6 +42,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        startCycle = false;
         weaponScreen.SetActive(true);
         if(rounds <= 0)
         {
@@ -50,7 +52,7 @@ public class GameManager : MonoBehaviour
        
         timer = 3000f;
         timer2 = 2000f;
-        rounds = 0;
+        rounds = 1;
         spawnRange = 20f;
         enemyObject = enemyPrefab;
 
@@ -112,8 +114,6 @@ public class GameManager : MonoBehaviour
                  if (bossAgent.remainingDistance <= bossAgent.stoppingDistance)
                  {
                    StartCoroutine("WaitForEating");
-                   Destroy(currentTarget);
-                   SetNextTarget();
                  }
                  
               }
@@ -125,22 +125,24 @@ public class GameManager : MonoBehaviour
 
            if(bossEating == false && timer2 <= 0f && corpseNumber.Length == 0)
            {
+              if(rounds > 0)
+              {
+                 GameOn = false;
+                 bossObject.transform.position = bossSpawn.transform.position;
+                 bossObject.SetActive(false);
+                 StartCoroutine("WaitWeaponScreen");
+              }
+           }
+
+           if(bossEating == false && timer2 <= 0f && corpseNumber.Length == 0 && startCycle == true)
+           {
               if(enemyNumber.Length < 15)
               {
                  SpawnEnemies(rounds);
-              }
-              bossObject.transform.position = bossSpawn.transform.position;
-              rounds++;
-              bossObject.SetActive(false);   
+              } 
               timer = 3000f;
               timer2 = 2000f + rounds;
-             
-              if(rounds > 0)
-              {
-                weaponScreen.SetActive(true);
-                weaponKeepButton.SetActive(true);
-                weaponKeepTXT.SetActive(true);
-              }
+              startCycle = false;
              
            }
 
@@ -168,6 +170,9 @@ public class GameManager : MonoBehaviour
     {
         if(chosenWeapon == 1)
         {
+            if(rounds > 1)
+              startCycle = true;
+
             weaponScreen.SetActive(false);
             weapon = chosenWeapon;
             GameOn = true;
@@ -176,6 +181,9 @@ public class GameManager : MonoBehaviour
         }
         if(chosenWeapon == 2)
         {
+            if(rounds > 1)
+             startCycle = true;
+
             weaponScreen.SetActive(false);
             weapon = chosenWeapon;
             GameOn = true;
@@ -188,6 +196,9 @@ public class GameManager : MonoBehaviour
     {
         if(weapon == 1)
         {
+            if(rounds > 1)
+             startCycle = true;
+
             weaponScreen.SetActive(false);
             GameOn = true;
             StartCoroutine("Wait");
@@ -195,6 +206,9 @@ public class GameManager : MonoBehaviour
         }
         if(weapon == 2)
         {
+            if(rounds > 1)
+             startCycle = true;
+
             weaponScreen.SetActive(false);
             GameOn = true;
             StartCoroutine("Wait");
@@ -254,5 +268,16 @@ public class GameManager : MonoBehaviour
     IEnumerator WaitForEating()
     {
         yield return new WaitForSeconds(5f);
+        Destroy(currentTarget);
+        SetNextTarget();
+    }
+
+    IEnumerator WaitWeaponScreen()
+    {
+        yield return new WaitForSeconds(1f);
+        weaponScreen.SetActive(true);
+        weaponKeepButton.SetActive(true);
+        weaponKeepTXT.SetActive(true);
+        rounds += 1;
     }
 }

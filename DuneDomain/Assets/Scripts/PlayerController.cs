@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
     public bool attacking = false;
 
     [Header("Movement Settings")]
-    public float speed = 10.0f;
+    public float speed = 7f;
     public float stamina = 50f;
     public bool isDashing = false;
 
@@ -214,7 +214,7 @@ public class PlayerController : MonoBehaviour
                    canMove = false;
                    canAttack = false;
                    canMove = true;
-                   StartCoroutine("AttackCoolDown");
+                   StartCoroutine("SwordCoolDown");
                }
                if (weapon == 2)
                {

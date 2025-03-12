@@ -1169,6 +1169,7 @@ MonoBehaviour:
   bossObject: {fileID: 104712137}
   bossSpawn: {fileID: 1594994284}
   bossEating: 0
+  startCycle: 0
   enemyScript: {fileID: 2032745260}
   enemyObject: {fileID: 0}
   spawnRange: 0
