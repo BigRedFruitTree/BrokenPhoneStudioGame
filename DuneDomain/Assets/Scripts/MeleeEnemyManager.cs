@@ -63,14 +63,6 @@ public class MeleeEnemyManager : MonoBehaviour
 
     }
 
-    public void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Player" && player.canTakeDamage == true && gm.GameOn == true)
-        {
-            player.health--;
-        }
-    }
-
     public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Shot" && canTakeDamage == true && gm.GameOn == true)

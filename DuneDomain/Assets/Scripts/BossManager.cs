@@ -48,14 +48,6 @@ public class BossManager : MonoBehaviour
 
     }
 
-    public void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Player" && gm.GameOn == true)
-        {
-            player.health--;
-        }
-    }
-
     public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Shot" && canTakeDamage == true && gm.GameOn == true)

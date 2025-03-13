@@ -66,6 +66,7 @@ public class PlayerController : MonoBehaviour
     {
         if(gm.GameOn == true && gm.GameOver == false && canMove == true)
         {
+           
 
             weapon = gm.weapon;
 
@@ -131,80 +132,124 @@ public class PlayerController : MonoBehaviour
                 playerRotationHolder.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
             }
 
-            if (!Input.GetMouseButtonDown(0) && attacking == false)
+             if (!Input.GetMouseButtonDown(0) && attacking == false)
+             {
+                 if (horizontalMove > 0 && canMove == true)
+                 {
+                     weaponHolder.transform.rotation = Quaternion.Euler(0f, 90f, 0f);
+                 }
+                 if (horizontalMove > 0 && verticalMove > 0 && canMove == true)
+                 {
+                     weaponHolder.transform.rotation = Quaternion.Euler(0f, 45f, 0f);
+                 }
+                 if (horizontalMove > 0 && verticalMove < 0 && canMove == true)
+                 {
+                     weaponHolder.transform.rotation = Quaternion.Euler(0f, 145f, 0f);
+                 }
+                 if (horizontalMove < 0 && canMove == true)
+                 {
+                     weaponHolder.transform.rotation = Quaternion.Euler(0f, -90f, 0f);
+                 }
+                 if (horizontalMove < 0 && verticalMove > 0 && canMove == true)
+                 {
+                     weaponHolder.transform.rotation = Quaternion.Euler(0f, -45f, 0f);
+                 }
+                 if (horizontalMove < 0 && verticalMove < 0 && canMove == true)
+                 {
+                     weaponHolder.transform.rotation = Quaternion.Euler(0f, -145f, 0f);
+                 }
+                 if (verticalMove > 0 && horizontalMove == 0 && canMove == true)
+                 {
+                     weaponHolder.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+                 }
+                 if (verticalMove < 0 && horizontalMove == 0 && canMove == true)
+                 {
+                     weaponHolder.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+                 }
+             }
+
+            if (Input.GetMouseButton(0) && gm.started == true && gm.GameOn == true && isDashing == false && attacking == false)
             {
-                if (horizontalMove > 0 && canMove == true)
+                if(weapon == 2)
                 {
-                    weaponHolder.transform.rotation = Quaternion.Euler(0f, playerRotationHolder.transform.rotation.y, 0f);
+                   if (horizontalMove > 0 && canMove == true)
+                   {
+                      weaponHolder.transform.rotation = Quaternion.Euler(90f, 90f, 0f);
+                   }
+                   if (horizontalMove > 0 && verticalMove > 0 && canMove == true)
+                   {
+                       weaponHolder.transform.rotation = Quaternion.Euler(90f, 45f, 0f);
+                   }
+                   if (horizontalMove > 0 && verticalMove < 0 && canMove == true)
+                   {
+                       weaponHolder.transform.rotation = Quaternion.Euler(90f, 145f, 0f);
+                   }
+                   if (horizontalMove < 0 && canMove == true)
+                   {
+                      weaponHolder.transform.rotation = Quaternion.Euler(90f, -90f, 0f);
+                   }
+                   if (horizontalMove < 0 && verticalMove > 0 && canMove == true)
+                   {
+                      weaponHolder.transform.rotation = Quaternion.Euler(90f, -45f, 0f);
+                   }
+                   if (horizontalMove < 0 && verticalMove < 0 && canMove == true)
+                   {
+                      weaponHolder.transform.rotation = Quaternion.Euler(90f, -145f, 0f);
+                   }
+                   if (verticalMove > 0 && horizontalMove == 0 && canMove == true)
+                   {
+                      weaponHolder.transform.rotation = Quaternion.Euler(90f, 0f, 0f);
+                   }
+                   if (verticalMove < 0 && horizontalMove == 0 && canMove == true)
+                   {
+                      weaponHolder.transform.rotation = Quaternion.Euler(90f, 180f, 0f);
+                   }
                 }
-                if (horizontalMove > 0 && verticalMove > 0 && canMove == true)
-                {
-                    weaponHolder.transform.rotation = Quaternion.Euler(0f, playerRotationHolder.transform.rotation.y, 0f);
-                }
-                if (horizontalMove > 0 && verticalMove < 0 && canMove == true)
-                {
-                    weaponHolder.transform.rotation = Quaternion.Euler(0f, playerRotationHolder.transform.rotation.y, 0f);
-                }
-                if (horizontalMove < 0 && canMove == true)
-                {
-                    weaponHolder.transform.rotation = Quaternion.Euler(0f, playerRotationHolder.transform.rotation.y, 0f);
-                }
-                if (horizontalMove < 0 && verticalMove > 0 && canMove == true)
-                {
-                    weaponHolder.transform.rotation = Quaternion.Euler(0f, playerRotationHolder.transform.rotation.y, 0f);
-                }
-                if (horizontalMove < 0 && verticalMove < 0 && canMove == true)
-                {
-                    weaponHolder.transform.rotation = Quaternion.Euler(0f, playerRotationHolder.transform.rotation.y, 0f);
-                }
-                if (verticalMove > 0 && horizontalMove == 0 && canMove == true)
-                {
-                    weaponHolder.transform.rotation = Quaternion.Euler(0f, playerRotationHolder.transform.rotation.y, 0f);
-                }
-                if (verticalMove < 0 && horizontalMove == 0 && canMove == true)
-                {
-                    weaponHolder.transform.rotation = Quaternion.Euler(0f, playerRotationHolder.transform.rotation.y, 0f);
-                }
+                
+
             }
 
             if (Input.GetMouseButtonDown(0) && gm.started == true && gm.GameOn == true && isDashing == false && attacking == false)
             {
-               
-               if (horizontalMove > 0 && canMove == true) 
-               {
-                   weaponHolder.transform.rotation = Quaternion.Euler(90f, playerRotationHolder.transform.rotation.y, 0f);
-               }
-               if(horizontalMove > 0 && verticalMove > 0 && canMove == true) 
-               {
-                   weaponHolder.transform.rotation = Quaternion.Euler(90f, playerRotationHolder.transform.rotation.y, 0f);
-               }
-               if(horizontalMove > 0 && verticalMove < 0 && canMove == true) 
-               {
-                   weaponHolder.transform.rotation = Quaternion.Euler(90f, playerRotationHolder.transform.rotation.y, 0f);
-               }
-               if(horizontalMove < 0 && canMove == true) 
-               {
-                   weaponHolder.transform.rotation = Quaternion.Euler(90f, playerRotationHolder.transform.rotation.y, 0f);
-               }
-               if(horizontalMove < 0 && verticalMove > 0 && canMove == true) 
-               {
-                   weaponHolder.transform.rotation = Quaternion.Euler(90f, playerRotationHolder.transform.rotation.y, 0f);
-               }
-               if(horizontalMove < 0 && verticalMove < 0 && canMove == true) 
-               {
-                   weaponHolder.transform.rotation = Quaternion.Euler(90f, playerRotationHolder.transform.rotation.y, 0f);
-               }
-               if(verticalMove > 0 && horizontalMove == 0 && canMove == true) 
-               {
-                   weaponHolder.transform.rotation = Quaternion.Euler(90f, playerRotationHolder.transform.rotation.y, 0f);
-               }
-               if(verticalMove < 0 && horizontalMove == 0 && canMove == true) 
-               {
-                   weaponHolder.transform.rotation = Quaternion.Euler(90f, playerRotationHolder.transform.rotation.y, 0f);
-               }   
-             
+                if (weapon == 1)
+                {
+                    if (horizontalMove > 0 && canMove == true)
+                    {
+                        weaponHolder.transform.rotation = Quaternion.Euler(90f, 90f, 0f);
+                    }
+                    if (horizontalMove > 0 && verticalMove > 0 && canMove == true)
+                    {
+                        weaponHolder.transform.rotation = Quaternion.Euler(90f, 45f, 0f);
+                    }
+                    if (horizontalMove > 0 && verticalMove < 0 && canMove == true)
+                    {
+                        weaponHolder.transform.rotation = Quaternion.Euler(90f, 145f, 0f);
+                    }
+                    if (horizontalMove < 0 && canMove == true)
+                    {
+                        weaponHolder.transform.rotation = Quaternion.Euler(90f, -90f, 0f);
+                    }
+                    if (horizontalMove < 0 && verticalMove > 0 && canMove == true)
+                    {
+                        weaponHolder.transform.rotation = Quaternion.Euler(90f, -45f, 0f);
+                    }
+                    if (horizontalMove < 0 && verticalMove < 0 && canMove == true)
+                    {
+                        weaponHolder.transform.rotation = Quaternion.Euler(90f, -145f, 0f);
+                    }
+                    if (verticalMove > 0 && horizontalMove == 0 && canMove == true)
+                    {
+                        weaponHolder.transform.rotation = Quaternion.Euler(90f, 0f, 0f);
+                    }
+                    if (verticalMove < 0 && horizontalMove == 0 && canMove == true)
+                    {
+                        weaponHolder.transform.rotation = Quaternion.Euler(90f, 180f, 0f);
+                    }
+                }
+
+
             }
-           
+
 
             if (Input.GetMouseButtonDown(0) && canAttack == true && weapon > 0 && gm.started == true && isDashing == false)
             {
@@ -287,9 +332,30 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    public void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.tag == "MeleeEnemy" && canTakeDamage == true && gm.GameOn == true)
+        {
+            canTakeDamage = false;
+            health--;
+            StartCoroutine("WaitDamage");
+        }
+    }
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.name == "Boss" && gm.GameOn == true && canTakeDamage == true)
+        {
+            canTakeDamage = false;
+            health--;
+            StartCoroutine("WaitDamage");
+        }
+    }
+
     IEnumerator WaitDamage()
     {
         yield return new WaitForSeconds(1f);
+        canTakeDamage = true;
     }
 
     IEnumerator WaitDraw()
