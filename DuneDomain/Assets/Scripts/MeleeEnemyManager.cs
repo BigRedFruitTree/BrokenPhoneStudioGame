@@ -13,7 +13,7 @@ public class MeleeEnemyManager : MonoBehaviour
     public PlayerController player;
     public GameObject playerObject;
 
-    [Header("Stats")]
+    [Header("Prefabs")]
     public GameObject corpsePrefab;
 
     [Header("Stats")]
