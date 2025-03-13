@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(gm.GameOn == true && gm.GameOver == false && canMove == true)
+        if(gm.GameOn == true && gm.GameOver == false && canMove == true && gm.started == true)
         {
            
 
@@ -263,7 +263,7 @@ public class PlayerController : MonoBehaviour
                }
                if (weapon == 2)
                {
-                 drawSpeed = 60f;
+                 drawSpeed = 200f;
                }
             }
 
@@ -276,9 +276,9 @@ public class PlayerController : MonoBehaviour
                }
             }
 
-            if (Input.GetMouseButtonUp(0) && drawSpeed <= 0 && weapon > 0 && gm.started == true && isDashing == false)
+            if (Input.GetMouseButtonUp(0) && weapon > 0 && gm.started == true && isDashing == false)
             {
-                if (weapon == 2)
+                if (weapon == 2 && drawSpeed <= 0f)
                 {
                    arrowSpeed = 2000;
                    arrow.SetActive(true);
@@ -286,9 +286,16 @@ public class PlayerController : MonoBehaviour
                    arrowSummon.GetComponent<Rigidbody>().AddForce(arrowSummon.transform.up * arrowSpeed);
                    Destroy(arrowSummon, 2f);
                    canAttack = false;
-                   drawSpeed = 60f;
+                   drawSpeed = 200f;
                    myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
                    StartCoroutine("BowCoolDown");
+                }
+                if (weapon == 2 && drawSpeed > 0f)
+                {
+                    canAttack = false;
+                    drawSpeed = 200f;
+                    myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
+                    StartCoroutine("BowCoolDown");
                 }
             }
 
@@ -360,7 +367,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator WaitDraw()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         drawSpeed--;
     }
 
