@@ -209,7 +209,7 @@ public class PlayerController : MonoBehaviour
 
             }
 
-            if (Input.GetMouseButtonDown(0) && gm.started == true && gm.GameOn == true && isDashing == false && attacking == false)
+            if (Input.GetMouseButtonDown(0) && gm.started == true && gm.GameOn == true && isDashing == false && attacking == false && canAttack == true)
             {
                 if (weapon == 1)
                 {
@@ -251,9 +251,9 @@ public class PlayerController : MonoBehaviour
             }
 
 
-            if (Input.GetMouseButtonDown(0) && canAttack == true && weapon > 0 && gm.started == true && isDashing == false)
+            if (Input.GetMouseButtonDown(0) && canAttack == true && weapon > 0 && gm.started == true && isDashing == false && attacking == false)
             {
-               if(weapon == 1)
+               if (weapon == 1)
                {
                    attacking = true;
                    canMove = false;
@@ -263,7 +263,7 @@ public class PlayerController : MonoBehaviour
                }
                if (weapon == 2)
                {
-                  drawSpeed = 60f;
+                 drawSpeed = 60f;
                }
             }
 
@@ -278,8 +278,8 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetMouseButtonUp(0) && drawSpeed <= 0 && weapon > 0 && gm.started == true && isDashing == false)
             {
-               if (weapon == 2)
-               {
+                if (weapon == 2)
+                {
                    arrowSpeed = 2000;
                    arrow.SetActive(true);
                    GameObject arrowSummon = Instantiate(arrow, bow.transform.position, bow.transform.rotation);
@@ -289,7 +289,7 @@ public class PlayerController : MonoBehaviour
                    drawSpeed = 60f;
                    myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
                    StartCoroutine("BowCoolDown");
-               }
+                }
             }
 
             if (Input.GetKeyDown(KeyCode.E) && gm.started == true && stamina >= 5)

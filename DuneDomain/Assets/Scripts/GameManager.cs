@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
            weaponKeepTXT.SetActive(false);
         }
        
-        timer = 3000f;
+        timer = 6000f;
         timer2 = 2000f;
         rounds = 1;
         spawnRange = 20f;
@@ -141,7 +141,7 @@ public class GameManager : MonoBehaviour
               {
                  SpawnEnemies(rounds);
               } 
-              timer = 3000f;
+              timer = 6000f;
               timer2 = 2000f + rounds;
               startCycle = false;
              
