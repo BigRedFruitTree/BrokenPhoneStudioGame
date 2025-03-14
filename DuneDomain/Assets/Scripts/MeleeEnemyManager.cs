@@ -6,14 +6,14 @@ using UnityEngine;
 public class MeleeEnemyManager : MonoBehaviour
 {
     public GameManager gm;
-
-    public GameObject enemyObject;
-    public Rigidbody enemyRidigbody;
-
     public PlayerController player;
     public GameObject playerObject;
 
-    [Header("Prefabs")]
+    [Header("Enemy Ref's")]
+    public GameObject enemyObject;
+    public NavMeshAgent agent;
+    public Rigidbody enemyRidigbody;
+    public GameObject enemySword;
     public GameObject corpsePrefab;
 
     [Header("Stats")]
@@ -43,11 +43,13 @@ public class MeleeEnemyManager : MonoBehaviour
         {
             if (gm.enemyMovePattern == 2 && dead == false)
             {
+                agent.destination = -player.transform.position;
                 Vector3 lookDirection = (-playerObject.transform.position - -enemyObject.transform.position).normalized;
                 enemyRidigbody.AddForce(lookDirection * speed);
             }
             else if (gm.enemyMovePattern == 1 && dead == false)
             {
+                agent.destination = player.transform.position;
                 Vector3 lookDirection = (playerObject.transform.position - enemyObject.transform.position).normalized;
                 enemyRidigbody.AddForce(lookDirection * speed);
             }

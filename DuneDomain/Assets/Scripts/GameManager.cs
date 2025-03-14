@@ -77,7 +77,7 @@ public class GameManager : MonoBehaviour
                Destroy(GameObject.FindGameObjectWithTag("MeleeEnemy"));
             }
             
-            if(enemyNumber.Length == enemyNumber.Length/2)
+            if(corpseNumber.Length >= enemyNumber.Length)
             {
                 enemyMovePattern = 2;
             }
@@ -127,11 +127,9 @@ public class GameManager : MonoBehaviour
            {
               if(rounds > 0 && startCycle == false)
               {
-                 GameOn = false;
                  bossObject.transform.position = bossSpawn.transform.position;
                  bossObject.SetActive(false);
                  StartCoroutine("WaitWeaponScreen");
-                 startCycle = true;
               }
            }
 
@@ -272,7 +270,9 @@ public class GameManager : MonoBehaviour
 
     IEnumerator WaitWeaponScreen()
     {
+        startCycle = true;
         yield return new WaitForSeconds(1f);
+        GameOn = false;
         weaponScreen.SetActive(true);
         weaponKeepButton.SetActive(true);
         weaponKeepTXT.SetActive(true);
