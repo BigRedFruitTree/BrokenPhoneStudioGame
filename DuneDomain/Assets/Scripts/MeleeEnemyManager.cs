@@ -26,7 +26,6 @@ public class MeleeEnemyManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
         health = 5;
         maxHealth = 5;
         player = GameObject.Find("Player").GetComponent<PlayerController>();
@@ -41,15 +40,16 @@ public class MeleeEnemyManager : MonoBehaviour
     {
         if (gm.GameOn == true && gm.GameOver == false)
         {
+            enemySword.SetActive(true);
             if (gm.enemyMovePattern == 2 && dead == false)
             {
-                agent.destination = -player.transform.position;
-                Vector3 lookDirection = (-playerObject.transform.position - -enemyObject.transform.position).normalized;
-                enemyRidigbody.AddForce(lookDirection * speed);
+                agent.destination = -playerObject.transform.position.normalized;
+                Vector3 lookDirection = (playerObject.transform.position - enemyObject.transform.position).normalized;
+                enemyRidigbody.AddForce(-lookDirection * speed);
             }
             else if (gm.enemyMovePattern == 1 && dead == false)
             {
-                agent.destination = player.transform.position;
+                agent.destination = playerObject.transform.position;
                 Vector3 lookDirection = (playerObject.transform.position - enemyObject.transform.position).normalized;
                 enemyRidigbody.AddForce(lookDirection * speed);
             }
