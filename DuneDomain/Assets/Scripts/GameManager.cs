@@ -178,7 +178,6 @@ public class GameManager : MonoBehaviour
             weapon = chosenWeapon;
             GameOn = true;
             StartCoroutine("Wait");
-            started = true;
         }
         if(chosenWeapon == 2)
         {
@@ -189,7 +188,6 @@ public class GameManager : MonoBehaviour
             weapon = chosenWeapon;
             GameOn = true;
             StartCoroutine("Wait");
-            started = true;
         }
     }
 
@@ -203,7 +201,6 @@ public class GameManager : MonoBehaviour
             weaponScreen.SetActive(false);
             GameOn = true;
             StartCoroutine("Wait");
-            started = true;
         }
         if(weapon == 2)
         {
@@ -262,7 +259,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator Wait()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         started = true;
     }
 

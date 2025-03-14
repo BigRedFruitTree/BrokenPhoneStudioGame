@@ -269,7 +269,6 @@ public class PlayerController : MonoBehaviour
             {
                if (weapon == 2)
                {
-                  canMove = false;
                   myRB.constraints = RigidbodyConstraints.FreezeAll;
                   StartCoroutine("WaitDraw");
                }
@@ -287,7 +286,6 @@ public class PlayerController : MonoBehaviour
                    canAttack = false;
                    drawSpeed = 200f;
                    myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
-                   canMove = true;
                    StartCoroutine("BowCoolDown");
                 }
                 if (weapon == 2 && drawSpeed > 0f)
