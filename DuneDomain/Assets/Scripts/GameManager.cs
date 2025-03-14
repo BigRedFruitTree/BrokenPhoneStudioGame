@@ -213,7 +213,6 @@ public class GameManager : MonoBehaviour
             weaponScreen.SetActive(false);
             GameOn = true;
             StartCoroutine("Wait");
-            started = true;
         }
     }
 
@@ -264,6 +263,7 @@ public class GameManager : MonoBehaviour
     IEnumerator Wait()
     {
         yield return new WaitForSeconds(2f);
+        started = true;
     }
 
     IEnumerator WaitForEating()

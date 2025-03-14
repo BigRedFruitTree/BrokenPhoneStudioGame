@@ -132,41 +132,41 @@ public class PlayerController : MonoBehaviour
                 playerRotationHolder.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
             }
 
-             if (!Input.GetMouseButtonDown(0) && attacking == false)
-             {
-                 if (horizontalMove > 0 && canMove == true)
-                 {
-                     weaponHolder.transform.rotation = Quaternion.Euler(0f, 90f, 0f);
-                 }
-                 if (horizontalMove > 0 && verticalMove > 0 && canMove == true)
-                 {
-                     weaponHolder.transform.rotation = Quaternion.Euler(0f, 45f, 0f);
-                 }
-                 if (horizontalMove > 0 && verticalMove < 0 && canMove == true)
-                 {
-                     weaponHolder.transform.rotation = Quaternion.Euler(0f, 145f, 0f);
-                 }
-                 if (horizontalMove < 0 && canMove == true)
-                 {
-                     weaponHolder.transform.rotation = Quaternion.Euler(0f, -90f, 0f);
-                 }
-                 if (horizontalMove < 0 && verticalMove > 0 && canMove == true)
-                 {
-                     weaponHolder.transform.rotation = Quaternion.Euler(0f, -45f, 0f);
-                 }
-                 if (horizontalMove < 0 && verticalMove < 0 && canMove == true)
-                 {
-                     weaponHolder.transform.rotation = Quaternion.Euler(0f, -145f, 0f);
-                 }
-                 if (verticalMove > 0 && horizontalMove == 0 && canMove == true)
-                 {
-                     weaponHolder.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-                 }
-                 if (verticalMove < 0 && horizontalMove == 0 && canMove == true)
-                 {
-                     weaponHolder.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
-                 }
-             }
+            if (!Input.GetMouseButtonDown(0) && attacking == false)
+            {
+                if (horizontalMove > 0 && canMove == true)
+                {
+                    weaponHolder.transform.rotation = Quaternion.Euler(0f, 90f, 0f);
+                }
+                if (horizontalMove > 0 && verticalMove > 0 && canMove == true)
+                {
+                    weaponHolder.transform.rotation = Quaternion.Euler(0f, 45f, 0f);
+                }
+                if (horizontalMove > 0 && verticalMove < 0 && canMove == true)
+                {
+                    weaponHolder.transform.rotation = Quaternion.Euler(0f, 145f, 0f);
+                }
+                if (horizontalMove < 0 && canMove == true)
+                {
+                    weaponHolder.transform.rotation = Quaternion.Euler(0f, -90f, 0f);
+                }
+                if (horizontalMove < 0 && verticalMove > 0 && canMove == true)
+                {
+                    weaponHolder.transform.rotation = Quaternion.Euler(0f, -45f, 0f);
+                }
+                if (horizontalMove < 0 && verticalMove < 0 && canMove == true)
+                {
+                    weaponHolder.transform.rotation = Quaternion.Euler(0f, -145f, 0f);
+                }
+                if (verticalMove > 0 && horizontalMove == 0 && canMove == true)
+                {
+                    weaponHolder.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+                }
+                if (verticalMove < 0 && horizontalMove == 0 && canMove == true)
+                {
+                    weaponHolder.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+                }
+            }
 
             if (Input.GetMouseButton(0) && gm.started == true && gm.GameOn == true && isDashing == false && attacking == false)
             {
@@ -205,8 +205,6 @@ public class PlayerController : MonoBehaviour
                       weaponHolder.transform.rotation = Quaternion.Euler(90f, 180f, 0f);
                    }
                 }
-                
-
             }
 
             if (Input.GetMouseButtonDown(0) && gm.started == true && gm.GameOn == true && isDashing == false && attacking == false && canAttack == true)
@@ -271,6 +269,7 @@ public class PlayerController : MonoBehaviour
             {
                if (weapon == 2)
                {
+                  canMove = false;
                   myRB.constraints = RigidbodyConstraints.FreezeAll;
                   StartCoroutine("WaitDraw");
                }
@@ -288,6 +287,7 @@ public class PlayerController : MonoBehaviour
                    canAttack = false;
                    drawSpeed = 200f;
                    myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
+                   canMove = true;
                    StartCoroutine("BowCoolDown");
                 }
                 if (weapon == 2 && drawSpeed > 0f)
