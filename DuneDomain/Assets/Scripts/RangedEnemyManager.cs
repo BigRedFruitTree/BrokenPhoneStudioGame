@@ -10,7 +10,6 @@ public class RangedEnemyManager : MonoBehaviour
     public PlayerController Player;
     public GameObject PlayerObject;
     public GameObject RangedEnemyObject;
-    public GameObject RangedEnemySpawn;
     public Rigidbody EnemyRigidBody;
 
     [Header("Prefabs")]
@@ -21,7 +20,7 @@ public class RangedEnemyManager : MonoBehaviour
     public int MaxHealth;
     public float Speed;
     public bool CanTakeDamage = true;
-    public bool Dead = false;
+    public bool dead = false;
 
 
     // Start is called before the first frame update
@@ -33,7 +32,7 @@ public class RangedEnemyManager : MonoBehaviour
         PlayerObject = GameObject.Find("Player");
         EnemyRigidBody = GetComponent<Rigidbody>();
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
-        Speed = 12f;
+        Speed = 5f;
     }
 
     // Update is called once per frame
@@ -41,7 +40,48 @@ public class RangedEnemyManager : MonoBehaviour
     {
         if (gm.GameOn == true && gm.GameOver == false)
         {
+            if (gm.enemyMovePattern == 2 && dead == false)
+            {
+                Vector3 lookDirection = (-PlayerObject.transform.position - RangedEnemyObject.transform.position).normalized;
+                EnemyRigidBody.AddForce(lookDirection * Speed);
+            }
+            else if (gm.enemyMovePattern == 1 && dead == false)
+            {
+                Vector3 lookDirection = (PlayerObject.transform.position - RangedEnemyObject.transform.position).normalized;
+                EnemyRigidBody.AddForce(lookDirection * Speed);
+            }
+
+            else if (Health < 0 && dead == false)
+            {
+                Destroy(RangedEnemyObject);
+                Instantiate(RangedCorpsePrefab, new Vector3(RangedEnemyObject.transform.position.x, RangedEnemyObject.transform.position.y - 0.59f, RangedEnemyObject.transform.position.z), Quaternion.Euler(90, 0, 0));
+                dead = true;
+            }
+        }
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Shot" && CanTakeDamage == true && gm.GameOn == true)
+        {
+            CanTakeDamage = false;
+            Health--;
+            StartCoroutine("WaitDamage");
 
         }
+
+        if (other.gameObject.name == "Sword" && CanTakeDamage == true && gm.GameOn == true && Player.attacking == true)
+        {
+            CanTakeDamage = false;
+            Health--;
+            StartCoroutine("WaitDamage");
+
+        }
+    }
+
+    IEnumerator WaitDamage()
+    {
+        yield return new WaitForSeconds(1f);
+        CanTakeDamage = true;
     }
 }
