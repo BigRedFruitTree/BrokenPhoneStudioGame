@@ -41,16 +41,18 @@ public class MeleeEnemyManager : MonoBehaviour
         if (gm.GameOn == true && gm.GameOver == false)
         {
             enemySword.SetActive(true);
-            if (gm.enemyMovePattern == 2 && dead == false)
+            if (gm.enemyMovePattern == 2 && gm.GameOn == true)
             {
-                agent.destination = -playerObject.transform.position.normalized;
-                Vector3 lookDirection = (playerObject.transform.position - enemyObject.transform.position).normalized;
-                enemyRidigbody.AddForce(-lookDirection * speed);
+                Vector3 lookDirection = (enemyObject.transform.position - playerObject.transform.position).normalized;
+                Quaternion awayRotation = Quaternion.LookRotation(lookDirection);
+                enemyObject.transform.rotation = awayRotation;
+                enemyRidigbody.AddForce(lookDirection * speed);
             }
-            else if (gm.enemyMovePattern == 1 && dead == false)
+            else if (gm.enemyMovePattern == 1 && gm.GameOn == true)
             {
-                agent.destination = playerObject.transform.position;
                 Vector3 lookDirection = (playerObject.transform.position - enemyObject.transform.position).normalized;
+                Quaternion awayRotation = Quaternion.LookRotation(lookDirection);
+                enemyObject.transform.rotation = awayRotation;
                 enemyRidigbody.AddForce(lookDirection * speed);
             }
 
