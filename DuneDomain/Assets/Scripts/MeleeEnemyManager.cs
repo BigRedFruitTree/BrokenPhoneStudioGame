@@ -31,6 +31,7 @@ public class MeleeEnemyManager : MonoBehaviour
     void Start()
     {
         enemySword = enemyObject.transform.GetChild(0).gameObject;
+        agent = enemyObject.GetComponent<NavMeshAgent>();
         timer = Random.Range(2f, 4f);
         health = 5;
         maxHealth = 5;
@@ -38,7 +39,7 @@ public class MeleeEnemyManager : MonoBehaviour
         playerObject = GameObject.Find("Player");
         enemyRidigbody = GetComponent<Rigidbody>();
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
-        speed = 13f;
+        speed = 10f;
     }
 
     // Update is called once per frame
@@ -47,14 +48,14 @@ public class MeleeEnemyManager : MonoBehaviour
         if (gm.GameOn == true && gm.GameOver == false)
         {
             enemySword.SetActive(true);
-            if (gm.enemyMovePattern == 2 && gm.GameOn == true && canMove == true)
+            if (gm.meleeEnemyMovePattern == 2 && gm.GameOn == true && canMove == true)
             {
                 Vector3 lookDirection = (enemyObject.transform.position - playerObject.transform.position).normalized;
-                Quaternion awayRotation = Quaternion.LookRotation(lookDirection);
+                Quaternion awayRotation = Quaternion.LookRotation(-lookDirection);
                 enemyObject.transform.rotation = awayRotation;
-                enemyRidigbody.AddForce(lookDirection * speed);
+                enemyRidigbody.AddForce(-lookDirection * speed);
             }
-            else if (gm.enemyMovePattern == 1 && gm.GameOn == true && canMove == true)
+            else if (gm.meleeEnemyMovePattern == 1 && gm.GameOn == true && canMove == true)
             {
                 Vector3 lookDirection = (playerObject.transform.position - enemyObject.transform.position).normalized;
                 Quaternion awayRotation = Quaternion.LookRotation(lookDirection);

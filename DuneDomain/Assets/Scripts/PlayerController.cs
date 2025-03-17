@@ -375,7 +375,7 @@ public class PlayerController : MonoBehaviour
         MeleeEnemyManager nearestTarget = null;
         float nearestDistance = Mathf.Infinity;
 
-        foreach (var enemy in gm.enemyNumber)
+        foreach (var enemy in gm.meleeEnemyNumber)
         {
             float distance = Vector3.Distance(playerObject.transform.position, enemy.transform.position);
             if (distance < nearestDistance)
