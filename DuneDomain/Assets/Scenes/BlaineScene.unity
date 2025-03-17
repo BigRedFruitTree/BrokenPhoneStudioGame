@@ -2512,6 +2512,7 @@ MonoBehaviour:
   bow: {fileID: 325042273}
   arrow: {fileID: 8278388404425105339, guid: 8637a1b38a835a142bf4cdce50316ac1, type: 3}
   Pausemenu: {fileID: 0}
+  enemyScript: {fileID: 8906918789904399867, guid: dbb47fb935dcd884a92b5bea53302ed0, type: 3}
 --- !u!1 &1701830764
 GameObject:
   m_ObjectHideFlags: 0

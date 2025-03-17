@@ -158,13 +158,17 @@ MonoBehaviour:
   enemyObject: {fileID: 232766443740596227}
   agent: {fileID: 7684431855697915427}
   enemyRidigbody: {fileID: 0}
-  enemySword: {fileID: 2295086787264840397}
+  enemySword: {fileID: 0}
   corpsePrefab: {fileID: 6669723739384073081, guid: 3ab2aeb6fd22e88478ab13bc083cece6, type: 3}
   health: 10
   maxHealth: 10
   speed: 5
   canTakeDamage: 1
   dead: 0
+  timer: 0
+  attacking: 0
+  canAttack: 1
+  canMove: 1
 --- !u!195 &7684431855697915427
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -201,7 +205,7 @@ GameObject:
   - component: {fileID: 2248822801981895842}
   m_Layer: 0
   m_Name: EnemySword
-  m_TagString: Untagged
+  m_TagString: EnemySword
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

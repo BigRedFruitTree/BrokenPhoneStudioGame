@@ -22,10 +22,16 @@ public class MeleeEnemyManager : MonoBehaviour
     public float speed;
     public bool canTakeDamage = true;
     public bool dead = false;
+    public float timer;
+    public bool attacking = false;
+    public bool canAttack = true;
+    public bool canMove = true;
 
     // Start is called before the first frame update
     void Start()
     {
+        enemySword = enemyObject.transform.GetChild(0).gameObject;
+        timer = Random.Range(2f, 4f);
         health = 5;
         maxHealth = 5;
         player = GameObject.Find("Player").GetComponent<PlayerController>();
@@ -41,19 +47,37 @@ public class MeleeEnemyManager : MonoBehaviour
         if (gm.GameOn == true && gm.GameOver == false)
         {
             enemySword.SetActive(true);
-            if (gm.enemyMovePattern == 2 && gm.GameOn == true)
+            if (gm.enemyMovePattern == 2 && gm.GameOn == true && canMove == true)
             {
                 Vector3 lookDirection = (enemyObject.transform.position - playerObject.transform.position).normalized;
                 Quaternion awayRotation = Quaternion.LookRotation(lookDirection);
                 enemyObject.transform.rotation = awayRotation;
                 enemyRidigbody.AddForce(lookDirection * speed);
             }
-            else if (gm.enemyMovePattern == 1 && gm.GameOn == true)
+            else if (gm.enemyMovePattern == 1 && gm.GameOn == true && canMove == true)
             {
                 Vector3 lookDirection = (playerObject.transform.position - enemyObject.transform.position).normalized;
                 Quaternion awayRotation = Quaternion.LookRotation(lookDirection);
                 enemyObject.transform.rotation = awayRotation;
                 enemyRidigbody.AddForce(lookDirection * speed);
+            }
+
+            if(timer > 0)
+            {
+                timer -= 1 * Time.deltaTime;
+            }
+
+            if(timer <= 0)
+            {
+                timer = 0;
+                canAttack = true;
+                attacking = true;
+            }
+
+            if(attacking == true && canAttack == true)
+            {
+                enemySword.transform.eulerAngles = new Vector3(90f, enemyObject.transform.eulerAngles.y, enemyObject.transform.eulerAngles.z);
+                StartCoroutine(nameof(WaitAttack));
             }
 
             if (health <= 0 && dead == false)
@@ -73,7 +97,7 @@ public class MeleeEnemyManager : MonoBehaviour
         {
             canTakeDamage = false;
             health--;
-            StartCoroutine("WaitDamage");
+            StartCoroutine(nameof(WaitDamage));
 
         }
 
@@ -81,7 +105,7 @@ public class MeleeEnemyManager : MonoBehaviour
         {
             canTakeDamage = false;
             health--;
-            StartCoroutine("WaitDamage");
+            StartCoroutine(nameof(WaitDamage));
 
         }
     }
@@ -90,5 +114,14 @@ public class MeleeEnemyManager : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         canTakeDamage = true;
+    }
+    IEnumerator WaitAttack()
+    {
+        yield return new WaitForSeconds(1f);
+        attacking = false;
+        canAttack = false;
+        enemySword.transform.eulerAngles = new Vector3(0f, 0f, 0f);
+        canMove = true;
+        timer = Random.Range(2f, 4f);
     }
 }

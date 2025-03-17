@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using Cinemachine;
+using JetBrains.Annotations;
 
 
 public class PlayerController : MonoBehaviour
@@ -43,8 +44,7 @@ public class PlayerController : MonoBehaviour
     public GameObject bow;
     public GameObject arrow;
     public Canvas Pausemenu;
-    RaycastHit raycast;
-
+    public MeleeEnemyManager enemyScript;
 
     // Start is called before the first frame update
     void Start()
@@ -333,6 +333,10 @@ public class PlayerController : MonoBehaviour
                 gm.PauseGame();
             }
     
+            if(health > 0)
+            {
+                StartCoroutine(nameof(WaitCheckNearestEnemy));
+            }
         }
 
     }
@@ -347,6 +351,15 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.tag == "EnemySword" && canTakeDamage == true && gm.GameOn == true && enemyScript.attacking == true)
+        {
+            canTakeDamage = false;
+            health--;
+            StartCoroutine("WaitDamage");
+        }
+    }
     public void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.name == "Boss" && gm.GameOn == true && canTakeDamage == true)
@@ -357,6 +370,23 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public MeleeEnemyManager GetNearestTarget()
+    {
+        MeleeEnemyManager nearestTarget = null;
+        float nearestDistance = Mathf.Infinity;
+
+        foreach (var enemy in gm.enemyNumber)
+        {
+            float distance = Vector3.Distance(playerObject.transform.position, enemy.transform.position);
+            if (distance < nearestDistance)
+            {
+                nearestDistance = distance;
+                nearestTarget = enemy.GetComponent<MeleeEnemyManager>();
+            }
+        }
+
+        return nearestTarget;
+    }
     IEnumerator WaitDamage()
     {
         yield return new WaitForSeconds(1f);
@@ -393,6 +423,11 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         stamina += 0.1f;
+    }
+    IEnumerator WaitCheckNearestEnemy()
+    {
+        yield return new WaitForSeconds(0.1f);
+        enemyScript = GetNearestTarget();
     }
 
 }
