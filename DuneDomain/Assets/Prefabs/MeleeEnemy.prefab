@@ -162,7 +162,7 @@ MonoBehaviour:
   corpsePrefab: {fileID: 6669723739384073081, guid: 3ab2aeb6fd22e88478ab13bc083cece6, type: 3}
   health: 10
   maxHealth: 10
-  speed: 5
+  speed: 10
   canTakeDamage: 1
   dead: 0
   timer: 0

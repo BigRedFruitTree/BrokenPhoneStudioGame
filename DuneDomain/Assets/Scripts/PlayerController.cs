@@ -69,9 +69,9 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(gm.GameOn == true && gm.GameOver == false && canMove == true && gm.started == true)
+        if (gm.GameOn == true && gm.GameOver == false && canMove == true && gm.started == true)
         {
-           
+
 
             weapon = gm.weapon;
 
@@ -329,184 +329,184 @@ public class PlayerController : MonoBehaviour
                 }
 
 
-            if (Input.GetMouseButtonDown(0) && canAttack == true && weapon > 0 && gm.started == true && isDashing == false && attacking == false)
-            {
-               if (weapon == 1)
-               {
-                   attacking = true;
-                   canMove = false;
-                   canAttack = false;
-                   canMove = true;
-                   StartCoroutine("SwordCoolDown");
-               }
-               if (weapon == 2)
-               {
-                 drawSpeed = 200f;
-               }
-            }
-
-            if (Input.GetMouseButton(0) && canAttack == true && weapon > 0 && gm.started == true && isDashing == false)
-            {
-               if (weapon == 2)
-               {
-                  myRB.constraints = RigidbodyConstraints.FreezeAll;
-                  StartCoroutine("WaitDraw");
-               }
-            }
-
-            if (Input.GetMouseButtonUp(0) && weapon > 0 && gm.started == true && isDashing == false)
-            {
-                if (weapon == 2 && drawSpeed <= 0f)
+                if (Input.GetMouseButtonDown(0) && canAttack == true && weapon > 0 && gm.started == true && isDashing == false && attacking == false)
                 {
-                   arrowSpeed = 2000;
-                   arrow.SetActive(true);
-                   GameObject arrowSummon = Instantiate(arrow, bow.transform.position, bow.transform.rotation);
-                   arrowSummon.GetComponent<Rigidbody>().AddForce(arrowSummon.transform.up * arrowSpeed);
-                   Destroy(arrowSummon, 2f);
-                   canAttack = false;
-                   drawSpeed = 200f;
-                   myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
-                   StartCoroutine("BowCoolDown");
+                    if (weapon == 1)
+                    {
+                        attacking = true;
+                        canMove = false;
+                        canAttack = false;
+                        canMove = true;
+                        StartCoroutine("SwordCoolDown");
+                    }
+                    if (weapon == 2)
+                    {
+                        drawSpeed = 200f;
+                    }
                 }
-                if (weapon == 2 && drawSpeed > 0f)
+
+                if (Input.GetMouseButton(0) && canAttack == true && weapon > 0 && gm.started == true && isDashing == false)
                 {
-                    canAttack = false;
-                    drawSpeed = 200f;
-                    myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
-                    StartCoroutine("BowCoolDown");
+                    if (weapon == 2)
+                    {
+                        myRB.constraints = RigidbodyConstraints.FreezeAll;
+                        StartCoroutine("WaitDraw");
+                    }
+                }
+
+                if (Input.GetMouseButtonUp(0) && weapon > 0 && gm.started == true && isDashing == false)
+                {
+                    if (weapon == 2 && drawSpeed <= 0f)
+                    {
+                        arrowSpeed = 2000;
+                        arrow.SetActive(true);
+                        GameObject arrowSummon = Instantiate(arrow, bow.transform.position, bow.transform.rotation);
+                        arrowSummon.GetComponent<Rigidbody>().AddForce(arrowSummon.transform.up * arrowSpeed);
+                        Destroy(arrowSummon, 2f);
+                        canAttack = false;
+                        drawSpeed = 200f;
+                        myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
+                        StartCoroutine("BowCoolDown");
+                    }
+                    if (weapon == 2 && drawSpeed > 0f)
+                    {
+                        canAttack = false;
+                        drawSpeed = 200f;
+                        myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
+                        StartCoroutine("BowCoolDown");
+                    }
+                }
+
+                if (Input.GetKeyDown(KeyCode.E) && gm.started == true && stamina >= 5)
+                {
+                    canTakeDamage = false;
+                    isDashing = true;
+                    stamina -= 10;
+                    myRB.AddForce(playerRotationHolder.transform.forward * 10000f, ForceMode.Force);
+                    StartCoroutine("WaitDash");
+                    StartCoroutine("WaitDamage");
+                }
+
+                if (!Input.GetKeyDown(KeyCode.E) && gm.started == true && gm.GameOn == true && isDashing == false)
+                {
+                    if (stamina <= 10 && stamina < 10.0001)
+                    {
+                        StartCoroutine("WaitStamina");
+                    }
+
+                    if (stamina > 10)
+                        stamina = 10;
+                }
+
+                if (stamina <= 0)
+                    stamina = 0;
+
+
+                if (health < 0)
+                    health = 0;
+
+                if (health == 0)
+                    gm.GameOver = true;
+
+                if (Input.GetKeyDown(KeyCode.Escape))
+                {
+                    gm.PauseGame();
+                }
+
+                if (health > 0)
+                {
+                    StartCoroutine(nameof(WaitCheckNearestEnemy));
                 }
             }
+        }
 
-            if (Input.GetKeyDown(KeyCode.E) && gm.started == true && stamina >= 5)
+        private void OnCollisionStay(Collision collision)
+        {
+            if (collision.gameObject.tag == "MeleeEnemy" && canTakeDamage == true && gm.GameOn == true)
             {
                 canTakeDamage = false;
-                isDashing = true;
-                stamina -= 10;
-                myRB.AddForce(playerRotationHolder.transform.forward * 10000f, ForceMode.Force);
-                StartCoroutine("WaitDash");
+                health--;
                 StartCoroutine("WaitDamage");
             }
-            
-            if (!Input.GetKeyDown(KeyCode.E) && gm.started == true && gm.GameOn == true && isDashing == false)
+        }
+
+        public void OnTriggerStay(Collider other)
+        {
+            if (other.gameObject.tag == "EnemySword" && canTakeDamage == true && gm.GameOn == true && enemyScript.attacking == true)
             {
-                if(stamina <= 10 && stamina < 10.0001)
+                canTakeDamage = false;
+                health--;
+                StartCoroutine("WaitDamage");
+            }
+        }
+        public void OnCollisionEnter(Collision collision)
+        {
+            if (collision.gameObject.name == "Boss" && gm.GameOn == true && canTakeDamage == true)
+            {
+                canTakeDamage = false;
+                health--;
+                StartCoroutine("WaitDamage");
+            }
+        }
+
+        public MeleeEnemyManager GetNearestTarget()
+        {
+            MeleeEnemyManager nearestTarget = null;
+            float nearestDistance = Mathf.Infinity;
+
+            foreach (var enemy in gm.meleeEnemyNumber)
+            {
+                float distance = Vector3.Distance(playerObject.transform.position, enemy.transform.position);
+                if (distance < nearestDistance)
                 {
-                    StartCoroutine("WaitStamina");
+                    nearestDistance = distance;
+                    nearestTarget = enemy.GetComponent<MeleeEnemyManager>();
                 }
-
-                if(stamina > 10)
-                  stamina = 10;
             }
-            
-            if (stamina <= 0)
-                stamina = 0;
 
-
-            if (health < 0)
-                health = 0;
-
-            if (health == 0)
-                gm.GameOver = true;
-
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                gm.PauseGame();
-            }
-    
-            if(health > 0)
-            {
-                StartCoroutine(nameof(WaitCheckNearestEnemy));
-            }
+            return nearestTarget;
         }
-    }
-
-    public void OnCollisionStay(Collision collision)
-    {
-        if (collision.gameObject.tag == "MeleeEnemy" && canTakeDamage == true && gm.GameOn == true)
+        IEnumerator WaitDamage()
         {
-            canTakeDamage = false;
-            health--;
-            StartCoroutine("WaitDamage");
+            yield return new WaitForSeconds(1f);
+            canTakeDamage = true;
         }
-    }
 
-    public void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.tag == "EnemySword" && canTakeDamage == true && gm.GameOn == true && enemyScript.attacking == true)
+        IEnumerator WaitDraw()
         {
-            canTakeDamage = false;
-            health--;
-            StartCoroutine("WaitDamage");
+            yield return new WaitForSeconds(1f);
+            drawSpeed--;
         }
-    }
-    public void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.name == "Boss" && gm.GameOn == true && canTakeDamage == true)
+
+        IEnumerator SwordCoolDown()
         {
-            canTakeDamage = false;
-            health--;
-            StartCoroutine("WaitDamage");
+            yield return new WaitForSeconds(1f);
+            canAttack = true;
+            attacking = false;
         }
-    }
 
-    public MeleeEnemyManager GetNearestTarget()
-    {
-        MeleeEnemyManager nearestTarget = null;
-        float nearestDistance = Mathf.Infinity;
-
-        foreach (var enemy in gm.meleeEnemyNumber)
+        IEnumerator BowCoolDown()
         {
-            float distance = Vector3.Distance(playerObject.transform.position, enemy.transform.position);
-            if (distance < nearestDistance)
-            {
-                nearestDistance = distance;
-                nearestTarget = enemy.GetComponent<MeleeEnemyManager>();
-            }
+            yield return new WaitForSeconds(2f);
+            canAttack = true;
+            attacking = false;
         }
 
-        return nearestTarget;
-    }
-    IEnumerator WaitDamage()
-    {
-        yield return new WaitForSeconds(1f);
-        canTakeDamage = true;
-    }
+        IEnumerator WaitDash()
+        {
+            yield return new WaitForSeconds(1f);
+            isDashing = false;
+        }
 
-    IEnumerator WaitDraw()
-    {
-        yield return new WaitForSeconds(1f);
-        drawSpeed--;
+        IEnumerator WaitStamina()
+        {
+            yield return new WaitForSeconds(2f);
+            stamina += 0.1f;
+        }
+        IEnumerator WaitCheckNearestEnemy()
+        {
+            yield return new WaitForSeconds(0.1f);
+            enemyScript = GetNearestTarget();
+        }
     }
-
-    IEnumerator SwordCoolDown()
-    {
-        yield return new WaitForSeconds(1f);
-        canAttack = true;
-        attacking = false;
-    }
-    
-    IEnumerator BowCoolDown()
-    {
-        yield return new WaitForSeconds(2f);
-        canAttack = true;
-        attacking = false;
-    }
-
-    IEnumerator WaitDash()
-    {
-        yield return new WaitForSeconds(1f);
-        isDashing = false;
-    }
-
-    IEnumerator WaitStamina()
-    {
-        yield return new WaitForSeconds(2f);
-        stamina += 0.1f;
-    }
-    IEnumerator WaitCheckNearestEnemy()
-    {
-        yield return new WaitForSeconds(0.1f);
-        enemyScript = GetNearestTarget();
-    }
-
 }

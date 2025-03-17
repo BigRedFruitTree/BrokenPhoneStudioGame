@@ -53,24 +53,24 @@ public class RangedEnemyManager : MonoBehaviour
         if (gm.GameOn == true && gm.GameOver == false)
         {
             enemyBow.SetActive(true);
-            if (gm.rangedEnemyMovePattern == 2 && gm.GameOn == true && canWalk == true)
+            if (gm.rangedEnemyMovePattern == 2 && gm.GameOn == true && canWalk == true && dead == false)
             {
                 Vector3 lookDirection = (enemyObject.transform.position - playerObject.transform.position).normalized;
-                enemyRidigbody.AddForce(-lookDirection * speed);
+                enemyRidigbody.AddForce(lookDirection * speed);
             }
-            else if (gm.rangedEnemyMovePattern == 1 && gm.GameOn == true && canWalk == true)
+            else if (gm.rangedEnemyMovePattern == 1 && gm.GameOn == true && canWalk == true && dead == false)
             {
                 Vector3 lookDirection = (playerObject.transform.position - enemyObject.transform.position).normalized;
                 enemyRidigbody.AddForce(lookDirection * speed);
             }
 
-            if (gm.rangedEnemyMovePattern == 2 && gm.GameOn == true && canRotate == true)
+            if (gm.rangedEnemyMovePattern == 2 && gm.GameOn == true && canRotate == true && dead == false)
             {
                 Vector3 lookDirection = (enemyObject.transform.position - playerObject.transform.position).normalized;
-                Quaternion awayRotation = Quaternion.LookRotation(-lookDirection);
+                Quaternion awayRotation = Quaternion.LookRotation(lookDirection);
                 enemyObject.transform.rotation = awayRotation;
             }
-            else if (gm.rangedEnemyMovePattern == 1 && gm.GameOn == true && canRotate == true)
+            else if (gm.rangedEnemyMovePattern == 1 && gm.GameOn == true && canRotate == true && dead == false)
             {
                 Vector3 lookDirection = (playerObject.transform.position - enemyObject.transform.position).normalized;
                 Quaternion awayRotation = Quaternion.LookRotation(lookDirection);
