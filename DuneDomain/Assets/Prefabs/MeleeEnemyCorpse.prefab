@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 76332229519125542}
   - component: {fileID: 6505514631704471580}
   m_Layer: 0
-  m_Name: EnemyCorpse
-  m_TagString: EnemyCorpse
+  m_Name: MeleeEnemyCorpse
+  m_TagString: MeleeEnemyCorpse
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

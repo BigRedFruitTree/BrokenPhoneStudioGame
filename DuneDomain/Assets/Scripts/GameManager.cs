@@ -22,13 +22,18 @@ public class GameManager : MonoBehaviour
     private GameObject currentTarget;
 
     [Header("Enemy Stuff")]
-    public MeleeEnemyManager enemyScript;
-    public GameObject enemyObject;
     public float spawnRange;
-    public GameObject enemyPrefab;
-    public GameObject[] enemyNumber;
-    public GameObject[] corpseNumber;
-    public int enemyMovePattern = 0;
+    public MeleeEnemyManager enemyScript;
+    public GameObject meleeEnemyObject;
+    public GameObject meleeEnemyPrefab;
+    public GameObject rangedEnemyObject;
+    public GameObject rangedEnemyPrefab;
+    public GameObject[] meleeEnemyNumber;
+    public GameObject[] meleeEnemyCorpseNumber;
+    public GameObject[] rangedEnemyNumber;
+    public GameObject[] rangedEnemyCorpseNumber;
+    public int meleeEnemyMovePattern = 0;
+    public int rangedEnemyMovePattern = 0;
 
     [Header("GameManager Stuff")]
     public bool GameOn = false;
@@ -54,9 +59,11 @@ public class GameManager : MonoBehaviour
         timer2 = 2000f;
         rounds = 1;
         spawnRange = 20f;
-        enemyObject = enemyPrefab;
+        meleeEnemyObject = meleeEnemyPrefab;
+        rangedEnemyObject = rangedEnemyPrefab;
 
-        if (corpseNumber == null || corpseNumber.Length == 0) return;
+        if (meleeEnemyCorpseNumber == null || meleeEnemyCorpseNumber.Length == 0) return;
+        if (rangedEnemyCorpseNumber == null || rangedEnemyCorpseNumber.Length == 0) return;
 
         SetNextTarget();
 
@@ -69,23 +76,37 @@ public class GameManager : MonoBehaviour
     {
        if(GameOn == true && GameOver == false && started == true)
        {
-            corpseNumber = GameObject.FindGameObjectsWithTag("EnemyCorpse");
-            enemyNumber = GameObject.FindGameObjectsWithTag("MeleeEnemy");
+            meleeEnemyCorpseNumber = GameObject.FindGameObjectsWithTag("MeleeEnemyCorpse");
+            meleeEnemyNumber = GameObject.FindGameObjectsWithTag("MeleeEnemy");
+            rangedEnemyCorpseNumber = GameObject.FindGameObjectsWithTag("RangedEnemyCorpse");
+            rangedEnemyNumber = GameObject.FindGameObjectsWithTag("RangedEnemy");
 
-            while (enemyNumber.Length > 14) 
+            while (meleeEnemyNumber.Length > 14) 
             {
                Destroy(GameObject.FindGameObjectWithTag("MeleeEnemy"));
             }
-            
-            if(corpseNumber.Length >= enemyNumber.Length)
+            while (rangedEnemyNumber.Length > 14)
             {
-                enemyMovePattern = 2;
+               Destroy(GameObject.FindGameObjectWithTag("RangedEnemy"));
+            }
+
+            if (meleeEnemyCorpseNumber.Length >= meleeEnemyNumber.Length)
+            {
+                meleeEnemyMovePattern = 2;
             }
             else
             {
-                enemyMovePattern = 1;
+                meleeEnemyMovePattern = 1;
             }
- 
+            if (rangedEnemyCorpseNumber.Length >= rangedEnemyNumber.Length)
+            {
+                rangedEnemyMovePattern = 2;
+            }
+            else
+            {
+                rangedEnemyMovePattern = 1;
+            }
+
            if (timer > 0f)
            { 
               StartCoroutine("Wait");
@@ -103,7 +124,7 @@ public class GameManager : MonoBehaviour
            if (timer2 <= 0f)
            {
               timer2 = 0f;
-              if(corpseNumber.Length > 0)
+              if(meleeEnemyCorpseNumber.Length > 0 || rangedEnemyCorpseNumber.Length > 0)
               {
                  if(bossEating == false)
                  {
@@ -115,7 +136,6 @@ public class GameManager : MonoBehaviour
                  {
                    StartCoroutine("WaitForEating");
                  }
-                 
               }
               else
               {
@@ -123,7 +143,7 @@ public class GameManager : MonoBehaviour
               }
            }
 
-           if(bossEating == false && timer2 <= 0f && corpseNumber.Length == 0)
+           if(bossEating == false && timer2 <= 0f && meleeEnemyCorpseNumber.Length == 0)
            {
               if(rounds > 0 && startCycle == false)
               {
@@ -133,9 +153,9 @@ public class GameManager : MonoBehaviour
               }
            }
 
-           if(bossEating == false && timer2 <= 0f && corpseNumber.Length == 0 && startCycle == true)
+           if(bossEating == false && timer2 <= 0f && meleeEnemyCorpseNumber.Length == 0 && startCycle == true)
            {
-              if(enemyNumber.Length < 15)
+              if(meleeEnemyNumber.Length < 15)
               {
                  SpawnEnemies(rounds);
               } 
@@ -152,7 +172,7 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < numberToSpawn; i++)
         {
-             Instantiate(enemyPrefab, GenerateSpawnPos(), enemyPrefab.transform.rotation);
+             Instantiate(meleeEnemyPrefab, GenerateSpawnPos(), meleeEnemyPrefab.transform.rotation);
         }
     }
 
@@ -187,6 +207,36 @@ public class GameManager : MonoBehaviour
             GameOn = true;
             StartCoroutine("Wait");
         }
+        if (chosenWeapon == 3)
+        {
+            if (rounds > 1)
+                startCycle = true;
+
+            weaponScreen.SetActive(false);
+            weapon = chosenWeapon;
+            GameOn = true;
+            StartCoroutine("Wait");
+        }
+        if (chosenWeapon == 4)
+        {
+            if (rounds > 1)
+                startCycle = true;
+
+            weaponScreen.SetActive(false);
+            weapon = chosenWeapon;
+            GameOn = true;
+            StartCoroutine("Wait");
+        }
+        if (chosenWeapon == 5)
+        {
+            if (rounds > 1)
+                startCycle = true;
+
+            weaponScreen.SetActive(false);
+            weapon = chosenWeapon;
+            GameOn = true;
+            StartCoroutine("Wait");
+        }
     }
 
     public void KeepWeapon()
@@ -209,11 +259,40 @@ public class GameManager : MonoBehaviour
             GameOn = true;
             StartCoroutine("Wait");
         }
+        if (weapon == 3)
+        {
+            if (rounds > 1)
+                startCycle = true;
+
+            weaponScreen.SetActive(false);
+            GameOn = true;
+            StartCoroutine("Wait");
+        }
+        if (weapon == 4)
+        {
+            if (rounds > 1)
+                startCycle = true;
+
+            weaponScreen.SetActive(false);
+            GameOn = true;
+            StartCoroutine("Wait");
+        }
+        if (weapon == 5)
+        {
+            if (rounds > 1)
+                startCycle = true;
+
+            weaponScreen.SetActive(false);
+            GameOn = true;
+            StartCoroutine("Wait");
+        }
+
     }
 
     public void SetNextTarget()
     {
-        if (corpseNumber.Length == 0) return;
+        if (meleeEnemyCorpseNumber.Length == 0) return;
+        if (rangedEnemyCorpseNumber.Length == 0) return;
 
         currentTarget = GetNearestTarget();
         
@@ -227,7 +306,16 @@ public class GameManager : MonoBehaviour
         GameObject nearestTarget = null;
         float nearestDistance = Mathf.Infinity;
 
-        foreach (var corpse in corpseNumber)
+        foreach (var corpse in meleeEnemyCorpseNumber)
+        {
+            float distance = Vector3.Distance(bossObject.transform.position, corpse.transform.position);
+            if (distance < nearestDistance)
+            {
+                nearestDistance = distance;
+                nearestTarget = corpse;
+            }
+        }
+        foreach (var corpse in rangedEnemyCorpseNumber)
         {
             float distance = Vector3.Distance(bossObject.transform.position, corpse.transform.position);
             if (distance < nearestDistance)

@@ -5,36 +5,46 @@ using UnityEngine;
 
 public class RangedEnemyManager : MonoBehaviour
 {
-
-    [Header("References")]
     public GameManager gm;
-    public PlayerController Player;
-    public GameObject PlayerObject;
-    public GameObject RangedEnemyObject;
-    public Rigidbody EnemyRigidBody;
-    public NavMeshAgent Agent;
+    public PlayerController player;
+    public GameObject playerObject;
 
-    [Header("Prefabs")]
-    public GameObject RangedCorpsePrefab;
+    [Header("Enemy Ref's")]
+    public GameObject enemyObject;
+    public NavMeshAgent agent;
+    public Rigidbody enemyRidigbody;
+    public GameObject enemyBow;
+    public GameObject corpsePrefab;
+    public GameObject arrow;
 
     [Header("Stats")]
-    public int Health;
-    public int MaxHealth;
+    public int health;
+    public int maxHealth;
     public float speed;
-    public bool CanTakeDamage = true;
+    public bool canTakeDamage = true;
     public bool dead = false;
+    public float timer;
+    public float timer2;
+    public bool attacking = false;
+    public bool canAttack = true;
+    public bool canWalk = true;
+    public bool canRotate = true;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        Health = 5;
-        MaxHealth = 5;
-        Player = GameObject.Find("Player").GetComponent<PlayerController>();
-        PlayerObject = GameObject.Find("Player");
-        EnemyRigidBody = GetComponent<Rigidbody>();
+        enemyBow = enemyObject.transform.GetChild(0).gameObject;
+        agent = enemyObject.GetComponent<NavMeshAgent>();
+        timer = Random.Range(2f, 4f);
+        timer2 = 50f;
+        health = 5;
+        maxHealth = 5;
+        player = GameObject.Find("Player").GetComponent<PlayerController>();
+        playerObject = GameObject.Find("Player");
+        enemyRidigbody = GetComponent<Rigidbody>();
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
-        speed = 1f;
+        speed = 13f;
     }
 
     // Update is called once per frame
@@ -42,43 +52,75 @@ public class RangedEnemyManager : MonoBehaviour
     {
         if (gm.GameOn == true && gm.GameOver == false)
         {
-            if (gm.enemyMovePattern == 2 && dead == false)
+            enemyBow.SetActive(true);
+            if (gm.rangedEnemyMovePattern == 2 && gm.GameOn == true && canWalk == true)
             {
-                Agent.destination = -Player.transform.position;
-                Vector3 lookDirection = (-PlayerObject.transform.position - -RangedEnemyObject.transform.position).normalized;
-                EnemyRigidBody.AddForce(lookDirection * speed);
+                Vector3 lookDirection = (enemyObject.transform.position - playerObject.transform.position).normalized;
+                enemyRidigbody.AddForce(-lookDirection * speed);
             }
-            else if (gm.enemyMovePattern == 1 && dead == false)
+            else if (gm.rangedEnemyMovePattern == 1 && gm.GameOn == true && canWalk == true)
             {
-                Agent.destination = Player.transform.position;
-                Vector3 lookDirection = (PlayerObject.transform.position - RangedEnemyObject.transform.position).normalized;
-                EnemyRigidBody.AddForce(lookDirection * speed);
+                Vector3 lookDirection = (playerObject.transform.position - enemyObject.transform.position).normalized;
+                enemyRidigbody.AddForce(lookDirection * speed);
             }
 
-            if (Health <= 0 && dead == false)
+            if (gm.rangedEnemyMovePattern == 2 && gm.GameOn == true && canRotate == true)
             {
-                Destroy(RangedEnemyObject);
-                Instantiate(RangedCorpsePrefab, new Vector3(RangedEnemyObject.transform.position.x, RangedEnemyObject.transform.position.y - 0.59f, RangedEnemyObject.transform.position.z), Quaternion.Euler(90, 0, 0));
+                Vector3 lookDirection = (enemyObject.transform.position - playerObject.transform.position).normalized;
+                Quaternion awayRotation = Quaternion.LookRotation(-lookDirection);
+                enemyObject.transform.rotation = awayRotation;
+            }
+            else if (gm.rangedEnemyMovePattern == 1 && gm.GameOn == true && canRotate == true)
+            {
+                Vector3 lookDirection = (playerObject.transform.position - enemyObject.transform.position).normalized;
+                Quaternion awayRotation = Quaternion.LookRotation(lookDirection);
+                enemyObject.transform.rotation = awayRotation;
+            }
+
+            if (timer > 0)
+            {
+                timer -= 1 * Time.deltaTime;
+            }
+
+            if (timer <= 0)
+            {
+                timer = 0;
+                canAttack = true;
+                attacking = true;
+            }
+
+            if (attacking == true && canAttack == true)
+            {
+                enemyBow.transform.eulerAngles = new Vector3(90f, enemyObject.transform.eulerAngles.y, enemyObject.transform.eulerAngles.z);
+                StartCoroutine(nameof(WaitAttack));
+            }
+
+            if (health <= 0 && dead == false)
+            {
+                Destroy(enemyObject);
+                Instantiate(corpsePrefab, new Vector3(enemyObject.transform.position.x, enemyObject.transform.position.y - 0.59f, enemyObject.transform.position.z), Quaternion.Euler(90, 0, 0));
                 dead = true;
             }
+
         }
+
     }
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Shot" && CanTakeDamage == true && gm.GameOn == true)
+        if (other.gameObject.tag == "Shot" && canTakeDamage == true && gm.GameOn == true)
         {
-            CanTakeDamage = false;
-            Health--;
-            StartCoroutine("WaitDamage");
+            canTakeDamage = false;
+            health--;
+            StartCoroutine(nameof(WaitDamage));
 
         }
 
-        if (other.gameObject.name == "Sword" && CanTakeDamage == true && gm.GameOn == true && Player.attacking == true)
+        if (other.gameObject.name == "Sword" && canTakeDamage == true && gm.GameOn == true && player.attacking == true)
         {
-            CanTakeDamage = false;
-            Health--;
-            StartCoroutine("WaitDamage");
+            canTakeDamage = false;
+            health--;
+            StartCoroutine(nameof(WaitDamage));
 
         }
     }
@@ -86,6 +128,15 @@ public class RangedEnemyManager : MonoBehaviour
     IEnumerator WaitDamage()
     {
         yield return new WaitForSeconds(1f);
-        CanTakeDamage = true;
+        canTakeDamage = true;
+    }
+    IEnumerator WaitAttack()
+    {
+        yield return new WaitForSeconds(1f);
+        attacking = false;
+        canAttack = false;
+        enemyBow.transform.eulerAngles = new Vector3(0f, 0f, 0f);
+        canWalk = true;
+        timer = Random.Range(2f, 4f);
     }
 }
