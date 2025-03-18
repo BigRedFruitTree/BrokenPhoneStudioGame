@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     public bool bossEating = false;
     public bool startCycle;
     private GameObject currentTarget;
+    public bool canBossEat = false;
 
     [Header("Enemy Stuff")]
     public float spawnRange;
@@ -125,16 +126,16 @@ public class GameManager : MonoBehaviour
               timer2 = 0f;
               if(enemyCorpseNumber.Length > 0)
               {
-                 if(bossEating == false)
+                 if (bossEating == false)
                  {
-                    bossEating = true;
-                    SetNextTarget();
+                     SetNextTarget();
                  }
-
                  if (bossAgent.remainingDistance <= bossAgent.stoppingDistance && bossScript.canEat == true)
                  {
+                     bossEating = true;
                      StartCoroutine("WaitForEating");
-                 } 
+                     bossEating = false;
+                 }
               }
               else
               {
@@ -351,8 +352,6 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(5f);
         Destroy(currentTarget);
-        yield return new WaitForSeconds(5f);
-        SetNextTarget();
     }
 
     IEnumerator WaitWeaponScreen()

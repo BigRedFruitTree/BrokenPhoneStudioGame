@@ -44,36 +44,40 @@ public class BossManager : MonoBehaviour
 
     }
 
-    public void OnTriggerEnter(Collider other)
+    public void OnTriggerStay(Collider other)
     {
+
         if (other.gameObject.tag == "Shot" && canTakeDamage == true && gm.GameOn == true)
         {
             canTakeDamage = false;
             health--;
             StartCoroutine("WaitDamage");
-           
+
         }
-        
+
         if (other.gameObject.name == "Sword" && canTakeDamage == true && gm.GameOn == true && player.attacking == true)
         {
             canTakeDamage = false;
             health--;
             StartCoroutine("WaitDamage");
-            
-        }
 
-        if (other.gameObject.tag == "EnemyCorpse" && gm.GameOn == true)
-        {
-            canEat = true;
         }
+        
     }
 
-    public void OnTriggerExit(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "EnemyCorpse" && gm.GameOn == true)
         {
-            canEat = false;
+            
         }
+    }
+
+    IEnumerator WaitEat()
+    {
+        canEat = true;
+        yield return new WaitForSeconds(5f);
+        canEat = false;
     }
 
     IEnumerator WaitDamage()

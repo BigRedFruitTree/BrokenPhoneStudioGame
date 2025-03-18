@@ -385,7 +385,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 200
-  m_StoppingDistance: 1
+  m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -1245,6 +1245,7 @@ MonoBehaviour:
   bossScript: {fileID: 104712143}
   bossEating: 0
   startCycle: 0
+  canBossEat: 0
   spawnRange: 0
   enemyScript: {fileID: 2032745260}
   meleeEnemyObject: {fileID: 0}
@@ -2557,6 +2558,7 @@ MonoBehaviour:
   arrowSpeed: 0
   canMove: 0
   drawSpeed: 0
+  ReloadSpeed: 5
   canDash: 1
   canTakeDamage: 1
   attacking: 0
