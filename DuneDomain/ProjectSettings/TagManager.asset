@@ -11,9 +11,8 @@ TagManager:
   - Wall
   - RangedEnemy
   - EnemySword
-  - RangedEnemyCorpse
-  - MeleeEnemyCorpse
   - EnemyBow
+  - EnemyCorpse
   layers:
   - Default
   - TransparentFX

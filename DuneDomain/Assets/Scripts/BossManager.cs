@@ -19,6 +19,7 @@ public class BossManager : MonoBehaviour
     public float maxHealth = 50f;
     public int damage = 5;
     public bool canTakeDamage = true;
+    public bool canEat = false;
 
     // Start is called before the first frame update
     void Start()
@@ -35,11 +36,6 @@ public class BossManager : MonoBehaviour
     {
        if(gm.GameOn == true && gm.GameOver == false)
        {
-         if(gm.bossEating == true)
-         {
-             
-         }
-
          if (health <= 0)
          {
             Destroy(bossObject);
@@ -64,6 +60,19 @@ public class BossManager : MonoBehaviour
             health--;
             StartCoroutine("WaitDamage");
             
+        }
+
+        if (other.gameObject.tag == "EnemyCorpse" && gm.GameOn == true)
+        {
+            canEat = true;
+        }
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "EnemyCorpse" && gm.GameOn == true)
+        {
+            canEat = false;
         }
     }
 

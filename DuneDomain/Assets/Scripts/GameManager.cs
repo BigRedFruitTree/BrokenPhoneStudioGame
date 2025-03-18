@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public NavMeshAgent bossAgent;
     public GameObject bossObject;
     public GameObject bossSpawn;
+    public BossManager bossScript;
     public bool bossEating = false;
     public bool startCycle;
     private GameObject currentTarget;
@@ -29,9 +30,8 @@ public class GameManager : MonoBehaviour
     public GameObject rangedEnemyObject;
     public GameObject rangedEnemyPrefab;
     public GameObject[] meleeEnemyNumber;
-    public GameObject[] meleeEnemyCorpseNumber;
     public GameObject[] rangedEnemyNumber;
-    public GameObject[] rangedEnemyCorpseNumber;
+    public GameObject[] enemyCorpseNumber;
     public int meleeEnemyMovePattern = 0;
     public int rangedEnemyMovePattern = 0;
 
@@ -62,8 +62,7 @@ public class GameManager : MonoBehaviour
         meleeEnemyObject = meleeEnemyPrefab;
         rangedEnemyObject = rangedEnemyPrefab;
 
-        if (meleeEnemyCorpseNumber == null || meleeEnemyCorpseNumber.Length == 0) return;
-        if (rangedEnemyCorpseNumber == null || rangedEnemyCorpseNumber.Length == 0) return;
+        if (enemyCorpseNumber == null || enemyCorpseNumber.Length == 0) return;
 
         SetNextTarget();
 
@@ -76,9 +75,8 @@ public class GameManager : MonoBehaviour
     {
        if(GameOn == true && GameOver == false && started == true)
        {
-            meleeEnemyCorpseNumber = GameObject.FindGameObjectsWithTag("MeleeEnemyCorpse");
             meleeEnemyNumber = GameObject.FindGameObjectsWithTag("MeleeEnemy");
-            rangedEnemyCorpseNumber = GameObject.FindGameObjectsWithTag("RangedEnemyCorpse");
+            enemyCorpseNumber = GameObject.FindGameObjectsWithTag("EnemyCorpse");
             rangedEnemyNumber = GameObject.FindGameObjectsWithTag("RangedEnemy");
 
             while (meleeEnemyNumber.Length > 14) 
@@ -90,15 +88,7 @@ public class GameManager : MonoBehaviour
                Destroy(GameObject.FindGameObjectWithTag("RangedEnemy"));
             }
 
-            if (meleeEnemyCorpseNumber.Length >= meleeEnemyNumber.Length)
-            {
-                meleeEnemyMovePattern = 2;
-            }
-            else
-            {
-                meleeEnemyMovePattern = 1;
-            }
-            if (rangedEnemyCorpseNumber.Length >= rangedEnemyNumber.Length)
+            if (enemyCorpseNumber.Length >= rangedEnemyNumber.Length)
             {
                 rangedEnemyMovePattern = 2;
             }
@@ -107,11 +97,20 @@ public class GameManager : MonoBehaviour
                 rangedEnemyMovePattern = 1;
             }
 
-           if (timer > 0f)
-           { 
+            if (enemyCorpseNumber.Length >= meleeEnemyNumber.Length)
+            {
+                meleeEnemyMovePattern = 2;
+            }
+            else
+            {
+                meleeEnemyMovePattern = 1;
+            }
+
+            if (timer > 0f)
+            { 
               StartCoroutine("Wait");
               timer--;
-           }
+            }
            if (timer <= 0f && timer2 > 0f)
            {
                timer = 0f;
@@ -124,18 +123,18 @@ public class GameManager : MonoBehaviour
            if (timer2 <= 0f)
            {
               timer2 = 0f;
-              if(meleeEnemyCorpseNumber.Length > 0 || rangedEnemyCorpseNumber.Length > 0)
+              if(enemyCorpseNumber.Length > 0)
               {
                  if(bossEating == false)
                  {
                     bossEating = true;
                     SetNextTarget();
                  }
-                 
-                 if (bossAgent.remainingDistance <= bossAgent.stoppingDistance)
+
+                 if (bossAgent.remainingDistance <= bossAgent.stoppingDistance && bossScript.canEat == true)
                  {
-                   StartCoroutine("WaitForEating");
-                 }
+                     StartCoroutine("WaitForEating");
+                 } 
               }
               else
               {
@@ -143,7 +142,7 @@ public class GameManager : MonoBehaviour
               }
            }
 
-           if(bossEating == false && timer2 <= 0f && meleeEnemyCorpseNumber.Length == 0 && rangedEnemyCorpseNumber.Length == 0)
+           if(bossEating == false && timer2 <= 0f && enemyCorpseNumber.Length == 0)
            {
               if(rounds > 0 && startCycle == false)
               {
@@ -153,18 +152,18 @@ public class GameManager : MonoBehaviour
               }
            }
 
-           if(bossEating == false && timer2 <= 0f && meleeEnemyCorpseNumber.Length == 0 && startCycle == true && rangedEnemyCorpseNumber.Length == 0)
+           if(bossEating == false && timer2 <= 0f && startCycle == true && enemyCorpseNumber.Length == 0)
            {
               if(meleeEnemyNumber.Length < 15)
               {
                  SpawnMelee(rounds);
               } 
-              if(rangedEnemyNumber.Length < 15 && rounds > 3)
+              if(rangedEnemyNumber.Length < 15 && rounds >= 2)
               {
                  SpawnRanged(rounds);
               }
               timer = 6000f;
-              timer2 = 2000f + rounds;
+              timer2 = 2000f;
               startCycle = false;
              
            }
@@ -303,46 +302,26 @@ public class GameManager : MonoBehaviour
 
     public void SetNextTarget()
     {
-        if (meleeEnemyCorpseNumber.Length == 0 && rangedEnemyCorpseNumber.Length == 0) return;
+        if (enemyCorpseNumber.Length == 0) return;
 
-        if(meleeEnemyCorpseNumber.Length > 0)
-           currentTarget = GetNearestTargetM();
+        currentTarget = GetNearestTarget();
 
-        if(rangedEnemyCorpseNumber.Length > 0 && meleeEnemyCorpseNumber.Length == 0)
-           currentTarget = GetNearestTargetR();
-        
         bossAgent.destination = currentTarget.transform.position;
     }
 
-    public GameObject GetNearestTargetM()
+    public GameObject GetNearestTarget()
     {
         GameObject nearestTarget = null;
         float nearestDistance = Mathf.Infinity;
 
-        foreach (var corpse in meleeEnemyCorpseNumber)
+        foreach (var corpse in enemyCorpseNumber)
         {
-           float distance = Vector3.Distance(bossObject.transform.position, corpse.transform.position);
-           if (distance < nearestDistance)
-           {
-               nearestDistance = distance;
-               nearestTarget = corpse;
-           }
-        }
-        return nearestTarget;
-    }
-    public GameObject GetNearestTargetR()
-    {
-        GameObject nearestTarget = null;
-        float nearestDistance = Mathf.Infinity;
-
-        foreach (var corpse in rangedEnemyCorpseNumber)
-        {
-           float distance = Vector3.Distance(bossObject.transform.position, corpse.transform.position);
-           if (distance < nearestDistance)
-           {
-               nearestDistance = distance;
-               nearestTarget = corpse;
-           }
+            float distance = Vector3.Distance(bossObject.transform.position, corpse.transform.position);
+            if (distance < nearestDistance)
+            {
+                nearestDistance = distance;
+                nearestTarget = corpse;
+            }
         }
         return nearestTarget;
     }
@@ -371,8 +350,9 @@ public class GameManager : MonoBehaviour
     IEnumerator WaitForEating()
     {
         yield return new WaitForSeconds(5f);
-        SetNextTarget();
         Destroy(currentTarget);
+        yield return new WaitForSeconds(5f);
+        SetNextTarget();
     }
 
     IEnumerator WaitWeaponScreen()
