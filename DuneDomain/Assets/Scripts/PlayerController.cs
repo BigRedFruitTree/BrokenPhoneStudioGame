@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     public int arrowSpeed;
     public bool canMove = true;
     public float drawSpeed;
+    public float ReloadSpeed = 5f;
     public bool canDash = true;
     public bool canTakeDamage = true;
     public bool attacking = false;
@@ -39,11 +40,11 @@ public class PlayerController : MonoBehaviour
     public GameObject cameraHolder;
     public GameManager gm;
     public GameObject weaponHolder;
-    //public GameObject shieldHolder;
+    public GameObject shieldHolder;
     public GameObject sword;
-    //public GameObject Hammer;
-    //public GameObject spear;
-    //public GameObject shield;
+    public GameObject Hammer;
+    public GameObject spear;
+    public GameObject shield;
     public GameObject bow;
     //public GameObject crossbow;
     public GameObject arrow;
@@ -90,7 +91,7 @@ public class PlayerController : MonoBehaviour
                 sword.SetActive(true);
                 bow.SetActive(false);
                 //crossbow.SetActive(false);
-                //Hammer.SetActive(false);
+                Hammer.SetActive(false);
                 //spear.SetActive(false);
                 //shield.SetActive(false);
             }
@@ -99,23 +100,23 @@ public class PlayerController : MonoBehaviour
                 bow.SetActive(true);
                 sword.SetActive(false);
                 //crossbow.SetActive(false);
-                //Hammer.SetActive(false);
-                //spear.SetActive(false);
-                //shield.SetActive(false);
+                Hammer.SetActive(false);
+                spear.SetActive(false);
+                shield.SetActive(false);
             }
             if (weapon == 3)
             {
-                //Hammer.SetActive(true);
+                Hammer.SetActive(true);
                 sword.SetActive(false);
                 bow.SetActive(false);
                 //crossbow.SetActive(false);
-                //spear.SetActive(false);
-                //shield.SetActive(false);
+                spear.SetActive(false);
+                shield.SetActive(false);
             }
             if (weapon == 4)
             {
-                //spear.SetActive(true);
-                //shield.SetActive(true);
+                spear.SetActive(true);
+                shield.SetActive(true);
                 sword.SetActive(false);
                 bow.SetActive(false);
                 //crossbow.SetActive(false);
@@ -126,9 +127,9 @@ public class PlayerController : MonoBehaviour
                 //crossbow.SetActive(true);
                 sword.SetActive(false);
                 bow.SetActive(false);
-                //Hammer.SetActive(false);
-                //spear.SetActive(true);
-                //shield.SetActive(true);
+                Hammer.SetActive(false);
+                spear.SetActive(true);
+                shield.SetActive(true);
             }
 
             sword.transform.position = weaponHolder.transform.position;
@@ -137,10 +138,12 @@ public class PlayerController : MonoBehaviour
             bow.transform.rotation = weaponHolder.transform.rotation;
             //crossbow.transform.position = weaponHolder.transform.position;
             //crossbow.transform.rotation = weaponHolder.transform.rotation;
-            //spear.transform.position = weaponHolder.transform.position;
-            //spear.transform.rotation = weaponHolder.transform.rotation;
-            //shield.transform.position = shieldHolder.transform.position;
-            //shield.transform.rotation = shieldHolder.transform.rotation;
+            Hammer.transform.position = weaponHolder.transform.position;
+            Hammer.transform.rotation = weaponHolder.transform.rotation;
+            spear.transform.position = weaponHolder.transform.position;
+            spear.transform.rotation = weaponHolder.transform.rotation;
+            shield.transform.position = shieldHolder.transform.position;
+            shield.transform.rotation = shieldHolder.transform.rotation;
 
             if (horizontalMove > 0 && canMove == true)
             {
@@ -246,46 +249,8 @@ public class PlayerController : MonoBehaviour
                 {
                     weaponHolder.transform.rotation = Quaternion.Euler(90f, 180f, 0f);
                 }
-            }
-              
-            if (Input.GetMouseButton(1) && gm.started == true && gm.GameOn == true && isDashing == false && attacking == false)
-            {
-                if (weapon == 4)
-                {
-                    if (horizontalMove > 0 && canMove == true)
-                    {
-                        weaponHolder.transform.rotation = Quaternion.Euler(90f, 90f, 0f);
-                    }
-                    if (horizontalMove > 0 && verticalMove > 0 && canMove == true)
-                    {
-                        weaponHolder.transform.rotation = Quaternion.Euler(90f, 45f, 0f);
-                    }
-                    if (horizontalMove > 0 && verticalMove < 0 && canMove == true)
-                    {
-                        weaponHolder.transform.rotation = Quaternion.Euler(90f, 145f, 0f);
-                    }
-                    if (horizontalMove < 0 && canMove == true)
-                    {
-                        weaponHolder.transform.rotation = Quaternion.Euler(90f, -90f, 0f);
-                    }
-                    if (horizontalMove < 0 && verticalMove > 0 && canMove == true)
-                    {
-                        weaponHolder.transform.rotation = Quaternion.Euler(90f, -45f, 0f);
-                    }
-                    if (horizontalMove < 0 && verticalMove < 0 && canMove == true)
-                    {
-                        weaponHolder.transform.rotation = Quaternion.Euler(90f, -145f, 0f);
-                    }
-                    if (verticalMove > 0 && horizontalMove == 0 && canMove == true)
-                    {
-                        weaponHolder.transform.rotation = Quaternion.Euler(90f, 0f, 0f);
-                    }
-                    if (verticalMove < 0 && horizontalMove == 0 && canMove == true)
-                    {
-                        weaponHolder.transform.rotation = Quaternion.Euler(90f, 180f, 0f);
-                    }
-                }
-            }
+            }    
+        }
 
 
             if (Input.GetMouseButtonDown(0) && canAttack == true && weapon > 0 && gm.started == true && isDashing == false && attacking == false)
@@ -313,7 +278,29 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            if (Input.GetMouseButtonUp(0) && weapon > 0 && gm.started == true && isDashing == false)
+            if (Input.GetMouseButton(0) && canAttack == true && weapon > 0 && gm.started == true && isDashing == false)
+            {
+                if (weapon == 3)
+                {
+                attacking = true;
+                canMove = false;
+                canAttack = false;
+                canMove = true;
+                StartCoroutine("HammerCoolDown");
+                }
+            }
+
+            if (Input.GetMouseButton(0) && canAttack == true && weapon > 0 && gm.started == true && isDashing == false)
+            {
+                if (weapon == 4)
+                {
+                attacking = true;
+                canMove = false;
+                canAttack = false;
+                canMove = true;
+                StartCoroutine("SpearCoolDown");
+            }
+
             {
                 if (weapon == 2 && drawSpeed <= 0f)
                 {
@@ -333,6 +320,18 @@ public class PlayerController : MonoBehaviour
                     drawSpeed = 200f;
                     myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
                     StartCoroutine("BowCoolDown");
+                }
+                if (weapon == 5 && ReloadSpeed <= 0)
+                {
+                    arrowSpeed = 4000;
+                    arrow.SetActive(true);
+                    GameObject arrowSummon = Instantiate(arrow, bow.transform.position, bow.transform.rotation);
+                    arrowSummon.GetComponent<Rigidbody>().AddForce(arrowSummon.transform.up * arrowSpeed);
+                    Destroy(arrowSummon, 2f);
+                    canAttack = false;
+                    drawSpeed = 0f;
+                    myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
+                    StartCoroutine("CrossbowCoolDown");
                 }
             }
 
@@ -420,7 +419,7 @@ public class PlayerController : MonoBehaviour
            float distance = Vector3.Distance(playerObject.transform.position, enemy.transform.position);
            if (distance < nearestDistance)
            {
-               nearestDistance = distance;
+                nearestDistance = distance;
                nearestTarget = enemy.GetComponent<MeleeEnemyManager>();
            }
        }
@@ -440,6 +439,12 @@ public class PlayerController : MonoBehaviour
          drawSpeed--;
     }
 
+    IEnumerator WaitReload()
+    {
+        yield return new WaitForSeconds(5f);
+        ReloadSpeed++;
+    }
+
     IEnumerator SwordCoolDown()
     {
          yield return new WaitForSeconds(1f);
@@ -447,11 +452,32 @@ public class PlayerController : MonoBehaviour
          attacking = false;
     }
 
+    IEnumerator HammerCoolDown()
+    {
+        yield return new WaitForSeconds(3f);
+        canAttack = true;
+        attacking = false;
+    }
+
+    IEnumerator SpearCoolDown()
+    {
+        yield return new WaitForSeconds(0.5f);
+        canAttack = true;
+        attacking = false;
+    }
+
     IEnumerator BowCoolDown()
     {
          yield return new WaitForSeconds(2f);
          canAttack = true;
          attacking = false;
+    }
+
+    IEnumerator CrossbowCoolDown()
+    {
+        yield return new WaitForSeconds(5f);
+        canAttack = true;
+        attacking = false;
     }
 
     IEnumerator WaitDash()
