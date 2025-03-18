@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
     public GameObject spear;
     public GameObject shield;
     public GameObject bow;
-    //public GameObject crossbow;
+    public GameObject crossbow;
     public GameObject arrow;
     public Canvas Pausemenu;
     public MeleeEnemyManager enemyScript;
@@ -90,16 +90,16 @@ public class PlayerController : MonoBehaviour
             {
                 sword.SetActive(true);
                 bow.SetActive(false);
-                //crossbow.SetActive(false);
+                crossbow.SetActive(false);
                 Hammer.SetActive(false);
-                //spear.SetActive(false);
-                //shield.SetActive(false);
+                spear.SetActive(false);
+                shield.SetActive(false);
             }
             if (weapon == 2)
             {
                 bow.SetActive(true);
                 sword.SetActive(false);
-                //crossbow.SetActive(false);
+                crossbow.SetActive(false);
                 Hammer.SetActive(false);
                 spear.SetActive(false);
                 shield.SetActive(false);
@@ -109,7 +109,7 @@ public class PlayerController : MonoBehaviour
                 Hammer.SetActive(true);
                 sword.SetActive(false);
                 bow.SetActive(false);
-                //crossbow.SetActive(false);
+                crossbow.SetActive(false);
                 spear.SetActive(false);
                 shield.SetActive(false);
             }
@@ -119,25 +119,25 @@ public class PlayerController : MonoBehaviour
                 shield.SetActive(true);
                 sword.SetActive(false);
                 bow.SetActive(false);
-                //crossbow.SetActive(false);
-                //Hammer.SetActive(false);
+                crossbow.SetActive(false);
+                Hammer.SetActive(false);
             }
             if (weapon == 5)
             {
-                //crossbow.SetActive(true);
+                crossbow.SetActive(true);
                 sword.SetActive(false);
                 bow.SetActive(false);
                 Hammer.SetActive(false);
-                spear.SetActive(true);
-                shield.SetActive(true);
+                spear.SetActive(false);
+                shield.SetActive(false);
             }
 
             sword.transform.position = weaponHolder.transform.position;
             sword.transform.rotation = weaponHolder.transform.rotation;
             bow.transform.position = weaponHolder.transform.position;
             bow.transform.rotation = weaponHolder.transform.rotation;
-            //crossbow.transform.position = weaponHolder.transform.position;
-            //crossbow.transform.rotation = weaponHolder.transform.rotation;
+            crossbow.transform.position = weaponHolder.transform.position;
+            crossbow.transform.rotation = weaponHolder.transform.rotation;
             Hammer.transform.position = weaponHolder.transform.position;
             Hammer.transform.rotation = weaponHolder.transform.rotation;
             spear.transform.position = weaponHolder.transform.position;
@@ -250,10 +250,8 @@ public class PlayerController : MonoBehaviour
                     weaponHolder.transform.rotation = Quaternion.Euler(90f, 180f, 0f);
                 }
             }    
-        }
 
-
-            if (Input.GetMouseButtonDown(0) && canAttack == true && weapon > 0 && gm.started == true && isDashing == false && attacking == false)
+                if (Input.GetMouseButtonDown(0) && canAttack == true && weapon > 0 && gm.started == true && isDashing == false && attacking == false)
             {
                 if (weapon == 1)
                 {
@@ -299,9 +297,9 @@ public class PlayerController : MonoBehaviour
                 canAttack = false;
                 canMove = true;
                 StartCoroutine("SpearCoolDown");
-            }
+                }
 
-            {
+            
                 if (weapon == 2 && drawSpeed <= 0f)
                 {
                     arrowSpeed = 2000;
@@ -321,6 +319,7 @@ public class PlayerController : MonoBehaviour
                     myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
                     StartCoroutine("BowCoolDown");
                 }
+
                 if (weapon == 5 && ReloadSpeed <= 0)
                 {
                     arrowSpeed = 4000;

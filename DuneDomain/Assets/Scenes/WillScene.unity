@@ -486,6 +486,114 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d3897c7218b21f4db221c72c538550f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &509412878
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 509412882}
+  - component: {fileID: 509412881}
+  - component: {fileID: 509412880}
+  - component: {fileID: 509412883}
+  m_Layer: 0
+  m_Name: Crossbow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!23 &509412880
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 509412878}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &509412881
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 509412878}
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &509412882
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 509412878}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 9.909518, y: -3.7409623, z: -35.39}
+  m_LocalScale: {x: 1, y: 1.9986, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!64 &509412883
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 509412878}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &587596734
 GameObject:
   m_ObjectHideFlags: 0
@@ -1616,6 +1724,7 @@ MonoBehaviour:
   bossAgent: {fileID: 1175553620}
   bossObject: {fileID: 1175553619}
   bossSpawn: {fileID: 1890232987}
+  bossScript: {fileID: 0}
   bossEating: 0
   startCycle: 0
   spawnRange: 0
@@ -1625,9 +1734,8 @@ MonoBehaviour:
   rangedEnemyObject: {fileID: 0}
   rangedEnemyPrefab: {fileID: 0}
   meleeEnemyNumber: []
-  meleeEnemyCorpseNumber: []
   rangedEnemyNumber: []
-  rangedEnemyCorpseNumber: []
+  enemyCorpseNumber: []
   meleeEnemyMovePattern: 0
   rangedEnemyMovePattern: 0
   GameOn: 0
@@ -1911,6 +2019,7 @@ MonoBehaviour:
   maxHealth: 50
   damage: 5
   canTakeDamage: 1
+  canEat: 0
 --- !u!54 &1175553622
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3851,7 +3960,7 @@ MonoBehaviour:
   spear: {fileID: 800877107}
   shield: {fileID: 2136610942}
   bow: {fileID: 825647743}
-  crossbow: {fileID: 0}
+  crossbow: {fileID: 509412878}
   arrow: {fileID: 8278388404425105339, guid: 8637a1b38a835a142bf4cdce50316ac1, type: 3}
   Pausemenu: {fileID: 0}
   enemyScript: {fileID: 8906918789904399867, guid: dbb47fb935dcd884a92b5bea53302ed0, type: 3}
@@ -4594,3 +4703,4 @@ SceneRoots:
   - {fileID: 2136610946}
   - {fileID: 800877111}
   - {fileID: 2062371154}
+  - {fileID: 509412882}
