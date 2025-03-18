@@ -39,7 +39,7 @@ public class MeleeEnemyManager : MonoBehaviour
         playerObject = GameObject.Find("Player");
         enemyRidigbody = GetComponent<Rigidbody>();
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
-        speed = 10f;
+        speed = 13f;
     }
 
     // Update is called once per frame

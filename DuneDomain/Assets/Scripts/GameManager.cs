@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
         timer = 6000f;
         timer2 = 2000f;
         rounds = 1;
-        spawnRange = 20f;
+        spawnRange = 40f;
         meleeEnemyObject = meleeEnemyPrefab;
         rangedEnemyObject = rangedEnemyPrefab;
 
@@ -143,7 +143,7 @@ public class GameManager : MonoBehaviour
               }
            }
 
-           if(bossEating == false && timer2 <= 0f && meleeEnemyCorpseNumber.Length == 0)
+           if(bossEating == false && timer2 <= 0f && meleeEnemyCorpseNumber.Length == 0 && rangedEnemyCorpseNumber.Length == 0)
            {
               if(rounds > 0 && startCycle == false)
               {
@@ -153,12 +153,16 @@ public class GameManager : MonoBehaviour
               }
            }
 
-           if(bossEating == false && timer2 <= 0f && meleeEnemyCorpseNumber.Length == 0 && startCycle == true)
+           if(bossEating == false && timer2 <= 0f && meleeEnemyCorpseNumber.Length == 0 && startCycle == true && rangedEnemyCorpseNumber.Length == 0)
            {
               if(meleeEnemyNumber.Length < 15)
               {
-                 SpawnEnemies(rounds);
+                 SpawnMelee(rounds);
               } 
+              if(rangedEnemyNumber.Length < 15 && rounds > 3)
+              {
+                 SpawnRanged(rounds);
+              }
               timer = 6000f;
               timer2 = 2000f + rounds;
               startCycle = false;
@@ -168,12 +172,20 @@ public class GameManager : MonoBehaviour
        }
     }
 
-    public void SpawnEnemies(int numberToSpawn)
+    public void SpawnMelee(int numberToSpawn)
     {
         for (int i = 0; i < numberToSpawn; i++)
         {
              Instantiate(meleeEnemyPrefab, GenerateSpawnPos(), meleeEnemyPrefab.transform.rotation);
         }
+    }
+    public void SpawnRanged(int numberToSpawn)
+    {
+        
+        for (int i = 0; i < numberToSpawn; i++)
+        {
+             Instantiate(rangedEnemyPrefab, GenerateSpawnPos(), rangedEnemyPrefab.transform.rotation);
+        } 
     }
 
     public Vector3 GenerateSpawnPos()
@@ -291,40 +303,47 @@ public class GameManager : MonoBehaviour
 
     public void SetNextTarget()
     {
-        if (meleeEnemyCorpseNumber.Length == 0) return;
-        if (rangedEnemyCorpseNumber.Length == 0) return;
+        if (meleeEnemyCorpseNumber.Length == 0 && rangedEnemyCorpseNumber.Length == 0) return;
 
-        currentTarget = GetNearestTarget();
+        if(meleeEnemyCorpseNumber.Length > 0)
+           currentTarget = GetNearestTargetM();
+
+        if(rangedEnemyCorpseNumber.Length > 0 && meleeEnemyCorpseNumber.Length == 0)
+           currentTarget = GetNearestTargetR();
         
         bossAgent.destination = currentTarget.transform.position;
     }
 
-
-
-    public GameObject GetNearestTarget()
+    public GameObject GetNearestTargetM()
     {
         GameObject nearestTarget = null;
         float nearestDistance = Mathf.Infinity;
 
         foreach (var corpse in meleeEnemyCorpseNumber)
         {
-            float distance = Vector3.Distance(bossObject.transform.position, corpse.transform.position);
-            if (distance < nearestDistance)
-            {
-                nearestDistance = distance;
-                nearestTarget = corpse;
-            }
+           float distance = Vector3.Distance(bossObject.transform.position, corpse.transform.position);
+           if (distance < nearestDistance)
+           {
+               nearestDistance = distance;
+               nearestTarget = corpse;
+           }
         }
+        return nearestTarget;
+    }
+    public GameObject GetNearestTargetR()
+    {
+        GameObject nearestTarget = null;
+        float nearestDistance = Mathf.Infinity;
+
         foreach (var corpse in rangedEnemyCorpseNumber)
         {
-            float distance = Vector3.Distance(bossObject.transform.position, corpse.transform.position);
-            if (distance < nearestDistance)
-            {
-                nearestDistance = distance;
-                nearestTarget = corpse;
-            }
+           float distance = Vector3.Distance(bossObject.transform.position, corpse.transform.position);
+           if (distance < nearestDistance)
+           {
+               nearestDistance = distance;
+               nearestTarget = corpse;
+           }
         }
-
         return nearestTarget;
     }
 
@@ -352,8 +371,8 @@ public class GameManager : MonoBehaviour
     IEnumerator WaitForEating()
     {
         yield return new WaitForSeconds(5f);
-        Destroy(currentTarget);
         SetNextTarget();
+        Destroy(currentTarget);
     }
 
     IEnumerator WaitWeaponScreen()
