@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     public bool startCycle;
     private GameObject currentTarget;
     public bool canBossEat = false;
+    public bool isProcessingTarget = false;
 
     [Header("Enemy Stuff")]
     public float spawnRange;
@@ -130,11 +131,11 @@ public class GameManager : MonoBehaviour
                  {
                      SetNextTarget();
                  }
-                 if (currentTarget != null && !bossAgent.pathPending && bossAgent.remainingDistance <= bossAgent.stoppingDistance)
+                 if (!isProcessingTarget && currentTarget != null && !bossAgent.pathPending && bossAgent.remainingDistance <= bossAgent.stoppingDistance)
                  {
                      bossEating = true;
                  }
-                 if(currentTarget != null && bossEating == true && !bossAgent.pathPending && bossAgent.remainingDistance <= bossAgent.stoppingDistance)
+                 if (!isProcessingTarget && currentTarget != null && bossEating == true && !bossAgent.pathPending && bossAgent.remainingDistance <= bossAgent.stoppingDistance)
                  {
                      StartCoroutine("WaitForEating");
                      bossEating = false;
@@ -150,8 +151,7 @@ public class GameManager : MonoBehaviour
            {
               if(rounds > 0 && startCycle == false)
               {
-                 bossObject.transform.position = bossSpawn.transform.position;
-                 bossObject.SetActive(false);
+                 StartCoroutine("WaitBossAway");
                  StartCoroutine("WaitWeaponScreen");
               }
            }
@@ -352,12 +352,23 @@ public class GameManager : MonoBehaviour
         started = true;
     }
 
-    IEnumerator WaitForEating()
+    IEnumerator WaitBossAway()
     {
-        Destroy(currentTarget);
-        currentTarget = null;
+        yield return new WaitForSeconds(2f);
+        bossObject.transform.position = bossSpawn.transform.position;
+        bossObject.SetActive(false);
+    }
+
+    IEnumerator WaitForEating()
+    {   isProcessingTarget = true;
         yield return new WaitForSeconds(5f);
+        if (currentTarget != null)
+        {
+           Destroy(currentTarget);
+        }
+        currentTarget = null;
         SetNextTarget();
+        isProcessingTarget = false;
     }
 
     IEnumerator WaitWeaponScreen()
