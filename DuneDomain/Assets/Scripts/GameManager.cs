@@ -130,9 +130,12 @@ public class GameManager : MonoBehaviour
                  {
                      SetNextTarget();
                  }
-                 if (bossAgent.remainingDistance <= bossAgent.stoppingDistance && bossScript.canEat == true)
+                 if (currentTarget != null && !bossAgent.pathPending && bossAgent.remainingDistance <= bossAgent.stoppingDistance)
                  {
                      bossEating = true;
+                 }
+                 if(currentTarget != null && bossEating == true && !bossAgent.pathPending && bossAgent.remainingDistance <= bossAgent.stoppingDistance)
+                 {
                      StartCoroutine("WaitForEating");
                      bossEating = false;
                  }
@@ -303,7 +306,8 @@ public class GameManager : MonoBehaviour
 
     public void SetNextTarget()
     {
-        if (enemyCorpseNumber.Length == 0) return;
+        if (enemyCorpseNumber.Length == 0) 
+            return;
 
         currentTarget = GetNearestTarget();
 
@@ -350,8 +354,10 @@ public class GameManager : MonoBehaviour
 
     IEnumerator WaitForEating()
     {
-        yield return new WaitForSeconds(5f);
         Destroy(currentTarget);
+        currentTarget = null;
+        yield return new WaitForSeconds(5f);
+        SetNextTarget();
     }
 
     IEnumerator WaitWeaponScreen()

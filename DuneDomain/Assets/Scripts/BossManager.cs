@@ -69,7 +69,7 @@ public class BossManager : MonoBehaviour
     {
         if (other.gameObject.tag == "EnemyCorpse" && gm.GameOn == true)
         {
-            
+            StartCoroutine("WaitEat");
         }
     }
 
