@@ -335,7 +335,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            if (Input.GetMouseButtonDown(1) && isBlocking == false && weapon == 5);
+            if (Input.GetMouseButtonDown(1) && isBlocking == false && weapon == 5)
             {
                 canBlock = false;
                 isBlocking = true;

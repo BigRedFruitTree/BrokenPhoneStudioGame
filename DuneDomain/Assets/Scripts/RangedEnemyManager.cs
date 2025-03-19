@@ -16,6 +16,7 @@ public class RangedEnemyManager : MonoBehaviour
     public GameObject enemyBow;
     public GameObject corpsePrefab;
     public GameObject arrow;
+    private GameObject arrowSummon;
 
     [Header("Stats")]
     public int health;
@@ -36,7 +37,7 @@ public class RangedEnemyManager : MonoBehaviour
     {
         enemyBow = enemyObject.transform.GetChild(0).gameObject;
         agent = enemyObject.GetComponent<NavMeshAgent>();
-        timer = Random.Range(2f, 4f);
+        timer = Random.Range(3f, 5f);
         timer2 = 50f;
         health = 5;
         maxHealth = 5;
@@ -52,8 +53,9 @@ public class RangedEnemyManager : MonoBehaviour
     {
         if (gm.GameOn == true && gm.GameOver == false)
         {
+            float distance = Vector3.Distance(transform.position, playerObject.transform.position);
             enemyBow.SetActive(true);
-            if (gm.rangedEnemyMovePattern == 2 && gm.GameOn == true && canWalk == true && dead == false)
+            if (gm.rangedEnemyMovePattern == 2 && gm.GameOn == true && canWalk == true && dead == false || distance < 5 && gm.GameOn == true && canWalk == true && dead == false)
             {
                 Vector3 lookDirection = (enemyObject.transform.position - playerObject.transform.position).normalized;
                 enemyRidigbody.AddForce(lookDirection * speed);
@@ -77,22 +79,28 @@ public class RangedEnemyManager : MonoBehaviour
                 enemyObject.transform.rotation = awayRotation;
             }
 
-            if (timer > 0)
+            if (timer > 0f)
             {
                 timer -= 1 * Time.deltaTime;
             }
 
-            if (timer <= 0)
+            if (timer <= 0f)
             {
-                timer = 0;
+                timer = 0f;
                 canAttack = true;
-                attacking = true;
             }
 
-            if (attacking == true && canAttack == true)
+            if (canAttack == true && timer <= 0f)
             {
+                canWalk = false;
                 enemyBow.transform.eulerAngles = new Vector3(90f, enemyObject.transform.eulerAngles.y, enemyObject.transform.eulerAngles.z);
-                StartCoroutine(nameof(WaitAttack));
+                StartCoroutine("WaitAttack");
+            }
+            if (attacking == true && canAttack == true && timer <= 0f)
+            {
+                canWalk = false;
+                enemyBow.transform.eulerAngles = new Vector3(90f, enemyObject.transform.eulerAngles.y, enemyObject.transform.eulerAngles.z);
+                StartCoroutine("WaitAttack");
             }
 
             if (health <= 0 && dead == false)
@@ -130,13 +138,14 @@ public class RangedEnemyManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         canTakeDamage = true;
     }
+
     IEnumerator WaitAttack()
     {
-        yield return new WaitForSeconds(1f);
-        attacking = false;
-        canAttack = false;
-        enemyBow.transform.eulerAngles = new Vector3(0f, 0f, 0f);
-        canWalk = true;
-        timer = Random.Range(2f, 4f);
+        yield return new WaitForSeconds(7f);
+        attacking = true;
+        arrowSummon = Instantiate(arrow, enemyBow.transform.position, enemyBow.transform.rotation);
+        arrow.SetActive(true);
+        arrowSummon.GetComponent<Rigidbody>().AddForce(arrowSummon.transform.up * 1000);
+        Destroy(arrowSummon, 2f);
     }
 }

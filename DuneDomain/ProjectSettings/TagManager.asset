@@ -13,6 +13,7 @@ TagManager:
   - EnemySword
   - EnemyBow
   - EnemyCorpse
+  - EnemyShot
   layers:
   - Default
   - TransparentFX
