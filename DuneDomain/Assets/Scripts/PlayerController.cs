@@ -23,6 +23,9 @@ public class PlayerController : MonoBehaviour
     public bool canTakeDamage = true;
     public bool attacking = false;
     public bool isCooldownOver = true;
+    public bool canBlock = true;
+    public bool isBlocking = false;
+    public bool canUnblock = false;
 
     [Header("Movement Settings")]
     public float speed = 7f;
@@ -41,13 +44,13 @@ public class PlayerController : MonoBehaviour
     public GameObject cameraHolder;
     public GameManager gm;
     public GameObject weaponHolder;
-    //public GameObject shieldHolder;
+    public GameObject shieldHolder;
     public GameObject sword;
-    //public GameObject hammer;
-    //public GameObject spear;
-    //public GameObject shield;
+    public GameObject hammer;
+    public GameObject spear;
+    public GameObject shield;
     public GameObject bow;
-    //public GameObject crossbow;
+    public GameObject crossbow;
     public GameObject arrow;
     public Canvas Pausemenu;
     public MeleeEnemyManager enemyScript;
@@ -92,60 +95,60 @@ public class PlayerController : MonoBehaviour
             {
                 sword.SetActive(true);
                 bow.SetActive(false);
-                //crossbow.SetActive(false);
-                //hammer.SetActive(false);
-                //spear.SetActive(false);
-                //shield.SetActive(false);
+                crossbow.SetActive(false);
+                hammer.SetActive(false);
+                spear.SetActive(false);
+                shield.SetActive(false);
             }
             if (weapon == 2)
             {
                 bow.SetActive(true);
                 sword.SetActive(false);
-                //crossbow.SetActive(false);
-                //hammer.SetActive(false);
-                //spear.SetActive(false);
-                //shield.SetActive(false);
+                crossbow.SetActive(false);
+                hammer.SetActive(false);
+                spear.SetActive(false);
+                shield.SetActive(false);
             }
             if (weapon == 3)
             {
-                //hammer.SetActive(true);
+                hammer.SetActive(true);
                 sword.SetActive(false);
                 bow.SetActive(false);
-                //crossbow.SetActive(false);
-                //spear.SetActive(false);
-                //shield.SetActive(false);
+                crossbow.SetActive(false);
+                spear.SetActive(false);
+                shield.SetActive(false);
             }
             if (weapon == 4)
             {
-                //spear.SetActive(true);
-                //shield.SetActive(true);
+                spear.SetActive(true);
+                shield.SetActive(true);
                 sword.SetActive(false);
                 bow.SetActive(false);
-                //crossbow.SetActive(false);
-                //hammer.SetActive(false);
+                crossbow.SetActive(false);
+                hammer.SetActive(false);
             }
             if (weapon == 5)
             {
-                //crossbow.SetActive(true);
+                crossbow.SetActive(true);
                 sword.SetActive(false);
                 bow.SetActive(false);
-                //hammer.SetActive(false);
-                //spear.SetActive(false);
-                //shield.SetActive(false);
+                hammer.SetActive(false);
+                spear.SetActive(false);
+                shield.SetActive(false);
             }
 
             sword.transform.position = weaponHolder.transform.position;
             sword.transform.rotation = weaponHolder.transform.rotation;
             bow.transform.position = weaponHolder.transform.position;
             bow.transform.rotation = weaponHolder.transform.rotation;
-            //crossbow.transform.position = weaponHolder.transform.position;
-            //crossbow.transform.rotation = weaponHolder.transform.rotation;
-            //hammer.transform.position = weaponHolder.transform.position;
-            //hammer.transform.rotation = weaponHolder.transform.rotation;
-            //spear.transform.position = weaponHolder.transform.position;
-            //spear.transform.rotation = weaponHolder.transform.rotation;
-            //shield.transform.position = shieldHolder.transform.position;
-            //shield.transform.rotation = shieldHolder.transform.rotation;
+            crossbow.transform.position = weaponHolder.transform.position;
+            crossbow.transform.rotation = weaponHolder.transform.rotation;
+            hammer.transform.position = weaponHolder.transform.position;
+            hammer.transform.rotation = weaponHolder.transform.rotation;
+            spear.transform.position = weaponHolder.transform.position;
+            spear.transform.rotation = weaponHolder.transform.rotation;
+            shield.transform.position = shieldHolder.transform.position;
+            shield.transform.rotation = shieldHolder.transform.rotation;
 
             if (horizontalMove > 0 && canMove == true)
             {
@@ -258,7 +261,6 @@ public class PlayerController : MonoBehaviour
                     if (weapon == 1)
                     {
                         attacking = true;
-                        canMove = false;
                         canAttack = false;
                         canMove = true;
                         StartCoroutine("SwordCoolDown");
@@ -331,6 +333,22 @@ public class PlayerController : MonoBehaviour
                     myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
                     StartCoroutine("CrossbowCoolDown");
                 }
+            }
+
+            if (Input.GetMouseButtonDown(1) && isBlocking == false && weapon == 5);
+            {
+                canBlock = false;
+                isBlocking = true;
+                canMove = false;
+                canUnblock = false;
+                StartCoroutine("WaitToUnblock");
+            }
+
+            if (Input.GetMouseButtonUp(1) && isBlocking == true)
+            {
+                isBlocking = false;
+                canMove = true;
+                StartCoroutine("ShieldCoolDown");
             }
 
             if (Input.GetKeyDown(KeyCode.E) && gm.started == true && stamina >= 5)
@@ -485,6 +503,19 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(5f);
         canAttack = true;
         attacking = false;
+    }
+
+    IEnumerator ShieldCoolDown()
+    {
+        yield return new WaitForSeconds(1f);
+        canBlock = true;
+        isBlocking = false;
+    }
+
+    IEnumerator WaitToUnblock()
+    {
+        yield return new WaitForSeconds(1f);
+        canUnblock = true;
     }
 
     IEnumerator WaitDash()
