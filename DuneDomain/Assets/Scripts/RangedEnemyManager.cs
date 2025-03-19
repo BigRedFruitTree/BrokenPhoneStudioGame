@@ -30,7 +30,7 @@ public class RangedEnemyManager : MonoBehaviour
     public bool canAttack = true;
     public bool canWalk = true;
     public bool canRotate = true;
-
+    public bool doneAttacking = true;
 
     // Start is called before the first frame update
     void Start()
@@ -88,15 +88,10 @@ public class RangedEnemyManager : MonoBehaviour
             {
                 timer = 0f;
                 canAttack = true;
+                doneAttacking = false;
             }
 
-            if (canAttack == true && timer <= 0f)
-            {
-                canWalk = false;
-                enemyBow.transform.eulerAngles = new Vector3(90f, enemyObject.transform.eulerAngles.y, enemyObject.transform.eulerAngles.z);
-                StartCoroutine("WaitAttack");
-            }
-            if (attacking == true && canAttack == true && timer <= 0f)
+            if (doneAttacking == false && canAttack == true && timer <= 0f && attacking == false)
             {
                 canWalk = false;
                 enemyBow.transform.eulerAngles = new Vector3(90f, enemyObject.transform.eulerAngles.y, enemyObject.transform.eulerAngles.z);
@@ -147,5 +142,12 @@ public class RangedEnemyManager : MonoBehaviour
         arrow.SetActive(true);
         arrowSummon.GetComponent<Rigidbody>().AddForce(arrowSummon.transform.up * 1000);
         Destroy(arrowSummon, 2f);
+        yield return new WaitForSeconds(2f);
+        attacking = false;
+        doneAttacking = true;
+        canWalk = true;
+        canAttack = false;
+        enemyBow.transform.eulerAngles = new Vector3(0f, 0f, 0f);
+        timer = Random.Range(3f, 5f);
     }
 }
