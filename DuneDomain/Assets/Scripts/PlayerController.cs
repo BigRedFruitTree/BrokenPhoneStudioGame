@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     public bool canDash = true;
     public bool canTakeDamage = true;
     public bool attacking = false;
+    public bool isCooldownOver = true;
 
     [Header("Movement Settings")]
     public float speed = 7f;
@@ -55,6 +56,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         speed = 7f;
+        drawSpeed = 200f;
         stamina = 10;
         health = 10;
         maxHealth = 10;
@@ -261,44 +263,44 @@ public class PlayerController : MonoBehaviour
                         canMove = true;
                         StartCoroutine("SwordCoolDown");
                     }
-                    if (weapon == 2)
-                        drawSpeed = 200f;
                 }
             }
 
-            if (Input.GetMouseButton(0) && canAttack == true && weapon > 0 && gm.started == true && isDashing == false)
+            if (Input.GetMouseButton(0) && isCooldownOver == true && weapon > 0 && gm.started == true && isDashing == false)
             {
                 if (weapon == 2)
                 {
                     myRB.constraints = RigidbodyConstraints.FreezeAll;
+                    attacking = true;
+                    isDashing = false;
+                    canAttack = false;
+                    canMove = true;
                     StartCoroutine("WaitDraw");
                 }
-            }
 
-            if (Input.GetMouseButton(0) && canAttack == true && weapon > 0 && gm.started == true && isDashing == false)
-            {
                 if (weapon == 3)
                 {
+                    isDashing = false;
                     attacking = true;
-                    canMove = false;
+                    myRB.constraints = RigidbodyConstraints.FreezeAll;
                     canAttack = false;
                     canMove = true;
                     StartCoroutine("hammerCoolDown");
                 }
-            }
 
-            if (Input.GetMouseButton(0) && canAttack == true && weapon > 0 && gm.started == true && isDashing == false)
-            {
                 if (weapon == 4)
                 {
+                    isDashing = false;
                     attacking = true;
-                    canMove = false;
+                    myRB.constraints = RigidbodyConstraints.FreezeAll;
                     canAttack = false;
                     canMove = true;
                     StartCoroutine("SpearCoolDown");
                 }
+            }
 
-            
+            if (Input.GetMouseButtonUp(0) && weapon > 0 && gm.started == true && isDashing == false)
+            {
                 if (weapon == 2 && drawSpeed <= 0f)
                 {
                     arrowSpeed = 2000;
@@ -313,12 +315,10 @@ public class PlayerController : MonoBehaviour
                 }
                 if (weapon == 2 && drawSpeed > 0f)
                 {
-                    canAttack = false;
                     drawSpeed = 200f;
                     myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
                     StartCoroutine("BowCoolDown");
                 }
-
                 if (weapon == 5 && ReloadSpeed <= 0)
                 {
                     arrowSpeed = 4000;
@@ -395,6 +395,12 @@ public class PlayerController : MonoBehaviour
            health--;
            StartCoroutine("WaitDamage"); 
        }
+       if (other.gameObject.tag == "Shot" && canTakeDamage == true && gm.GameOn == true && enemyScript.attacking == true)
+       {
+           canTakeDamage = false;
+           health--;
+           StartCoroutine("WaitDamage"); 
+       }
     }
 
     public void OnCollisionEnter(Collision collision)
@@ -466,9 +472,12 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator BowCoolDown()
     {
+         isCooldownOver = false;
          yield return new WaitForSeconds(2f);
+         drawSpeed = 200f;
          canAttack = true;
          attacking = false;
+         isCooldownOver = true;
     }
 
     IEnumerator CrossbowCoolDown()
