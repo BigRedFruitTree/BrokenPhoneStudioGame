@@ -265,10 +265,28 @@ public class PlayerController : MonoBehaviour
                         canMove = true;
                         StartCoroutine("SwordCoolDown");
                     }
+
+                    if (weapon == 3)
+                    {
+                        isDashing = false;
+                        attacking = true;
+                        canAttack = false;
+                        canMove = true;
+                        StartCoroutine("hammerCoolDown");
+                    }
+
+                    if (weapon == 4)
+                    {
+                        isDashing = false;
+                        attacking = true;
+                        canAttack = false;
+                        canMove = true;
+                        StartCoroutine("SpearCoolDown");
+                    }
                 }
             }
 
-            if (Input.GetMouseButton(0) && isCooldownOver == true && weapon > 0 && gm.started == true && isDashing == false)
+            if (Input.GetMouseButton(0) && isCooldownOver == true && weapon > 0 && gm.started == true && isDashing == false && attacking == false)
             {
                 if (weapon == 2)
                 {
@@ -278,26 +296,6 @@ public class PlayerController : MonoBehaviour
                     canAttack = false;
                     canMove = true;
                     StartCoroutine("WaitDraw");
-                }
-
-                if (weapon == 3)
-                {
-                    isDashing = false;
-                    attacking = true;
-                    myRB.constraints = RigidbodyConstraints.FreezeAll;
-                    canAttack = false;
-                    canMove = true;
-                    StartCoroutine("hammerCoolDown");
-                }
-
-                if (weapon == 4)
-                {
-                    isDashing = false;
-                    attacking = true;
-                    myRB.constraints = RigidbodyConstraints.FreezeAll;
-                    canAttack = false;
-                    canMove = true;
-                    StartCoroutine("SpearCoolDown");
                 }
             }
 
@@ -332,6 +330,19 @@ public class PlayerController : MonoBehaviour
                     drawSpeed = 0f;
                     myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
                     StartCoroutine("CrossbowCoolDown");
+                }
+            }
+            
+            if(Input.GetMouseButtonDown(1) && isBlocking == false && weapon > 0 && gm.started == true && isDashing == false)
+            {
+                if (weapon == 3)
+                {
+                    isDashing = false;
+                    attacking = true;
+                    myRB.constraints = RigidbodyConstraints.FreezeAll;
+                    canAttack = false;
+                    canMove = true;
+                    StartCoroutine("hammerCoolDown");
                 }
             }
 
