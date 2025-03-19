@@ -335,19 +335,21 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            if (Input.GetMouseButtonDown(1) && isBlocking == false && weapon == 5)
+            if (Input.GetMouseButtonDown(1) && isBlocking == false && weapon == 4)
             {
                 canBlock = false;
                 isBlocking = true;
                 canMove = false;
                 canUnblock = false;
-                StartCoroutine("WaitToUnblock");
+                StartCoroutine("UnblockCoolDown");
+                canUnblock = true;
             }
 
-            if (Input.GetMouseButtonUp(1) && isBlocking == true)
+            if (Input.GetMouseButtonDown(1) && isBlocking == true && canUnblock == true && weapon == 4)
             {
                 isBlocking = false;
                 canMove = true;
+                canUnblock = false;
                 StartCoroutine("ShieldCoolDown");
             }
 
@@ -512,10 +514,9 @@ public class PlayerController : MonoBehaviour
         isBlocking = false;
     }
 
-    IEnumerator WaitToUnblock()
+    IEnumerator UnblockCoolDown()
     {
         yield return new WaitForSeconds(1f);
-        canUnblock = true;
     }
 
     IEnumerator WaitDash()
