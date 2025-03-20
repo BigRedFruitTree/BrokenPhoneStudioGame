@@ -1730,9 +1730,9 @@ MonoBehaviour:
   isProcessingTarget: 0
   spawnRange: 0
   enemyScript: {fileID: 320101464}
-  meleeEnemyObject: {fileID: 0}
-  meleeEnemyPrefab: {fileID: 0}
-  rangedEnemyObject: {fileID: 0}
+  meleeEnemyObject: {fileID: 6669723739384073081, guid: 3ab2aeb6fd22e88478ab13bc083cece6, type: 3}
+  meleeEnemyPrefab: {fileID: 232766443740596227, guid: dbb47fb935dcd884a92b5bea53302ed0, type: 3}
+  rangedEnemyObject: {fileID: 594971832880149158, guid: 3647edb2f01b6ed45b735e5ce92e49b1, type: 3}
   rangedEnemyPrefab: {fileID: 0}
   meleeEnemyNumber: []
   rangedEnemyNumber: []

@@ -150,39 +150,6 @@ public class PlayerController : MonoBehaviour
             shield.transform.position = shieldHolder.transform.position;
             shield.transform.rotation = shieldHolder.transform.rotation;
 
-            if (horizontalMove > 0 && canMove == true)
-            {
-                playerRotationHolder.transform.rotation = Quaternion.Euler(0f, 90f, 0f);
-            }
-            if (horizontalMove > 0 && verticalMove > 0 && canMove == true)
-            {
-                playerRotationHolder.transform.rotation = Quaternion.Euler(0f, 45f, 0f);
-            }
-            if (horizontalMove > 0 && verticalMove < 0 && canMove == true)
-            {
-                playerRotationHolder.transform.rotation = Quaternion.Euler(0f, 145f, 0f);
-            }
-            if (horizontalMove < 0 && canMove == true)
-            {
-                playerRotationHolder.transform.rotation = Quaternion.Euler(0f, -90f, 0f);
-            }
-            if (horizontalMove < 0 && verticalMove > 0 && canMove == true)
-            {
-                playerRotationHolder.transform.rotation = Quaternion.Euler(0f, -45f, 0f);
-            }
-            if (horizontalMove < 0 && verticalMove < 0 && canMove == true)
-            {
-                playerRotationHolder.transform.rotation = Quaternion.Euler(0f, -145f, 0f);
-            }
-            if (verticalMove > 0 && horizontalMove == 0 && canMove == true)
-            {
-                playerRotationHolder.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-            }
-            if (verticalMove < 0 && horizontalMove == 0 && canMove == true)
-            {
-                playerRotationHolder.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
-            }
-
             if (!Input.GetMouseButtonDown(0) && attacking == false)
             {
                 if (horizontalMove > 0 && canMove == true)
@@ -219,7 +186,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            if (Input.GetMouseButton(0) && gm.started == true && gm.GameOn == true && isDashing == false && attacking == false)
+            if (Input.GetMouseButtonDown(0) && gm.started == true && gm.GameOn == true && isDashing == false && attacking == false)
             {
 
                 if (horizontalMove > 0 && canMove == true)
@@ -286,7 +253,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            if (Input.GetMouseButton(0) && isCooldownOver == true && weapon > 0 && gm.started == true && isDashing == false && attacking == false)
+            if (Input.GetMouseButtonDown(0) && isCooldownOver == true && weapon > 0 && gm.started == true && isDashing == false && attacking == false)
             {
                 if (weapon == 2)
                 {
@@ -346,7 +313,19 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            if (Input.GetMouseButtonDown(1) && isBlocking == false && weapon == 4)
+            if (Input.GetMouseButtonDown(1) && isBlocking == false && weapon > 0 && gm.started == true && isDashing == false)
+            {
+                if (weapon == 4)
+                {
+                    isDashing = false;
+                    attacking = true;
+                    canAttack = false;
+                    canMove = true;
+                    StartCoroutine("SpearCoolDown");
+                }
+            }
+
+                if (Input.GetMouseButtonDown(2) && isBlocking == false && weapon == 4)
             {
                 canBlock = false;
                 isBlocking = true;
