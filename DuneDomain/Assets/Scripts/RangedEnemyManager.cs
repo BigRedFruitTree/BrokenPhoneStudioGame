@@ -38,7 +38,7 @@ public class RangedEnemyManager : MonoBehaviour
         enemyBow = enemyObject.transform.GetChild(0).gameObject;
         agent = enemyObject.GetComponent<NavMeshAgent>();
         timer = Random.Range(3f, 5f);
-        timer2 = 50f;
+        timer2 = 10f;
         health = 5;
         maxHealth = 5;
         player = GameObject.Find("Player").GetComponent<PlayerController>();
@@ -81,20 +81,32 @@ public class RangedEnemyManager : MonoBehaviour
 
             if (timer > 0f)
             {
+                enemyBow.transform.eulerAngles = new Vector3(0f, 0f, 0f);
                 timer -= 1 * Time.deltaTime;
             }
 
-            if (timer <= 0f)
-            {
-                timer = 0f;
-                canAttack = true;
-                doneAttacking = false;
-            }
-
-            if (doneAttacking == false && canAttack == true && timer <= 0f && attacking == false)
+            if (timer <= 0f && timer2 > 0f)
             {
                 canWalk = false;
                 enemyBow.transform.eulerAngles = new Vector3(90f, enemyObject.transform.eulerAngles.y, enemyObject.transform.eulerAngles.z);
+                timer = 0f;
+                timer2 -= 1 * Time.deltaTime;
+            }
+           
+            if (timer2 <= 0f && canAttack == false)
+            {
+                timer2 = 0f;
+                doneAttacking = false;
+                canAttack = true;
+            }
+
+            if (doneAttacking == false && canAttack == true && timer <= 0f && timer2 <= 0f)
+            {
+                attacking = true;
+                arrowSummon = Instantiate(arrow, enemyBow.transform.position, enemyBow.transform.rotation);
+                arrowSummon.GetComponent<Rigidbody>().AddForce(arrowSummon.transform.up * 1000);
+                arrow.SetActive(true);
+                Destroy(arrowSummon, 2f);
                 StartCoroutine("WaitAttack");
             }
 
@@ -136,18 +148,12 @@ public class RangedEnemyManager : MonoBehaviour
 
     IEnumerator WaitAttack()
     {
-        yield return new WaitForSeconds(7f);
-        attacking = true;
-        arrowSummon = Instantiate(arrow, enemyBow.transform.position, enemyBow.transform.rotation);
-        arrow.SetActive(true);
-        arrowSummon.GetComponent<Rigidbody>().AddForce(arrowSummon.transform.up * 1000);
-        Destroy(arrowSummon, 2f);
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         attacking = false;
         doneAttacking = true;
         canWalk = true;
+        timer2 = 10f;
         canAttack = false;
-        enemyBow.transform.eulerAngles = new Vector3(0f, 0f, 0f);
         timer = Random.Range(3f, 5f);
     }
 }

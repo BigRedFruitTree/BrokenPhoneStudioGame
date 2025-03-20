@@ -426,7 +426,7 @@ public class PlayerController : MonoBehaviour
            health--;
            StartCoroutine("WaitDamage"); 
        }
-       if (other.gameObject.tag == "Shot" && canTakeDamage == true && gm.GameOn == true && enemyScript.attacking == true)
+       if (other.gameObject.tag == "EnemyShot" && canTakeDamage == true && gm.GameOn == true)
        {
            canTakeDamage = false;
            health--;
