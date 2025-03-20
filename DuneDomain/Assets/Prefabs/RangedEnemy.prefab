@@ -183,7 +183,6 @@ MonoBehaviour:
   enemyBow: {fileID: 0}
   corpsePrefab: {fileID: 7878857223893195798, guid: e612928546d950646938d5b5085a716e, type: 3}
   arrow: {fileID: 5472087271426071918, guid: ab5fc5447a871b44cb2766eed461304b, type: 3}
-  arrowSummon: {fileID: 0}
   health: 0
   maxHealth: 0
   speed: 10
@@ -192,9 +191,10 @@ MonoBehaviour:
   timer: 0
   timer2: 0
   attacking: 0
-  canAttack: 1
+  canAttack: 0
   canWalk: 1
   canRotate: 1
+  doneAttacking: 1
 --- !u!1 &9118119880990475937
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,7 +223,7 @@ Transform:
   m_GameObject: {fileID: 9118119880990475937}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.2}
+  m_LocalPosition: {x: -0.6, y: 0, z: 1.2}
   m_LocalScale: {x: 0.5, y: 1, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
