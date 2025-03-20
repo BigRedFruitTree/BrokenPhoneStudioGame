@@ -27,7 +27,7 @@ public class RangedEnemyManager : MonoBehaviour
     public float timer;
     public float timer2;
     public bool attacking = false;
-    public bool canAttack = true;
+    public bool canAttack = false;
     public bool canWalk = true;
     public bool canRotate = true;
     public bool doneAttacking = true;
@@ -107,7 +107,12 @@ public class RangedEnemyManager : MonoBehaviour
                 arrowSummon.GetComponent<Rigidbody>().AddForce(arrowSummon.transform.up * 1000);
                 arrow.SetActive(true);
                 Destroy(arrowSummon, 2f);
-                StartCoroutine("WaitAttack");
+                attacking = false;
+                doneAttacking = true;
+                canWalk = true;
+                timer2 = 10f;
+                canAttack = false;
+                timer = Random.Range(3f, 5f);
             }
 
             if (health <= 0 && dead == false)
@@ -144,16 +149,5 @@ public class RangedEnemyManager : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         canTakeDamage = true;
-    }
-
-    IEnumerator WaitAttack()
-    {
-        yield return new WaitForSeconds(1f);
-        attacking = false;
-        doneAttacking = true;
-        canWalk = true;
-        timer2 = 10f;
-        canAttack = false;
-        timer = Random.Range(3f, 5f);
     }
 }

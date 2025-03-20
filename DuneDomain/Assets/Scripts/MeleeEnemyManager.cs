@@ -47,6 +47,7 @@ public class MeleeEnemyManager : MonoBehaviour
     {
         if (gm.GameOn == true && gm.GameOver == false)
         {
+            float distance = Vector3.Distance(transform.position, playerObject.transform.position);
             enemySword.SetActive(true);
             if (gm.meleeEnemyMovePattern == 2 && gm.GameOn == true && canMove == true && dead == false)
             {
@@ -63,22 +64,33 @@ public class MeleeEnemyManager : MonoBehaviour
                 enemyRidigbody.AddForce(lookDirection * speed);
             }
 
-            if(timer > 0)
+            if (gm.GameOn == true && dead == false && distance < 10)
             {
-                timer -= 1 * Time.deltaTime;
-            }
+                if (timer > 0)
+                {
+                    timer -= 1 * Time.deltaTime;
+                }
 
-            if(timer <= 0)
-            {
-                timer = 0;
-                canAttack = true;
-                attacking = true;
-            }
+                if (timer <= 0)
+                {
+                    timer = 0;
+                    canAttack = true;
+                    attacking = true;
+                }
 
-            if(attacking == true && canAttack == true)
+                if (attacking == true && canAttack == true)
+                {
+                    enemySword.transform.eulerAngles = new Vector3(90f, enemyObject.transform.eulerAngles.y, enemyObject.transform.eulerAngles.z);
+                    StartCoroutine("WaitAttack");
+                }
+            }
+            else
             {
-                enemySword.transform.eulerAngles = new Vector3(90f, enemyObject.transform.eulerAngles.y, enemyObject.transform.eulerAngles.z);
-                StartCoroutine(nameof(WaitAttack));
+                attacking = false;
+                canAttack = false;
+                enemySword.transform.eulerAngles = new Vector3(0f, 0f, 0f);
+                canMove = true;
+                timer = Random.Range(2f, 4f);
             }
 
             if (health <= 0 && dead == false)
