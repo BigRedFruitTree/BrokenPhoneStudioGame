@@ -11,18 +11,20 @@ public class GameManager : MonoBehaviour
     public GameObject playerObject;
 
     [Header("Boss Stuff")]
-    public float timer;
-    public float timer2;
+    public float timeUntilAppearance;
+    public float timeUntilEatPhase;
+    public float timeUntilAttack;
     public int rounds;
+    public bool bossEating = false;
+    public bool startCycle;
+    public bool canBossEat = false;
+    public bool isProcessingTarget = false;
+    public int bossAttack = 0;
     public NavMeshAgent bossAgent;
     public GameObject bossObject;
     public GameObject bossSpawn;
     public BossManager bossScript;
-    public bool bossEating = false;
-    public bool startCycle;
     private GameObject currentTarget;
-    public bool canBossEat = false;
-    public bool isProcessingTarget = false;
 
     [Header("Enemy Stuff")]
     public float spawnRange;
@@ -41,35 +43,40 @@ public class GameManager : MonoBehaviour
     public bool GameOn = false;
     public bool GameOver = false;
     public int weapon = 0;
+    public bool started = false;
     public GameObject weaponScreen;
     public GameObject weaponKeepButton;
     public GameObject weaponKeepTXT;
-    public bool started = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        startCycle = false;
-        weaponScreen.SetActive(true);
-        if(rounds <= 0)
-        {
-           weaponKeepButton.SetActive(false);
-           weaponKeepTXT.SetActive(false);
-        }
-       
-        timer = 6000f;
-        timer2 = 2000f;
-        rounds = 1;
-        spawnRange = 40f;
-        meleeEnemyObject = meleeEnemyPrefab;
-        rangedEnemyObject = rangedEnemyPrefab;
-
-        if (enemyCorpseNumber == null || enemyCorpseNumber.Length == 0) return;
-
-        SetNextTarget();
-
         if (SceneManager.GetActiveScene().buildIndex > 0)
+        {
+            startCycle = false;
+            weaponScreen.SetActive(true);
+            if(rounds <= 0)
+            {
+               weaponKeepButton.SetActive(false);
+               weaponKeepTXT.SetActive(false);
+            }
+       
+            timeUntilAppearance = 6000f;
+            timeUntilEatPhase = 2000f;
+            timeUntilAttack = Random.Range(5f, 10f);
+            rounds = 1;
+            spawnRange = 40f;
+            meleeEnemyObject = meleeEnemyPrefab;
+            rangedEnemyObject = rangedEnemyPrefab;
+ 
+            if (enemyCorpseNumber == null || enemyCorpseNumber.Length == 0) return;
+
+            SetNextTarget();
+
             playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+        }
+
+        
     }
 
     // Update is called once per frame
@@ -108,23 +115,28 @@ public class GameManager : MonoBehaviour
                 meleeEnemyMovePattern = 1;
             }
 
-            if (timer > 0f)
+            if (timeUntilAppearance > 0f)
             { 
               StartCoroutine("Wait");
-              timer--;
+              timeUntilAppearance--;
             }
-           if (timer <= 0f && timer2 > 0f)
-           {
-               timer = 0f;
+
+            if (timeUntilAppearance <= 0f && timeUntilEatPhase > 0f)
+            {
+               if (timeUntilAttack > 0f)
+               {
+
+               }
+               timeUntilAppearance = 0f;
                bossObject.SetActive(true);
                bossAgent.destination = playerController.transform.position;
                StartCoroutine("Wait");
-               timer2--;
-           }
+               timeUntilEatPhase--;
+            }
 
-           if (timer2 <= 0f)
+           if (timeUntilEatPhase <= 0f)
            {
-              timer2 = 0f;
+              timeUntilEatPhase = 0f;
               if(enemyCorpseNumber.Length > 0)
               {
                  if (bossEating == false)
@@ -147,7 +159,7 @@ public class GameManager : MonoBehaviour
               }
            }
 
-           if(bossEating == false && timer2 <= 0f && enemyCorpseNumber.Length == 0)
+           if(bossEating == false && timeUntilEatPhase <= 0f && enemyCorpseNumber.Length == 0)
            {
               if(rounds > 0 && startCycle == false)
               {
@@ -156,7 +168,7 @@ public class GameManager : MonoBehaviour
               }
            }
 
-           if(bossEating == false && timer2 <= 0f && startCycle == true && enemyCorpseNumber.Length == 0)
+           if(bossEating == false && timeUntilEatPhase <= 0f && startCycle == true && enemyCorpseNumber.Length == 0)
            {
               if(meleeEnemyNumber.Length < 15)
               {
@@ -166,8 +178,8 @@ public class GameManager : MonoBehaviour
               {
                  SpawnRanged(rounds);
               }
-              timer = 6000f;
-              timer2 = 2000f;
+              timeUntilAppearance = 6000f;
+              timeUntilEatPhase = 2000f;
               startCycle = false;
              
            }
