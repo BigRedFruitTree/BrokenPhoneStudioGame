@@ -238,6 +238,7 @@ public class GameManager : MonoBehaviour
             if(rounds > 1)
              startCycle = true;
 
+            playerController.drawSpeed = 100f;
             weaponScreen.SetActive(false);
             weapon = chosenWeapon;
             GameOn = true;
@@ -268,6 +269,7 @@ public class GameManager : MonoBehaviour
             if (rounds > 1)
                 startCycle = true;
 
+            playerController.drawSpeed = 200f;
             weaponScreen.SetActive(false);
             weapon = chosenWeapon;
             GameOn = true;
@@ -291,6 +293,7 @@ public class GameManager : MonoBehaviour
             if(rounds > 1)
              startCycle = true;
 
+            playerController.drawSpeed = 100f;
             weaponScreen.SetActive(false);
             GameOn = true;
             StartCoroutine("Wait");
@@ -318,6 +321,7 @@ public class GameManager : MonoBehaviour
             if (rounds > 1)
                 startCycle = true;
 
+            playerController.drawSpeed = 200f;
             weaponScreen.SetActive(false);
             GameOn = true;
             StartCoroutine("Wait");

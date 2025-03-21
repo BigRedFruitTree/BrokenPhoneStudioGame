@@ -18,7 +18,6 @@ public class PlayerController : MonoBehaviour
     public int arrowSpeed;
     public bool canMove = true;
     public float drawSpeed;
-    public float ReloadSpeed = 5f;
     public bool canDash = true;
     public bool canTakeDamage = true;
     public bool attacking = false;
@@ -219,7 +218,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            if (Input.GetMouseButtonDown(0) && gm.started == true && gm.GameOn == true && isDashing == false && attacking == false || attacking == true)
+            if (Input.GetMouseButtonDown(0) && gm.started == true && gm.GameOn == true && isDashing == false && attacking == false || attacking == true && gm.started == true && gm.GameOn == true && isDashing == false)
             {
 
                 if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, 90f, 0f) && canMove == true)
@@ -297,6 +296,16 @@ public class PlayerController : MonoBehaviour
                     canMove = true;
                     StartCoroutine("WaitDraw");
                 }
+
+                if (weapon == 5)
+                {
+                    myRB.constraints = RigidbodyConstraints.FreezeAll;
+                    attacking = true;
+                    isDashing = false;
+                    canAttack = false;
+                    canMove = true;
+                    StartCoroutine("WaitDraw");
+                }
             }
 
             if (Input.GetMouseButtonUp(0) && weapon > 0 && gm.started == true && isDashing == false)
@@ -309,17 +318,24 @@ public class PlayerController : MonoBehaviour
                     arrowSummon.GetComponent<Rigidbody>().AddForce(arrowSummon.transform.up * arrowSpeed);
                     Destroy(arrowSummon, 2f);
                     canAttack = false;
-                    drawSpeed = 200f;
+                    drawSpeed = 100f;
                     myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
                     StartCoroutine("BowCoolDown");
                 }
                 if (weapon == 2 && drawSpeed > 0f)
                 {
+                    drawSpeed = 100f;
+                    myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
+                    StartCoroutine("BowCoolDown");
+                }
+
+                if (weapon == 5 && drawSpeed > 0f)
+                {
                     drawSpeed = 200f;
                     myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
                     StartCoroutine("BowCoolDown");
                 }
-                if (weapon == 5 && ReloadSpeed <= 0)
+                if (weapon == 5 && drawSpeed <= 0)
                 {
                     arrowSpeed = 4000;
                     arrow.SetActive(true);
@@ -327,7 +343,7 @@ public class PlayerController : MonoBehaviour
                     arrowSummon.GetComponent<Rigidbody>().AddForce(arrowSummon.transform.up * arrowSpeed);
                     Destroy(arrowSummon, 2f);
                     canAttack = false;
-                    drawSpeed = 0f;
+                    drawSpeed = 200f;
                     myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
                     StartCoroutine("CrossbowCoolDown");
                 }
@@ -358,7 +374,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-                if (Input.GetMouseButtonDown(2) && isBlocking == false && weapon == 4)
+            if (Input.GetMouseButtonDown(2) && isBlocking == false && weapon == 4)
             {
                 canBlock = false;
                 isBlocking = true;
@@ -484,12 +500,6 @@ public class PlayerController : MonoBehaviour
     {
          yield return new WaitForSeconds(1f);
          drawSpeed--;
-    }
-
-    IEnumerator WaitReload()
-    {
-        yield return new WaitForSeconds(5f);
-        ReloadSpeed++;
     }
 
     IEnumerator SwordCoolDown()
