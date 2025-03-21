@@ -218,7 +218,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            if (Input.GetMouseButtonDown(0) && gm.started == true && gm.GameOn == true && isDashing == false && attacking == false || attacking == true && gm.started == true && gm.GameOn == true && isDashing == false)
+            if (Input.GetMouseButtonDown(0) && gm.started == true && gm.GameOn == true && isDashing == false && attacking == false || attacking == true && gm.started == true && gm.GameOn == true && isDashing == false || Input.GetMouseButton(0) && gm.started == true && gm.GameOn == true && isDashing == false && weapon == 2 || Input.GetMouseButton(0) && gm.started == true && gm.GameOn == true && isDashing == false && weapon == 5)
             {
 
                 if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, 90f, 0f) && canMove == true)
@@ -285,12 +285,11 @@ public class PlayerController : MonoBehaviour
             }
             
 
-            if (Input.GetMouseButtonDown(0) && isCooldownOver == true && weapon > 0 && gm.started == true && isDashing == false && attacking == false)
+            if (Input.GetMouseButton(0) && isCooldownOver == true && weapon > 0 && gm.started == true && isDashing == false)
             {
                 if (weapon == 2)
                 {
                     myRB.constraints = RigidbodyConstraints.FreezeAll;
-                    attacking = true;
                     isDashing = false;
                     canAttack = false;
                     canMove = true;
@@ -300,7 +299,6 @@ public class PlayerController : MonoBehaviour
                 if (weapon == 5)
                 {
                     myRB.constraints = RigidbodyConstraints.FreezeAll;
-                    attacking = true;
                     isDashing = false;
                     canAttack = false;
                     canMove = true;
@@ -312,6 +310,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (weapon == 2 && drawSpeed <= 0f)
                 {
+                    attacking = true;
                     arrowSpeed = 2000;
                     arrow.SetActive(true);
                     GameObject arrowSummon = Instantiate(arrow, bow.transform.position, bow.transform.rotation);
@@ -324,6 +323,7 @@ public class PlayerController : MonoBehaviour
                 }
                 if (weapon == 2 && drawSpeed > 0f)
                 {
+                    attacking = true;
                     drawSpeed = 100f;
                     myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
                     StartCoroutine("BowCoolDown");
@@ -331,12 +331,14 @@ public class PlayerController : MonoBehaviour
 
                 if (weapon == 5 && drawSpeed > 0f)
                 {
+                    attacking = true;
                     drawSpeed = 200f;
                     myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
                     StartCoroutine("BowCoolDown");
                 }
                 if (weapon == 5 && drawSpeed <= 0)
                 {
+                    attacking = true;
                     arrowSpeed = 4000;
                     arrow.SetActive(true);
                     GameObject arrowSummon = Instantiate(arrow, bow.transform.position, bow.transform.rotation);
@@ -374,7 +376,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            if (Input.GetMouseButtonDown(2) && isBlocking == false && weapon == 4)
+            if (Input.GetMouseButtonDown(1) && isBlocking == false && weapon == 4)
             {
                 canBlock = false;
                 isBlocking = true;
@@ -527,7 +529,7 @@ public class PlayerController : MonoBehaviour
     {
          isCooldownOver = false;
          yield return new WaitForSeconds(2f);
-         drawSpeed = 200f;
+         drawSpeed = 100f;
          canAttack = true;
          attacking = false;
          isCooldownOver = true;
@@ -535,9 +537,12 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator CrossbowCoolDown()
     {
+        isCooldownOver = false;
         yield return new WaitForSeconds(5f);
+        drawSpeed = 200f;
         canAttack = true;
         attacking = false;
+        isCooldownOver = true;
     }
 
     IEnumerator ShieldCoolDown()
