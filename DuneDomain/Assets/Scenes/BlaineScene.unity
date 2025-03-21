@@ -1106,13 +1106,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 325042273}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -35.95, y: 0.61, z: -7.220019}
   m_LocalScale: {x: 0.5, y: 1, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &407576657
 GameObject:
   m_ObjectHideFlags: 0
@@ -1214,13 +1214,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 407576657}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -32.8, y: -7.520496, z: -32.815605}
   m_LocalScale: {x: 0.39896, y: 1.5049988, z: 0.39896}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &409872688
 GameObject:
   m_ObjectHideFlags: 0
@@ -1589,13 +1589,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 464561206}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 13.799644, y: -2.8695078, z: -39.049366}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &523513738
 GameObject:
   m_ObjectHideFlags: 0
@@ -2084,17 +2084,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerController: {fileID: 1652962759}
   playerObject: {fileID: 1652962752}
-  timer: 0
-  timer2: 0
+  timeUntilAppearance: 0
+  timeUntilEatPhase: 0
+  timeUntilAttack: 0
   rounds: 0
-  bossAgent: {fileID: 104712144}
-  bossObject: {fileID: 104712137}
-  bossSpawn: {fileID: 1594994284}
-  bossScript: {fileID: 104712143}
   bossEating: 0
   startCycle: 0
   canBossEat: 0
   isProcessingTarget: 0
+  bossAttack: 0
+  bossAgent: {fileID: 104712144}
+  bossObject: {fileID: 104712137}
+  bossSpawn: {fileID: 1594994284}
+  bossScript: {fileID: 104712143}
   spawnRange: 0
   enemyScript: {fileID: 2032745260}
   meleeEnemyObject: {fileID: 0}
@@ -2109,10 +2111,10 @@ MonoBehaviour:
   GameOn: 0
   GameOver: 0
   weapon: 0
+  started: 0
   weaponScreen: {fileID: 639110600}
   weaponKeepButton: {fileID: 409872688}
   weaponKeepTXT: {fileID: 1549553740}
-  started: 0
 --- !u!4 &624562656
 Transform:
   m_ObjectHideFlags: 0
@@ -2279,13 +2281,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 659270361}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 16.85, y: -2.8695078, z: -39.049366}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &771101659
 GameObject:
   m_ObjectHideFlags: 0
@@ -2710,13 +2712,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 888124988}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -33.45, y: 0.6, z: -7.299975}
   m_LocalScale: {x: 0.5, y: 1, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!64 &888124993
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2927,13 +2929,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1004476460}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 9.909518, y: -3.7409623, z: -35.39}
   m_LocalScale: {x: 1, y: 1.9986, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1043325407
 GameObject:
   m_ObjectHideFlags: 0

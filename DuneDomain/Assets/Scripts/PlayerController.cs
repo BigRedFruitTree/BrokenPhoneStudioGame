@@ -150,108 +150,141 @@ public class PlayerController : MonoBehaviour
             shield.transform.position = shieldHolder.transform.position;
             shield.transform.rotation = shieldHolder.transform.rotation;
 
+            if (horizontalMove > 0 && canMove == true)
+            {
+                playerRotationHolder.transform.rotation = Quaternion.Euler(0f, 90f, 0f);
+            }
+            if (horizontalMove > 0 && verticalMove > 0 && canMove == true)
+            {
+                playerRotationHolder.transform.rotation = Quaternion.Euler(0f, 45f, 0f);
+            }
+            if (horizontalMove > 0 && verticalMove < 0 && canMove == true)
+            {
+                playerRotationHolder.transform.rotation = Quaternion.Euler(0f, 145f, 0f);
+            }
+            if (horizontalMove < 0 && canMove == true)
+            {
+                playerRotationHolder.transform.rotation = Quaternion.Euler(0f, -90f, 0f);
+            }
+            if (horizontalMove < 0 && verticalMove > 0 && canMove == true)
+            {
+                playerRotationHolder.transform.rotation = Quaternion.Euler(0f, -45f, 0f);
+            }
+            if (horizontalMove < 0 && verticalMove < 0 && canMove == true)
+            {
+                playerRotationHolder.transform.rotation = Quaternion.Euler(0f, -145f, 0f);
+            }
+            if (verticalMove > 0 && horizontalMove == 0 && canMove == true)
+            {
+                playerRotationHolder.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+            }
+            if (verticalMove < 0 && horizontalMove == 0 && canMove == true)
+            {
+                playerRotationHolder.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+            }
+
             if (!Input.GetMouseButtonDown(0) && attacking == false)
             {
-                if (horizontalMove > 0 && canMove == true)
+                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, 90f, 0f) && canMove == true)
                 {
                     weaponHolder.transform.rotation = Quaternion.Euler(0f, 90f, 0f);
                 }
-                if (horizontalMove > 0 && verticalMove > 0 && canMove == true)
+                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, 45f, 0f) && canMove == true)
                 {
                     weaponHolder.transform.rotation = Quaternion.Euler(0f, 45f, 0f);
                 }
-                if (horizontalMove > 0 && verticalMove < 0 && canMove == true)
+                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, 145f, 0f) && canMove == true)
                 {
                     weaponHolder.transform.rotation = Quaternion.Euler(0f, 145f, 0f);
                 }
-                if (horizontalMove < 0 && canMove == true)
+                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, -90f, 0f) && canMove == true)
                 {
                     weaponHolder.transform.rotation = Quaternion.Euler(0f, -90f, 0f);
                 }
-                if (horizontalMove < 0 && verticalMove > 0 && canMove == true)
+                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, -45f, 0f) && canMove == true)
                 {
                     weaponHolder.transform.rotation = Quaternion.Euler(0f, -45f, 0f);
                 }
-                if (horizontalMove < 0 && verticalMove < 0 && canMove == true)
+                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, -145f, 0f) && canMove == true)
                 {
                     weaponHolder.transform.rotation = Quaternion.Euler(0f, -145f, 0f);
                 }
-                if (verticalMove > 0 && horizontalMove == 0 && canMove == true)
+                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, 0f, 0f) && canMove == true)
                 {
                     weaponHolder.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
                 }
-                if (verticalMove < 0 && horizontalMove == 0 && canMove == true)
+                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, 180f, 0f) && canMove == true)
                 {
                     weaponHolder.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
                 }
             }
 
-            if (Input.GetMouseButtonDown(0) && gm.started == true && gm.GameOn == true && isDashing == false && attacking == false)
+            if (Input.GetMouseButtonDown(0) && gm.started == true && gm.GameOn == true && isDashing == false && attacking == false || attacking == true)
             {
 
-                if (horizontalMove > 0 && canMove == true)
+                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, 90f, 0f) && canMove == true)
                 {
                     weaponHolder.transform.rotation = Quaternion.Euler(90f, 90f, 0f);
                 }
-                if (horizontalMove > 0 && verticalMove > 0 && canMove == true)
+                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, 45f, 0f) && canMove == true)
                 {
                     weaponHolder.transform.rotation = Quaternion.Euler(90f, 45f, 0f);
                 }
-                if (horizontalMove > 0 && verticalMove < 0 && canMove == true)
+                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, 145f, 0f) && canMove == true)
                 {
                     weaponHolder.transform.rotation = Quaternion.Euler(90f, 145f, 0f);
                 }
-                if (horizontalMove < 0 && canMove == true)
+                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, -90f, 0f) && canMove == true)
                 {
                     weaponHolder.transform.rotation = Quaternion.Euler(90f, -90f, 0f);
                 }
-                if (horizontalMove < 0 && verticalMove > 0 && canMove == true)
+                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, -45f, 0f) && canMove == true)
                 {
                     weaponHolder.transform.rotation = Quaternion.Euler(90f, -45f, 0f);
                 }
-                if (horizontalMove < 0 && verticalMove < 0 && canMove == true)
+                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, -145f, 0f) && canMove == true)
                 {
                     weaponHolder.transform.rotation = Quaternion.Euler(90f, -145f, 0f);
                 }
-                if (verticalMove > 0 && horizontalMove == 0 && canMove == true)
+                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, 0f, 0f) && canMove == true)
                 {
                     weaponHolder.transform.rotation = Quaternion.Euler(90f, 0f, 0f);
                 }
-                if (verticalMove < 0 && horizontalMove == 0 && canMove == true)
+                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, 180f, 0f) && canMove == true)
                 {
                     weaponHolder.transform.rotation = Quaternion.Euler(90f, 180f, 0f);
                 }
-                 
+            }
 
-                if (Input.GetMouseButtonDown(0) && canAttack == true && weapon > 0 && gm.started == true && isDashing == false && attacking == false)
+            if (Input.GetMouseButtonDown(0) && canAttack == true && weapon > 0 && gm.started == true && isDashing == false && attacking == false)
+            {
+                if (weapon == 1)
                 {
-                    if (weapon == 1)
-                    {
-                        attacking = true;
-                        canAttack = false;
-                        canMove = true;
-                        StartCoroutine("SwordCoolDown");
-                    }
+                    attacking = true;
+                    canAttack = false;
+                    canMove = true;
+                    StartCoroutine("SwordCoolDown");
+                }
 
-                    if (weapon == 3)
-                    {
-                        isDashing = false;
-                        attacking = true;
-                        canAttack = false;
-                        canMove = true;
-                        StartCoroutine("hammerCoolDown");
-                    }
+                if (weapon == 3)
+                {
+                    isDashing = false;
+                    attacking = true;
+                    canAttack = false;
+                    canMove = true;
+                    StartCoroutine("hammerCoolDown");
+                }
 
-                    if (weapon == 4)
-                    {
-                        isDashing = false;
-                        attacking = true;
-                        canAttack = false;
-                        canMove = true;
-                        StartCoroutine("SpearCoolDown");
-                    }
+                if (weapon == 4)
+                {
+                    isDashing = false;
+                    attacking = true;
+                    canAttack = false;
+                    canMove = true;
+                    StartCoroutine("SpearCoolDown");
                 }
             }
+            
 
             if (Input.GetMouseButtonDown(0) && isCooldownOver == true && weapon > 0 && gm.started == true && isDashing == false && attacking == false)
             {
