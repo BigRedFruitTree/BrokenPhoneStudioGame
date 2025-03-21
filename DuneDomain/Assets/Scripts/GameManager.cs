@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour
     public int weapon = 0;
     public bool started = false;
     public GameObject weaponScreen;
+    public GameObject deathScreen;
     public GameObject weaponKeepButton;
     public GameObject weaponKeepTXT;
 
@@ -184,6 +185,14 @@ public class GameManager : MonoBehaviour
              
            }
 
+           if (playerController.health <= 0)
+           {
+                GameOn = false;
+                GameOver = true;
+                deathScreen.SetActive(true);
+                Time.timeScale = 0;
+           }
+
        }
     }
 
@@ -315,6 +324,12 @@ public class GameManager : MonoBehaviour
         }
 
     }
+
+    public void LoadScene(int SceneID)
+    {
+        SceneManager.LoadScene(SceneID);
+    }
+
 
     public void SetNextTarget()
     {
