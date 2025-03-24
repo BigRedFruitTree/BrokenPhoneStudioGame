@@ -316,8 +316,8 @@ Transform:
   m_GameObject: {fileID: 104712137}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.1, y: 1.09, z: 15.999952}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.1, y: 3.1, z: 15.999952}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -480,7 +480,7 @@ Transform:
   m_GameObject: {fileID: 110707457}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.5, y: 16.619001, z: -19.2}
+  m_LocalPosition: {x: -0.5, y: 16.600002, z: -19.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2365,6 +2365,7 @@ MonoBehaviour:
   canBossEat: 0
   isProcessingTarget: 0
   bossAttack: 0
+  bossAttacking: 0
   bossAgent: {fileID: 104712144}
   bossObject: {fileID: 104712137}
   bossSpawn: {fileID: 1594994284}
@@ -4202,7 +4203,7 @@ Transform:
   m_GameObject: {fileID: 1652962752}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 1.619, z: -19.199999}
+  m_LocalPosition: {x: -0.5, y: 1.6, z: -19.199999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4379,7 +4380,7 @@ Transform:
   m_GameObject: {fileID: 1816818566}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.5, y: 16.619001, z: -19.2}
+  m_LocalPosition: {x: -0.5, y: 16.600002, z: -19.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
