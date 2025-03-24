@@ -52,7 +52,8 @@ public class PlayerController : MonoBehaviour
     public GameObject crossbow;
     public GameObject arrow;
     public Canvas Pausemenu;
-    public MeleeEnemyManager enemyScript;
+    public MeleeEnemyManager enemyScriptM;
+    public RangedEnemyManager enemyScriptR;
 
     // Start is called before the first frame update
     void Start()
@@ -255,7 +256,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            if (Input.GetMouseButtonDown(0) && canAttack == true && weapon > 0 && gm.started == true && isDashing == false && attacking == false)
+            if (Input.GetMouseButtonDown(0) && canAttack == true && weapon > 0 && gm.started == true && isDashing == false && attacking == false && isBlocking == false)
             {
                 if (weapon == 1)
                 {
@@ -271,7 +272,7 @@ public class PlayerController : MonoBehaviour
                     attacking = true;
                     canAttack = false;
                     canMove = true;
-                    StartCoroutine("hammerCoolDown");
+                    StartCoroutine("HammerCoolDown");
                 }
 
                 if (weapon == 4)
@@ -285,7 +286,7 @@ public class PlayerController : MonoBehaviour
             }
             
 
-            if (Input.GetMouseButton(0) && isCooldownOver == true && weapon > 0 && gm.started == true && isDashing == false)
+            if (Input.GetMouseButton(0) && isCooldownOver == true && weapon > 0 && gm.started == true && isDashing == false && isBlocking == false)
             {
                 if (weapon == 2)
                 {
@@ -306,7 +307,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            if (Input.GetMouseButtonUp(0) && weapon > 0 && gm.started == true && isDashing == false)
+            if (Input.GetMouseButtonUp(0) && weapon > 0 && gm.started == true && isDashing == false && isBlocking == false)
             {
                 if (weapon == 2 && drawSpeed <= 0f)
                 {
@@ -360,7 +361,7 @@ public class PlayerController : MonoBehaviour
                     myRB.constraints = RigidbodyConstraints.FreezeAll;
                     canAttack = false;
                     canMove = true;
-                    StartCoroutine("hammerCoolDown");
+                    StartCoroutine("HammerCoolDown");
                 }
             }
 
@@ -376,17 +377,16 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            if (Input.GetMouseButtonDown(1) && isBlocking == false && weapon == 4)
+            if (Input.GetMouseButton(1) && isBlocking == false && weapon == 4)
             {
                 canBlock = false;
                 isBlocking = true;
                 canMove = false;
                 canUnblock = false;
-                StartCoroutine("UnblockCoolDown");
                 canUnblock = true;
             }
 
-            if (Input.GetMouseButtonDown(1) && isBlocking == true && canUnblock == true && weapon == 4)
+            if (Input.GetMouseButtonUp(1) && isBlocking == true && canUnblock == true && weapon == 4)
             {
                 isBlocking = false;
                 canMove = true;
@@ -394,7 +394,7 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine("ShieldCoolDown");
             }
 
-            if (Input.GetKeyDown(KeyCode.E) && gm.started == true && stamina >= 5)
+            if (Input.GetKeyDown(KeyCode.E) && gm.started == true && stamina >= 5 && isBlocking == false)
             {
                 canTakeDamage = false;
                 isDashing = true;
@@ -404,7 +404,7 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine("WaitDamage");
             }
 
-            if (!Input.GetKeyDown(KeyCode.E) && gm.started == true && gm.GameOn == true && isDashing == false)
+            if (!Input.GetKeyDown(KeyCode.E) && gm.started == true && gm.GameOn == true && isDashing == false && isBlocking == false)
             {
                 if (stamina <= 10 && stamina < 10.0001)
                 {
@@ -450,7 +450,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnTriggerStay(Collider other)
     {
-       if (other.gameObject.tag == "EnemySword" && canTakeDamage == true && gm.GameOn == true && enemyScript.attacking == true)
+       if (other.gameObject.tag == "EnemySword" && canTakeDamage == true && gm.GameOn == true && enemyScriptM.attacking == true)
        {
            canTakeDamage = false;
            health--;
@@ -474,7 +474,7 @@ public class PlayerController : MonoBehaviour
        }
     }
 
-    public MeleeEnemyManager GetNearestTarget()
+    public MeleeEnemyManager GetNearestTargetM()
     {
        MeleeEnemyManager nearestTarget = null;
        float nearestDistance = Mathf.Infinity;
@@ -491,7 +491,25 @@ public class PlayerController : MonoBehaviour
 
        return nearestTarget;
     }
-      
+
+    public RangedEnemyManager GetNearestTargetR()
+    {
+        RangedEnemyManager nearestTarget = null;
+        float nearestDistance = Mathf.Infinity;
+
+        foreach (var enemy in gm.rangedEnemyNumber)
+        {
+            float distance = Vector3.Distance(playerObject.transform.position, enemy.transform.position);
+            if (distance < nearestDistance)
+            {
+                nearestDistance = distance;
+                nearestTarget = enemy.GetComponent<RangedEnemyManager>();
+            }
+        }
+
+        return nearestTarget;
+    }
+
     IEnumerator WaitDamage()
     {
          yield return new WaitForSeconds(1f);
@@ -511,7 +529,7 @@ public class PlayerController : MonoBehaviour
          attacking = false;
     }
 
-    IEnumerator hammerCoolDown()
+    IEnumerator HammerCoolDown()
     {
         yield return new WaitForSeconds(3f);
         canAttack = true;
@@ -552,11 +570,6 @@ public class PlayerController : MonoBehaviour
         isBlocking = false;
     }
 
-    IEnumerator UnblockCoolDown()
-    {
-        yield return new WaitForSeconds(1f);
-    }
-
     IEnumerator WaitDash()
     {
          yield return new WaitForSeconds(1f);
@@ -572,6 +585,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator WaitCheckNearestEnemy()
     {
          yield return new WaitForSeconds(0.1f);
-         enemyScript = GetNearestTarget();
+         enemyScriptM = GetNearestTargetM();
+         enemyScriptR = GetNearestTargetR();
     }   
 }
