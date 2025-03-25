@@ -88,7 +88,8 @@ public class GameManager : MonoBehaviour
     {
         if (GameOn == true && GameOver == false && started == true && SceneManager.GetActiveScene().buildIndex > 0)
         {
-            if(bossScript.health <= 0)
+            float distance = Vector3.Distance(bossObject.transform.position, playerObject.transform.position);
+            if (bossScript.health <= 0)
             {
                 winScreen.SetActive(true);
             }
@@ -132,26 +133,26 @@ public class GameManager : MonoBehaviour
 
             if (timeUntilAppearance <= 0f)
             {
-                if (timeUntilAttack > 0f)
+                if (timeUntilAttack > 0f && distance >= 10f)
                 {
                     StartCoroutine("Wait");
                     timeUntilAttack--;
                 }
-                if (timeUntilAttack <= 0f && bossAttack == 0)
+                if (timeUntilAttack <= 0f && bossAttack == 0 && distance >= 10f)
                 {
                     timeUntilAttack = 0f;
                     bossAttack = Random.Range(0, 4);
                 }
 
-                if (bossAttack == 1)
+                if (bossAttack == 1 && distance >= 10f)
                 {
                     StartCoroutine("WaitAttack1");
                 }
-                if (bossAttack == 2)
+                if (bossAttack == 2 && distance >= 10f)
                 {
                     StartCoroutine("WaitAttack2");
                 }
-                if (bossAttack == 3)
+                if (bossAttack == 3 && distance >= 10f)
                 {
                     StartCoroutine("WaitAttack3");
                 }

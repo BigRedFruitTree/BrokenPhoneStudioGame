@@ -110,7 +110,7 @@ public class RangedEnemyManager : MonoBehaviour
                 attacking = false;
                 doneAttacking = true;
                 canWalk = true;
-                timer2 = 10f;
+                timer2 = 5f;
                 canAttack = false;
                 timer = Random.Range(3f, 5f);
             }
