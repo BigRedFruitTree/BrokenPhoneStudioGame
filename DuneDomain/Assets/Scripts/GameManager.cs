@@ -79,8 +79,6 @@ public class GameManager : MonoBehaviour
 
             playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         }
-
-
     }
 
     // Update is called once per frame
@@ -159,7 +157,15 @@ public class GameManager : MonoBehaviour
 
                 timeUntilAppearance = 0f;
                 bossObject.SetActive(true);
-                bossAgent.destination = playerController.transform.position;
+                if(distance <= 10f)
+                {
+                   bossAgent.ResetPath();
+                }
+                else
+                {
+                   bossAgent.destination = playerObject.transform.position;
+                }
+                
                 StartCoroutine("Wait");
                 timeUntilEatPhase--;
             }

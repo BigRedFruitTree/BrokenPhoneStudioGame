@@ -37,7 +37,7 @@ public class RangedEnemyManager : MonoBehaviour
     {
         enemyBow = enemyObject.transform.GetChild(0).gameObject;
         agent = enemyObject.GetComponent<NavMeshAgent>();
-        timer = Random.Range(3f, 5f);
+        timer = Random.Range(5f, 7f);
         timer2 = 5f;
         health = 5;
         maxHealth = 5;
