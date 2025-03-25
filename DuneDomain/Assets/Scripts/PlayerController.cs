@@ -8,7 +8,12 @@ using Cinemachine;
 using JetBrains.Annotations;
 
 public class PlayerController : MonoBehaviour
-{ 
+{
+    //Sword = 1
+    //Bow = 2
+    //Hammer = 3
+    //Spear & Shield = 4
+    //Crossbow = 5
 
     [Header("Player Stats")]
     public int health = 10;
@@ -256,6 +261,42 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
+            if (Input.GetMouseButtonDown(1) && gm.GameOn == true && weapon == 4 && isDashing == false && isBlocking == false || isBlocking == true && gm.GameOn == true && isDashing == false || Input.GetMouseButton(1) && gm.started == true && gm.GameOn == true && isDashing == false && weapon == 4)
+            {
+                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, 90f, 0f) && canMove == true)
+                {
+                    shieldHolder.transform.rotation = Quaternion.Euler(90f, 90f, 0f);
+                }
+                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, 45f, 0f) && canMove == true)
+                {
+                    shieldHolder.transform.rotation = Quaternion.Euler(90f, 45f, 0f);
+                }
+                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, 145f, 0f) && canMove == true)
+                {
+                    shieldHolder.transform.rotation = Quaternion.Euler(90f, 145f, 0f);
+                }
+                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, -90f, 0f) && canMove == true)
+                {
+                    shieldHolder.transform.rotation = Quaternion.Euler(90f, -90f, 0f);
+                }
+                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, -45f, 0f) && canMove == true)
+                {
+                    shieldHolder.transform.rotation = Quaternion.Euler(90f, -45f, 0f);
+                }
+                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, -145f, 0f) && canMove == true)
+                {
+                    shieldHolder.transform.rotation = Quaternion.Euler(90f, -145f, 0f);
+                }
+                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, 0f, 0f) && canMove == true)
+                {
+                    shieldHolder.transform.rotation = Quaternion.Euler(90f, 0f, 0f);
+                }
+                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, 180f, 0f) && canMove == true)
+                {
+                    shieldHolder.transform.rotation = Quaternion.Euler(90f, 180f, 0f);
+                }
+            }
+
             if (Input.GetMouseButtonDown(0) && canAttack == true && weapon > 0 && gm.started == true && isDashing == false && attacking == false && isBlocking == false)
             {
                 if (weapon == 1)
@@ -365,7 +406,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            if (Input.GetMouseButtonDown(1) && isBlocking == false && weapon > 0 && gm.started == true && isDashing == false)
+            if (Input.GetMouseButtonDown(0) && isBlocking == false && weapon > 0 && gm.started == true && isDashing == false)
             {
                 if (weapon == 4)
                 {
@@ -377,21 +418,20 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            if (Input.GetMouseButton(1) && isBlocking == false && weapon == 4)
+            if (Input.GetMouseButton(1) && canMove == true && isBlocking == false && weapon == 4)
             {
                 canBlock = false;
                 isBlocking = true;
                 canMove = false;
-                canUnblock = false;
                 canUnblock = true;
             }
 
-            if (Input.GetMouseButtonUp(1) && isBlocking == true && canUnblock == true && weapon == 4)
+            if (Input.GetMouseButtonUp(1) && canMove == false && isBlocking == true && canUnblock == true && canBlock == false && weapon == 4)
             {
                 isBlocking = false;
                 canMove = true;
+                canBlock = true;
                 canUnblock = false;
-                StartCoroutine("ShieldCoolDown");
             }
 
             if (Input.GetKeyDown(KeyCode.E) && gm.started == true && stamina >= 5 && isBlocking == false)
@@ -561,13 +601,6 @@ public class PlayerController : MonoBehaviour
         canAttack = true;
         attacking = false;
         isCooldownOver = true;
-    }
-
-    IEnumerator ShieldCoolDown()
-    {
-        yield return new WaitForSeconds(1f);
-        canBlock = true;
-        isBlocking = false;
     }
 
     IEnumerator WaitDash()
