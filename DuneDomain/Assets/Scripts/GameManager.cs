@@ -47,6 +47,7 @@ public class GameManager : MonoBehaviour
     public bool started = false;
     public GameObject weaponScreen;
     public GameObject deathScreen;
+    public GameObject winScreen;
     public GameObject weaponKeepButton;
     public GameObject weaponKeepTXT;
 
@@ -85,8 +86,13 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameOn == true && GameOver == false && started == true)
+        if (GameOn == true && GameOver == false && started == true && SceneManager.GetActiveScene().buildIndex > 0)
         {
+            if(bossScript.health <= 0)
+            {
+                winScreen.SetActive(true);
+            }
+
             meleeEnemyNumber = GameObject.FindGameObjectsWithTag("MeleeEnemy");
             enemyCorpseNumber = GameObject.FindGameObjectsWithTag("EnemyCorpse");
             rangedEnemyNumber = GameObject.FindGameObjectsWithTag("RangedEnemy");
@@ -124,7 +130,7 @@ public class GameManager : MonoBehaviour
                 timeUntilAppearance--;
             }
 
-            if (timeUntilAppearance <= 0f && timeUntilEatPhase > 0f)
+            if (timeUntilAppearance <= 0f)
             {
                 if (timeUntilAttack > 0f)
                 {
