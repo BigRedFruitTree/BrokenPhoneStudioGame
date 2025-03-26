@@ -9,7 +9,7 @@ using JetBrains.Annotations;
 
 public class PlayerController : MonoBehaviour
 {
-    //Sword = 1 Rizz
+    //Sword = 1
     //Bow = 2
     //Hammer = 3
     //Spear & Shield = 4
@@ -464,11 +464,6 @@ public class PlayerController : MonoBehaviour
 
                 if (health == 0)
                     gm.GameOver = true;
-
-                if (Input.GetKeyDown(KeyCode.Escape))
-                {
-                    gm.PauseGame();
-                }
 
                 if (health > 0)
                 {

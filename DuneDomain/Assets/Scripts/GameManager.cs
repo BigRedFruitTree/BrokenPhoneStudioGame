@@ -234,15 +234,16 @@ public class GameManager : MonoBehaviour
                 Time.timeScale = 0;
             }
 
-            if (Input.GetKey(KeyCode.Escape) && playerController.isPaused == false)
+            if (Input.GetKeyDown(KeyCode.Escape) && GameOn == true && playerController.health > 0 && bossScript.health > 0)
             {
                 pauseScreen.SetActive(true);
                 Time.timeScale = 0;
-                playerController.isPaused = true;
+                GameOn = false;
             }
-
         }
     }
+
+
 
     public void SpawnMelee(int numberToSpawn)
     {
@@ -415,13 +416,10 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneID);
     }
 
-    public void PauseGame()
-    {
-        Time.timeScale = 0;
-    }
-
     public void ResumeGame()
     {
+        GameOn = true;
+        pauseScreen.SetActive(false);
         Time.timeScale = 1;
     }
 
