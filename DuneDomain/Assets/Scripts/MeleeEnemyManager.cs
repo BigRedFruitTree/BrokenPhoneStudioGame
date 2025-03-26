@@ -30,6 +30,7 @@ public class MeleeEnemyManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
         enemySword = enemyObject.transform.GetChild(0).gameObject;
         agent = enemyObject.GetComponent<NavMeshAgent>();
         timer = Random.Range(2f, 4f);
@@ -38,7 +39,6 @@ public class MeleeEnemyManager : MonoBehaviour
         player = GameObject.Find("Player").GetComponent<PlayerController>();
         playerObject = GameObject.Find("Player");
         enemyRidigbody = GetComponent<Rigidbody>();
-        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
         speed = 13f + gm.rounds;
     }
 

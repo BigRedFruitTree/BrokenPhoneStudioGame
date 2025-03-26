@@ -35,6 +35,7 @@ public class RangedEnemyManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
         enemyBow = enemyObject.transform.GetChild(0).gameObject;
         agent = enemyObject.GetComponent<NavMeshAgent>();
         timer = Random.Range(5f, 7f);
@@ -44,7 +45,6 @@ public class RangedEnemyManager : MonoBehaviour
         player = GameObject.Find("Player").GetComponent<PlayerController>();
         playerObject = GameObject.Find("Player");
         enemyRidigbody = GetComponent<Rigidbody>();
-        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
         speed = 10f + gm.rounds;
     }
 
