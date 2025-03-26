@@ -87,6 +87,10 @@ public class GameManager : MonoBehaviour
         if (GameOn == true && GameOver == false && started == true && SceneManager.GetActiveScene().buildIndex > 0)
         {
             float distance = Vector3.Distance(bossObject.transform.position, playerObject.transform.position);
+            Vector3 lookDirection = (playerObject.transform.position - bossObject.transform.position);
+            lookDirection.y = 0f;
+            lookDirection.Normalize();
+            Quaternion awayRotation = Quaternion.LookRotation(lookDirection);
             if (bossScript.health <= 0)
             {
                 winScreen.SetActive(true);
@@ -160,6 +164,7 @@ public class GameManager : MonoBehaviour
                 if(distance <= 10f)
                 {
                    bossAgent.ResetPath();
+                   bossObject.transform.rotation = Quaternion.Euler(bossObject.transform.rotation.eulerAngles.x, awayRotation.eulerAngles.y, bossObject.transform.rotation.eulerAngles.z);
                 }
                 else
                 {

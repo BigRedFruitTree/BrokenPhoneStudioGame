@@ -39,13 +39,13 @@ public class RangedEnemyManager : MonoBehaviour
         agent = enemyObject.GetComponent<NavMeshAgent>();
         timer = Random.Range(5f, 7f);
         timer2 = 5f;
-        health = 5;
-        maxHealth = 5;
+        health = 5 + gm.rounds;
+        maxHealth = 5 + gm.rounds;
         player = GameObject.Find("Player").GetComponent<PlayerController>();
         playerObject = GameObject.Find("Player");
         enemyRidigbody = GetComponent<Rigidbody>();
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
-        speed = 10f;
+        speed = 10f + gm.rounds;
     }
 
     // Update is called once per frame

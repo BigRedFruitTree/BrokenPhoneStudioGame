@@ -439,7 +439,6 @@ public class PlayerController : MonoBehaviour
                 canTakeDamage = false;
                 isDashing = true;
                 stamina -= 10;
-                myRB.AddForce(playerRotationHolder.transform.forward * 10000f, ForceMode.Force);
                 StartCoroutine("WaitDash");
                 StartCoroutine("WaitDamage");
             }
@@ -476,6 +475,15 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
+    }
+
+    void FixedUpdate()
+    {
+        if(Input.GetKeyDown(KeyCode.E) && gm.started == true && stamina >= 5 && isBlocking == false)
+        {
+            myRB.AddForce(playerRotationHolder.transform.forward * 100f, ForceMode.Acceleration);
+        }
+        
     }
    
     public void OnCollisionStay(Collision collision)
