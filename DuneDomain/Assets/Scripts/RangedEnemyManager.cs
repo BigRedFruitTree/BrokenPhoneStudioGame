@@ -38,7 +38,7 @@ public class RangedEnemyManager : MonoBehaviour
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
         enemyBow = enemyObject.transform.GetChild(0).gameObject;
         agent = enemyObject.GetComponent<NavMeshAgent>();
-        timer = Random.Range(5f, 7f);
+        timer = Random.Range(7f, 9f);
         timer2 = 5f;
         health = 5 + gm.rounds;
         maxHealth = 5 + gm.rounds;
@@ -79,13 +79,13 @@ public class RangedEnemyManager : MonoBehaviour
                 enemyObject.transform.rotation = awayRotation;
             }
 
-            if (timer > 0f)
+            if (timer > 0f && gm.rangedEnemyMovePattern == 1)
             {
                 enemyBow.transform.eulerAngles = new Vector3(0f, 0f, 0f);
                 timer -= 1 * Time.deltaTime;
             }
 
-            if (timer <= 0f && timer2 > 0f)
+            if (timer <= 0f && timer2 > 0f && gm.rangedEnemyMovePattern == 1)
             {
                 canWalk = false;
                 enemyBow.transform.eulerAngles = new Vector3(90f, enemyObject.transform.eulerAngles.y, enemyObject.transform.eulerAngles.z);
@@ -93,14 +93,14 @@ public class RangedEnemyManager : MonoBehaviour
                 timer2 -= 1 * Time.deltaTime;
             }
            
-            if (timer2 <= 0f && canAttack == false)
+            if (timer2 <= 0f && canAttack == false && gm.rangedEnemyMovePattern == 1)
             {
                 timer2 = 0f;
                 doneAttacking = false;
                 canAttack = true;
             }
 
-            if (doneAttacking == false && canAttack == true && timer <= 0f && timer2 <= 0f)
+            if (doneAttacking == false && canAttack == true && timer <= 0f && timer2 <= 0f && gm.rangedEnemyMovePattern == 1)
             {
                 attacking = true;
                 arrowSummon = Instantiate(arrow, enemyBow.transform.position, enemyBow.transform.rotation);
@@ -112,7 +112,7 @@ public class RangedEnemyManager : MonoBehaviour
                 canWalk = true;
                 timer2 = 5f;
                 canAttack = false;
-                timer = Random.Range(3f, 5f);
+                timer = Random.Range(7f, 9f);
             }
 
             if (health <= 0 && dead == false)
