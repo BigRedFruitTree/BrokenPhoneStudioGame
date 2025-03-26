@@ -48,6 +48,7 @@ public class GameManager : MonoBehaviour
     public GameObject weaponScreen;
     public GameObject deathScreen;
     public GameObject winScreen;
+    public GameObject pauseScreen;
     public GameObject weaponKeepButton;
     public GameObject weaponKeepTXT;
 
@@ -231,6 +232,13 @@ public class GameManager : MonoBehaviour
                 GameOver = true;
                 deathScreen.SetActive(true);
                 Time.timeScale = 0;
+            }
+
+            if (Input.GetKey(KeyCode.Escape) && playerController.isPaused == false)
+            {
+                pauseScreen.SetActive(true);
+                Time.timeScale = 0;
+                playerController.isPaused = true;
             }
 
         }
