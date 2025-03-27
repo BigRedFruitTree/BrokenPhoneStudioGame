@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     public NavMeshAgent bossAgent;
     public GameObject bossObject;
     public GameObject bossSpawn;
+    public GameObject bossattackObject;
     public BossManager bossScript;
     private GameObject currentTarget;
 
@@ -150,6 +151,7 @@ public class GameManager : MonoBehaviour
                 if (bossAttack == 1 && distance >= 10f)
                 {
                     StartCoroutine("WaitAttack1");
+                    bossattackObject.SetActive(true);
                 }
                 if (bossAttack == 2 && distance >= 10f)
                 {
