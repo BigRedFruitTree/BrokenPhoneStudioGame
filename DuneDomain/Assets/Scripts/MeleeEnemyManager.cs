@@ -50,24 +50,24 @@ public class MeleeEnemyManager : MonoBehaviour
         {
             float distance = Vector3.Distance(transform.position, playerObject.transform.position);
             enemySword.SetActive(true);
-            if (gm.meleeEnemyMovePattern == 2 && gm.GameOn == true && canMove == true && dead == false)
+            if (gm.meleeEnemyMovePattern == 2 && canMove == true && dead == false)
             {
                 Vector3 lookDirection = (enemyObject.transform.position - playerObject.transform.position).normalized;
                 enemyRidigbody.AddForce(lookDirection * speed);
             }
-            else if (gm.meleeEnemyMovePattern == 1 && gm.GameOn == true && canMove == true && dead == false)
+            else if (gm.meleeEnemyMovePattern == 1 && canMove == true && dead == false)
             {
                 Vector3 lookDirection = (playerObject.transform.position - enemyObject.transform.position).normalized;
                 enemyRidigbody.AddForce(lookDirection * speed);
             }
 
-            if (gm.meleeEnemyMovePattern == 2 && gm.GameOn == true && canRotate == true && dead == false)
+            if (gm.meleeEnemyMovePattern == 2 && canRotate == true && dead == false)
             {
                 Vector3 lookDirection = (enemyObject.transform.position - playerObject.transform.position).normalized;
                 Quaternion awayRotation = Quaternion.LookRotation(lookDirection);
                 enemyObject.transform.rotation = awayRotation;
             }
-            else if (gm.meleeEnemyMovePattern == 1 && gm.GameOn == true && canRotate == true && dead == false)
+            else if (gm.meleeEnemyMovePattern == 1 && canRotate == true && dead == false)
             {
                 Vector3 lookDirection = (playerObject.transform.position - enemyObject.transform.position).normalized;
                 Quaternion awayRotation = Quaternion.LookRotation(lookDirection);
@@ -144,7 +144,7 @@ public class MeleeEnemyManager : MonoBehaviour
         canRotate = false;
         yield return new WaitForSeconds(0.5f);
         enemySword.transform.eulerAngles = new Vector3(90f, enemyObject.transform.eulerAngles.y, enemyObject.transform.eulerAngles.z);
-        enemyRidigbody.velocity = transform.forward * 30;
+        enemyRidigbody.velocity += transform.forward * 30;
         yield return new WaitForSeconds(0.4f);
         attacking = false;
         canAttack = false;
@@ -152,7 +152,7 @@ public class MeleeEnemyManager : MonoBehaviour
         timer = Random.Range(2f, 4f);
         yield return new WaitForSeconds(0.5f);
         enemySword.transform.eulerAngles = new Vector3(90f, enemyObject.transform.eulerAngles.y, enemyObject.transform.eulerAngles.z);
-        enemyRidigbody.velocity = transform.forward * 30;
+        enemyRidigbody.velocity += transform.forward * 30;
         yield return new WaitForSeconds(0.4f);
         attacking = false;
         canAttack = false;

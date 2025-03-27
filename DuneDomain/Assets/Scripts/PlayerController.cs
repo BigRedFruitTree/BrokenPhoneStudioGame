@@ -225,7 +225,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            if (Input.GetMouseButtonDown(0) && gm.started == true && gm.GameOn == true && isDashing == false && attacking == false || attacking == true && gm.started == true && gm.GameOn == true && isDashing == false || Input.GetMouseButton(0) && gm.started == true && gm.GameOn == true && isDashing == false && weapon == 2 || Input.GetMouseButton(0) && gm.started == true && gm.GameOn == true && isDashing == false && weapon == 5)
+            if (Input.GetMouseButtonDown(0) && isDashing == false && attacking == false && canAttack == true)
             {
 
                 if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, 90f, 0f) && canMove == true)
@@ -262,7 +262,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            if (Input.GetMouseButtonDown(1) && gm.GameOn == true && weapon == 4 && isDashing == false && isBlocking == false || isBlocking == true && gm.GameOn == true && isDashing == false || Input.GetMouseButton(1) && gm.started == true && gm.GameOn == true && isDashing == false && weapon == 4)
+            if (Input.GetMouseButtonDown(1) && weapon == 4 && isDashing == false && isBlocking == false || isBlocking == true && isDashing == false || Input.GetMouseButton(1) && isDashing == false && weapon == 4)
             {
                 if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, 90f, 0f) && canMove == true)
                 {
@@ -421,22 +421,25 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetMouseButton(1) && canMove == true && isBlocking == false && weapon == 4)
             {
+                myRB.constraints = RigidbodyConstraints.FreezeAll;
                 canBlock = false;
                 isBlocking = true;
-                canMove = false;
+                canMove = true;
                 canUnblock = true;
             }
 
-            if (Input.GetMouseButtonUp(1) && canMove == false && isBlocking == true && canUnblock == true && canBlock == false && weapon == 4)
+            if (Input.GetMouseButtonUp(1) && isBlocking == true && canUnblock == true && canBlock == false && weapon == 4)
             {
+                myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
                 isBlocking = false;
                 canMove = true;
                 canBlock = true;
                 canUnblock = false;
             }
 
-            if (Input.GetKeyDown(KeyCode.E) && gm.started == true && stamina >= 5 && isBlocking == false)
+            if (Input.GetKeyDown(KeyCode.E) && stamina == 10 && isBlocking == false)
             {
+                myRB.velocity = playerRotationHolder.transform.forward * 300;
                 canTakeDamage = false;
                 isDashing = true;
                 stamina -= 10;
@@ -444,42 +447,26 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine("WaitDamage");
             }
 
-            if (!Input.GetKeyDown(KeyCode.E) && gm.started == true && gm.GameOn == true && isDashing == false && isBlocking == false)
+            if (stamina < 0f)
+                stamina = 0f;
+
+            if (isDashing == false)
+                stamina += 1f * Time.deltaTime;
+
+            if (stamina > 10f)
+                stamina = 10f;
+
+            if (health < 0)
+                health = 0;
+
+            if (health == 0)
+                gm.GameOver = true;
+
+            if (health > 0)
             {
-                if (stamina <= 10 && stamina < 10.0001)
-                {
-                    StartCoroutine("WaitStamina");
-                }
-
-                if (stamina > 10)
-                    stamina = 10;
-                
-
-                if (stamina <= 0)
-                    stamina = 0;
-
-
-                if (health < 0)
-                    health = 0;
-
-                if (health == 0)
-                    gm.GameOver = true;
-
-                if (health > 0)
-                {
-                    StartCoroutine(nameof(WaitCheckNearestEnemy));
-                }
+                StartCoroutine("WaitCheckNearestEnemy");
             }
         }
-    }
-
-    void FixedUpdate()
-    {
-        if(Input.GetKeyDown(KeyCode.E) && gm.started == true && stamina >= 5 && isBlocking == false)
-        {
-            myRB.AddForce(playerRotationHolder.transform.forward * 100f, ForceMode.Acceleration);
-        }
-        
     }
    
     public void OnCollisionStay(Collision collision)
@@ -568,55 +555,52 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator SwordCoolDown()
     {
-         yield return new WaitForSeconds(1f);
-         canAttack = true;
-         attacking = false;
+        yield return new WaitForSeconds(1f);
+        attacking = false;
+        yield return new WaitForSeconds(2f);
+        canAttack = true;
     }
 
     IEnumerator HammerCoolDown()
     {
-        yield return new WaitForSeconds(3f);
-        canAttack = true;
+        yield return new WaitForSeconds(1f);
         attacking = false;
+        yield return new WaitForSeconds(2f);
+        canAttack = true;
     }
 
     IEnumerator SpearCoolDown()
     {
-        yield return new WaitForSeconds(0.5f);
-        canAttack = true;
+        yield return new WaitForSeconds(1f);
         attacking = false;
+        yield return new WaitForSeconds(2f);
+        canAttack = true;
     }
 
     IEnumerator BowCoolDown()
     {
-         isCooldownOver = false;
-         yield return new WaitForSeconds(2f);
-         drawSpeed = 100f;
-         canAttack = true;
-         attacking = false;
-         isCooldownOver = true;
+        isCooldownOver = false;
+        attacking = false;
+        yield return new WaitForSeconds(2f);
+        drawSpeed = 100f;
+        canAttack = true;
+        isCooldownOver = true;
     }
 
     IEnumerator CrossbowCoolDown()
     {
         isCooldownOver = false;
-        yield return new WaitForSeconds(5f);
+        attacking = false;
+        yield return new WaitForSeconds(4f);
         drawSpeed = 200f;
         canAttack = true;
-        attacking = false;
         isCooldownOver = true;
     }
 
     IEnumerator WaitDash()
     {
-         yield return new WaitForSeconds(1f);
+         yield return new WaitForSeconds(0.5f);
          isDashing = false;
-    }
-
-    IEnumerator WaitStamina()
-    {
-         yield return new WaitForSeconds(2f);
-         stamina += 0.1f;
     }
      
     IEnumerator WaitCheckNearestEnemy()
