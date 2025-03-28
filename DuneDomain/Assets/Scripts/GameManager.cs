@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour
     [Header("Player Stuff")]
     public PlayerController playerController;
     public GameObject playerObject;
+    public GameObject playerUiStuff;
+    public GameObject pHealthBar;
+    public GameObject pStaminaBar;
 
     [Header("Boss Stuff")]
     public float timeUntilAppearance;
@@ -58,6 +61,8 @@ public class GameManager : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().buildIndex > 0)
         {
+            pHealthBar.transform.localPosition = new Vector3(398.9f, -271.6f, 0f);
+            pHealthBar.transform.localScale = new Vector3(0.3f, 4.81f, 0f);
             bossObject.SetActive(false);
             startCycle = false;
             weaponScreen.SetActive(true);
@@ -88,6 +93,7 @@ public class GameManager : MonoBehaviour
     {
         if (GameOn == true && GameOver == false && started == true && SceneManager.GetActiveScene().buildIndex > 0)
         {
+            playerUiStuff.SetActive(true);
             float distance = Vector3.Distance(bossObject.transform.position, playerObject.transform.position);
             Vector3 lookDirection = (playerObject.transform.position - bossObject.transform.position);
             lookDirection.y = 0f;
