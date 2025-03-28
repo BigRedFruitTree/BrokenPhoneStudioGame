@@ -50,6 +50,7 @@ public class PlayerController : MonoBehaviour
     public GameManager gm;
     public GameObject weaponHolder;
     public GameObject shieldHolder;
+    public GameObject blockHolder;
     public GameObject sword;
     public GameObject hammer;
     public GameObject spear;
@@ -264,38 +265,8 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetMouseButtonDown(1) && weapon == 4 && isDashing == false && isBlocking == false || isBlocking == true && isDashing == false || Input.GetMouseButton(1) && isDashing == false && weapon == 4)
             {
-                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, 90f, 0f) && canMove == true)
-                {
-                    shieldHolder.transform.rotation = Quaternion.Euler(90f, 90f, 0f);
-                }
-                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, 45f, 0f) && canMove == true)
-                {
-                    shieldHolder.transform.rotation = Quaternion.Euler(90f, 45f, 0f);
-                }
-                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, 145f, 0f) && canMove == true)
-                {
-                    shieldHolder.transform.rotation = Quaternion.Euler(90f, 145f, 0f);
-                }
-                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, -90f, 0f) && canMove == true)
-                {
-                    shieldHolder.transform.rotation = Quaternion.Euler(90f, -90f, 0f);
-                }
-                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, -45f, 0f) && canMove == true)
-                {
-                    shieldHolder.transform.rotation = Quaternion.Euler(90f, -45f, 0f);
-                }
-                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, -145f, 0f) && canMove == true)
-                {
-                    shieldHolder.transform.rotation = Quaternion.Euler(90f, -145f, 0f);
-                }
-                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, 0f, 0f) && canMove == true)
-                {
-                    shieldHolder.transform.rotation = Quaternion.Euler(90f, 0f, 0f);
-                }
-                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, 180f, 0f) && canMove == true)
-                {
-                    shieldHolder.transform.rotation = Quaternion.Euler(90f, 180f, 0f);
-                }
+                shield.transform.position = blockHolder.transform.position;
+                shield.transform.rotation = blockHolder.transform.rotation;
             }
 
             if (Input.GetMouseButtonDown(0) && canAttack == true && weapon > 0 && gm.started == true && isDashing == false && attacking == false && isBlocking == false)
