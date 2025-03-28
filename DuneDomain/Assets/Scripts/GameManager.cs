@@ -150,12 +150,11 @@ public class GameManager : MonoBehaviour
 
                 if (bossAttack == 1 && distance >= 10f)
                 {
-                    StartCoroutine("WaitAttack1");
-                    bossattackObject.SetActive(true);
+                    StartCoroutine("WaitAttack1");   
                 }
                 if (bossAttack == 2 && distance >= 10f)
                 {
-                    StartCoroutine("WaitAttack2");
+                    StartCoroutine("WaitAttack2");   
                 }
                 if (bossAttack == 3 && distance >= 10f)
                 {
@@ -432,21 +431,27 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator WaitAttack1()
     {
+        bossattackObject.SetActive(true);
         yield return new WaitForSeconds(2f);
         bossAttack = 0;
         timeUntilAttack = Random.Range(200f, 300f);
+        bossattackObject.SetActive(false);
     }
     IEnumerator WaitAttack2()
     {
+        bossattackObject.SetActive(true);
         yield return new WaitForSeconds(2f);
         bossAttack = 0;
         timeUntilAttack = Random.Range(200f, 300f);
+        bossattackObject.SetActive(false);
     }
     IEnumerator WaitAttack3()
     {
+        bossattackObject.SetActive(true);
         yield return new WaitForSeconds(2f);
         bossAttack = 0;
         timeUntilAttack = Random.Range(200f, 300f);
+        bossattackObject.SetActive(false);
     }
     IEnumerator WaitBossAway()
     {
