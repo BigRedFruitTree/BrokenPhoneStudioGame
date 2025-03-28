@@ -185,7 +185,7 @@ MonoBehaviour:
   bow: {fileID: 1432951868}
   crossbow: {fileID: 835893162}
   arrow: {fileID: 8278388404425105339, guid: 8637a1b38a835a142bf4cdce50316ac1, type: 3}
-  Pausemenu: {fileID: 0}
+  Pausemenu: {fileID: 2045637731}
   enemyScriptM: {fileID: 0}
   enemyScriptR: {fileID: 751769059}
 --- !u!4 &22467973
@@ -2897,7 +2897,7 @@ MonoBehaviour:
   bossattackObject: {fileID: 458466881}
   bossScript: {fileID: 927201380}
   spawnRange: 0
-  enemyScript: {fileID: 0}
+  enemyScript: {fileID: 1692598024}
   meleeEnemyObject: {fileID: 232766443740596227, guid: dbb47fb935dcd884a92b5bea53302ed0, type: 3}
   meleeEnemyPrefab: {fileID: 232766443740596227, guid: dbb47fb935dcd884a92b5bea53302ed0, type: 3}
   rangedEnemyObject: {fileID: 594971832880149158, guid: 3647edb2f01b6ed45b735e5ce92e49b1, type: 3}
@@ -4424,6 +4424,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1611707840}
   m_CullTransparentMesh: 1
+--- !u!114 &1692598024 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8906918789904399867, guid: dbb47fb935dcd884a92b5bea53302ed0, type: 3}
+  m_PrefabInstance: {fileID: 7965115782920177035}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d3897c7218b21f4db221c72c538550f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1698189905
 GameObject:
   m_ObjectHideFlags: 0
