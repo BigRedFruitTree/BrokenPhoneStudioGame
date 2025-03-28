@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,8 +11,8 @@ public class GameManager : MonoBehaviour
     public PlayerController playerController;
     public GameObject playerObject;
     public GameObject playerUiStuff;
-    public GameObject pHealthBar;
-    public GameObject pStaminaBar;
+    public Image pHealthBar;
+    public Image pStaminaBar;
 
     [Header("Boss Stuff")]
     public float timeUntilAppearance;
@@ -61,8 +62,6 @@ public class GameManager : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().buildIndex > 0)
         {
-            pHealthBar.transform.localPosition = new Vector3(398.9f, -271.6f, 0f);
-            pHealthBar.transform.localScale = new Vector3(0.3f, 4.81f, 0f);
             bossObject.SetActive(false);
             startCycle = false;
             weaponScreen.SetActive(true);
@@ -93,6 +92,8 @@ public class GameManager : MonoBehaviour
     {
         if (GameOn == true && GameOver == false && started == true && SceneManager.GetActiveScene().buildIndex > 0)
         {
+            pHealthBar.fillAmount = Mathf.Clamp((float)playerController.health / (float)playerController.maxHealth, 0, 1);
+            pStaminaBar.fillAmount = Mathf.Clamp((float)playerController.stamina / (float)10, 0, 1);
             playerUiStuff.SetActive(true);
             float distance = Vector3.Distance(bossObject.transform.position, playerObject.transform.position);
             Vector3 lookDirection = (playerObject.transform.position - bossObject.transform.position);
