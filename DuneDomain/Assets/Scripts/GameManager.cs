@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public GameObject playerUiStuff;
     public Image pHealthBar;
     public Image pStaminaBar;
+    
 
     [Header("Boss Stuff")]
     public float timeUntilAppearance;
@@ -31,6 +32,8 @@ public class GameManager : MonoBehaviour
     public GameObject bossattackObject;
     public BossManager bossScript;
     private GameObject currentTarget;
+    public GameObject bossUiStuff;
+    public Image bossBar;
 
     [Header("Enemy Stuff")]
     public float spawnRange;
@@ -93,6 +96,7 @@ public class GameManager : MonoBehaviour
         if (GameOn == true && GameOver == false && started == true && SceneManager.GetActiveScene().buildIndex > 0)
         {
             pHealthBar.fillAmount = Mathf.Clamp((float)playerController.health / (float)playerController.maxHealth, 0, 1);
+            bossBar.fillAmount = Mathf.Clamp((float)bossScript.health / (float)50, 0, 1);
             pStaminaBar.fillAmount = Mathf.Clamp((float)playerController.stamina / (float)10, 0, 1);
             playerUiStuff.SetActive(true);
             float distance = Vector3.Distance(bossObject.transform.position, playerObject.transform.position);
@@ -144,6 +148,7 @@ public class GameManager : MonoBehaviour
 
             if (timeUntilAppearance <= 0f)
             {
+                bossUiStuff.SetActive(true);
                 if (timeUntilAttack > 0f && distance >= 10f)
                 {
                     StartCoroutine("Wait");
@@ -213,6 +218,7 @@ public class GameManager : MonoBehaviour
             {
                 if (rounds > 0 && startCycle == false)
                 {
+                    bossUiStuff.SetActive(false);
                     StartCoroutine("WaitBossAway");
                     StartCoroutine("WaitWeaponScreen");
                 }
