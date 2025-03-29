@@ -5765,7 +5765,7 @@ MonoBehaviour:
   shield: {fileID: 464561206}
   bow: {fileID: 325042273}
   crossbow: {fileID: 1004476460}
-  arrow: {fileID: 8278388404425105339, guid: 8637a1b38a835a142bf4cdce50316ac1, type: 3}
+  arrow: {fileID: 7631161617515556420, guid: 8637a1b38a835a142bf4cdce50316ac1, type: 3}
   Pausemenu: {fileID: 0}
   enemyScriptM: {fileID: 0}
   enemyScriptR: {fileID: 0}

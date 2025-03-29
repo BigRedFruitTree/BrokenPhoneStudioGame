@@ -182,7 +182,7 @@ MonoBehaviour:
   enemyRidigbody: {fileID: 0}
   enemyBow: {fileID: 0}
   corpsePrefab: {fileID: 7878857223893195798, guid: e612928546d950646938d5b5085a716e, type: 3}
-  arrow: {fileID: 5472087271426071918, guid: ab5fc5447a871b44cb2766eed461304b, type: 3}
+  arrow: {fileID: 3532160150696162465, guid: ab5fc5447a871b44cb2766eed461304b, type: 3}
   health: 0
   maxHealth: 0
   speed: 10
