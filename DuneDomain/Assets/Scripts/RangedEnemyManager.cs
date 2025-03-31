@@ -45,7 +45,7 @@ public class RangedEnemyManager : MonoBehaviour
         player = GameObject.Find("Player").GetComponent<PlayerController>();
         playerObject = GameObject.Find("Player");
         enemyRidigbody = GetComponent<Rigidbody>();
-        speed = 10f + gm.rounds;
+        speed = 6f + gm.rounds;
     }
 
     // Update is called once per frame
@@ -81,14 +81,14 @@ public class RangedEnemyManager : MonoBehaviour
 
             if (timer > 0f && gm.rangedEnemyMovePattern == 1)
             {
-                enemyBow.transform.eulerAngles = new Vector3(0f, 0f, 0f);
+                enemyBow.transform.eulerAngles = new Vector3(0f, enemyObject.transform.eulerAngles.y, 0f);
                 timer -= 1 * Time.deltaTime;
             }
 
             if (timer <= 0f && timer2 > 0f && gm.rangedEnemyMovePattern == 1)
             {
                 canWalk = false;
-                enemyBow.transform.eulerAngles = new Vector3(90f, enemyObject.transform.eulerAngles.y, enemyObject.transform.eulerAngles.z);
+                enemyBow.transform.eulerAngles = new Vector3(0f, enemyObject.transform.eulerAngles.y, enemyObject.transform.eulerAngles.z);
                 timer = 0f;
                 timer2 -= 1 * Time.deltaTime;
             }
@@ -104,7 +104,7 @@ public class RangedEnemyManager : MonoBehaviour
             {
                 attacking = true;
                 arrowSummon = Instantiate(arrow, enemyBow.transform.position, enemyBow.transform.rotation);
-                arrowSummon.GetComponent<Rigidbody>().AddForce(arrowSummon.transform.up * 1000);
+                arrowSummon.GetComponent<Rigidbody>().AddForce(arrowSummon.transform.forward * 1000);
                 arrow.SetActive(true);
                 Destroy(arrowSummon, 2f);
                 attacking = false;

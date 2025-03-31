@@ -1932,7 +1932,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 13.799644, y: -2.8695078, z: -39.049366}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -2523,6 +2523,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8550532504958451103, guid: 3647edb2f01b6ed45b735e5ce92e49b1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9118119880990475937, guid: 3647edb2f01b6ed45b735e5ce92e49b1, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -3755,6 +3759,7 @@ Transform:
   m_Children:
   - {fileID: 2118890808}
   - {fileID: 2043424329}
+  - {fileID: 1254055082}
   m_Father: {fileID: 1652962756}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1000120865
@@ -4684,6 +4689,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1192947687}
   m_CullTransparentMesh: 1
+--- !u!1 &1254055081
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1254055082}
+  m_Layer: 0
+  m_Name: BlockHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1254055082
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1254055081}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.36399996, y: 0.011, z: 1.178}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1000120864}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1290424080
 GameObject:
   m_ObjectHideFlags: 0
@@ -5444,7 +5480,7 @@ MonoBehaviour:
   gm: {fileID: 624562655}
   weaponHolder: {fileID: 2118890807}
   shieldHolder: {fileID: 2043424328}
-  blockHolder: {fileID: 0}
+  blockHolder: {fileID: 1254055081}
   sword: {fileID: 888124988}
   hammer: {fileID: 407576657}
   spear: {fileID: 659270361}
