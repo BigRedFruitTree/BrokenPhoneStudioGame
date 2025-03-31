@@ -65,13 +65,13 @@ public class MeleeEnemyManager : MonoBehaviour
             {
                 Vector3 lookDirection = (enemyObject.transform.position - playerObject.transform.position).normalized;
                 Quaternion awayRotation = Quaternion.LookRotation(lookDirection);
-                enemyObject.transform.rotation = awayRotation;
+                enemyObject.transform.rotation = Quaternion.Euler(enemyObject.transform.rotation.eulerAngles.x, awayRotation.eulerAngles.y, enemyObject.transform.rotation.eulerAngles.z);
             }
             else if (gm.meleeEnemyMovePattern == 1 && canRotate == true && dead == false)
             {
                 Vector3 lookDirection = (playerObject.transform.position - enemyObject.transform.position).normalized;
                 Quaternion awayRotation = Quaternion.LookRotation(lookDirection);
-                enemyObject.transform.rotation = awayRotation;
+                enemyObject.transform.rotation = Quaternion.Euler(enemyObject.transform.rotation.eulerAngles.x, awayRotation.eulerAngles.y, enemyObject.transform.rotation.eulerAngles.z);
             }
 
             if (gm.GameOn == true && dead == false && distance < 10 && gm.meleeEnemyMovePattern == 1)

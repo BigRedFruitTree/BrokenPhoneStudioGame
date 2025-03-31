@@ -70,13 +70,13 @@ public class RangedEnemyManager : MonoBehaviour
             {
                 Vector3 lookDirection = (enemyObject.transform.position - playerObject.transform.position).normalized;
                 Quaternion awayRotation = Quaternion.LookRotation(lookDirection);
-                enemyObject.transform.rotation = awayRotation;
+                enemyObject.transform.rotation = Quaternion.Euler(enemyObject.transform.rotation.eulerAngles.x, awayRotation.eulerAngles.y, enemyObject.transform.rotation.eulerAngles.z);
             }
             else if (gm.rangedEnemyMovePattern == 1 && gm.GameOn == true && canRotate == true && dead == false)
             {
                 Vector3 lookDirection = (playerObject.transform.position - enemyObject.transform.position).normalized;
                 Quaternion awayRotation = Quaternion.LookRotation(lookDirection);
-                enemyObject.transform.rotation = awayRotation;
+                enemyObject.transform.rotation = Quaternion.Euler(enemyObject.transform.rotation.eulerAngles.x, awayRotation.eulerAngles.y, enemyObject.transform.rotation.eulerAngles.z);
             }
 
             if (timer > 0f && gm.rangedEnemyMovePattern == 1)

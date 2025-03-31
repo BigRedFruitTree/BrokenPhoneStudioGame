@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
     public GameObject bossattackObject;
     public BossManager bossScript;
     private GameObject currentTarget;
+    public Rigidbody bossRigidBody;
     public GameObject bossUiStuff;
     public Image bossBar;
 
@@ -100,10 +101,6 @@ public class GameManager : MonoBehaviour
             pStaminaBar.fillAmount = Mathf.Clamp((float)playerController.stamina / (float)10, 0, 1);
             playerUiStuff.SetActive(true);
             float distance = Vector3.Distance(bossObject.transform.position, playerObject.transform.position);
-            Vector3 lookDirection = (playerObject.transform.position - bossObject.transform.position);
-            lookDirection.y = 0f;
-            lookDirection.Normalize();
-            Quaternion awayRotation = Quaternion.LookRotation(lookDirection);
             if (bossScript.health <= 0)
             {
                 winScreen.SetActive(true);
@@ -178,7 +175,12 @@ public class GameManager : MonoBehaviour
                 if(distance <= 10f)
                 {
                    bossAgent.ResetPath();
+                   Vector3 lookDirection = (playerObject.transform.position - bossObject.transform.position);
+                   lookDirection.y = 0f;
+                   lookDirection.Normalize();
+                   Quaternion awayRotation = Quaternion.LookRotation(lookDirection);
                    bossObject.transform.rotation = Quaternion.Euler(bossObject.transform.rotation.eulerAngles.x, awayRotation.eulerAngles.y, bossObject.transform.rotation.eulerAngles.z);
+                   bossRigidBody.AddForce(-lookDirection * 10);
                 }
                 else
                 {
@@ -256,8 +258,6 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-
-
 
     public void SpawnMelee(int numberToSpawn)
     {

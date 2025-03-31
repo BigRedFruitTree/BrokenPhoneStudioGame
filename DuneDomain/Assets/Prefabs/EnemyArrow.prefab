@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2695470232732630929}
   - component: {fileID: 1154576567189980594}
   - component: {fileID: 3245662048238427176}
+  - component: {fileID: 3485172975085763029}
   m_Layer: 0
   m_Name: EnemyArrow
   m_TagString: EnemyShot
@@ -136,3 +137,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &3485172975085763029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3532160150696162465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10fd5a7a437b5dc4f9f41d92c5c7b840, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  arrow: {fileID: 3532160150696162465}
