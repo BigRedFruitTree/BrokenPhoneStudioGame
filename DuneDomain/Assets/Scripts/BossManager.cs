@@ -15,8 +15,8 @@ public class BossManager : MonoBehaviour
     public NavMeshAgent bossAgent;
 
     [Header("Stats")]
-    public float health = 50f;
-    public float maxHealth = 50f;
+    public float health = 200f;
+    public float maxHealth = 200f;
     public int damage = 5;
     public bool canTakeDamage = true;
     public bool canEat = false;

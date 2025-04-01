@@ -70,8 +70,8 @@ public class PlayerController : MonoBehaviour
         speed = 7f;
         drawSpeed = 200f;
         stamina = 10;
-        health = 10;
-        maxHealth = 10;
+        health = 100;
+        maxHealth = 100;
         inputHandler = InputHandler.Instance;
         myRB = GetComponent<Rigidbody>();
         Cursor.visible = true;
@@ -98,7 +98,14 @@ public class PlayerController : MonoBehaviour
             temp.x = verticalMove * speed;
             temp.z = horizontalMove * speed;
 
-            myRB.velocity = (temp.x * transform.forward) + (temp.z * transform.right) + (temp.y * transform.up);
+            if (isDashing == true)
+            {
+                
+            }
+            else
+            {
+                myRB.velocity = (temp.x * transform.forward) + (temp.z * transform.right) + (temp.y * transform.up);
+            }
 
             if (weapon == 1)
             {
@@ -396,7 +403,6 @@ public class PlayerController : MonoBehaviour
                     arrowSpeed = 4000;
                     arrow.SetActive(true);
                     GameObject arrowSummon = Instantiate(arrow, arrowSpawnC.transform.position, arrowSpawnC.transform.rotation);
-                    //arrowSummon.transform.Rotate(180f, 0f, 0f);
                     arrowSummon.GetComponent<Rigidbody>().AddForce(crossbow.transform.up * arrowSpeed);
                     Destroy(arrowSummon, 2f);
                     canAttack = false;
@@ -481,16 +487,6 @@ public class PlayerController : MonoBehaviour
         }
     }
    
-    public void OnCollisionStay(Collision collision)
-    {
-       if (collision.gameObject.tag == "MeleeEnemy" && canTakeDamage == true && gm.GameOn == true)
-       {
-           canTakeDamage = false;
-           health--;
-           StartCoroutine("WaitDamage");
-       }
-    }
-
     public void OnTriggerStay(Collider other)
     {
        if (other.gameObject.tag == "EnemySword" && canTakeDamage == true && gm.GameOn == true && enemyScriptM.attacking == true)

@@ -35,12 +35,12 @@ public class MeleeEnemyManager : MonoBehaviour
         enemySword = enemyObject.transform.GetChild(0).gameObject;
         agent = enemyObject.GetComponent<NavMeshAgent>();
         timer = Random.Range(3f, 5f);
-        health = 5 + gm.rounds;
-        maxHealth = 5 + gm.rounds;
+        health = 50 + gm.rounds;
+        maxHealth = 50 + gm.rounds;
         player = GameObject.Find("Player").GetComponent<PlayerController>();
         playerObject = GameObject.Find("Player");
         enemyRidigbody = GetComponent<Rigidbody>();
-        speed = 8f + gm.rounds;
+        speed = 6f + gm.rounds;
     }
 
     // Update is called once per frame
