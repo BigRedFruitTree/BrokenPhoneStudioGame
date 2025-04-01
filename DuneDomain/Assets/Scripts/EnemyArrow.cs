@@ -31,12 +31,12 @@ public class EnemyArrow : MonoBehaviour
             Destroy(arrow);
         }
 
-        if (other.gameObject.tag == "RangedEnemy" && playerScript.weapon == 2)
+        if (other.gameObject.tag == "RangedEnemy")
         {
             Destroy(arrow);
         }
 
-        if (other.gameObject.tag == "MeleeEnemy" && playerScript.weapon == 2)
+        if (other.gameObject.tag == "MeleeEnemy")
         {
             Destroy(arrow);
         }
@@ -46,7 +46,7 @@ public class EnemyArrow : MonoBehaviour
             Destroy(arrow);
         }
 
-        if (other.gameObject.name == "Boss" && playerScript.weapon == 2)
+        if (other.gameObject.name == "Boss")
         {
             Destroy(arrow);
         }
