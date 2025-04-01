@@ -25,5 +25,25 @@ public class EnemyArrow : MonoBehaviour
         {
             Destroy(arrow);
         }
+
+        if(other.gameObject.tag == "Player")
+        {
+            Destroy(arrow);
+        }
+
+        if(other.gameObject.tag == "RangedEnemy")
+        {
+            Destroy(arrow);
+        }
+
+        if(other.gameObject.tag == "MeleeEnemy")
+        {
+            Destroy(arrow);
+        }
+
+        if(other.gameObject.name == "Boss")
+        {
+            Destroy(arrow);
+        }
     }
 }

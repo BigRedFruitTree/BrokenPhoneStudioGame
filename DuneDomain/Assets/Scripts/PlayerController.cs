@@ -58,6 +58,8 @@ public class PlayerController : MonoBehaviour
     public GameObject bow;
     public GameObject crossbow;
     public GameObject arrow;
+    public GameObject arrowSpawnB;
+    public GameObject arrowSpawnC;
     public Canvas Pausemenu;
     public MeleeEnemyManager enemyScriptM;
     public RangedEnemyManager enemyScriptR;
@@ -226,7 +228,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            if (Input.GetMouseButtonDown(0) && isDashing == false && attacking == false && canAttack == true)
+            if (Input.GetMouseButtonDown(0) && isDashing == false && attacking == false && canAttack == true && weapon == 1 || isDashing == false && attacking == false && canAttack == true && weapon == 3 || isDashing == false && attacking == false && canAttack == true && weapon == 4)
             {
 
                 if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, 90f, 0f) && canMove == true)
@@ -263,7 +265,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            if (Input.GetMouseButton(0) && isDashing == false && attacking == false && weapon == 2 || isDashing == false && attacking == false && weapon == 5)
+            if (Input.GetMouseButton(0) && isDashing == false && attacking == false && weapon == 5)
             {
 
                 if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, 90f, 0f) && canMove == true)
@@ -364,8 +366,9 @@ public class PlayerController : MonoBehaviour
                     attacking = true;
                     arrowSpeed = 2000;
                     arrow.SetActive(true);
-                    GameObject arrowSummon = Instantiate(arrow, bow.transform.position, bow.transform.rotation);
-                    arrowSummon.GetComponent<Rigidbody>().AddForce(arrowSummon.transform.up * arrowSpeed);
+                    GameObject arrowSummon = Instantiate(arrow, arrowSpawnB.transform.position, arrowSpawnB.transform.rotation);
+                    arrowSummon.transform.Rotate(180f, 0f, 0f);
+                    arrowSummon.GetComponent<Rigidbody>().AddForce(bow.transform.forward * arrowSpeed);
                     Destroy(arrowSummon, 2f);
                     canAttack = false;
                     drawSpeed = 100f;
@@ -392,8 +395,9 @@ public class PlayerController : MonoBehaviour
                     attacking = true;
                     arrowSpeed = 4000;
                     arrow.SetActive(true);
-                    GameObject arrowSummon = Instantiate(arrow, bow.transform.position, bow.transform.rotation);
-                    arrowSummon.GetComponent<Rigidbody>().AddForce(arrowSummon.transform.up * arrowSpeed);
+                    GameObject arrowSummon = Instantiate(arrow, arrowSpawnC.transform.position, arrowSpawnC.transform.rotation);
+                    //arrowSummon.transform.Rotate(180f, 0f, 0f);
+                    arrowSummon.GetComponent<Rigidbody>().AddForce(crossbow.transform.up * arrowSpeed);
                     Destroy(arrowSummon, 2f);
                     canAttack = false;
                     drawSpeed = 200f;
