@@ -100,7 +100,7 @@ public class PlayerController : MonoBehaviour
 
             if (isDashing == true)
             {
-                
+                myRB.velocity += playerRotationHolder.transform.forward * 1.2f;
             }
             else
             {
@@ -457,7 +457,6 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.E) && stamina == 10 && isBlocking == false)
             {
-                myRB.velocity = playerRotationHolder.transform.forward * 300;
                 canTakeDamage = false;
                 isDashing = true;
                 stamina -= 10;
