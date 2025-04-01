@@ -481,7 +481,7 @@ Transform:
   m_GameObject: {fileID: 110707457}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.5, y: 17.750002, z: -19.2}
+  m_LocalPosition: {x: -0.5, y: 30.700006, z: -19.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1865,7 +1865,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -2838,7 +2838,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -5405,7 +5405,7 @@ Transform:
   m_GameObject: {fileID: 1652962752}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 2.75, z: -19.199999}
+  m_LocalPosition: {x: -0.5, y: 15.7, z: -19.199999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5587,7 +5587,7 @@ Transform:
   m_GameObject: {fileID: 1816818566}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.5, y: 17.750002, z: -19.2}
+  m_LocalPosition: {x: -0.5, y: 30.700006, z: -19.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6481,7 +6481,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.33333334
+  m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: c5675fd50777f2c4db003da314967225, type: 2}
   m_BuildHeightMesh: 0
@@ -6769,7 +6769,7 @@ GameObject:
   - component: {fileID: 2528024683595443697}
   m_Layer: 0
   m_Name: Post.004
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6833,7 +6833,7 @@ GameObject:
   - component: {fileID: 6105502299298268177}
   m_Layer: 0
   m_Name: Post.018
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6860,7 +6860,7 @@ GameObject:
   - component: {fileID: 7294474137334806481}
   m_Layer: 0
   m_Name: Rockwalls
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7017,7 +7017,7 @@ GameObject:
   - component: {fileID: 6806260695173610361}
   m_Layer: 0
   m_Name: Post.008
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7240,7 +7240,7 @@ GameObject:
   - component: {fileID: 6668030851783733971}
   m_Layer: 0
   m_Name: Bridge
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7303,7 +7303,7 @@ GameObject:
   - component: {fileID: 9197785093725446245}
   m_Layer: 0
   m_Name: Post.001
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7585,7 +7585,7 @@ GameObject:
   - component: {fileID: 7786245422063881363}
   m_Layer: 0
   m_Name: Post
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7636,7 +7636,7 @@ GameObject:
   - component: {fileID: 8034561576634818688}
   m_Layer: 0
   m_Name: Post.021
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

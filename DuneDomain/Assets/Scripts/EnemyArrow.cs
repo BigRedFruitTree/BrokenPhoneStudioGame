@@ -26,22 +26,31 @@ public class EnemyArrow : MonoBehaviour
             Destroy(arrow);
         }
 
-        if(other.gameObject.tag == "Player")
+    }
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Player")
         {
             Destroy(arrow);
         }
 
-        if(other.gameObject.tag == "RangedEnemy")
+        if (collision.gameObject.tag == "RangedEnemy")
         {
             Destroy(arrow);
         }
 
-        if(other.gameObject.tag == "MeleeEnemy")
+        if (collision.gameObject.tag == "MeleeEnemy")
         {
             Destroy(arrow);
         }
 
-        if(other.gameObject.name == "Boss")
+        if (collision.gameObject.tag == "Environment")
+        {
+            Destroy(arrow);
+        }
+
+        if (collision.gameObject.name == "Boss")
         {
             Destroy(arrow);
         }
