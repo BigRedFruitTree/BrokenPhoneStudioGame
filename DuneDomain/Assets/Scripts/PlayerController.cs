@@ -83,7 +83,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gm.GameOn == true && gm.GameOver == false && canMove == true && gm.started == true)
+        if (gm.GameOn == true && gm.GameOver == false && canMove == true && gm.started == true && isPaused == false)
         {
 
             weapon = gm.weapon;
@@ -98,14 +98,11 @@ public class PlayerController : MonoBehaviour
             temp.x = verticalMove * speed;
             temp.z = horizontalMove * speed;
 
-            if (isDashing == true)
+            if(isDashing == false && attacking == false && isBlocking == false)
             {
-                myRB.velocity += playerRotationHolder.transform.forward * 1.2f;
+               myRB.velocity = (temp.x * transform.forward) + (temp.z * transform.right) + (temp.y * transform.up);
             }
-            else
-            {
-                myRB.velocity = (temp.x * transform.forward) + (temp.z * transform.right) + (temp.y * transform.up);
-            }
+            
 
             if (weapon == 1)
             {
@@ -319,6 +316,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (weapon == 1)
                 {
+                    myRB.velocity += playerRotationHolder.transform.forward * 30f;
                     attacking = true;
                     canAttack = false;
                     canMove = true;
