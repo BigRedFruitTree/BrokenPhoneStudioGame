@@ -17,6 +17,7 @@ public class RangedEnemyManager : MonoBehaviour
     public GameObject corpsePrefab;
     public GameObject arrow;
     private GameObject arrowSummon;
+    public GameObject arrowSpawner;
 
     [Header("Stats")]
     public int health;
@@ -37,6 +38,7 @@ public class RangedEnemyManager : MonoBehaviour
     {
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
         enemyBow = enemyObject.transform.GetChild(0).gameObject;
+        arrowSpawner = enemyObject.transform.GetChild(1).gameObject;
         agent = enemyObject.GetComponent<NavMeshAgent>();
         timer = Random.Range(7f, 9f);
         timer2 = 5f;
@@ -103,10 +105,10 @@ public class RangedEnemyManager : MonoBehaviour
             if (doneAttacking == false && canAttack == true && timer <= 0f && timer2 <= 0f && gm.rangedEnemyMovePattern == 1)
             {
                 attacking = true;
-                arrowSummon = Instantiate(arrow, enemyBow.transform.position, enemyBow.transform.rotation);
-                arrowSummon.GetComponent<Rigidbody>().AddForce(arrowSummon.transform.forward * 1000);
+                arrowSummon = Instantiate(arrow, arrowSpawner.transform.position, arrowSpawner.transform.rotation);
+                arrowSummon.GetComponent<Rigidbody>().AddForce(enemyBow.transform.forward * 100);
                 arrow.SetActive(true);
-                Destroy(arrowSummon, 2f);
+                Destroy(arrowSummon, 6f);
                 attacking = false;
                 doneAttacking = true;
                 canWalk = true;
