@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyArrow : MonoBehaviour
+public class PlayerArrow : MonoBehaviour
 {
     public GameObject arrow;
     public PlayerController playerScript;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,12 +16,12 @@ public class EnemyArrow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.name == "Shield" && playerScript.isBlocking == true)
+        if (other.gameObject.name == "Shield" && playerScript.isBlocking == true)
         {
             Destroy(arrow);
         }
@@ -31,12 +31,12 @@ public class EnemyArrow : MonoBehaviour
             Destroy(arrow);
         }
 
-        if (other.gameObject.tag == "RangedEnemy" && playerScript.weapon == 2)
+        if (other.gameObject.tag == "RangedEnemy")
         {
             Destroy(arrow);
         }
 
-        if (other.gameObject.tag == "MeleeEnemy" && playerScript.weapon == 2)
+        if (other.gameObject.tag == "MeleeEnemy")
         {
             Destroy(arrow);
         }
@@ -46,7 +46,7 @@ public class EnemyArrow : MonoBehaviour
             Destroy(arrow);
         }
 
-        if (other.gameObject.name == "Boss" && playerScript.weapon == 2)
+        if (other.gameObject.name == "Boss")
         {
             Destroy(arrow);
         }

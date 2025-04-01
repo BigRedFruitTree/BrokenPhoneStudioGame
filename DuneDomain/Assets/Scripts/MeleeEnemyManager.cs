@@ -115,11 +115,19 @@ public class MeleeEnemyManager : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Shot" && canTakeDamage == true && gm.GameOn == true)
+        if (other.gameObject.tag == "Shot" && canTakeDamage == true && gm.GameOn == true && player.weapon == 2)
         {
             canTakeDamage = false;
-            health--;
-            StartCoroutine(nameof(WaitDamage));
+            health -= 1;
+            StartCoroutine("WaitDamage");
+
+        }
+
+        if (other.gameObject.tag == "Shot" && canTakeDamage == true && gm.GameOn == true && player.weapon == 5)
+        {
+            canTakeDamage = false;
+            health -= 2;
+            StartCoroutine("WaitDamage");
 
         }
 
@@ -127,7 +135,7 @@ public class MeleeEnemyManager : MonoBehaviour
         {
             canTakeDamage = false;
             health--;
-            StartCoroutine(nameof(WaitDamage));
+            StartCoroutine("WaitDamage");
 
         }
     }
