@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
     public Rigidbody bossRigidBody;
     public GameObject bossUiStuff;
     public Image bossBar;
+    public Animator bossanimator;
 
     [Header("Enemy Stuff")]
     public float spawnRange;
@@ -174,17 +175,23 @@ public class GameManager : MonoBehaviour
                 bossObject.SetActive(true);
                 if(distance <= 10f)
                 {
+                   bossanimator.SetBool("Iswalking", false);
+                    bossAgent.destination = bossObject.transform.position;
+                   bossanimator.SetBool("Dodgeback", true);
                    bossAgent.ResetPath();
                    Vector3 lookDirection = (playerObject.transform.position - bossObject.transform.position);
                    lookDirection.y = 0f;
                    lookDirection.Normalize();
                    Quaternion awayRotation = Quaternion.LookRotation(lookDirection);
                    bossObject.transform.rotation = Quaternion.Euler(bossObject.transform.rotation.eulerAngles.x, awayRotation.eulerAngles.y, bossObject.transform.rotation.eulerAngles.z);
-                   bossRigidBody.AddForce(-lookDirection * 10);
+                   bossAgent.destination = bossObject.transform.position;
+                   bossRigidBody.AddForce(-lookDirection * 10000);
                 }
                 else
                 {
                    bossAgent.destination = playerObject.transform.position;
+                   bossanimator.SetBool("Iswalking", true);
+                   bossanimator.SetBool("Dodgeback", false);
                 }
                 
                 StartCoroutine("Wait");

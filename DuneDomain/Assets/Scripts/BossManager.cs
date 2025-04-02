@@ -14,6 +14,10 @@ public class BossManager : MonoBehaviour
     public PlayerController player;
     public NavMeshAgent bossAgent;
 
+    public Animator animator;
+
+    public Rigidbody RB;
+
     [Header("Stats")]
     public float health = 200f;
     public float maxHealth = 200f;
@@ -41,6 +45,7 @@ public class BossManager : MonoBehaviour
             Destroy(bossObject);
          }
        }
+
 
     }
 
