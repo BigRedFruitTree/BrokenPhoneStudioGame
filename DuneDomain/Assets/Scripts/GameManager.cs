@@ -176,16 +176,8 @@ public class GameManager : MonoBehaviour
                 if(distance <= 10f)
                 {
                    bossanimator.SetBool("Iswalking", false);
-                    bossAgent.destination = bossObject.transform.position;
-                   bossanimator.SetBool("Dodgeback", true);
-                   bossAgent.ResetPath();
-                   Vector3 lookDirection = (playerObject.transform.position - bossObject.transform.position);
-                   lookDirection.y = 0f;
-                   lookDirection.Normalize();
-                   Quaternion awayRotation = Quaternion.LookRotation(lookDirection);
-                   bossObject.transform.rotation = Quaternion.Euler(bossObject.transform.rotation.eulerAngles.x, awayRotation.eulerAngles.y, bossObject.transform.rotation.eulerAngles.z);
                    bossAgent.destination = bossObject.transform.position;
-                   bossRigidBody.AddForce(-lookDirection * 10000);
+                   StartCoroutine("WaitForWalking");
                 }
                 else
                 {
@@ -502,5 +494,19 @@ public class GameManager : MonoBehaviour
         weaponKeepButton.SetActive(true);
         weaponKeepTXT.SetActive(true);
         rounds += 1;
+    }
+
+    IEnumerator WaitForWalking()
+    {
+        yield return new WaitForSeconds(0.5f);
+        bossanimator.SetBool("Dodgeback", true);
+        bossAgent.ResetPath();
+        Vector3 lookDirection = (playerObject.transform.position - bossObject.transform.position);
+        lookDirection.y = 0f;
+        lookDirection.Normalize();
+        Quaternion awayRotation = Quaternion.LookRotation(lookDirection);
+        bossObject.transform.rotation = Quaternion.Euler(bossObject.transform.rotation.eulerAngles.x, awayRotation.eulerAngles.y, bossObject.transform.rotation.eulerAngles.z);
+        bossAgent.destination = bossObject.transform.position;
+        bossRigidBody.AddForce(-lookDirection * 500);
     }
 }

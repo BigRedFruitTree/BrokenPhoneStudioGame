@@ -36,6 +36,8 @@ public class PlayerController : MonoBehaviour
     public float speed = 7f;
     public float stamina = 50f;
     public bool isDashing = false;
+    public float verticalMove;
+    public float horizontalMove;
 
     [Header("Input System")]
     public InputActionAsset playerCntrols;
@@ -92,8 +94,9 @@ public class PlayerController : MonoBehaviour
 
             Vector3 temp = myRB.velocity;
 
-            float verticalMove = Input.GetAxisRaw("Vertical");
-            float horizontalMove = Input.GetAxisRaw("Horizontal");
+            verticalMove = Input.GetAxisRaw("Vertical");
+            horizontalMove = Input.GetAxisRaw("Horizontal");
+            
 
             temp.x = verticalMove * speed;
             temp.z = horizontalMove * speed;
@@ -312,7 +315,7 @@ public class PlayerController : MonoBehaviour
                 shield.transform.rotation = blockHolder.transform.rotation;
             }
 
-            if (Input.GetMouseButtonDown(0) && canAttack == true && weapon > 0 && gm.started == true && isDashing == false && attacking == false && isBlocking == false)
+            if (Input.GetMouseButtonDown(0) && canAttack == true && weapon > 0 && isDashing == false && attacking == false && isBlocking == false)
             {
                 if (weapon == 1)
                 {
@@ -343,7 +346,7 @@ public class PlayerController : MonoBehaviour
             }
             
 
-            if (Input.GetMouseButton(0) && isCooldownOver == true && weapon > 0 && gm.started == true && isDashing == false && isBlocking == false)
+            if (Input.GetMouseButton(0) && isCooldownOver == true && weapon > 0 && isDashing == false && isBlocking == false)
             {
                 if (weapon == 2)
                 {
@@ -451,13 +454,19 @@ public class PlayerController : MonoBehaviour
                 canMove = true;
                 canBlock = true;
                 canUnblock = false;
+            }        
+
+            if(isDashing == true && attacking == false && isBlocking == false)
+            {
+                myRB.velocity += playerRotationHolder.transform.forward * 1.1f;
             }
 
-            if (Input.GetKeyDown(KeyCode.E) && stamina == 10 && isBlocking == false)
+            if (Input.GetKeyDown(KeyCode.E) && stamina >5 && isBlocking == false && canDash == true)
             {
                 canTakeDamage = false;
+                canDash = false;
                 isDashing = true;
-                stamina -= 10;
+                stamina -= 2;
                 StartCoroutine("WaitDash");
                 StartCoroutine("WaitDamage");
             }
@@ -594,8 +603,10 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator WaitDash()
     {
-         yield return new WaitForSeconds(0.5f);
-         isDashing = false;
+        yield return new WaitForSeconds(0.5f);
+        isDashing = false;
+        yield return new WaitForSeconds(0.5f);
+        canDash = true;
     }
      
     IEnumerator WaitCheckNearestEnemy()
