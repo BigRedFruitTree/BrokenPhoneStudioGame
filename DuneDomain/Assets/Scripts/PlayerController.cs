@@ -232,7 +232,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            if (Input.GetMouseButtonDown(0) && isDashing == false && attacking == false && canAttack == true && weapon == 1 || isDashing == false && attacking == false && canAttack == true && weapon == 3 || isDashing == false && attacking == false && canAttack == true && weapon == 4)
+            if (Input.GetMouseButtonDown(0) && isDashing == false && attacking == false && canAttack == true && weapon == 1 || Input.GetMouseButtonDown(0) && isDashing == false && attacking == false && canAttack == true && weapon == 3 || Input.GetMouseButtonDown(0) && isDashing == false && attacking == false && canAttack == true && weapon == 4)
             {
 
                 if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, 90f, 0f) && canMove == true)
@@ -497,16 +497,6 @@ public class PlayerController : MonoBehaviour
            canTakeDamage = false;
            health--;
            StartCoroutine("WaitDamage"); 
-       }
-    }
-
-    public void OnCollisionEnter(Collision collision)
-    {
-       if (collision.gameObject.name == "Boss" && gm.GameOn == true && canTakeDamage == true)
-       {
-           canTakeDamage = false;
-           health--;
-           StartCoroutine("WaitDamage");
        }
     }
 

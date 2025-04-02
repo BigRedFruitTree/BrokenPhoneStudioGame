@@ -8,6 +8,7 @@ public class PlayerShield : MonoBehaviour
     public GameManager gm;
     public MeleeEnemyManager enemyScript;
     public bool blockedAttackM = false;
+    public bool blockedAttackB = false;
 
     // Start is called before the first frame update
     void Start()
@@ -27,10 +28,18 @@ public class PlayerShield : MonoBehaviour
         {
             blockedAttackM = true;
         }
+        else
+        {
+            blockedAttackM = false;
+        }
 
         if (other.gameObject.name == "AttackObject" && playerController.isBlocking == true && gm.GameOn == true && gm.started == true && enemyScript.attacking == true)
         {
-            blockedAttackM = true;
+            blockedAttackB = true;
+        }
+        else
+        {
+            blockedAttackB = false;
         }
     }
 }
