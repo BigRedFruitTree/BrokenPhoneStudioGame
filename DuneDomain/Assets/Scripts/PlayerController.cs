@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
     public bool isBlocking = false;
     public bool canUnblock = false;
     public bool isPaused = false;
+    public float stringTimer;
 
     [Header("Movement Settings")]
     public float speed = 7f;
@@ -104,8 +105,7 @@ public class PlayerController : MonoBehaviour
             if(isDashing == false && attacking == false && isBlocking == false)
             {
                myRB.velocity = (temp.x * transform.forward) + (temp.z * transform.right) + (temp.y * transform.up);
-            }
-            
+            } 
 
             if (weapon == 1)
             {
@@ -555,6 +555,12 @@ public class PlayerController : MonoBehaviour
     {
          yield return new WaitForSeconds(1f);
          drawSpeed--;
+    }
+
+    IEnumerator WaitStringTime()
+    {
+        yield return new WaitForSeconds(1f);
+        stringTimer -= Time.deltaTime;
     }
 
     IEnumerator SwordCoolDown()
