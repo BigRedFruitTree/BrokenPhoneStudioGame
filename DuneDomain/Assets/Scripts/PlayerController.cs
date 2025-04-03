@@ -85,7 +85,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gm.GameOn == true && gm.GameOver == false && canMove == true && gm.started == true && isPaused == false)
+        if (gm.GameOn == true && gm.GameOver == false && gm.started == true && isPaused == false)
         {
 
             weapon = gm.weapon;
@@ -201,35 +201,35 @@ public class PlayerController : MonoBehaviour
 
             if (!Input.GetMouseButtonDown(0) && attacking == false)
             {
-                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, 90f, 0f) && canMove == true)
+                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, 90f, 0f))
                 {
                     weaponHolder.transform.rotation = Quaternion.Euler(0f, 90f, 0f);
                 }
-                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, 45f, 0f) && canMove == true)
+                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, 45f, 0f))
                 {
                     weaponHolder.transform.rotation = Quaternion.Euler(0f, 45f, 0f);
                 }
-                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, 145f, 0f) && canMove == true)
+                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, 145f, 0f))
                 {
                     weaponHolder.transform.rotation = Quaternion.Euler(0f, 145f, 0f);
                 }
-                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, -90f, 0f) && canMove == true)
+                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, -90f, 0f))
                 {
                     weaponHolder.transform.rotation = Quaternion.Euler(0f, -90f, 0f);
                 }
-                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, -45f, 0f) && canMove == true)
+                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, -45f, 0f))
                 {
                     weaponHolder.transform.rotation = Quaternion.Euler(0f, -45f, 0f);
                 }
-                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, -145f, 0f) && canMove == true)
+                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, -145f, 0f))
                 {
                     weaponHolder.transform.rotation = Quaternion.Euler(0f, -145f, 0f);
                 }
-                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, 0f, 0f) && canMove == true)
+                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, 0f, 0f))
                 {
                     weaponHolder.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
                 }
-                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, 180f, 0f) && canMove == true)
+                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, 180f, 0f))
                 {
                     weaponHolder.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
                 }
@@ -238,35 +238,35 @@ public class PlayerController : MonoBehaviour
             if (Input.GetMouseButtonDown(0) && isDashing == false && attacking == false && canAttack == true && weapon == 1 || Input.GetMouseButtonDown(0) && isDashing == false && attacking == false && canAttack == true && weapon == 3 || Input.GetMouseButtonDown(0) && isDashing == false && attacking == false && canAttack == true && weapon == 4)
             {
 
-                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, 90f, 0f) && canMove == true)
+                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, 90f, 0f))
                 {
                     weaponHolder.transform.rotation = Quaternion.Euler(90f, 90f, 0f);
                 }
-                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, 45f, 0f) && canMove == true)
+                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, 45f, 0f))
                 {
                     weaponHolder.transform.rotation = Quaternion.Euler(90f, 45f, 0f);
                 }
-                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, 145f, 0f) && canMove == true)
+                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, 145f, 0f))
                 {
                     weaponHolder.transform.rotation = Quaternion.Euler(90f, 145f, 0f);
                 }
-                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, -90f, 0f) && canMove == true)
+                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, -90f, 0f))
                 {
                     weaponHolder.transform.rotation = Quaternion.Euler(90f, -90f, 0f);
                 }
-                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, -45f, 0f) && canMove == true)
+                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, -45f, 0f))
                 {
                     weaponHolder.transform.rotation = Quaternion.Euler(90f, -45f, 0f);
                 }
-                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, -145f, 0f) && canMove == true)
+                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, -145f, 0f))
                 {
                     weaponHolder.transform.rotation = Quaternion.Euler(90f, -145f, 0f);
                 }
-                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, 0f, 0f) && canMove == true)
+                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, 0f, 0f))
                 {
                     weaponHolder.transform.rotation = Quaternion.Euler(90f, 0f, 0f);
                 }
-                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, 180f, 0f) && canMove == true)
+                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, 180f, 0f))
                 {
                     weaponHolder.transform.rotation = Quaternion.Euler(90f, 180f, 0f);
                 }
@@ -322,7 +322,7 @@ public class PlayerController : MonoBehaviour
                     myRB.velocity += playerRotationHolder.transform.forward * 30f;
                     attacking = true;
                     canAttack = false;
-                    canMove = true;
+                    canMove = false;
                     StartCoroutine("SwordCoolDown");
                 }
 
@@ -458,7 +458,7 @@ public class PlayerController : MonoBehaviour
 
             if(isDashing == true && attacking == false && isBlocking == false)
             {
-                myRB.velocity += playerRotationHolder.transform.forward * 1.1f;
+                myRB.velocity += playerRotationHolder.transform.forward * 1.5f;
             }
 
             if (Input.GetKeyDown(KeyCode.E) && stamina >5 && isBlocking == false && canDash == true)
@@ -560,6 +560,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator SwordCoolDown()
     {
         yield return new WaitForSeconds(1f);
+        canMove = true;
         attacking = false;
         yield return new WaitForSeconds(2f);
         canAttack = true;
@@ -605,7 +606,7 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         isDashing = false;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         canDash = true;
     }
      
