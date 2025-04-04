@@ -3043,9 +3043,13 @@ MonoBehaviour:
   isProcessingTarget: 0
   bossAttack: 0
   bossAttacking: 0
+  sleepDistance: 0
+  bossDistance: 0
+  bridgeDistance: 0
   bossAgent: {fileID: 1514836991}
   bossObject: {fileID: 1514836990}
   bossSpawn: {fileID: 1594994284}
+  bossSleepPoint: {fileID: 1758422790}
   bossattackObject: {fileID: 746180997}
   bossScript: {fileID: 1514836992}
   bossRigidBody: {fileID: 1514836993}
@@ -3073,6 +3077,7 @@ MonoBehaviour:
   pauseScreen: {fileID: 1596628212}
   weaponKeepButton: {fileID: 409872688}
   weaponKeepTXT: {fileID: 1549553740}
+  bridge: {fileID: 4981776976151835456}
 --- !u!4 &624562656
 Transform:
   m_ObjectHideFlags: 0
@@ -5761,7 +5766,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!195 &1514836991
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -5816,7 +5821,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1514836990}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 10000
   m_Drag: 10
   m_AngularDrag: 10
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -6546,6 +6551,7 @@ MonoBehaviour:
   isBlocking: 0
   canUnblock: 0
   isPaused: 0
+  stringTimer: 0
   speed: 10
   stamina: 10
   isDashing: 0
@@ -6573,6 +6579,37 @@ MonoBehaviour:
   Pausemenu: {fileID: 0}
   enemyScriptM: {fileID: 0}
   enemyScriptR: {fileID: 0}
+--- !u!1 &1758422790
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1758422791}
+  m_Layer: 0
+  m_Name: BossSleepPoint
+  m_TagString: BossSpawn
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1758422791
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1758422790}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -31.9, y: 3.35, z: 29.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1816818566
 GameObject:
   m_ObjectHideFlags: 0
@@ -9099,6 +9136,7 @@ SceneRoots:
   - {fileID: 1816818568}
   - {fileID: 1652962756}
   - {fileID: 1594994285}
+  - {fileID: 1758422791}
   - {fileID: 4502582142273999504}
   - {fileID: 571034075}
   - {fileID: 888124992}

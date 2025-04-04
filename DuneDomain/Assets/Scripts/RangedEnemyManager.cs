@@ -107,7 +107,7 @@ public class RangedEnemyManager : MonoBehaviour
                 attacking = true;
                 arrowSummon = Instantiate(arrow, arrowSpawner.transform.position, arrowSpawner.transform.rotation);
                 arrowSummon.transform.Rotate(180f, 0f, 0f);
-                arrowSummon.GetComponent<Rigidbody>().AddForce(enemyBow.transform.forward * 1000);
+                arrowSummon.GetComponent<Rigidbody>().AddForce(enemyBow.transform.forward * 2000);
                 arrow.SetActive(true);
                 Destroy(arrowSummon, 2f);
                 attacking = false;

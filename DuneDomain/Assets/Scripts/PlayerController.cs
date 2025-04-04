@@ -372,7 +372,7 @@ public class PlayerController : MonoBehaviour
                 if (weapon == 2 && drawSpeed <= 0f)
                 {
                     attacking = true;
-                    arrowSpeed = 2000;
+                    arrowSpeed = 2500;
                     arrow.SetActive(true);
                     GameObject arrowSummon = Instantiate(arrow, arrowSpawnB.transform.position, arrowSpawnB.transform.rotation);
                     arrowSummon.transform.Rotate(180f, 0f, 0f);
@@ -401,9 +401,10 @@ public class PlayerController : MonoBehaviour
                 if (weapon == 5 && drawSpeed <= 0)
                 {
                     attacking = true;
-                    arrowSpeed = 4000;
+                    arrowSpeed = 4500;
                     arrow.SetActive(true);
                     GameObject arrowSummon = Instantiate(arrow, arrowSpawnC.transform.position, arrowSpawnC.transform.rotation);
+                    arrowSummon.transform.Rotate(90f, 0f, 0f);
                     arrowSummon.GetComponent<Rigidbody>().AddForce(crossbow.transform.up * arrowSpeed);
                     Destroy(arrowSummon, 2f);
                     canAttack = false;
