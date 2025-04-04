@@ -95,10 +95,12 @@ public class GameManager : MonoBehaviour
             if(rounds == 1 && sleepDistance > 4f)
             {
                bossanimator.SetBool("Isaggressive", false);
+                bossAgent.speed = 3;
             }
             else
             {
                bossanimator.SetBool("Isaggressive", true);
+               bossAgent.speed = 5;
             }
             
 
@@ -165,6 +167,7 @@ public class GameManager : MonoBehaviour
                 bossObject.SetActive(true);
                 if (sleepDistance > 4f)
                 {
+                    bossAgent.speed = 3;
                     bossanimator.SetBool("Iswalking", true);
                     bossanimator.SetBool("Isaggressive", false);
                     bossAgent.destination = bossSleepPoint.transform.position;
@@ -175,10 +178,19 @@ public class GameManager : MonoBehaviour
                     bossanimator.SetBool("Issleeping", true);
                     if (bridgeDistance <= 26)
                     {
+                        bossAgent.speed = 5;
                         bossanimator.SetBool("Issleeping", false);
                         bossanimator.SetBool("Isaggressive", true);
                     }
                 }
+            }
+
+            if (rounds > 1 && timeUntilAppearance <= 0f && bossanimator.GetBool("Isaggressive") == false)
+            {
+                bossObject.SetActive(true);
+                bossAgent.speed = 5;
+                bossanimator.SetBool("Iswalking", true);
+                bossanimator.SetBool("Isaggressive", true);
             }
 
             if (timeUntilAppearance <= 0f && bossanimator.GetBool("Isaggressive") == true)
