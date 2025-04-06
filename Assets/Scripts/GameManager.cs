@@ -26,20 +26,14 @@ public class GameManager : MonoBehaviour
     public bool isProcessingTarget = false;
     public int bossAttack = 0;
     public bool bossAttacking = false;
-    public float sleepDistance;
-    public float bossDistance;
-    public float bridgeDistance;
     public NavMeshAgent bossAgent;
     public GameObject bossObject;
     public GameObject bossSpawn;
-    public GameObject bossSleepPoint;
     public GameObject bossattackObject;
     public BossManager bossScript;
     private GameObject currentTarget;
-    public Rigidbody bossRigidBody;
     public GameObject bossUiStuff;
     public Image bossBar;
-    public Animator bossanimator;
 
     [Header("Enemy Stuff")]
     public float spawnRange;
@@ -65,7 +59,6 @@ public class GameManager : MonoBehaviour
     public GameObject pauseScreen;
     public GameObject weaponKeepButton;
     public GameObject weaponKeepTXT;
-    public GameObject bridge;
 
     // Start is called before the first frame update
     void Start()
@@ -92,17 +85,6 @@ public class GameManager : MonoBehaviour
             if (enemyCorpseNumber == null || enemyCorpseNumber.Length == 0) return;
 
             SetNextTarget();
-            if(rounds == 1 && sleepDistance > 4f)
-            {
-               bossanimator.SetBool("Isaggressive", false);
-                bossAgent.speed = 3;
-            }
-            else
-            {
-               bossanimator.SetBool("Isaggressive", true);
-               bossAgent.speed = 5;
-            }
-            
 
             playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         }
@@ -117,9 +99,11 @@ public class GameManager : MonoBehaviour
             bossBar.fillAmount = Mathf.Clamp((float)bossScript.health / (float)50, 0, 1);
             pStaminaBar.fillAmount = Mathf.Clamp((float)playerController.stamina / (float)10, 0, 1);
             playerUiStuff.SetActive(true);
-            bossDistance = Vector3.Distance(bossObject.transform.position, playerObject.transform.position);
-            bridgeDistance = Vector3.Distance(bridge.transform.position, playerObject.transform.position);
-            sleepDistance = Vector3.Distance(bossSleepPoint.transform.position, bossObject.transform.position);
+            float distance = Vector3.Distance(bossObject.transform.position, playerObject.transform.position);
+            Vector3 lookDirection = (playerObject.transform.position - bossObject.transform.position);
+            lookDirection.y = 0f;
+            lookDirection.Normalize();
+            Quaternion awayRotation = Quaternion.LookRotation(lookDirection);
             if (bossScript.health <= 0)
             {
                 winScreen.SetActive(true);
@@ -162,74 +146,45 @@ public class GameManager : MonoBehaviour
                 timeUntilAppearance--;
             }
 
-            if (rounds == 1 && timeUntilAppearance <= 0f && bossanimator.GetBool("Isaggressive") == false)
+            if (timeUntilAppearance <= 0f)
             {
-                bossObject.SetActive(true);
-                if (sleepDistance > 4f)
-                {
-                    bossAgent.speed = 3;
-                    bossanimator.SetBool("Iswalking", true);
-                    bossanimator.SetBool("Isaggressive", false);
-                    bossAgent.destination = bossSleepPoint.transform.position;
-                }
-                if (sleepDistance <= 4f && bossanimator.GetBool("Isaggressive") == false)
-                {
-                    bossanimator.SetBool("Iswalking", false);
-                    bossanimator.SetBool("Issleeping", true);
-                    if (bridgeDistance <= 26)
-                    {
-                        bossAgent.speed = 5;
-                        bossanimator.SetBool("Issleeping", false);
-                        bossanimator.SetBool("Isaggressive", true);
-                    }
-                }
-            }
-
-            if (rounds > 1 && timeUntilAppearance <= 0f && bossanimator.GetBool("Isaggressive") == false)
-            {
-                bossObject.SetActive(true);
-                bossAgent.speed = 5;
-                bossanimator.SetBool("Isaggressive", true);
-            }
-
-            if (timeUntilAppearance <= 0f && bossanimator.GetBool("IsSleeping") == false)
-            {
-                if (timeUntilAttack > 0f && bossDistance >= 10f)
+                bossUiStuff.SetActive(true);
+                if (timeUntilAttack > 0f && distance >= 10f)
                 {
                     StartCoroutine("Wait");
                     timeUntilAttack--;
                 }
-                if (timeUntilAttack <= 0f && bossAttack == 0 && bossDistance >= 10f)
+                if (timeUntilAttack <= 0f && bossAttack == 0 && distance >= 10f)
                 {
                     timeUntilAttack = 0f;
                     bossAttack = Random.Range(0, 4);
                 }
 
-                if (bossAttack == 1 && bossDistance >= 10f)
+                if (bossAttack == 1 && distance >= 10f)
                 {
                     StartCoroutine("WaitAttack1");   
                 }
-                if (bossAttack == 2 && bossDistance >= 10f)
+                if (bossAttack == 2 && distance >= 10f)
                 {
                     StartCoroutine("WaitAttack2");   
                 }
-                if (bossAttack == 3 && bossDistance >= 10f)
+                if (bossAttack == 3 && distance >= 10f)
                 {
                     StartCoroutine("WaitAttack3");
                 }
 
                 timeUntilAppearance = 0f;
-                if (bossDistance <= 10f && bossanimator.GetBool("Dodgeback") == false)
+                bossObject.SetActive(true);
+                if(distance <= 10f)
                 {
-                    bossAgent.ResetPath();
-                    StartCoroutine("WaitForWalking");
+                   bossAgent.ResetPath();
+                   bossObject.transform.rotation = Quaternion.Euler(bossObject.transform.rotation.eulerAngles.x, awayRotation.eulerAngles.y, bossObject.transform.rotation.eulerAngles.z);
                 }
-                if (bossDistance > 10f && bossanimator.GetBool("Dodgeback") == false)
+                else
                 {
-                    bossAgent.destination = playerObject.transform.position;
-                    bossanimator.SetBool("Iswalking", true);
+                   bossAgent.destination = playerObject.transform.position;
                 }
-
+                
                 StartCoroutine("Wait");
                 timeUntilEatPhase--;
             }
@@ -301,6 +256,8 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+
+
 
     public void SpawnMelee(int numberToSpawn)
     {
@@ -532,28 +489,11 @@ public class GameManager : MonoBehaviour
     IEnumerator WaitWeaponScreen()
     {
         startCycle = true;
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1f);
         GameOn = false;
         weaponScreen.SetActive(true);
         weaponKeepButton.SetActive(true);
         weaponKeepTXT.SetActive(true);
         rounds += 1;
-    }
-
-    IEnumerator WaitForWalking()
-    {
-        bossanimator.SetBool("Iswalking", false);
-        yield return new WaitForSeconds(0.3f);
-        bossanimator.SetBool("Dodgeback", true);
-        yield return new WaitForSeconds(0.3f);
-        Vector3 lookDirection = (playerObject.transform.position - bossObject.transform.position);
-        lookDirection.y = 0f;
-        lookDirection.Normalize();
-        Quaternion awayRotation = Quaternion.LookRotation(lookDirection);
-        bossObject.transform.rotation = Quaternion.Euler(bossObject.transform.rotation.eulerAngles.x, awayRotation.eulerAngles.y, bossObject.transform.rotation.eulerAngles.z);
-        bossAgent.destination = bossObject.transform.position;
-        bossRigidBody.AddForce(-lookDirection * 450f);
-        yield return new WaitForSeconds(1f);
-        bossanimator.SetBool("Dodgeback", false);
     }
 }
