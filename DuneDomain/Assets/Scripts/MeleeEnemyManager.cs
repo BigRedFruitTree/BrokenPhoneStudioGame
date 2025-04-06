@@ -156,9 +156,11 @@ public class MeleeEnemyManager : MonoBehaviour
         yield return new WaitForSeconds(0.4f);
         attacking = false;
         canAttack = false;
+        canRotate = true;
         enemySword.transform.eulerAngles = new Vector3(0f, 0f, 0f);
         timer = Random.Range(2f, 4f);
         yield return new WaitForSeconds(0.5f);
+        canRotate = false;
         enemySword.transform.eulerAngles = new Vector3(90f, enemyObject.transform.eulerAngles.y, enemyObject.transform.eulerAngles.z);
         enemyRidigbody.velocity += transform.forward * 30;
         yield return new WaitForSeconds(0.4f);
