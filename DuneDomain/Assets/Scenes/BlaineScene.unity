@@ -3046,6 +3046,7 @@ MonoBehaviour:
   sleepDistance: 0
   bossDistance: 0
   bridgeDistance: 0
+  canRun: 0
   bossAgent: {fileID: 1514836991}
   bossObject: {fileID: 1514836990}
   bossSpawn: {fileID: 1594994284}
@@ -5821,7 +5822,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1514836990}
   serializedVersion: 4
-  m_Mass: 10000
+  m_Mass: 1000
   m_Drag: 10
   m_AngularDrag: 10
   m_CenterOfMass: {x: 0, y: 0, z: 0}
