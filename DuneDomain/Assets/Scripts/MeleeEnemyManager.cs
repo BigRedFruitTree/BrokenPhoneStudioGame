@@ -136,7 +136,39 @@ public class MeleeEnemyManager : MonoBehaviour
             canTakeDamage = false;
             health--;
             StartCoroutine("WaitDamage");
+        }
 
+        if (other.gameObject.name == "Hammer" && canTakeDamage == true && gm.GameOn == true && player.attacking == true)
+        {
+            canTakeDamage = false;
+            health--;
+            StartCoroutine("WaitDamage");
+        }
+
+        if (other.gameObject.name == "Spear" && canTakeDamage == true && gm.GameOn == true && player.attacking == true)
+        {
+            canTakeDamage = false;
+            health--;
+            StartCoroutine("WaitDamage");
+        }
+
+        if (other.gameObject.name == "ChargeHurtBox" && canTakeDamage == true && gm.GameOn == true && player.weapon == 3 && player.chargeLevel == 1)
+        {
+            canTakeDamage = false;
+            health -= 2;
+            StartCoroutine("WaitDamage");
+        }
+        if (other.gameObject.name == "ChargeHurtBox" && canTakeDamage == true && gm.GameOn == true && player.weapon == 3 && player.chargeLevel == 2)
+        {
+            canTakeDamage = false;
+            health -= 4;
+            StartCoroutine("WaitDamage");
+        }
+        if (other.gameObject.name == "ChargeHurtBox" && canTakeDamage == true && gm.GameOn == true && player.weapon == 3 && player.chargeLevel == 3)
+        {
+            canTakeDamage = false;
+            health -= 6;
+            StartCoroutine("WaitDamage");
         }
     }
 

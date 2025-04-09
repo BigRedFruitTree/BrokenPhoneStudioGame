@@ -32,6 +32,9 @@ public class PlayerController : MonoBehaviour
     public bool canUnblock = false;
     public bool isPaused = false;
     public float stringTimer;
+    public bool isCharging = false;
+    public bool chargeBoxActive = false;
+    public int chargeLevel = 0;
 
     [Header("Movement Settings")]
     public float speed = 7f;
@@ -63,6 +66,7 @@ public class PlayerController : MonoBehaviour
     public GameObject arrow;
     public GameObject arrowSpawnB;
     public GameObject arrowSpawnC;
+    public GameObject chargeHurtBox;
     public Canvas Pausemenu;
     public MeleeEnemyManager enemyScriptM;
     public RangedEnemyManager enemyScriptR;
@@ -70,6 +74,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        chargeHurtBox.transform.localScale = new Vector3(2f, 1f, 2f);
         speed = 7f;
         drawSpeed = 200f;
         stamina = 10;
@@ -272,6 +277,43 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
+            if (Input.GetMouseButtonUp(1) && isDashing == false && weapon == 3)
+            {
+
+                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, 90f, 0f))
+                {
+                    weaponHolder.transform.rotation = Quaternion.Euler(90f, 90f, 0f);
+                }
+                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, 45f, 0f))
+                {
+                    weaponHolder.transform.rotation = Quaternion.Euler(90f, 45f, 0f);
+                }
+                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, 145f, 0f))
+                {
+                    weaponHolder.transform.rotation = Quaternion.Euler(90f, 145f, 0f);
+                }
+                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, -90f, 0f))
+                {
+                    weaponHolder.transform.rotation = Quaternion.Euler(90f, -90f, 0f);
+                }
+                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, -45f, 0f))
+                {
+                    weaponHolder.transform.rotation = Quaternion.Euler(90f, -45f, 0f);
+                }
+                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, -145f, 0f))
+                {
+                    weaponHolder.transform.rotation = Quaternion.Euler(90f, -145f, 0f);
+                }
+                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, 0f, 0f))
+                {
+                    weaponHolder.transform.rotation = Quaternion.Euler(90f, 0f, 0f);
+                }
+                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, 180f, 0f))
+                {
+                    weaponHolder.transform.rotation = Quaternion.Euler(90f, 180f, 0f);
+                }
+            }
+
             if (Input.GetMouseButton(0) && isDashing == false && attacking == false && weapon == 5)
             {
 
@@ -328,19 +370,21 @@ public class PlayerController : MonoBehaviour
 
                 if (weapon == 3)
                 {
+                    myRB.velocity += playerRotationHolder.transform.forward * 20f;
                     isDashing = false;
                     attacking = true;
                     canAttack = false;
-                    canMove = true;
-                    StartCoroutine("HammerCoolDown");
+                    canMove = false;
+                    StartCoroutine("HammerCoolDownBase");
                 }
 
                 if (weapon == 4)
                 {
+                    myRB.velocity += playerRotationHolder.transform.forward * 40f;
                     isDashing = false;
                     attacking = true;
                     canAttack = false;
-                    canMove = true;
+                    canMove = false;
                     StartCoroutine("SpearCoolDown");
                 }
             }
@@ -367,7 +411,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            if (Input.GetMouseButtonUp(0) && weapon > 0 && gm.started == true && isDashing == false && isBlocking == false)
+            if (Input.GetMouseButtonUp(0) && weapon > 0 && isDashing == false && isBlocking == false)
             {
                 if (weapon == 2 && drawSpeed <= 0f)
                 {
@@ -413,20 +457,47 @@ public class PlayerController : MonoBehaviour
                     StartCoroutine("CrossbowCoolDown");
                 }
             }
-            
-            if(Input.GetMouseButtonDown(1) && isBlocking == false && weapon > 0 && gm.started == true && isDashing == false)
+
+            if (Input.GetMouseButtonUp(1) && weapon == 3 && isDashing == false && isBlocking == false)
             {
-                if (weapon == 3)
+                if (weapon == 3 && drawSpeed >= 133.34f)
                 {
-                    isDashing = false;
+                    chargeLevel = 1;
+                    isCharging = false;
+                    chargeBoxActive = true;
+                    chargeHurtBox.transform.localScale = new Vector3(2f, 1f, 2f);
                     attacking = true;
-                    myRB.constraints = RigidbodyConstraints.FreezeAll;
                     canAttack = false;
-                    canMove = true;
-                    StartCoroutine("HammerCoolDown");
+                    drawSpeed = 200f;
+                    myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
+                    StartCoroutine("HammerCoolDown1");
+                }
+                if (weapon == 3 && drawSpeed > 66.67f && drawSpeed < 133.34)
+                {
+                    chargeLevel = 2;
+                    isCharging = false;
+                    chargeBoxActive = true;
+                    chargeHurtBox.transform.localScale = new Vector3(4f, 1f, 2f);
+                    attacking = true;
+                    canAttack = false;
+                    drawSpeed = 200f;
+                    myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
+                    StartCoroutine("HammerCoolDown2");
+                }
+                if (weapon == 3 && drawSpeed <= 66.67f)
+                {
+                    chargeLevel = 3;
+                    isCharging = false;
+                    chargeBoxActive = true;
+                    chargeHurtBox.transform.localScale = new Vector3(6f, 1f, 2f);
+                    attacking = true;
+                    canAttack = false;
+                    drawSpeed = 200f;
+                    myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
+                    StartCoroutine("HammerCoolDown3");
                 }
             }
-
+            
             if (Input.GetMouseButtonDown(0) && isBlocking == false && weapon > 0 && gm.started == true && isDashing == false)
             {
                 if (weapon == 4)
@@ -446,6 +517,16 @@ public class PlayerController : MonoBehaviour
                 isBlocking = true;
                 canMove = true;
                 canUnblock = true;
+            }
+
+            if (Input.GetMouseButton(1) && canMove == true && isBlocking == false && weapon == 3)
+            { 
+                isCharging = true;
+                myRB.constraints = RigidbodyConstraints.FreezeAll;
+                isDashing = false;
+                canAttack = false;
+                canMove = true;
+                StartCoroutine("WaitDraw");
             }
 
             if (Input.GetMouseButtonUp(1) && isBlocking == true && canUnblock == true && canBlock == false && weapon == 4)
@@ -573,19 +654,57 @@ public class PlayerController : MonoBehaviour
         canAttack = true;
     }
 
-    IEnumerator HammerCoolDown()
+    IEnumerator HammerCoolDownBase()
     {
         yield return new WaitForSeconds(1f);
+        canMove = true;
         attacking = false;
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(2.7f);
+        canAttack = true;
+    }
+
+    IEnumerator HammerCoolDown1()
+    {
+        yield return new WaitForSeconds(1f);
+        chargeLevel = 0;
+        canMove = true;
+        attacking = false;
+        chargeBoxActive = false;
+        chargeHurtBox.transform.localScale = new Vector3(2f, 1f, 2f);
+        yield return new WaitForSeconds(2.7f);
+        canAttack = true;
+    }
+
+    IEnumerator HammerCoolDown2()
+    {
+        yield return new WaitForSeconds(1f);
+        chargeLevel = 0;
+        canMove = true;
+        attacking = false;
+        chargeBoxActive = false;
+        chargeHurtBox.transform.localScale = new Vector3(2f, 1f, 2f);
+        yield return new WaitForSeconds(3f);
+        canAttack = true;
+    }
+
+    IEnumerator HammerCoolDown3()
+    {
+        yield return new WaitForSeconds(1f);
+        chargeLevel = 0;
+        canMove = true;
+        attacking = false;
+        chargeBoxActive = false;
+        chargeHurtBox.transform.localScale = new Vector3(2f, 1f, 2f);
+        yield return new WaitForSeconds(3.7f);
         canAttack = true;
     }
 
     IEnumerator SpearCoolDown()
     {
         yield return new WaitForSeconds(1f);
+        canMove = true;
         attacking = false;
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.2f);
         canAttack = true;
     }
 

@@ -361,6 +361,7 @@ public class GameManager : MonoBehaviour
                 startCycle = true;
 
             weaponScreen.SetActive(false);
+            playerController.drawSpeed = 200f;
             weapon = chosenWeapon;
             GameOn = true;
             StartCoroutine("Wait");
@@ -415,6 +416,7 @@ public class GameManager : MonoBehaviour
                 startCycle = true;
 
             weaponScreen.SetActive(false);
+            playerController.drawSpeed = 200f;
             GameOn = true;
             StartCoroutine("Wait");
         }
@@ -563,7 +565,6 @@ public class GameManager : MonoBehaviour
         bossanimator.SetBool("Isaggressive", true);
         bossanimator.SetBool("Iswalking", false);
         bossanimator.SetBool("Dodgeback", true);
-        yield return new WaitForSeconds(0.5f);
         Vector3 lookDirection = (playerObject.transform.position - bossObject.transform.position);
         lookDirection.y = 0f;
         lookDirection.Normalize();
