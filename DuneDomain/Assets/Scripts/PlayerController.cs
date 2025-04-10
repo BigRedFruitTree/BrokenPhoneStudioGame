@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
     public bool canUnblock = false;
     public bool isPaused = false;
     public float stringTimer;
+    public int whichAttack = 1;
     public bool isCharging = false;
     public bool chargeBoxActive = false;
     public int chargeLevel = 0;
@@ -74,6 +75,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        stringTimer = 20;
         chargeHurtBox.transform.localScale = new Vector3(2f, 1f, 2f);
         speed = 7f;
         drawSpeed = 200f;
@@ -361,11 +363,30 @@ public class PlayerController : MonoBehaviour
             {
                 if (weapon == 1)
                 {
-                    myRB.velocity += playerRotationHolder.transform.forward * 30f;
-                    attacking = true;
-                    canAttack = false;
-                    canMove = false;
-                    StartCoroutine("SwordCoolDown");
+                    if (whichAttack == 1)
+                    {
+                        whichAttack = 1;
+                        myRB.velocity += playerRotationHolder.transform.forward * 30f;
+                        attacking = true;
+                        canAttack = false;
+                        canMove = false;
+                        while (stringTimer > 0)
+                        {
+                            stringTimer -= Time.deltaTime;
+                        }
+                        if (Input.GetMouseButtonDown(0) && stringTimer > 0)
+                        {
+                            whichAttack = 2;
+                            myRB.velocity += playerRotationHolder.transform.forward * 30f;
+                            attacking = true;
+                            canAttack = false;
+                            canMove = false;
+                        }
+                        else
+                        {
+                            StartCoroutine("SwordCoolDown");
+                        }
+                    }
                 }
 
                 if (weapon == 3)
@@ -462,6 +483,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (weapon == 3 && drawSpeed >= 133.34f)
                 {
+                    chargeHurtBox.SetActive(true);
                     chargeLevel = 1;
                     isCharging = false;
                     chargeBoxActive = true;
@@ -474,6 +496,7 @@ public class PlayerController : MonoBehaviour
                 }
                 if (weapon == 3 && drawSpeed > 66.67f && drawSpeed < 133.34)
                 {
+                    chargeHurtBox.SetActive(true);
                     chargeLevel = 2;
                     isCharging = false;
                     chargeBoxActive = true;
@@ -486,6 +509,7 @@ public class PlayerController : MonoBehaviour
                 }
                 if (weapon == 3 && drawSpeed <= 66.67f)
                 {
+                    chargeHurtBox.SetActive(true);
                     chargeLevel = 3;
                     isCharging = false;
                     chargeBoxActive = true;
@@ -543,12 +567,12 @@ public class PlayerController : MonoBehaviour
                 myRB.velocity += playerRotationHolder.transform.forward * 1.5f;
             }
 
-            if (Input.GetKeyDown(KeyCode.E) && stamina >5 && isBlocking == false && canDash == true)
+            if (Input.GetKeyDown(KeyCode.E) && stamina > 2 && isBlocking == false && canDash == true)
             {
                 canTakeDamage = false;
                 canDash = false;
                 isDashing = true;
-                stamina -= 2;
+                stamina -= 3;
                 StartCoroutine("WaitDash");
                 StartCoroutine("WaitDamage");
             }
@@ -666,6 +690,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator HammerCoolDown1()
     {
         yield return new WaitForSeconds(1f);
+        chargeHurtBox.SetActive(false);
         chargeLevel = 0;
         canMove = true;
         attacking = false;
@@ -678,6 +703,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator HammerCoolDown2()
     {
         yield return new WaitForSeconds(1f);
+        chargeHurtBox.SetActive(false);
         chargeLevel = 0;
         canMove = true;
         attacking = false;
@@ -690,6 +716,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator HammerCoolDown3()
     {
         yield return new WaitForSeconds(1f);
+        chargeHurtBox.SetActive(false);
         chargeLevel = 0;
         canMove = true;
         attacking = false;
