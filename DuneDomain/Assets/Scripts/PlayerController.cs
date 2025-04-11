@@ -36,6 +36,9 @@ public class PlayerController : MonoBehaviour
     public bool isCharging = false;
     public bool chargeBoxActive = false;
     public int chargeLevel = 0;
+    public float stringCooldown = 0f;
+    public bool stringCount = false;
+    public bool canRotate = false;
 
     [Header("Movement Settings")]
     public float speed = 7f;
@@ -75,7 +78,6 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        stringTimer = 20;
         chargeHurtBox.transform.localScale = new Vector3(2f, 1f, 2f);
         speed = 7f;
         drawSpeed = 200f;
@@ -87,6 +89,7 @@ public class PlayerController : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         canMove = true;
+        canRotate = true;
         canDash = true;
     }
 
@@ -109,13 +112,14 @@ public class PlayerController : MonoBehaviour
             temp.x = verticalMove * speed;
             temp.z = horizontalMove * speed;
 
-            if(isDashing == false && attacking == false && isBlocking == false)
+            if (isDashing == false && attacking == false && isBlocking == false)
             {
                myRB.velocity = (temp.x * transform.forward) + (temp.z * transform.right) + (temp.y * transform.up);
             } 
 
             if (weapon == 1)
             {
+                stringCooldown = 2f;
                 sword.SetActive(true);
                 bow.SetActive(false);
                 crossbow.SetActive(false);
@@ -134,6 +138,7 @@ public class PlayerController : MonoBehaviour
             }
             if (weapon == 3)
             {
+                stringTimer = 2.7f;
                 hammer.SetActive(true);
                 sword.SetActive(false);
                 bow.SetActive(false);
@@ -143,6 +148,7 @@ public class PlayerController : MonoBehaviour
             }
             if (weapon == 4)
             {
+                stringTimer = 1.2f;
                 spear.SetActive(true);
                 shield.SetActive(true);
                 sword.SetActive(false);
@@ -173,35 +179,35 @@ public class PlayerController : MonoBehaviour
             shield.transform.position = shieldHolder.transform.position;
             shield.transform.rotation = shieldHolder.transform.rotation;
 
-            if (horizontalMove > 0 && canMove == true)
+            if (horizontalMove > 0 && canRotate == true)
             {
                 playerRotationHolder.transform.rotation = Quaternion.Euler(0f, 90f, 0f);
             }
-            if (horizontalMove > 0 && verticalMove > 0 && canMove == true)
+            if (horizontalMove > 0 && verticalMove > 0 && canRotate == true)
             {
                 playerRotationHolder.transform.rotation = Quaternion.Euler(0f, 45f, 0f);
             }
-            if (horizontalMove > 0 && verticalMove < 0 && canMove == true)
+            if (horizontalMove > 0 && verticalMove < 0 && canRotate == true)
             {
                 playerRotationHolder.transform.rotation = Quaternion.Euler(0f, 145f, 0f);
             }
-            if (horizontalMove < 0 && canMove == true)
+            if (horizontalMove < 0 && canRotate == true)
             {
                 playerRotationHolder.transform.rotation = Quaternion.Euler(0f, -90f, 0f);
             }
-            if (horizontalMove < 0 && verticalMove > 0 && canMove == true)
+            if (horizontalMove < 0 && verticalMove > 0 && canRotate == true)
             {
                 playerRotationHolder.transform.rotation = Quaternion.Euler(0f, -45f, 0f);
             }
-            if (horizontalMove < 0 && verticalMove < 0 && canMove == true)
+            if (horizontalMove < 0 && verticalMove < 0 && canRotate == true)
             {
                 playerRotationHolder.transform.rotation = Quaternion.Euler(0f, -145f, 0f);
             }
-            if (verticalMove > 0 && horizontalMove == 0 && canMove == true)
+            if (verticalMove > 0 && horizontalMove == 0 && canRotate == true)
             {
                 playerRotationHolder.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
             }
-            if (verticalMove < 0 && horizontalMove == 0 && canMove == true)
+            if (verticalMove < 0 && horizontalMove == 0 && canRotate == true)
             {
                 playerRotationHolder.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
             }
@@ -242,7 +248,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            if (Input.GetMouseButtonDown(0) && isDashing == false && attacking == false && canAttack == true && weapon == 1 || Input.GetMouseButtonDown(0) && isDashing == false && attacking == false && canAttack == true && weapon == 3 || Input.GetMouseButtonDown(0) && isDashing == false && attacking == false && canAttack == true && weapon == 4)
+            if (Input.GetMouseButtonDown(0) && isDashing == false && weapon == 1 || Input.GetMouseButtonDown(0) && isDashing == false && weapon == 3 || Input.GetMouseButtonDown(0) && isDashing == false && weapon == 4)
             {
 
                 if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, 90f, 0f))
@@ -319,35 +325,35 @@ public class PlayerController : MonoBehaviour
             if (Input.GetMouseButton(0) && isDashing == false && attacking == false && weapon == 5)
             {
 
-                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, 90f, 0f) && canMove == true)
+                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, 90f, 0f) && canRotate == true)
                 {
                     weaponHolder.transform.rotation = Quaternion.Euler(90f, 90f, 0f);
                 }
-                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, 45f, 0f) && canMove == true)
+                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, 45f, 0f) && canRotate == true)
                 {
                     weaponHolder.transform.rotation = Quaternion.Euler(90f, 45f, 0f);
                 }
-                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, 145f, 0f) && canMove == true)
+                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, 145f, 0f) && canRotate == true)
                 {
                     weaponHolder.transform.rotation = Quaternion.Euler(90f, 145f, 0f);
                 }
-                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, -90f, 0f) && canMove == true)
+                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, -90f, 0f) && canRotate == true)
                 {
                     weaponHolder.transform.rotation = Quaternion.Euler(90f, -90f, 0f);
                 }
-                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, -45f, 0f) && canMove == true)
+                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, -45f, 0f) && canRotate == true)
                 {
                     weaponHolder.transform.rotation = Quaternion.Euler(90f, -45f, 0f);
                 }
-                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, -145f, 0f) && canMove == true)
+                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, -145f, 0f) && canRotate == true)
                 {
                     weaponHolder.transform.rotation = Quaternion.Euler(90f, -145f, 0f);
                 }
-                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, 0f, 0f) && canMove == true)
+                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, 0f, 0f) && canRotate == true)
                 {
                     weaponHolder.transform.rotation = Quaternion.Euler(90f, 0f, 0f);
                 }
-                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, 180f, 0f) && canMove == true)
+                if (playerRotationHolder.transform.rotation == Quaternion.Euler(0f, 180f, 0f) && canRotate == true)
                 {
                     weaponHolder.transform.rotation = Quaternion.Euler(90f, 180f, 0f);
                 }
@@ -363,53 +369,172 @@ public class PlayerController : MonoBehaviour
             {
                 if (weapon == 1)
                 {
-                    if (whichAttack == 1)
-                    {
-                        whichAttack = 1;
-                        myRB.velocity += playerRotationHolder.transform.forward * 30f;
-                        attacking = true;
-                        canAttack = false;
-                        canMove = false;
-                        while (stringTimer > 0)
-                        {
-                            stringTimer -= Time.deltaTime;
-                        }
-                        if (Input.GetMouseButtonDown(0) && stringTimer > 0)
-                        {
-                            whichAttack = 2;
-                            myRB.velocity += playerRotationHolder.transform.forward * 30f;
-                            attacking = true;
-                            canAttack = false;
-                            canMove = false;
-                        }
-                        else
-                        {
-                            StartCoroutine("SwordCoolDown");
-                        }
-                    }
+                    whichAttack = 1;
+                    myRB.velocity += playerRotationHolder.transform.forward * 30f;
+                    attacking = true;
+                    canAttack = false;
+                    canMove = false;
+                    canRotate = false;
+                    stringCount = true;
+                    StartCoroutine("SwordCoolDown"); 
                 }
 
                 if (weapon == 3)
                 {
+                    whichAttack = 1;
                     myRB.velocity += playerRotationHolder.transform.forward * 20f;
                     isDashing = false;
                     attacking = true;
                     canAttack = false;
                     canMove = false;
+                    canRotate = false;
+                    stringCount = true;
                     StartCoroutine("HammerCoolDownBase");
                 }
 
                 if (weapon == 4)
                 {
+                    whichAttack = 1;
                     myRB.velocity += playerRotationHolder.transform.forward * 40f;
                     isDashing = false;
                     attacking = true;
                     canAttack = false;
                     canMove = false;
+                    canRotate = false;
+                    stringCount = true;
                     StartCoroutine("SpearCoolDown");
                 }
             }
+
+            if (stringCount == true && stringTimer > 0f)
+            {
+                stringTimer -= Time.deltaTime;
+                if (stringTimer <= 0f)
+                {
+                     stringTimer = 0f;
+                     StartCoroutine("WaitEndString");
+                }
+            }
+
+            if ((Input.GetMouseButtonDown(0)) && attacking == false && stringTimer > 0 && whichAttack == 1)
+            {
+                whichAttack = 2;
+                stringTimer = 2f;
+                myRB.velocity += playerRotationHolder.transform.forward * 30f;
+                attacking = true;
+                canAttack = false;
+                canMove = false;
+                canRotate = false;
+                stringCount = true;
+                StartCoroutine("SwordCoolDown");  
+            }
+
+            if ((Input.GetMouseButtonDown(0)) && attacking == false && stringTimer > 0 && whichAttack == 2)
+            {
+                whichAttack = 3;
+                stringTimer = 2f;
+                myRB.velocity += playerRotationHolder.transform.forward * 30f;
+                attacking = true;
+                canAttack = false;
+                canMove = false;
+                canRotate = false;
+                stringCount = true;
+                StartCoroutine("SwordCoolDown");  
+            }
+
+            if ((Input.GetMouseButtonDown(0)) && attacking == false && stringTimer > 0 && whichAttack == 3)
+            {
+                whichAttack = 4;
+                stringTimer = 2f;
+                myRB.velocity += playerRotationHolder.transform.forward * 30f;
+                attacking = true;
+                canAttack = false;
+                canMove = false;
+                canRotate = false;
+                stringCount = true;
+                StartCoroutine("SwordCoolDown"); 
+                StartCoroutine("WaitEndString");  
+            }
+
+            if ((Input.GetMouseButtonDown(0)) && attacking == false && stringTimer > 0 && whichAttack == 1)
+            {
+                whichAttack = 2;
+                stringTimer = 2.7f;
+                myRB.velocity += playerRotationHolder.transform.forward * 20f;
+                attacking = true;
+                canAttack = false;
+                canMove = false;
+                canRotate = false;
+                stringCount = true;
+                StartCoroutine("HammerCoolDownBase");  
+            }
+
+            if ((Input.GetMouseButtonDown(0)) && attacking == false && stringTimer > 0 && whichAttack == 2)
+            {
+                whichAttack = 3;
+                stringTimer = 2.7f;
+                myRB.velocity += playerRotationHolder.transform.forward * 20f;
+                attacking = true;
+                canAttack = false;
+                canMove = false;
+                canRotate = false;
+                stringCount = true;
+                StartCoroutine("HammerCoolDownBase");  
+            }
+
+            if ((Input.GetMouseButtonDown(0)) && attacking == false && stringTimer > 0 && whichAttack == 3)
+            {
+                whichAttack = 4;
+                stringTimer = 2.7f;
+                myRB.velocity += playerRotationHolder.transform.forward * 20f;
+                attacking = true;
+                canAttack = false;
+                canMove = false;
+                canRotate = false;
+                stringCount = true;
+                StartCoroutine("HammerCoolDownBase"); 
+                StartCoroutine("WaitEndString");  
+            }
             
+            if ((Input.GetMouseButtonDown(0)) && attacking == false && stringTimer > 0 && whichAttack == 1)
+            {
+                whichAttack = 2;
+                stringTimer = 1.2f;
+                myRB.velocity += playerRotationHolder.transform.forward * 40f;
+                attacking = true;
+                canAttack = false;
+                canMove = false;
+                canRotate = false;
+                stringCount = true;
+                StartCoroutine("SpearCoolDown");  
+            }
+
+            if ((Input.GetMouseButtonDown(0)) && attacking == false && stringTimer > 0 && whichAttack == 2)
+            {
+                whichAttack = 3;
+                stringTimer = 1.2f;
+                myRB.velocity += playerRotationHolder.transform.forward * 40f;
+                attacking = true;
+                canAttack = false;
+                canMove = false;
+                canRotate = false;
+                stringCount = true;
+                StartCoroutine("SpearCoolDown");  
+            }
+
+            if ((Input.GetMouseButtonDown(0)) && attacking == false && stringTimer > 0 && whichAttack == 3)
+            {
+                whichAttack = 4;
+                stringTimer = 1.2f;
+                myRB.velocity += playerRotationHolder.transform.forward * 40f;
+                attacking = true;
+                canAttack = false;
+                canMove = false;
+                canRotate = false;
+                stringCount = true;
+                StartCoroutine("SpearCoolDown"); 
+                StartCoroutine("WaitEndString");  
+            }
 
             if (Input.GetMouseButton(0) && isCooldownOver == true && weapon > 0 && isDashing == false && isBlocking == false)
             {
@@ -418,7 +543,8 @@ public class PlayerController : MonoBehaviour
                     myRB.constraints = RigidbodyConstraints.FreezeAll;
                     isDashing = false;
                     canAttack = false;
-                    canMove = true;
+                    canMove = false;
+                    canRotate = true;
                     StartCoroutine("WaitDraw");
                 }
 
@@ -427,7 +553,8 @@ public class PlayerController : MonoBehaviour
                     myRB.constraints = RigidbodyConstraints.FreezeAll;
                     isDashing = false;
                     canAttack = false;
-                    canMove = true;
+                    canMove = false;
+                    canRotate = true;
                     StartCoroutine("WaitDraw");
                 }
             }
@@ -657,30 +784,32 @@ public class PlayerController : MonoBehaviour
          canTakeDamage = true;
     }
 
+    IEnumerator WaitEndString()
+    {
+        stringCount = false;
+        yield return new WaitForSeconds(stringCooldown);
+        attacking = false;
+        canAttack = true;
+    }
+
     IEnumerator WaitDraw()
     {
          yield return new WaitForSeconds(1f);
          drawSpeed--;
     }
 
-    IEnumerator WaitStringTime()
-    {
-        yield return new WaitForSeconds(1f);
-        stringTimer -= Time.deltaTime;
-    }
-
     IEnumerator SwordCoolDown()
     {
         yield return new WaitForSeconds(1f);
+        canRotate = true;
         canMove = true;
         attacking = false;
-        yield return new WaitForSeconds(2f);
-        canAttack = true;
     }
 
     IEnumerator HammerCoolDownBase()
     {
         yield return new WaitForSeconds(1f);
+        canRotate = true;
         canMove = true;
         attacking = false;
         yield return new WaitForSeconds(2.7f);
@@ -693,6 +822,7 @@ public class PlayerController : MonoBehaviour
         chargeHurtBox.SetActive(false);
         chargeLevel = 0;
         canMove = true;
+        canRotate = true;
         attacking = false;
         chargeBoxActive = false;
         chargeHurtBox.transform.localScale = new Vector3(2f, 1f, 2f);
@@ -706,6 +836,7 @@ public class PlayerController : MonoBehaviour
         chargeHurtBox.SetActive(false);
         chargeLevel = 0;
         canMove = true;
+        canRotate = true;
         attacking = false;
         chargeBoxActive = false;
         chargeHurtBox.transform.localScale = new Vector3(2f, 1f, 2f);
@@ -719,6 +850,7 @@ public class PlayerController : MonoBehaviour
         chargeHurtBox.SetActive(false);
         chargeLevel = 0;
         canMove = true;
+        canRotate = true;
         attacking = false;
         chargeBoxActive = false;
         chargeHurtBox.transform.localScale = new Vector3(2f, 1f, 2f);
@@ -730,6 +862,7 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         canMove = true;
+        canRotate = true;
         attacking = false;
         yield return new WaitForSeconds(1.2f);
         canAttack = true;
