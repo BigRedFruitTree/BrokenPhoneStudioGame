@@ -6650,6 +6650,7 @@ MonoBehaviour:
   maxHealth: 10
   weapon: 0
   canAttack: 1
+  canAttack2: 1
   arrowSpeed: 0
   canMove: 0
   drawSpeed: 0
@@ -6666,6 +6667,9 @@ MonoBehaviour:
   isCharging: 0
   chargeBoxActive: 0
   chargeLevel: 0
+  stringCooldown: 0
+  stringCount: 0
+  canRotate: 0
   speed: 10
   stamina: 10
   isDashing: 0
