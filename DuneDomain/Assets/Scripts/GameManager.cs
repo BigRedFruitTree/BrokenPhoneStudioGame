@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
     private GameObject currentTarget;
     public Rigidbody bossRigidBody;
     public GameObject bossUiStuff;
+    public GameObject AlertStuff;
     public Image bossBar;
     public Animator bossanimator;
 
@@ -199,6 +200,7 @@ public class GameManager : MonoBehaviour
 
             if (timeUntilAppearance <= 0f && canRun == true)
             {
+
                 if (timeUntilAttack > 0f && bossDistance >= 10f)
                 {
                     StartCoroutine("Wait");
@@ -234,6 +236,8 @@ public class GameManager : MonoBehaviour
                     bossAgent.destination = playerObject.transform.position;
                     bossanimator.SetBool("Isaggressive", true);
                 }
+
+               
 
                 StartCoroutine("Wait");
                 timeUntilEatPhase--;
@@ -492,6 +496,13 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         started = true;
     }
+
+    IEnumerator WaitToCloseAlert()
+    {
+        yield return new WaitForSeconds(1f);
+        AlertStuff.SetActive(false);
+    }
+
     IEnumerator WaitStart()
     {
         yield return new WaitForSeconds(0.5f);
