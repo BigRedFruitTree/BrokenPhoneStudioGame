@@ -80,6 +80,8 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerAnimator.SetInteger("whichAttack", 0);
+        playerAnimator.SetBool("attacking", false);
         playerAnimator.SetBool("isMoving", false);
         playerAnimator.SetInteger("weapon", 0);
         stringTimer = 2f;
@@ -227,6 +229,8 @@ public class PlayerController : MonoBehaviour
             {
                 if (weapon == 1)
                 {
+                    playerAnimator.SetBool("attacking", true);
+                    playerAnimator.SetInteger("whichAttack", 1);
                     whichAttack = 1;
                     myRB.velocity += playerRotationHolder.transform.forward * 30f;
                     attacking = true;
@@ -270,6 +274,8 @@ public class PlayerController : MonoBehaviour
                 if (stringTimer <= 0f)
                 {
                      stringTimer = 0f;
+                     playerAnimator.SetInteger("whichAttack", 0);
+                     playerAnimator.SetBool("attacking", false);
                      StartCoroutine("WaitEndString");
                 }
             }
@@ -685,6 +691,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator SwordCoolDown()
     {
         yield return new WaitForSeconds(1f);
+        playerAnimator.SetBool("attacking", false);
         canRotate = true;
         canMove = true;
         attacking = false;
