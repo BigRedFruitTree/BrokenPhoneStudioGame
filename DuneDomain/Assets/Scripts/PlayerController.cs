@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour
     public bool stringCount = false;
     public bool canRotate = false;
     public bool dashingEnd = false;
+    public bool recovering = false;
 
     [Header("Movement Settings")]
     public float speed = 7f;
@@ -335,7 +336,7 @@ public class PlayerController : MonoBehaviour
                 playerAnimator.SetBool("attacking", true);
                 whichAttack = 4;
                 stringTimer = 2f;
-                myRB.velocity += playerRotationHolder.transform.forward * 30f;
+                myRB.velocity += playerRotationHolder.transform.forward * 50f;
                 attacking = true;
                 canAttack2 = false;
                 canMove = false;
@@ -588,7 +589,7 @@ public class PlayerController : MonoBehaviour
                 myRB.velocity += playerRotationHolder.transform.forward * 10f;
             }
 
-            if (Input.GetKeyDown(KeyCode.E) && stamina > 2 && isBlocking == false && canDash == true)
+            if (Input.GetKeyDown(KeyCode.E) && stamina > 2 && isBlocking == false && canDash == true && attacking == false && playerAnimator.GetBool("attacking") == false && playerAnimator.GetInteger("whichAttack") == 0)
             {
                 playerAnimator.SetBool("isDashing", true);
                 canTakeDamage = false;
@@ -699,10 +700,12 @@ public class PlayerController : MonoBehaviour
     IEnumerator WaitEndString()
     {
         stringCount = false;
+        stringTimer = 2f;
+        canMove = true;
+        yield return new WaitForSeconds(1f);
         playerAnimator.SetInteger("whichAttack", 0);
         whichAttack = 0;
         playerAnimator.SetBool("attacking", false);
-        stringTimer = 2f;
         yield return new WaitForSeconds(stringCooldown);
         attacking = false;
         canAttack = true;
@@ -723,7 +726,6 @@ public class PlayerController : MonoBehaviour
         attacking = false;
         yield return new WaitForSeconds(1.5f);
         canRotate = true;
-        canMove = true;
         canAttack2 = true;
     }
 
