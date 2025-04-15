@@ -294,46 +294,50 @@ public class PlayerController : MonoBehaviour
                 stringTimer -= Time.deltaTime;
                 if (stringTimer <= 0f)
                 {
-                     stringTimer = 0f;
-                     playerAnimator.SetInteger("whichAttack", 0);
-                     playerAnimator.SetBool("attacking", false);
-                     StartCoroutine("WaitEndString");
+                    stringTimer = 0f;
+                    StartCoroutine("WaitEndString");
                 }
             }
 
-            if (Input.GetMouseButtonDown(0) && canAttack == true && attacking == false && stringTimer > 0 && whichAttack == 1 && weapon == 1)
+            if (Input.GetMouseButtonDown(0) && playerAnimator.GetBool("attacking") == false && canAttack == false && canAttack2 == true && attacking == false && stringTimer > 0 && whichAttack == 1 && weapon == 1)
             {
+                playerAnimator.SetInteger("whichAttack", 2);
+                playerAnimator.SetBool("attacking", true);
                 whichAttack = 2;
                 stringTimer = 2f;
                 myRB.velocity += playerRotationHolder.transform.forward * 30f;
                 attacking = true;
-                canAttack = false;
+                canAttack2 = false;
                 canMove = false;
                 canRotate = false;
                 stringCount = true;
                 StartCoroutine("SwordCoolDown");  
             }
 
-            if (Input.GetMouseButtonDown(0) && canAttack == true && attacking == false && stringTimer > 0 && whichAttack == 2 && weapon == 1)
+            if (Input.GetMouseButtonDown(0) && playerAnimator.GetBool("attacking") == false && canAttack == false && canAttack2 == true && attacking == false && stringTimer > 0 && whichAttack == 2 && weapon == 1)
             {
+                playerAnimator.SetInteger("whichAttack", 3);
+                playerAnimator.SetBool("attacking", true);
                 whichAttack = 3;
                 stringTimer = 2f;
                 myRB.velocity += playerRotationHolder.transform.forward * 30f;
                 attacking = true;
-                canAttack = false;
+                canAttack2 = false;
                 canMove = false;
                 canRotate = false;
                 stringCount = true;
                 StartCoroutine("SwordCoolDown");  
             }
 
-            if (Input.GetMouseButtonDown(0) && canAttack == true && attacking == false && stringTimer > 0 && whichAttack == 3 && weapon == 1)
+            if (Input.GetMouseButtonDown(0) && playerAnimator.GetBool("attacking") == false && canAttack == false && canAttack2 == true && attacking == false && stringTimer > 0 && whichAttack == 3 && weapon == 1)
             {
+                playerAnimator.SetInteger("whichAttack", 4);
+                playerAnimator.SetBool("attacking", true);
                 whichAttack = 4;
                 stringTimer = 2f;
                 myRB.velocity += playerRotationHolder.transform.forward * 30f;
                 attacking = true;
-                canAttack = false;
+                canAttack2 = false;
                 canMove = false;
                 canRotate = false;
                 stringCount = true;
@@ -695,10 +699,14 @@ public class PlayerController : MonoBehaviour
     IEnumerator WaitEndString()
     {
         stringCount = false;
+        playerAnimator.SetInteger("whichAttack", 0);
+        whichAttack = 0;
+        playerAnimator.SetBool("attacking", false);
         stringTimer = 2f;
         yield return new WaitForSeconds(stringCooldown);
         attacking = false;
         canAttack = true;
+        canAttack2 = true;
     }
 
     IEnumerator WaitDraw()
@@ -710,13 +718,13 @@ public class PlayerController : MonoBehaviour
     IEnumerator SwordCoolDown()
     {
         yield return new WaitForSeconds(0.5f);
-        playerAnimator.SetInteger("whichAttack", 0);
         playerAnimator.SetBool("attacking", false);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
+        attacking = false;
+        yield return new WaitForSeconds(1.5f);
         canRotate = true;
         canMove = true;
-        attacking = false;
-        canAttack = true;
+        canAttack2 = true;
     }
 
     IEnumerator HammerCoolDownBase()
