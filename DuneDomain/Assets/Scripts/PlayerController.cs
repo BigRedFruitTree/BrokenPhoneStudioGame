@@ -247,7 +247,7 @@ public class PlayerController : MonoBehaviour
             if (canMove == false)
                 playerAnimator.SetBool("isMoving", false);
 
-            if (Input.GetMouseButtonDown(0) && canAttack == true && weapon > 0 && isDashing == false && attacking == false && isBlocking == false)
+            if (Input.GetMouseButtonDown(0) && canAttack == true && weapon > 0 && isDashing == false && attacking == false && isBlocking == false && recovering == false && playerAnimator.GetBool("recovering") == false)
             {
                 if (weapon == 1)
                 {
@@ -300,7 +300,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            if (Input.GetMouseButtonDown(0) && playerAnimator.GetBool("attacking") == false && canAttack == false && canAttack2 == true && attacking == false && stringTimer > 0 && whichAttack == 1 && weapon == 1)
+            if (Input.GetMouseButtonDown(0) && playerAnimator.GetBool("attacking") == false && canAttack == false && canAttack2 == true && attacking == false && stringTimer > 0 && whichAttack == 1 && weapon == 1 && recovering == false && recovering == false && playerAnimator.GetBool("recovering") == false)
             {
                 playerAnimator.SetInteger("whichAttack", 2);
                 playerAnimator.SetBool("attacking", true);
@@ -315,7 +315,7 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine("SwordCoolDown");  
             }
 
-            if (Input.GetMouseButtonDown(0) && playerAnimator.GetBool("attacking") == false && canAttack == false && canAttack2 == true && attacking == false && stringTimer > 0 && whichAttack == 2 && weapon == 1)
+            if (Input.GetMouseButtonDown(0) && playerAnimator.GetBool("attacking") == false && canAttack == false && canAttack2 == true && attacking == false && stringTimer > 0 && whichAttack == 2 && weapon == 1&& recovering == false && playerAnimator.GetBool("recovering") == false)
             {
                 playerAnimator.SetInteger("whichAttack", 3);
                 playerAnimator.SetBool("attacking", true);
@@ -330,7 +330,7 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine("SwordCoolDown");  
             }
 
-            if (Input.GetMouseButtonDown(0) && playerAnimator.GetBool("attacking") == false && canAttack == false && canAttack2 == true && attacking == false && stringTimer > 0 && whichAttack == 3 && weapon == 1)
+            if (Input.GetMouseButtonDown(0) && playerAnimator.GetBool("attacking") == false && canAttack == false && canAttack2 == true && attacking == false && stringTimer > 0 && whichAttack == 3 && weapon == 1 && recovering == false && playerAnimator.GetBool("recovering") == false)
             {
                 playerAnimator.SetInteger("whichAttack", 4);
                 playerAnimator.SetBool("attacking", true);
@@ -699,6 +699,8 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator WaitEndString()
     {
+        recovering = true;
+        playerAnimator.SetBool("recovering", true);
         stringCount = false;
         stringTimer = 2f;
         canMove = true;
@@ -707,6 +709,8 @@ public class PlayerController : MonoBehaviour
         whichAttack = 0;
         playerAnimator.SetBool("attacking", false);
         yield return new WaitForSeconds(stringCooldown);
+        playerAnimator.SetBool("recovering", false);
+        recovering = false;
         attacking = false;
         canAttack = true;
         canAttack2 = true;
