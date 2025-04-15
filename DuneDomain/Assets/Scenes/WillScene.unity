@@ -1540,14 +1540,13 @@ MonoBehaviour:
   bossScript: {fileID: 1323745277}
   bossRigidBody: {fileID: 1323745276}
   bossUiStuff: {fileID: 1976413243}
-  AlertStuff: {fileID: 0}
   bossBar: {fileID: 1454385342}
   bossanimator: {fileID: 214280929}
   spawnRange: 0
   enemyScript: {fileID: 463563432}
-  meleeEnemyObject: {fileID: 0}
+  meleeEnemyObject: {fileID: 232766443740596227, guid: dbb47fb935dcd884a92b5bea53302ed0, type: 3}
   meleeEnemyPrefab: {fileID: 232766443740596227, guid: dbb47fb935dcd884a92b5bea53302ed0, type: 3}
-  rangedEnemyObject: {fileID: 0}
+  rangedEnemyObject: {fileID: 594971832880149158, guid: 3647edb2f01b6ed45b735e5ce92e49b1, type: 3}
   rangedEnemyPrefab: {fileID: 594971832880149158, guid: 3647edb2f01b6ed45b735e5ce92e49b1, type: 3}
   meleeEnemyNumber: []
   rangedEnemyNumber: []
@@ -1560,6 +1559,7 @@ MonoBehaviour:
   started: 0
   weaponScreen: {fileID: 2134745468}
   deathScreen: {fileID: 1744875256}
+  NotWaitingAlertScreen: {fileID: 1034012178}
   winScreen: {fileID: 1132961316}
   pauseScreen: {fileID: 1391734772}
   weaponKeepButton: {fileID: 1836009644}
@@ -2329,6 +2329,7 @@ MonoBehaviour:
   stringCooldown: 0
   stringCount: 0
   canRotate: 0
+  dashingEnd: 0
   speed: 10
   stamina: 10
   isDashing: 0
@@ -2336,14 +2337,12 @@ MonoBehaviour:
   horizontalMove: 0
   playerCntrols: {fileID: -944628639613478452, guid: c4f52b3abbe18ef4db31932b2cd0502d, type: 3}
   inputHandler: {fileID: 630856715}
+  playerAnimator: {fileID: 214280929}
   playerObject: {fileID: 618299808}
   playerRotationHolder: {fileID: 613141314}
   playerCam: {fileID: 751392468}
   cameraHolder: {fileID: 515850481}
   gm: {fileID: 404717681}
-  weaponHolder: {fileID: 195142265}
-  shieldHolder: {fileID: 1504540301}
-  blockHolder: {fileID: 650353059}
   sword: {fileID: 829061976}
   hammer: {fileID: 878177473}
   spear: {fileID: 1179712265}
@@ -2354,7 +2353,7 @@ MonoBehaviour:
   arrowSpawnB: {fileID: 1342932729}
   arrowSpawnC: {fileID: 221062942}
   chargeHurtBox: {fileID: 979941138}
-  Pausemenu: {fileID: 0}
+  Pausemenu: {fileID: 263161273}
   enemyScriptM: {fileID: 463563432}
   enemyScriptR: {fileID: 998285513}
 --- !u!54 &618299811
@@ -6675,7 +6674,7 @@ GameObject:
   - component: {fileID: 1592045682}
   - component: {fileID: 1592045681}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: AlertText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

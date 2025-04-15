@@ -40,7 +40,6 @@ public class GameManager : MonoBehaviour
     private GameObject currentTarget;
     public Rigidbody bossRigidBody;
     public GameObject bossUiStuff;
-    public GameObject AlertStuff;
     public Image bossBar;
     public Animator bossanimator;
 
@@ -64,6 +63,7 @@ public class GameManager : MonoBehaviour
     public bool started = false;
     public GameObject weaponScreen;
     public GameObject deathScreen;
+    public GameObject NotWaitingAlertScreen;
     public GameObject winScreen;
     public GameObject pauseScreen;
     public GameObject weaponKeepButton;
@@ -236,8 +236,15 @@ public class GameManager : MonoBehaviour
                     bossAgent.destination = playerObject.transform.position;
                     bossanimator.SetBool("Isaggressive", true);
                 }
+                if (bossanimator.GetBool("Issleeping") == true)
+                {
+                    NotWaitingAlertScreen.SetActive(true);
+                }
+                if (bossanimator.GetBool("Issleeping") == false)
+                {
+                    NotWaitingAlertScreen.SetActive(false);
+                }
 
-               
 
                 StartCoroutine("Wait");
                 timeUntilEatPhase--;
@@ -495,12 +502,6 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
         started = true;
-    }
-
-    IEnumerator WaitToCloseAlert()
-    {
-        yield return new WaitForSeconds(1f);
-        AlertStuff.SetActive(false);
     }
 
     IEnumerator WaitStart()
