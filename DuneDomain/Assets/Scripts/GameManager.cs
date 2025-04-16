@@ -70,6 +70,10 @@ public class GameManager : MonoBehaviour
     public GameObject weaponKeepTXT;
     public GameObject bridge;
 
+    [Header("Game Map Stuff")]
+    public GameObject Rock1Prefab;
+    public GameObject Rock2Prefab;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -88,7 +92,7 @@ public class GameManager : MonoBehaviour
             timeUntilEatPhase = 2000f;
             timeUntilAttack = Random.Range(200f, 300f);
             rounds = 1;
-            spawnRange = 40f;
+            spawnRange = 50f;
             meleeEnemyObject = meleeEnemyPrefab;
             rangedEnemyObject = rangedEnemyPrefab;
 
@@ -104,6 +108,12 @@ public class GameManager : MonoBehaviour
             {
                bossanimator.SetBool("Isaggressive", true);
                bossAgent.speed = 5;
+            }
+
+            if (GameOn == true && GameOver == false && started == true)
+            {
+                SpawnRock1atRandomPosition(rounds * 3);
+                SpawnRock2atRandomPosition(rounds * 3);
             }
             
 
@@ -236,18 +246,17 @@ public class GameManager : MonoBehaviour
                     bossAgent.destination = playerObject.transform.position;
                     bossanimator.SetBool("Isaggressive", true);
                 }
-                if (bossanimator.GetBool("Issleeping") == true)
-                {
-                    NotWaitingAlertScreen.SetActive(true);
-                }
-                if (bossanimator.GetBool("Issleeping") == false)
-                {
-                    NotWaitingAlertScreen.SetActive(false);
-                }
-
-
                 StartCoroutine("Wait");
                 timeUntilEatPhase--;
+            }
+
+            if (bossanimator.GetBool("Issleeping") == true)
+            {
+                NotWaitingAlertScreen.SetActive(true);
+            }
+            else
+            {
+                NotWaitingAlertScreen.SetActive(false);
             }
 
             if (timeUntilEatPhase <= 0f)
@@ -299,6 +308,9 @@ public class GameManager : MonoBehaviour
                 timeUntilEatPhase = 2000f;
                 startCycle = false;
 
+                SpawnRock1atRandomPosition(rounds * 3);
+
+                SpawnRock2atRandomPosition(rounds * 3);
             }
 
             if (playerController.health <= 0)
@@ -318,6 +330,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    //This Generates a random spawn position for the 2 enemy types
     public void SpawnMelee(int numberToSpawn)
     {
         for (int i = 0; i < numberToSpawn; i++)
@@ -335,6 +348,32 @@ public class GameManager : MonoBehaviour
     }
 
     public Vector3 GenerateSpawnPos()
+    {
+        float spawnPosX = Random.Range(-spawnRange, spawnRange);
+        float spawnPosZ = Random.Range(-spawnRange, spawnRange);
+        Vector3 randomPos = new Vector3(spawnPosX, 1.5f, spawnPosZ);
+        return randomPos;
+
+    }
+
+    //This Generates a random position of rocks throughout the arena
+    public void SpawnRock1atRandomPosition(int numberToSpawn)
+    {
+        for (int i = 0; i < numberToSpawn; i++)
+        {
+            Instantiate(Rock1Prefab, RandomRockPosition(), Rock1Prefab.transform.rotation);
+        }
+    }
+    public void SpawnRock2atRandomPosition(int numberToSpawn)
+    {
+
+        for (int i = 0; i < numberToSpawn; i++)
+        {
+            Instantiate(Rock2Prefab, RandomRockPosition(), Rock2Prefab.transform.rotation);
+        }
+    }
+
+    public Vector3 RandomRockPosition()
     {
         float spawnPosX = Random.Range(-spawnRange, spawnRange);
         float spawnPosZ = Random.Range(-spawnRange, spawnRange);
