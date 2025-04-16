@@ -2727,7 +2727,6 @@ MonoBehaviour:
   bossScript: {fileID: 1514836992}
   bossRigidBody: {fileID: 1514836993}
   bossUiStuff: {fileID: 1290424080}
-  AlertStuff: {fileID: 0}
   bossBar: {fileID: 1102005375}
   bossanimator: {fileID: 1070366580}
   spawnRange: 0
@@ -2747,6 +2746,7 @@ MonoBehaviour:
   started: 0
   weaponScreen: {fileID: 639110600}
   deathScreen: {fileID: 1493982534}
+  NotWaitingAlertScreen: {fileID: 0}
   winScreen: {fileID: 1090168975}
   pauseScreen: {fileID: 1596628212}
   weaponKeepButton: {fileID: 409872688}
@@ -5820,7 +5820,6 @@ GameObject:
   - component: {fileID: 1652962757}
   - component: {fileID: 1652962758}
   - component: {fileID: 1652962759}
-  - component: {fileID: 1652962760}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -5962,6 +5961,7 @@ MonoBehaviour:
   stringCount: 0
   canRotate: 0
   dashingEnd: 0
+  recovering: 0
   speed: 10
   stamina: 10
   isDashing: 0
@@ -5988,28 +5988,6 @@ MonoBehaviour:
   Pausemenu: {fileID: 0}
   enemyScriptM: {fileID: 0}
   enemyScriptR: {fileID: 0}
---- !u!95 &1652962760
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1652962752}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 6787d364af0c50847a44dfe84ed76603, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1758422790
 GameObject:
   m_ObjectHideFlags: 0

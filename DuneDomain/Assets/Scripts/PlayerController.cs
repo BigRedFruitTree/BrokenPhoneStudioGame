@@ -35,6 +35,8 @@ public class PlayerController : MonoBehaviour
     public float stringTimer;
     public int whichAttack = 1;
     public bool isCharging = false;
+    public bool canCharge = false;
+    public bool isGoingtoCharge = false;
     public bool chargeBoxActive = false;
     public int chargeLevel = 0;
     public float stringCooldown = 0f;
@@ -113,7 +115,7 @@ public class PlayerController : MonoBehaviour
 
             Vector3 temp = myRB.velocity;
 
-            if (canMove == true)
+            if (canMove == true && recovering == false)
             {
                 verticalMove = Input.GetAxisRaw("Vertical");
                 horizontalMove = Input.GetAxisRaw("Horizontal");
@@ -124,8 +126,8 @@ public class PlayerController : MonoBehaviour
 
             if (isDashing == false && attacking == false && isBlocking == false)
             {
-               myRB.velocity = (temp.x * transform.forward) + (temp.z * transform.right) + (temp.y * transform.up);
-            } 
+                myRB.velocity = (temp.x * transform.forward) + (temp.z * transform.right) + (temp.y * transform.up);
+            }
 
             if (weapon == 1)
             {
@@ -181,65 +183,65 @@ public class PlayerController : MonoBehaviour
                 shield.SetActive(false);
             }
 
-            if (horizontalMove > 0 && canRotate == true)
+            if (horizontalMove > 0 && canRotate == true && recovering == false)
             {
-                if (canMove == true)
+                if (canMove == true && recovering == false)
                     playerAnimator.SetBool("isMoving", true);
 
                 playerRotationHolder.transform.rotation = Quaternion.Euler(0f, 90f, 0f);
             }
-            if (horizontalMove > 0 && verticalMove > 0 && canRotate == true)
+            if (horizontalMove > 0 && verticalMove > 0 && canRotate == true && recovering == false)
             {
-                if (canMove == true)
+                if (canMove == true && recovering == false)
                     playerAnimator.SetBool("isMoving", true);
 
                 playerRotationHolder.transform.rotation = Quaternion.Euler(0f, 45f, 0f);
             }
-            if (horizontalMove > 0 && verticalMove < 0 && canRotate == true)
+            if (horizontalMove > 0 && verticalMove < 0 && canRotate == true && recovering == false)
             {
-                if (canMove == true)
+                if (canMove == true && recovering == false)
                     playerAnimator.SetBool("isMoving", true);
 
                 playerRotationHolder.transform.rotation = Quaternion.Euler(0f, 145f, 0f);
             }
-            if (horizontalMove < 0 && canRotate == true)
+            if (horizontalMove < 0 && canRotate == true && recovering == false)
             {
-                if (canMove == true)
+                if (canMove == true && recovering == false)
                     playerAnimator.SetBool("isMoving", true);
 
                 playerRotationHolder.transform.rotation = Quaternion.Euler(0f, -90f, 0f);
             }
-            if (horizontalMove < 0 && verticalMove > 0 && canRotate == true)
+            if (horizontalMove < 0 && verticalMove > 0 && canRotate == true && recovering == false)
             {
-                if (canMove == true)
+                if (canMove == true && recovering == false)
                     playerAnimator.SetBool("isMoving", true);
 
                 playerRotationHolder.transform.rotation = Quaternion.Euler(0f, -45f, 0f);
             }
-            if (horizontalMove < 0 && verticalMove < 0 && canRotate == true)
+            if (horizontalMove < 0 && verticalMove < 0 && canRotate == true && recovering == false)
             {
-                if (canMove == true)
+                if (canMove == true && recovering == false)
                     playerAnimator.SetBool("isMoving", true);
 
                 playerRotationHolder.transform.rotation = Quaternion.Euler(0f, -145f, 0f);
             }
-            if (verticalMove > 0 && horizontalMove == 0 && canRotate == true)
+            if (verticalMove > 0 && horizontalMove == 0 && canRotate == true && recovering == false)
             {
-                if (canMove == true)
+                if (canMove == true && recovering == false)
                     playerAnimator.SetBool("isMoving", true);
 
                 playerRotationHolder.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
             }
-            if (verticalMove < 0 && horizontalMove == 0 && canRotate == true)
+            if (verticalMove < 0 && horizontalMove == 0 && canRotate == true && recovering == false)
             {
-                if (canMove == true)
+                if (canMove == true && recovering == false)
                     playerAnimator.SetBool("isMoving", true);
 
                 playerRotationHolder.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
             }
-            if (verticalMove == 0 && horizontalMove == 0 && canRotate == true)
+            if (verticalMove == 0 && horizontalMove == 0 && canRotate == true && recovering == false)
             {
-                if (canMove == true)
+                if (canMove == true && recovering == false)
                     playerAnimator.SetBool("isMoving", false);
 
             }
@@ -254,21 +256,30 @@ public class PlayerController : MonoBehaviour
                     playerAnimator.SetBool("attacking", true);
                     playerAnimator.SetInteger("whichAttack", 1);
                     whichAttack = 1;
-                    myRB.velocity += playerRotationHolder.transform.forward * 30f;
+                    if (!recovering)
+                    {
+                        myRB.velocity += playerRotationHolder.transform.forward * 30f;
+                    }
                     attacking = true;
                     canAttack = false;
                     canMove = false;
                     canRotate = false;
                     stringCount = true;
-                    StartCoroutine("SwordCoolDown"); 
+                    StartCoroutine("SwordCoolDown");
                 }
 
                 if (weapon == 3)
                 {
                     playerAnimator.SetBool("attacking", true);
                     playerAnimator.SetInteger("whichAttack", 1);
+                    playerAnimator.SetBool("IsCharging", false);
+                    canCharge = true;
+                    isCharging = false;
                     whichAttack = 1;
-                    myRB.velocity += playerRotationHolder.transform.forward * 20f;
+                    if (!recovering)
+                    {
+                        myRB.velocity += playerRotationHolder.transform.forward * 20f;
+                    }
                     attacking = true;
                     canAttack = false;
                     canMove = false;
@@ -292,6 +303,29 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
+            if (Input.GetMouseButton(0) && canAttack == true && weapon > 0 && isDashing == false && attacking == false && isBlocking == false && recovering == false && playerAnimator.GetBool("recovering") == false)
+            {
+                if (weapon == 3)
+                {
+                    playerAnimator.SetBool("attacking", true);
+                    playerAnimator.SetInteger("whichAttack", 1);
+                    playerAnimator.SetBool("IsCharging", true);
+                    canCharge = false;
+                    isCharging = true;
+                    whichAttack = 1;
+                    if (!recovering)
+                    {
+                        myRB.velocity += playerRotationHolder.transform.forward * 20f;
+                    }
+                    attacking = true;
+                    canAttack = false;
+                    canMove = false;
+                    canRotate = false;
+                    stringCount = true;
+                    StartCoroutine("HammerCoolDownBase");
+                }
+            }
+
             if (stringCount == true && stringTimer > 0f)
             {
                 stringTimer -= Time.deltaTime;
@@ -308,7 +342,10 @@ public class PlayerController : MonoBehaviour
                 playerAnimator.SetBool("attacking", true);
                 whichAttack = 2;
                 stringTimer = 2f;
-                myRB.velocity += playerRotationHolder.transform.forward * 30f;
+                if (!recovering)
+                {
+                    myRB.velocity += playerRotationHolder.transform.forward * 30f;
+                }
                 attacking = true;
                 canAttack2 = false;
                 canMove = false;
@@ -323,7 +360,10 @@ public class PlayerController : MonoBehaviour
                 playerAnimator.SetBool("attacking", true);
                 whichAttack = 3;
                 stringTimer = 2f;
-                myRB.velocity += playerRotationHolder.transform.forward * 30f;
+                if (!recovering)
+                {
+                    myRB.velocity += playerRotationHolder.transform.forward * 30f;
+                }
                 attacking = true;
                 canAttack2 = false;
                 canMove = false;
@@ -338,7 +378,10 @@ public class PlayerController : MonoBehaviour
                 playerAnimator.SetBool("attacking", true);
                 whichAttack = 4;
                 stringTimer = 2f;
-                myRB.velocity += playerRotationHolder.transform.forward * 50f;
+                if (!recovering)
+                {
+                    myRB.velocity += playerRotationHolder.transform.forward * 50f;
+                }
                 attacking = true;
                 canAttack2 = false;
                 canMove = false;
@@ -352,9 +395,15 @@ public class PlayerController : MonoBehaviour
             {
                 playerAnimator.SetInteger("whichAttack", 2);
                 playerAnimator.SetBool("attacking", true);
+                playerAnimator.SetBool("IsCharging", false);
+                canCharge = true;
+                isCharging = false;
                 whichAttack = 2;
                 stringTimer = 2f;
-                myRB.velocity += playerRotationHolder.transform.forward * 20f;
+                if (!recovering)
+                {
+                    myRB.velocity += playerRotationHolder.transform.forward * 20f;
+                }
                 attacking = true;
                 canAttack2 = false;
                 canMove = false;
@@ -367,9 +416,13 @@ public class PlayerController : MonoBehaviour
             {
                 playerAnimator.SetInteger("whichAttack", 3);
                 playerAnimator.SetBool("attacking", true);
+                playerAnimator.SetBool("IsCharging", false);
                 whichAttack = 3;
                 stringTimer = 2f;
-                myRB.velocity += playerRotationHolder.transform.forward * 20f;
+                if (!recovering)
+                {
+                    myRB.velocity += playerRotationHolder.transform.forward * 20f;
+                }
                 attacking = true;
                 canAttack2 = false;
                 canMove = false;
@@ -382,9 +435,15 @@ public class PlayerController : MonoBehaviour
             {
                 playerAnimator.SetInteger("whichAttack", 4);
                 playerAnimator.SetBool("attacking", true);
+                playerAnimator.SetBool("IsCharging", false);
+                canCharge = true;
+                isCharging = false;
                 whichAttack = 4;
                 stringTimer = 2f;
-                myRB.velocity += playerRotationHolder.transform.forward * 20f;
+                if (!recovering)
+                {
+                    myRB.velocity += playerRotationHolder.transform.forward * 20f;
+                }
                 attacking = true;
                 canAttack2 = false;
                 canMove = false;
@@ -393,7 +452,50 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine("HammerCoolDownBase"); 
                 StartCoroutine("WaitEndString");  
             }
-            
+
+            if (Input.GetMouseButton(0) && attacking == false && stringTimer > 0 && whichAttack == 1 && weapon == 3)
+            {
+                playerAnimator.SetInteger("whichAttack", 2);
+                playerAnimator.SetBool("attacking", true);
+                playerAnimator.SetBool("IsCharging", true);
+                canCharge = false;
+                isCharging = true;
+                whichAttack = 2;
+                stringTimer = 2f;
+                if (!recovering)
+                {
+                    myRB.velocity += playerRotationHolder.transform.forward * 20f;
+                }
+                attacking = true;
+                canAttack2 = false;
+                canMove = false;
+                canRotate = false;
+                stringCount = true;
+                StartCoroutine("HammerCoolDownBase");
+            }
+
+            if (Input.GetMouseButton(0) && attacking == false && stringTimer > 0 && whichAttack == 3 && weapon == 3)
+            {
+                playerAnimator.SetInteger("whichAttack", 4);
+                playerAnimator.SetBool("attacking", true);
+                playerAnimator.SetBool("IsCharging", true);
+                canCharge = false;
+                isCharging = true;
+                whichAttack = 4;
+                stringTimer = 2f;
+                if (!recovering)
+                {
+                    myRB.velocity += playerRotationHolder.transform.forward * 20f;
+                }
+                attacking = true;
+                canAttack2 = false;
+                canMove = false;
+                canRotate = false;
+                stringCount = true;
+                StartCoroutine("HammerCoolDownBase");
+                StartCoroutine("WaitEndString");
+            }
+
             if (Input.GetMouseButtonDown(0) && attacking == false && stringTimer > 0 && whichAttack == 1 && weapon == 4)
             {
                 playerAnimator.SetInteger("whichAttack", 2);
@@ -717,9 +819,9 @@ public class PlayerController : MonoBehaviour
         playerAnimator.SetBool("recovering", true);
         stringCount = false;
         stringTimer = 2f;
-        canMove = true;
         yield return new WaitForSeconds(1f);
         playerAnimator.SetInteger("whichAttack", 0);
+        myRB.constraints = RigidbodyConstraints.FreezeAll;
         whichAttack = 0;
         playerAnimator.SetBool("attacking", false);
         yield return new WaitForSeconds(stringCooldown);
@@ -728,6 +830,8 @@ public class PlayerController : MonoBehaviour
         attacking = false;
         canAttack = true;
         canAttack2 = true;
+        myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
+        canMove = true;
     }
 
     IEnumerator WaitDraw()
@@ -742,7 +846,7 @@ public class PlayerController : MonoBehaviour
         playerAnimator.SetBool("attacking", false);
         yield return new WaitForSeconds(0.5f);
         attacking = false;
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
         canRotate = true;
         canAttack2 = true;
     }
