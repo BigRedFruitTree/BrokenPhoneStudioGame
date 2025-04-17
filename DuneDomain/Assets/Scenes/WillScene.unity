@@ -6482,7 +6482,7 @@ GameObject:
   - component: {fileID: 919492097}
   - component: {fileID: 919492096}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: EndWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13898,6 +13898,8 @@ MonoBehaviour:
   stringTimer: 0
   whichAttack: 1
   isCharging: 0
+  canCharge: 0
+  isGoingtoCharge: 0
   chargeBoxActive: 0
   chargeLevel: 0
   stringCooldown: 0
