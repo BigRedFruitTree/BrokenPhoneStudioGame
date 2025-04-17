@@ -14,7 +14,6 @@ public class GameManager : MonoBehaviour
     public Image pHealthBar;
     public Image pStaminaBar;
     
-
     [Header("Boss Stuff")]
     public float timeUntilAppearance;
     public float timeUntilEatPhase;
@@ -69,6 +68,7 @@ public class GameManager : MonoBehaviour
     public GameObject weaponKeepButton;
     public GameObject weaponKeepTXT;
     public GameObject bridge;
+    public bool canSpawnRocks = true;
 
     [Header("Game Map Stuff")]
     public GameObject Rock1Prefab;
@@ -111,11 +111,7 @@ public class GameManager : MonoBehaviour
             }
 
             playerController = GameObject.Find("Player").GetComponent<PlayerController>();
-
-            if (GameOn == true && GameOver == false && started == true && rounds == 1)
-            {
-                StartCoroutine("WaitAddRock1");
-            }
+            
         }
     }
 
@@ -134,6 +130,13 @@ public class GameManager : MonoBehaviour
             if (bossScript.health <= 0)
             {
                 winScreen.SetActive(true);
+            }
+
+            if (started == true && canSpawnRocks == true)
+            {
+                SpawnRock1atRandomPosition(3);
+                SpawnRock2atRandomPosition(3);
+                canSpawnRocks = false;
             }
 
             meleeEnemyNumber = GameObject.FindGameObjectsWithTag("MeleeEnemy");
