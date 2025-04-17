@@ -110,14 +110,12 @@ public class GameManager : MonoBehaviour
                bossAgent.speed = 5;
             }
 
-            if (GameOn == true && GameOver == false && started == true)
-            {
-                SpawnRock1atRandomPosition(rounds * 3);
-                SpawnRock2atRandomPosition(rounds * 3);
-            }
-            
-
             playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+
+            if (GameOn == true && GameOver == false && started == true && rounds == 1)
+            {
+                StartCoroutine("WaitAddRock1");
+            }
         }
     }
 
@@ -197,6 +195,7 @@ public class GameManager : MonoBehaviour
                     }
                 }
             }
+
 
             if (rounds > 1 && timeUntilAppearance <= 0f && canRun == false)
             {
@@ -291,6 +290,8 @@ public class GameManager : MonoBehaviour
                     bossUiStuff.SetActive(false);
                     StartCoroutine("WaitBossAway");
                     StartCoroutine("WaitWeaponScreen");
+                    StartCoroutine("WaitAddRock1");
+                    
                 }
             }
 
@@ -307,10 +308,6 @@ public class GameManager : MonoBehaviour
                 timeUntilAppearance = 6000f;
                 timeUntilEatPhase = 2000f;
                 startCycle = false;
-
-                SpawnRock1atRandomPosition(rounds * 3);
-
-                SpawnRock2atRandomPosition(rounds * 3);
             }
 
             if (playerController.health <= 0)
@@ -607,6 +604,12 @@ public class GameManager : MonoBehaviour
         weaponKeepButton.SetActive(true);
         weaponKeepTXT.SetActive(true);
         rounds += 1;
+    }
+
+    IEnumerator WaitAddRock1()
+    {
+        yield return new WaitForSeconds(2f);
+        SpawnRock1atRandomPosition(3);
     }
 
     IEnumerator WaitForWalking()

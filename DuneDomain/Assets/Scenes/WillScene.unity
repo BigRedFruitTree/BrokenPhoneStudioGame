@@ -1484,7 +1484,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: c5675fd50777f2c4db003da314967225, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 923423ac6c86dbc459a2d1633d46cb6f, type: 2}
   m_BuildHeightMesh: 0
 --- !u!64 &240141954
 MeshCollider:
@@ -14293,7 +14293,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: I'm not waiting for this beast to wake up. I'm going home.
+  m_text: This sand thing is gonna sleep. it's my chance to leave and go home.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
