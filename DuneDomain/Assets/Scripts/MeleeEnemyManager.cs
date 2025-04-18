@@ -239,7 +239,7 @@ public class MeleeEnemyManager : MonoBehaviour
 
     IEnumerator WaitDamage()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         canTakeDamage = true;
     }
 
