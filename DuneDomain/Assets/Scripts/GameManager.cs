@@ -353,7 +353,6 @@ public class GameManager : MonoBehaviour
         float spawnPosZ = Random.Range(-spawnRange, spawnRange);
         Vector3 randomPos = new Vector3(spawnPosX, 1.5f, spawnPosZ);
         return randomPos;
-
     }
 
     //This Generates a random position of rocks throughout the arena
