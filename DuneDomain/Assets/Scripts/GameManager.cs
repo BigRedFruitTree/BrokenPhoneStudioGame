@@ -544,7 +544,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator WaitStart()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0f);
         bossRigidBody.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
         bossAgent.speed = 5;
         bossanimator.SetBool("Issleeping", false);
@@ -618,9 +618,7 @@ public class GameManager : MonoBehaviour
     {
         canDash = false;
         yield return new WaitForSeconds(0.5f);
-        bossanimator.SetBool("Isaggressive", true);
         bossanimator.SetBool("Iswalking", false);
-        bossanimator.SetBool("Dodgeback", true);
         Vector3 lookDirection = (playerObject.transform.position - bossObject.transform.position);
         lookDirection.y = 0f;
         lookDirection.Normalize();
@@ -633,5 +631,12 @@ public class GameManager : MonoBehaviour
         bossanimator.SetBool("Dodgeback", false);
         yield return new WaitForSeconds(2f);
         canDash = true;
+    }
+
+    IEnumerator WaitforDodgeback()
+    {
+        yield return new WaitForSeconds(0.5f);
+        bossanimator.SetBool("Dodgeback", true);
+        bossanimator.SetBool("Isaggressive", true);
     }
 }
