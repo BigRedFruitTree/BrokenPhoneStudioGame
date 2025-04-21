@@ -549,6 +549,8 @@ public class PlayerController : MonoBehaviour
             {
                 if (weapon == 3 && drawSpeed >= 133.34f)
                 {
+                    playerAnimator.SetBool("IsCharging", false);
+                    playerAnimator.SetBool("attacking", true);
                     chargeLevel = 1;
                     isCharging = false;
                     attacking = true;
@@ -559,6 +561,8 @@ public class PlayerController : MonoBehaviour
                 }
                 if (weapon == 3 && drawSpeed > 66.67f && drawSpeed < 133.34)
                 {
+                    playerAnimator.SetBool("IsCharging", false);
+                    playerAnimator.SetBool("attacking", true);
                     chargeLevel = 2;
                     isCharging = false;
                     attacking = true;
@@ -569,6 +573,8 @@ public class PlayerController : MonoBehaviour
                 }
                 if (weapon == 3 && drawSpeed <= 66.67f)
                 {
+                    playerAnimator.SetBool("IsCharging", false);
+                    playerAnimator.SetBool("attacking", true);
                     chargeLevel = 3;
                     isCharging = false;
                     attacking = true;
@@ -589,7 +595,8 @@ public class PlayerController : MonoBehaviour
             }
 
             if (Input.GetMouseButton(1) && canMove == true && isBlocking == false && weapon == 3)
-            { 
+            {
+                playerAnimator.SetBool("IsCharging", true);
                 isCharging = true;
                 myRB.constraints = RigidbodyConstraints.FreezeAll;
                 isDashing = false;
@@ -777,6 +784,8 @@ public class PlayerController : MonoBehaviour
     IEnumerator HammerCoolDown1()
     {
         yield return new WaitForSeconds(1f);
+        playerAnimator.SetBool("attacking", false);
+        isCharging = false;
         chargeLevel = 0;
         canMove = true;
         canRotate = true;
@@ -788,6 +797,8 @@ public class PlayerController : MonoBehaviour
     IEnumerator HammerCoolDown2()
     {
         yield return new WaitForSeconds(1f);
+        playerAnimator.SetBool("attacking", false);
+        isCharging = false;
         chargeLevel = 0;
         canMove = true;
         canRotate = true;
@@ -799,6 +810,8 @@ public class PlayerController : MonoBehaviour
     IEnumerator HammerCoolDown3()
     {
         yield return new WaitForSeconds(1f);
+        playerAnimator.SetBool("attacking", false);
+        isCharging = false;
         chargeLevel = 0;
         canMove = true;
         canRotate = true;
