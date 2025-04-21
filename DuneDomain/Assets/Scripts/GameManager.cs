@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public GameObject playerUiStuff;
     public Image pHealthBar;
     public Image pStaminaBar;
-    
+
     [Header("Boss Stuff")]
     public float timeUntilAppearance;
     public float timeUntilEatPhase;
@@ -99,19 +99,19 @@ public class GameManager : MonoBehaviour
             if (enemyCorpseNumber == null || enemyCorpseNumber.Length == 0) return;
 
             SetNextTarget();
-            if(rounds == 1 && sleepDistance > 4f)
+            if (rounds == 1 && sleepDistance > 4f)
             {
-               bossanimator.SetBool("Isaggressive", false);
+                bossanimator.SetBool("Isaggressive", false);
                 bossAgent.speed = 3;
             }
             else
             {
-               bossanimator.SetBool("Isaggressive", true);
-               bossAgent.speed = 5;
+                bossanimator.SetBool("Isaggressive", true);
+                bossAgent.speed = 5;
             }
 
             playerController = GameObject.Find("Player").GetComponent<PlayerController>();
-            
+
         }
     }
 
@@ -226,11 +226,11 @@ public class GameManager : MonoBehaviour
 
                 if (bossAttack == 1 && bossDistance >= 10f)
                 {
-                    StartCoroutine("WaitAttack1");   
+                    StartCoroutine("WaitAttack1");
                 }
                 if (bossAttack == 2 && bossDistance >= 10f)
                 {
-                    StartCoroutine("WaitAttack2");   
+                    StartCoroutine("WaitAttack2");
                 }
                 if (bossAttack == 3 && bossDistance >= 10f)
                 {
@@ -250,6 +250,13 @@ public class GameManager : MonoBehaviour
                 }
                 StartCoroutine("Wait");
                 timeUntilEatPhase--;
+
+                if (bossDistance <= 8 && bossanimator.GetBool("Dodgeback") == false && bossanimator.GetBool("Isaggressive") == true)
+                {
+                    bossanimator.SetBool("Dodgeback", true);
+                    bossDistance = 15;
+                    StartCoroutine("WaitForWalking");
+                }
             }
 
             if (bossanimator.GetBool("Issleeping") == true)
@@ -294,7 +301,7 @@ public class GameManager : MonoBehaviour
                     StartCoroutine("WaitBossAway");
                     StartCoroutine("WaitWeaponScreen");
                     StartCoroutine("WaitAddRock1");
-                    
+
                 }
             }
 
@@ -631,12 +638,5 @@ public class GameManager : MonoBehaviour
         bossanimator.SetBool("Dodgeback", false);
         yield return new WaitForSeconds(2f);
         canDash = true;
-    }
-
-    IEnumerator WaitforDodgeback()
-    {
-        yield return new WaitForSeconds(0.5f);
-        bossanimator.SetBool("Dodgeback", true);
-        bossanimator.SetBool("Isaggressive", true);
     }
 }
