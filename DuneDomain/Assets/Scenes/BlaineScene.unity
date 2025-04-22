@@ -5272,7 +5272,7 @@ MonoBehaviour:
   bossAgent: {fileID: 1514836991}
   animator: {fileID: 1070366580}
   RB: {fileID: 1514836993}
-  health: 50
+  health: 100
   maxHealth: 50
   damage: 5
   canTakeDamage: 1
@@ -11506,6 +11506,7 @@ GameObject:
   - component: {fileID: 7535849791915545700}
   - component: {fileID: 1120493164522906770}
   - component: {fileID: 5858822576207595240}
+  - component: {fileID: 7535849791915545701}
   m_Layer: 0
   m_Name: Hammer
   m_TagString: Untagged
@@ -12631,7 +12632,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!33 &6121478414781365468
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -14024,6 +14025,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4264586279423073439}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &7535849791915545701
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5038893803261091997}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.17321894, y: 0.36788425, z: 0.031139819}
+  m_Center: {x: 0.0023756796, y: -0.030171525, z: 0.0033579888}
 --- !u!1 &7551842341076251416
 GameObject:
   m_ObjectHideFlags: 0
