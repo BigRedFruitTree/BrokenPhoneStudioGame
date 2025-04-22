@@ -305,24 +305,6 @@ public class GameManager : MonoBehaviour
                 }
             }
 
-            if (bossEating == false && timeUntilEatPhase <= 0 && enemyCorpseNumber.Length == 0)
-            {
-                if (rounds > 0  && bossAttacking == true)
-                {
-                    bossUiStuff.SetActive(false);
-                }
-            }
-
-            {
-                if (rounds > 0 && startCycle == false)
-                {
-                    bossUiStuff.SetActive(true);
-                    StartCoroutine("WaitBossAway");
-                    StartCoroutine("WaitWeaponScreen");
-                    StartCoroutine("WaitAddRock1");
-                }
-            }
-
             if (bossEating == false && timeUntilEatPhase <= 0f && startCycle == true && enemyCorpseNumber.Length == 0)
             {
                 if (meleeEnemyNumber.Length < 15)
