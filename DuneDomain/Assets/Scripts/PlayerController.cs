@@ -83,6 +83,8 @@ public class PlayerController : MonoBehaviour
     {
         playerAnimator.SetInteger("whichAttack", 0);
         playerAnimator.SetBool("attacking", false);
+        playerAnimator.SetBool("IsCharging", false);
+        playerAnimator.SetBool("IsDashing", false);
         playerAnimator.SetBool("isMoving", false);
         playerAnimator.SetInteger("weapon", 0);
         stringTimer = 2f;
@@ -588,6 +590,7 @@ public class PlayerController : MonoBehaviour
             
             if (Input.GetMouseButton(1) && canMove == true && isBlocking == false && weapon == 4)
             {
+                playerAnimator.SetBool("IsBlocking", true);
                 myRB.constraints = RigidbodyConstraints.FreezeAll;
                 canBlock = false;
                 isBlocking = true;
@@ -608,6 +611,7 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetMouseButtonUp(1) && isBlocking == true && canUnblock == true && canBlock == false && weapon == 4)
             {
+                playerAnimator.SetBool("IsBlocking", false);
                 myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
                 isBlocking = false;
                 canMove = true;
