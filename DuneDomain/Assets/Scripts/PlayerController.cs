@@ -736,6 +736,7 @@ public class PlayerController : MonoBehaviour
     {
         recovering = true;
         playerAnimator.SetBool("recovering", true);
+        playerAnimator.SetBool("IsCharging", false);
         stringCount = false;
         stringTimer = 2f;
         yield return new WaitForSeconds(1f);

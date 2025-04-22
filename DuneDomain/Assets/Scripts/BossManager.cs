@@ -40,16 +40,16 @@ public class BossManager : MonoBehaviour
     {
        if(gm.GameOn == true && gm.GameOver == false)
        {
-         if (health <= 0)
-         {
-            Destroy(bossObject);
-         }
+            if (health <= 0)
+            {
+                Destroy(bossObject);
+            }
        }
 
 
     }
 
-    public void OnTriggerStay(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
 
         if (other.gameObject.tag == "Shot" && canTakeDamage == true && gm.GameOn == true && player.weapon == 2)
@@ -62,6 +62,7 @@ public class BossManager : MonoBehaviour
 
         if (other.gameObject.tag == "Shot" && canTakeDamage == true && gm.GameOn == true && player.weapon == 5)
         {
+           
             canTakeDamage = false;
             health -= 2;
             StartCoroutine("WaitDamage");
@@ -70,52 +71,55 @@ public class BossManager : MonoBehaviour
 
         if (other.gameObject.name == "Sword" && canTakeDamage == true && gm.GameOn == true && player.attacking == true)
         {
+           
             canTakeDamage = false;
-            health--;
+            health -= 5;
             StartCoroutine("WaitDamage");
-
         }
 
         if (other.gameObject.name == "Hammer" && canTakeDamage == true && gm.GameOn == true && player.attacking == true)
         {
+            
             canTakeDamage = false;
-            health--;
+            health -= 6;
+            StartCoroutine("WaitDamage");
+        }
+
+        if (other.gameObject.name == "Hammer" && canTakeDamage == true && gm.GameOn == true && player.attacking == true && player.chargeLevel == 1)
+        {
+           
+            canTakeDamage = false;
+            health -= 7;
+            StartCoroutine("WaitDamage");
+        }
+
+        if (other.gameObject.name == "Hammer" && canTakeDamage == true && gm.GameOn == true && player.attacking == true && player.chargeLevel == 2)
+        {
+            
+            canTakeDamage = false;
+            health -= 9;
+            StartCoroutine("WaitDamage");
+        }
+
+        if (other.gameObject.name == "Hammer" && canTakeDamage == true && gm.GameOn == true && player.attacking == true && player.chargeLevel == 3)
+        {
+            
+            canTakeDamage = false;
+            health -= 11;
             StartCoroutine("WaitDamage");
         }
 
         if (other.gameObject.name == "Spear" && canTakeDamage == true && gm.GameOn == true && player.attacking == true)
         {
-            canTakeDamage = false;
-            health--;
-            StartCoroutine("WaitDamage");
-        }
-
-        if (other.gameObject.name == "ChargeHurtBox" && canTakeDamage == true && gm.GameOn == true && player.weapon == 3 && player.chargeLevel == 1)
-        {
-            canTakeDamage = false;
-            health -= 2;
-            StartCoroutine("WaitDamage");
-        }
-        if (other.gameObject.name == "ChargeHurtBox" && canTakeDamage == true && gm.GameOn == true && player.weapon == 3 && player.chargeLevel == 2)
-        {
+            
             canTakeDamage = false;
             health -= 4;
             StartCoroutine("WaitDamage");
         }
-        if (other.gameObject.name == "ChargeHurtBox" && canTakeDamage == true && gm.GameOn == true && player.weapon == 3 && player.chargeLevel == 3)
+
+        if (animator.GetBool("Issleeping") == true)
         {
             canTakeDamage = false;
-            health -= 6;
-            StartCoroutine("WaitDamage");
-        }
-        
-    }
-
-    public void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "EnemyCorpse" && gm.GameOn == true)
-        {
-            StartCoroutine("WaitEat");
         }
     }
 
