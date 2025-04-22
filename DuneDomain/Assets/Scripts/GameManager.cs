@@ -305,7 +305,14 @@ public class GameManager : MonoBehaviour
                 }
             }
 
-            if (bossEating == true && timeUntilEatPhase <= 0f && enemyCorpseNumber.Length == 0)
+            if (bossEating == false && timeUntilEatPhase <= 0 && enemyCorpseNumber.Length == 0)
+            {
+                if (rounds > 0  && bossAttacking == true)
+                {
+                    bossUiStuff.SetActive(false);
+                }
+            }
+
             {
                 if (rounds > 0 && startCycle == false)
                 {
