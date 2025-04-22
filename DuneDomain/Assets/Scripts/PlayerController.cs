@@ -98,6 +98,7 @@ public class PlayerController : MonoBehaviour
         canMove = true;
         canRotate = true;
         canDash = true;
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
