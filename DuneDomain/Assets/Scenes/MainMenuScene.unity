@@ -560,6 +560,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerController: {fileID: 0}
   playerObject: {fileID: 0}
+  playerUiStuff: {fileID: 0}
+  pHealthBar: {fileID: 0}
+  pStaminaBar: {fileID: 0}
   timeUntilAppearance: 0
   timeUntilEatPhase: 0
   timeUntilAttack: 0
@@ -569,10 +572,22 @@ MonoBehaviour:
   canBossEat: 0
   isProcessingTarget: 0
   bossAttack: 0
+  bossAttacking: 0
+  sleepDistance: 0
+  bossDistance: 0
+  bridgeDistance: 0
+  canRun: 0
+  canDash: 1
   bossAgent: {fileID: 0}
   bossObject: {fileID: 0}
   bossSpawn: {fileID: 0}
+  bossSleepPoint: {fileID: 0}
+  bossattackObject: {fileID: 0}
   bossScript: {fileID: 0}
+  bossRigidBody: {fileID: 0}
+  bossUiStuff: {fileID: 0}
+  bossBar: {fileID: 0}
+  bossanimator: {fileID: 0}
   spawnRange: 0
   enemyScript: {fileID: 0}
   meleeEnemyObject: {fileID: 0}
@@ -590,8 +605,15 @@ MonoBehaviour:
   started: 0
   weaponScreen: {fileID: 0}
   deathScreen: {fileID: 0}
+  NotWaitingAlertScreen: {fileID: 0}
+  winScreen: {fileID: 0}
+  pauseScreen: {fileID: 0}
   weaponKeepButton: {fileID: 0}
   weaponKeepTXT: {fileID: 0}
+  bridge: {fileID: 0}
+  canSpawnRocks: 1
+  Rock1Prefab: {fileID: 0}
+  Rock2Prefab: {fileID: 0}
 --- !u!1 &664479094
 GameObject:
   m_ObjectHideFlags: 0
@@ -964,6 +986,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerController: {fileID: 0}
   playerObject: {fileID: 0}
+  playerUiStuff: {fileID: 0}
+  pHealthBar: {fileID: 0}
+  pStaminaBar: {fileID: 0}
   timeUntilAppearance: 0
   timeUntilEatPhase: 0
   timeUntilAttack: 0
@@ -973,10 +998,22 @@ MonoBehaviour:
   canBossEat: 0
   isProcessingTarget: 0
   bossAttack: 0
+  bossAttacking: 0
+  sleepDistance: 0
+  bossDistance: 0
+  bridgeDistance: 0
+  canRun: 0
+  canDash: 1
   bossAgent: {fileID: 0}
   bossObject: {fileID: 0}
   bossSpawn: {fileID: 0}
+  bossSleepPoint: {fileID: 0}
+  bossattackObject: {fileID: 0}
   bossScript: {fileID: 0}
+  bossRigidBody: {fileID: 0}
+  bossUiStuff: {fileID: 0}
+  bossBar: {fileID: 0}
+  bossanimator: {fileID: 0}
   spawnRange: 0
   enemyScript: {fileID: 0}
   meleeEnemyObject: {fileID: 0}
@@ -994,8 +1031,15 @@ MonoBehaviour:
   started: 0
   weaponScreen: {fileID: 0}
   deathScreen: {fileID: 0}
+  NotWaitingAlertScreen: {fileID: 0}
+  winScreen: {fileID: 0}
+  pauseScreen: {fileID: 0}
   weaponKeepButton: {fileID: 0}
   weaponKeepTXT: {fileID: 0}
+  bridge: {fileID: 0}
+  canSpawnRocks: 1
+  Rock1Prefab: {fileID: 0}
+  Rock2Prefab: {fileID: 0}
 --- !u!4 &1511709477
 Transform:
   m_ObjectHideFlags: 0
@@ -1074,6 +1118,135 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1625777165
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1625777167}
+  - component: {fileID: 1625777166}
+  m_Layer: 0
+  m_Name: Audio Source
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &1625777166
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625777165}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: d9f6c9c96361aa64981389643209b52e, type: 3}
+  m_Resource: {fileID: 8300000, guid: d9f6c9c96361aa64981389643209b52e, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &1625777167
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625777165}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 32.94064, y: -29.236368, z: 188.11073}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1360,3 +1533,4 @@ SceneRoots:
   - {fileID: 1525636237}
   - {fileID: 1511709477}
   - {fileID: 250338860}
+  - {fileID: 1625777167}
