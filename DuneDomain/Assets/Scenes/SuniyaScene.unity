@@ -832,6 +832,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1681944569}
     - target: {fileID: 7388749027389276443, guid: 5a82a0fe6b9e7434b92b6551918010e7, type: 3}
+      propertyPath: stabsound
+      value: 
+      objectReference: {fileID: 8300000, guid: 8050118ab7b64054ebf5a034b8b4cb77, type: 3}
+    - target: {fileID: 7388749027389276443, guid: 5a82a0fe6b9e7434b92b6551918010e7, type: 3}
+      propertyPath: AudioSource
+      value: 
+      objectReference: {fileID: 2011717494}
+    - target: {fileID: 7388749027389276443, guid: 5a82a0fe6b9e7434b92b6551918010e7, type: 3}
       propertyPath: inputHandler
       value: 
       objectReference: {fileID: 1465032605}
@@ -7866,6 +7874,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &2011717494 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 674175292341571796, guid: 5a82a0fe6b9e7434b92b6551918010e7, type: 3}
+  m_PrefabInstance: {fileID: 242499009}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2021336036
 GameObject:
   m_ObjectHideFlags: 0

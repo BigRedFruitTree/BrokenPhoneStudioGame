@@ -77,6 +77,9 @@ public class PlayerController : MonoBehaviour
     public Canvas Pausemenu;
     public MeleeEnemyManager enemyScriptM;
     public RangedEnemyManager enemyScriptR;
+    public AudioSource AudioSource;
+    public AudioClip stabsound;
+
 
     // Start is called before the first frame update
     void Start()
@@ -172,6 +175,7 @@ public class PlayerController : MonoBehaviour
                 bow.SetActive(false);
                 crossbow.SetActive(false);
                 hammer.SetActive(false);
+                AudioSource.clip = stabsound;
             }
             if (weapon == 5)
             {
@@ -300,6 +304,7 @@ public class PlayerController : MonoBehaviour
                     canMove = false;
                     canRotate = false;
                     stringCount = true;
+                    AudioSource.Play();
                     StartCoroutine("SpearCoolDown");
                 }
             } 
@@ -426,6 +431,7 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0) && playerAnimator.GetBool("attacking") == false && canAttack == false && canAttack2 == true && attacking == false && stringTimer > 0 && whichAttack == 1 && weapon == 4 && recovering == false && recovering == false && playerAnimator.GetBool("recovering") == false)
             {
+
                 playerAnimator.SetInteger("whichAttack", 2);
                 playerAnimator.SetBool("attacking", true);
                 whichAttack = 2;
@@ -439,6 +445,7 @@ public class PlayerController : MonoBehaviour
                 canMove = false;
                 canRotate = false;
                 stringCount = true;
+                AudioSource.Play();
                 StartCoroutine("SpearCoolDown");
             }
 
@@ -457,6 +464,7 @@ public class PlayerController : MonoBehaviour
                 canMove = false;
                 canRotate = false;
                 stringCount = true;
+                AudioSource.Play();
                 StartCoroutine("SpearCoolDown");
             }
 
@@ -475,6 +483,7 @@ public class PlayerController : MonoBehaviour
                 canMove = false;
                 canRotate = false;
                 stringCount = true;
+                AudioSource.Play();
                 StartCoroutine("SpearCoolDown");
                 StartCoroutine("WaitEndString");
             }
