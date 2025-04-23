@@ -85,6 +85,7 @@ public class PlayerController : MonoBehaviour
         playerAnimator.SetBool("attacking", false);
         playerAnimator.SetBool("IsCharging", false);
         playerAnimator.SetBool("IsDashing", false);
+        playerAnimator.SetBool("IsDrawing", false);
         playerAnimator.SetBool("isMoving", false);
         playerAnimator.SetInteger("weapon", 0);
         stringTimer = 2f;
@@ -482,20 +483,22 @@ public class PlayerController : MonoBehaviour
             {
                 if (weapon == 2)
                 {
+                    playerAnimator.SetBool("IsDrawing", true);
                     myRB.constraints = RigidbodyConstraints.FreezeAll;
                     isDashing = false;
                     canAttack = false;
-                    canMove = false;
+                    canMove = true;
                     canRotate = true;
                     StartCoroutine("WaitDraw");
                 }
 
                 if (weapon == 5)
                 {
+                    playerAnimator.SetBool("IsDrawing", true);
                     myRB.constraints = RigidbodyConstraints.FreezeAll;
                     isDashing = false;
                     canAttack = false;
-                    canMove = false;
+                    canMove = true;
                     canRotate = true;
                     StartCoroutine("WaitDraw");
                 }
@@ -505,6 +508,8 @@ public class PlayerController : MonoBehaviour
             {
                 if (weapon == 2 && drawSpeed <= 0f)
                 {
+                    playerAnimator.SetBool("attacking", true);
+                    playerAnimator.SetBool("IsDrawing", false);
                     attacking = true;
                     arrowSpeed = 2500;
                     arrow.SetActive(true);
@@ -519,6 +524,8 @@ public class PlayerController : MonoBehaviour
                 }
                 if (weapon == 2 && drawSpeed > 0f)
                 {
+                    playerAnimator.SetBool("attacking", true);
+                    playerAnimator.SetBool("IsDrawing", false);
                     attacking = true;
                     drawSpeed = 100f;
                     myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
@@ -527,6 +534,8 @@ public class PlayerController : MonoBehaviour
 
                 if (weapon == 5 && drawSpeed > 0f)
                 {
+                    playerAnimator.SetBool("attacking", true);
+                    playerAnimator.SetBool("IsDrawing", false);
                     attacking = true;
                     drawSpeed = 200f;
                     myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
@@ -534,6 +543,8 @@ public class PlayerController : MonoBehaviour
                 }
                 if (weapon == 5 && drawSpeed <= 0)
                 {
+                    playerAnimator.SetBool("attacking", true);
+                    playerAnimator.SetBool("IsDrawing", false);
                     attacking = true;
                     arrowSpeed = 4500;
                     arrow.SetActive(true);
