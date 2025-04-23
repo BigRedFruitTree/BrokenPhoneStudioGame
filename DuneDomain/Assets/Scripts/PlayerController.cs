@@ -84,7 +84,7 @@ public class PlayerController : MonoBehaviour
         playerAnimator.SetInteger("whichAttack", 0);
         playerAnimator.SetBool("attacking", false);
         playerAnimator.SetBool("IsCharging", false);
-        playerAnimator.SetBool("IsDashing", false);
+        playerAnimator.SetBool("isDashing", false);
         playerAnimator.SetBool("IsDrawing", false);
         playerAnimator.SetBool("isMoving", false);
         playerAnimator.SetInteger("weapon", 0);
@@ -515,8 +515,8 @@ public class PlayerController : MonoBehaviour
                     arrow.SetActive(true);
                     GameObject arrowSummon = Instantiate(arrow, arrowSpawnB.transform.position, arrowSpawnB.transform.rotation);
                     arrowSummon.transform.Rotate(180f, 0f, 0f);
-                    arrowSummon.GetComponent<Rigidbody>().AddForce(bow.transform.forward * arrowSpeed);
-                    Destroy(arrowSummon, 2f);
+                    arrowSummon.GetComponent<Rigidbody>().AddForce(arrow.transform.forward * arrowSpeed);
+                    //Destroy(arrowSummon, 200f);
                     canAttack = false;
                     drawSpeed = 100f;
                     myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
@@ -550,7 +550,7 @@ public class PlayerController : MonoBehaviour
                     arrow.SetActive(true);
                     GameObject arrowSummon = Instantiate(arrow, arrowSpawnC.transform.position, arrowSpawnC.transform.rotation);
                     arrowSummon.transform.Rotate(90f, 0f, 0f);
-                    arrowSummon.GetComponent<Rigidbody>().AddForce(crossbow.transform.up * arrowSpeed);
+                    arrowSummon.GetComponent<Rigidbody>().AddForce(arrow.transform.up * arrowSpeed);
                     Destroy(arrowSummon, 2f);
                     canAttack = false;
                     drawSpeed = 200f;
@@ -851,6 +851,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator BowCoolDown()
     {
         isCooldownOver = false;
+        playerAnimator.SetBool("attacking", false);
         attacking = false;
         yield return new WaitForSeconds(2f);
         drawSpeed = 100f;
