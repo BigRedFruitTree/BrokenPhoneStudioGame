@@ -175,7 +175,6 @@ public class PlayerController : MonoBehaviour
                 bow.SetActive(false);
                 crossbow.SetActive(false);
                 hammer.SetActive(false);
-                AudioSource.clip = stabsound;
             }
             if (weapon == 5)
             {
@@ -304,6 +303,7 @@ public class PlayerController : MonoBehaviour
                     canMove = false;
                     canRotate = false;
                     stringCount = true;
+                    AudioSource.clip = stabsound;
                     AudioSource.Play();
                     StartCoroutine("SpearCoolDown");
                 }
@@ -389,6 +389,7 @@ public class PlayerController : MonoBehaviour
                 canMove = false;
                 canRotate = false;
                 stringCount = true;
+                AudioSource.Play();
                 StartCoroutine("HammerCoolDownBase");
             }
 
@@ -407,6 +408,7 @@ public class PlayerController : MonoBehaviour
                 canMove = false;
                 canRotate = false;
                 stringCount = true;
+                AudioSource.Play();
                 StartCoroutine("HammerCoolDownBase");
             }
 
@@ -425,6 +427,7 @@ public class PlayerController : MonoBehaviour
                 canMove = false;
                 canRotate = false;
                 stringCount = true;
+                AudioSource.Play();
                 StartCoroutine("HammerCoolDownBase");
                 StartCoroutine("WaitEndString");
             }
