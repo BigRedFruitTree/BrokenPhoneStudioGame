@@ -593,6 +593,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1681766952}
     - target: {fileID: 7388749027389276443, guid: 5a82a0fe6b9e7434b92b6551918010e7, type: 3}
+      propertyPath: enemyScriptM
+      value: 
+      objectReference: {fileID: 1620339241}
+    - target: {fileID: 7388749027389276443, guid: 5a82a0fe6b9e7434b92b6551918010e7, type: 3}
+      propertyPath: enemyScriptR
+      value: 
+      objectReference: {fileID: 435185284}
+    - target: {fileID: 7388749027389276443, guid: 5a82a0fe6b9e7434b92b6551918010e7, type: 3}
       propertyPath: inputHandler
       value: 
       objectReference: {fileID: 1496674050}
@@ -1675,6 +1683,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 594971832880149158, guid: 3647edb2f01b6ed45b735e5ce92e49b1, type: 3}
   m_PrefabInstance: {fileID: 320404299}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &435185284 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -8651239494715870957, guid: 3647edb2f01b6ed45b735e5ce92e49b1, type: 3}
+  m_PrefabInstance: {fileID: 320404299}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 435185283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aeccf63b058d3534bb2cac4eb1ec7a43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &452574187
 GameObject:
   m_ObjectHideFlags: 0

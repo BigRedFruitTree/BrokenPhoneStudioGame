@@ -515,7 +515,7 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetMouseButtonUp(0) && weapon > 0 && isDashing == false && isBlocking == false)
             {
-                if (weapon == 2 && drawSpeed <= 0f)
+                if (weapon == 2) //drawSpeed <= 0f)
                 {
                     playerAnimator.SetBool("attacking", true);
                     playerAnimator.SetBool("IsDrawing", false);
@@ -525,11 +525,14 @@ public class PlayerController : MonoBehaviour
                     GameObject arrowSummon = Instantiate(arrow, arrowSpawnB.transform.position, arrowSpawnB.transform.rotation);
                     arrowSummon.transform.Rotate(180f, 0f, 0f);
                     arrowSummon.GetComponent<Rigidbody>().AddForce(arrow.transform.forward * arrowSpeed);
-                    //Destroy(arrowSummon, 200f);
                     canAttack = false;
                     drawSpeed = 100f;
+                    Destroy(arrowSummon, 200f);
                     myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
                     StartCoroutine("BowCoolDown");
+                    
+                    
+                 
                 }
                 if (weapon == 2 && drawSpeed > 0f)
                 {
