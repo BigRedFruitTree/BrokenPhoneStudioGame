@@ -121,7 +121,7 @@ public class GameManager : MonoBehaviour
         if (GameOn == true && GameOver == false && started == true && SceneManager.GetActiveScene().buildIndex > 0)
         {
             pHealthBar.fillAmount = Mathf.Clamp((float)playerController.health / (float)playerController.maxHealth, 0, 1);
-            bossBar.fillAmount = Mathf.Clamp((float)bossScript.health / (float)50, 0, 1);
+            bossBar.fillAmount = Mathf.Clamp((float)bossScript.health / (float)100, 0, 1);
             pStaminaBar.fillAmount = Mathf.Clamp((float)playerController.stamina / (float)10, 0, 1);
             playerUiStuff.SetActive(true);
             bossDistance = Vector3.Distance(bossObject.transform.position, playerObject.transform.position);
@@ -238,25 +238,18 @@ public class GameManager : MonoBehaviour
                 }
 
                 timeUntilAppearance = 0f;
-                if (bossDistance <= 10f && bossanimator.GetBool("Dodgeback") == false && canDash == true)
+                if (bossDistance <= 16f && bossanimator.GetBool("Dodgeback") == false && canDash == true)
                 {
                     bossAgent.ResetPath();
                     StartCoroutine("WaitForWalking");
                 }
-                if (bossDistance > 10f && bossanimator.GetBool("Dodgeback") == false)
+                if (bossDistance > 16f && bossanimator.GetBool("Dodgeback") == false)
                 {
                     bossAgent.destination = playerObject.transform.position;
                     bossanimator.SetBool("Isaggressive", true);
                 }
                 StartCoroutine("Wait");
                 timeUntilEatPhase--;
-
-                if (bossDistance <= 8 && bossanimator.GetBool("Dodgeback") == false && bossanimator.GetBool("Isaggressive") == true)
-                {
-                    bossanimator.SetBool("Dodgeback", true);
-                    bossDistance = 15;
-                    StartCoroutine("WaitForWalking");
-                }
             }
 
             if (bossanimator.GetBool("Issleeping") == true)
@@ -551,12 +544,18 @@ public class GameManager : MonoBehaviour
 
     IEnumerator WaitStart()
     {
-        yield return new WaitForSeconds(0f);
+        yield return new WaitForSeconds(1f);
         bossRigidBody.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
         bossAgent.speed = 5;
+        Vector3 lookDirection = (playerObject.transform.position - bossObject.transform.position);
+        lookDirection.y = 0f;
+        lookDirection.Normalize();
+        Quaternion awayRotation = Quaternion.LookRotation(lookDirection);
+        bossObject.transform.rotation = Quaternion.Euler(bossObject.transform.rotation.eulerAngles.x, awayRotation.eulerAngles.y, bossObject.transform.rotation.eulerAngles.z);
         bossanimator.SetBool("Issleeping", false);
-        canRun = true;
         bossanimator.SetBool("Isaggressive", true);
+        yield return new WaitForSeconds(2f);
+        canRun = true;
         bossanimator.SetBool("Iswalking", true);
     }
     IEnumerator WaitAttack1()
@@ -625,7 +624,9 @@ public class GameManager : MonoBehaviour
     {
         canDash = false;
         yield return new WaitForSeconds(0.5f);
+        bossanimator.SetBool("Dodgeback", true);
         bossanimator.SetBool("Iswalking", false);
+        yield return new WaitForSeconds(0.5f);
         Vector3 lookDirection = (playerObject.transform.position - bossObject.transform.position);
         lookDirection.y = 0f;
         lookDirection.Normalize();
