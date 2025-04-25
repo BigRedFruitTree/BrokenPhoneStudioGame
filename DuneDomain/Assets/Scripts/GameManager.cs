@@ -225,17 +225,17 @@ public class GameManager : MonoBehaviour
                     bossAttack = Random.Range(0, 4);
                 }
 
-                if (bossAttack == 1 && bossDistance >= 10f)
+                if (bossAttack == 1 && bossDistance >= 10f && bossanimator.GetBool("Dodgeback") == false)
                 {
                     bossanimator.SetBool("attacking", true);
                     StartCoroutine("WaitAttack1");
                 }
-                if (bossAttack == 2 && bossDistance >= 10f)
+                if (bossAttack == 2 && bossDistance >= 10f && bossanimator.GetBool("Dodgeback") == false)
                 {
                     bossanimator.SetBool("attacking", true);
                     StartCoroutine("WaitAttack2");
                 }
-                if (bossAttack == 3 && bossDistance >= 10f)
+                if (bossAttack == 3 && bossDistance >= 10f && bossanimator.GetBool("Dodgeback") == false)
                 {
                     bossanimator.SetBool("attacking", true);
                     StartCoroutine("WaitAttack3");
