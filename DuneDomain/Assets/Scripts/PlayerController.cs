@@ -516,7 +516,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            if (Input.GetMouseButtonUp(0) && weapon > 0 && isDashing == false && isBlocking == false)
+            if (Input.GetMouseButtonUp(0) && weapon > 0 && isDashing == false && isBlocking == false && canAttack == true)
             {
                 if (weapon == 2) //drawSpeed <= 0f)
                 {
@@ -530,7 +530,6 @@ public class PlayerController : MonoBehaviour
                     arrowSummon.GetComponent<Rigidbody>().AddForce(arrow.transform.forward * arrowSpeed);
                     canAttack = false;
                     drawSpeed = 100f;
-                    Destroy(arrowSummon, 200f);
                     myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
                     StartCoroutine("BowCoolDown");
                     
