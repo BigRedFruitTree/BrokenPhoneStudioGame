@@ -192,6 +192,7 @@ public class GameManager : MonoBehaviour
                     bossRigidBody.constraints = RigidbodyConstraints.FreezeAll;
                     bossanimator.SetBool("Iswalking", false);
                     bossanimator.SetBool("Issleeping", true);
+                    StartCoroutine("WaitShowAlert");
                     if (bridgeDistance <= 26)
                     {
                         StartCoroutine("WaitStart");
@@ -226,14 +227,17 @@ public class GameManager : MonoBehaviour
 
                 if (bossAttack == 1 && bossDistance >= 10f)
                 {
+                    bossanimator.SetBool("attacking", true);
                     StartCoroutine("WaitAttack1");
                 }
                 if (bossAttack == 2 && bossDistance >= 10f)
                 {
+                    bossanimator.SetBool("attacking", true);
                     StartCoroutine("WaitAttack2");
                 }
                 if (bossAttack == 3 && bossDistance >= 10f)
                 {
+                    bossanimator.SetBool("attacking", true);
                     StartCoroutine("WaitAttack3");
                 }
 
@@ -250,15 +254,6 @@ public class GameManager : MonoBehaviour
                 }
                 StartCoroutine("Wait");
                 timeUntilEatPhase--;
-            }
-
-            if (bossanimator.GetBool("Issleeping") == true)
-            {
-                NotWaitingAlertScreen.SetActive(true);
-            }
-            else
-            {
-                NotWaitingAlertScreen.SetActive(false);
             }
 
             if (timeUntilEatPhase <= 0f)
@@ -618,6 +613,12 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         SpawnRock1atRandomPosition(3);
+    }
+
+    IEnumerator WaitShowAlert()
+    {
+        yield return new WaitForSeconds(4f);
+        NotWaitingAlertScreen.SetActive(true);
     }
 
     IEnumerator WaitForWalking()

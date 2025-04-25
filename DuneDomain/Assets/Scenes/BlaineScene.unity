@@ -2367,7 +2367,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "I'm not waiting for this beast to wake up. I'm going home. \n"
+  m_text: 'Looks like the monster is going to sleep, nows my chance to get out of
+    here. I''ll have to go to the bridge up ahead, thats the only way I can get home.
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2376,8 +2379,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4288072681
-  m_fontColor: {r: 0.91194963, g: 0.7957464, b: 0.587892, a: 1}
+    rgba: 4284912300
+  m_fontColor: {r: 0.67295593, g: 0.57428426, b: 0.3999643, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
