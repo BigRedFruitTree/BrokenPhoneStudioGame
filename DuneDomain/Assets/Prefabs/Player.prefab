@@ -3594,6 +3594,8 @@ MonoBehaviour:
   Pausemenu: {fileID: 0}
   enemyScriptM: {fileID: 0}
   enemyScriptR: {fileID: 0}
+  AudioSource: {fileID: 674175292341571796}
+  stabsound: {fileID: 0}
 --- !u!82 &674175292341571796
 AudioSource:
   m_ObjectHideFlags: 0

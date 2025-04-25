@@ -547,6 +547,11 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         bossRigidBody.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
         bossAgent.speed = 5;
+        Vector3 lookDirection = (playerObject.transform.position - bossObject.transform.position);
+        lookDirection.y = 0f;
+        lookDirection.Normalize();
+        Quaternion awayRotation = Quaternion.LookRotation(lookDirection);
+        bossObject.transform.rotation = Quaternion.Euler(bossObject.transform.rotation.eulerAngles.x, awayRotation.eulerAngles.y, bossObject.transform.rotation.eulerAngles.z);
         bossanimator.SetBool("Issleeping", false);
         bossanimator.SetBool("Isaggressive", true);
         yield return new WaitForSeconds(2f);
