@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
     public GameObject bossObject;
     public GameObject bossSpawn;
     public GameObject bossSleepPoint;
-    //public GameObject bossattackObject;
+    public GameObject bossattackObject;
     public BossManager bossScript;
     private GameObject currentTarget;
     public Rigidbody bossRigidBody;
@@ -121,7 +121,7 @@ public class GameManager : MonoBehaviour
         if (GameOn == true && GameOver == false && started == true && SceneManager.GetActiveScene().buildIndex > 0)
         {
             pHealthBar.fillAmount = Mathf.Clamp((float)playerController.health / (float)playerController.maxHealth, 0, 1);
-            bossBar.fillAmount = Mathf.Clamp((float)bossScript.health / (float)100, 0, 1);
+            bossBar.fillAmount = Mathf.Clamp((float)bossScript.health / (float)50, 0, 1);
             pStaminaBar.fillAmount = Mathf.Clamp((float)playerController.stamina / (float)10, 0, 1);
             playerUiStuff.SetActive(true);
             bossDistance = Vector3.Distance(bossObject.transform.position, playerObject.transform.position);
@@ -551,38 +551,37 @@ public class GameManager : MonoBehaviour
 
     IEnumerator WaitStart()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0f);
         bossRigidBody.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
         bossAgent.speed = 5;
         bossanimator.SetBool("Issleeping", false);
-        bossanimator.SetBool("Isaggressive", true);
-        yield return new WaitForSeconds(2f);
         canRun = true;
+        bossanimator.SetBool("Isaggressive", true);
         bossanimator.SetBool("Iswalking", true);
     }
     IEnumerator WaitAttack1()
     {
-        //bossattackObject.SetActive(true);
+        bossattackObject.SetActive(true);
         yield return new WaitForSeconds(2f);
         bossAttack = 0;
         timeUntilAttack = Random.Range(200f, 300f);
-        //bossattackObject.SetActive(false);
+        bossattackObject.SetActive(false);
     }
     IEnumerator WaitAttack2()
     {
-        //bossattackObject.SetActive(true);
+        bossattackObject.SetActive(true);
         yield return new WaitForSeconds(2f);
         bossAttack = 0;
         timeUntilAttack = Random.Range(200f, 300f);
-        //bossattackObject.SetActive(false);
+        bossattackObject.SetActive(false);
     }
     IEnumerator WaitAttack3()
     {
-        //bossattackObject.SetActive(true);
+        bossattackObject.SetActive(true);
         yield return new WaitForSeconds(2f);
         bossAttack = 0;
         timeUntilAttack = Random.Range(200f, 300f);
-        //bossattackObject.SetActive(false);
+        bossattackObject.SetActive(false);
     }
     IEnumerator WaitBossAway()
     {
