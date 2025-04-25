@@ -21,30 +21,30 @@ public class PlayerArrow : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        //if (other.gameObject.name == "Shield" && playerScript.isBlocking == true)
-        //{
-            //Destroy(arrow);
-        //}
+        if (other.gameObject.name == "Shield" && playerScript.isBlocking == true)
+        {
+            Destroy(arrow);
+        }
 
-        //if (other.gameObject.tag == "RangedEnemy")
-        //{
-           // Destroy(arrow);
-        //}
+        if (other.gameObject.tag == "RangedEnemy")
+        { 
+            Destroy(arrow);
+        }
 
-        //if (other.gameObject.tag == "MeleeEnemy")
-        //{
-            //Destroy(arrow);
-        //}
+        if (other.gameObject.tag == "MeleeEnemy")
+        {
+            Destroy(arrow);
+        }
 
-        //if (other.gameObject.tag == "Environment")
-        //{
-            //Destroy(arrow);
-        //}
+        if (other.gameObject.tag == "Environment")
+        {
+            Destroy(arrow);
+        }
 
-        //if (other.gameObject.name == "Boss")
-        //{
-            //Destroy(arrow);
-        //}
+        if (other.gameObject.name == "Boss")
+        {
+            Destroy(arrow);
+        }
 
     }
 }
