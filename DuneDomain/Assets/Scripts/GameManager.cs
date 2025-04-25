@@ -634,7 +634,7 @@ public class GameManager : MonoBehaviour
         Quaternion awayRotation = Quaternion.LookRotation(lookDirection);
         bossObject.transform.rotation = Quaternion.Euler(bossObject.transform.rotation.eulerAngles.x, awayRotation.eulerAngles.y, bossObject.transform.rotation.eulerAngles.z);
         bossAgent.ResetPath();
-        bossRigidBody.AddForce(-lookDirection * 1000000f);
+        bossRigidBody.AddForce(-lookDirection * 6000000f);
         yield return new WaitForSeconds(1f);
         bossanimator.SetBool("Iswalking", true);
         bossanimator.SetBool("Dodgeback", false);
