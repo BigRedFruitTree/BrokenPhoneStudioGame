@@ -127,7 +127,7 @@ public class MeleeEnemyManager : MonoBehaviour
                 enemyRidigbody.AddForce(-lookDirection * 100);
             }
             canTakeDamage = false;
-            health -= 1;
+            health -= 6;
             StartCoroutine("WaitDamage");
 
         }
@@ -143,7 +143,7 @@ public class MeleeEnemyManager : MonoBehaviour
                 enemyRidigbody.AddForce(-lookDirection * 100);
             }
             canTakeDamage = false;
-            health -= 2;
+            health -= 8;
             StartCoroutine("WaitDamage");
 
         }
@@ -159,7 +159,7 @@ public class MeleeEnemyManager : MonoBehaviour
                 enemyRidigbody.AddForce(-lookDirection * 1000);
             }
             canTakeDamage = false;
-            health -= 5;
+            health -= 7;
             StartCoroutine("WaitDamage");
         }
 
@@ -174,7 +174,7 @@ public class MeleeEnemyManager : MonoBehaviour
                 enemyRidigbody.AddForce(-lookDirection * 1000);
             }
             canTakeDamage = false;
-            health -= 6;
+            health -= 10;
             StartCoroutine("WaitDamage");
         }
 
@@ -189,7 +189,7 @@ public class MeleeEnemyManager : MonoBehaviour
                 enemyRidigbody.AddForce(-lookDirection * 1000);
             }
             canTakeDamage = false;
-            health -= 7;
+            health -= 12;
             StartCoroutine("WaitDamage");
         }
 
@@ -204,7 +204,7 @@ public class MeleeEnemyManager : MonoBehaviour
                 enemyRidigbody.AddForce(-lookDirection * 1000);
             }
             canTakeDamage = false;
-            health -= 9;
+            health -= 15;
             StartCoroutine("WaitDamage");
         }
 
@@ -219,7 +219,7 @@ public class MeleeEnemyManager : MonoBehaviour
                 enemyRidigbody.AddForce(-lookDirection * 1000);
             }
             canTakeDamage = false;
-            health -= 11;
+            health -= 20;
             StartCoroutine("WaitDamage");
         }
 
@@ -234,7 +234,7 @@ public class MeleeEnemyManager : MonoBehaviour
                 enemyRidigbody.AddForce(-lookDirection * 1000);
             }
             canTakeDamage = false;
-            health -= 4;
+            health -= 5;
             StartCoroutine("WaitDamage");
         }
     }
