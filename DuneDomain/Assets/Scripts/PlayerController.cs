@@ -647,7 +647,7 @@ public class PlayerController : MonoBehaviour
 
             if(isDashing == true && attacking == false && isBlocking == false)
             {
-                myRB.velocity += playerRotationHolder.transform.forward * 3f;
+                myRB.velocity += playerRotationHolder.transform.forward * 2f;
             }
 
             if (dashingEnd == true && isDashing == false && attacking == false && isBlocking == false)
