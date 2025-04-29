@@ -534,9 +534,6 @@ public class PlayerController : MonoBehaviour
                     Destroy(arrowSummon, 200f);
                     myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
                     StartCoroutine("BowCoolDown");
-                    
-                    
-                 
                 }
                 if (weapon == 2 && drawSpeed > 0f)
                 {
@@ -564,9 +561,9 @@ public class PlayerController : MonoBehaviour
                     attacking = true;
                     arrowSpeed = 4500;
                     arrow.SetActive(true);
-                    GameObject arrowSummon = Instantiate(arrow, arrowSpawnC.transform.position, arrowSpawnC.transform.rotation);
-                    arrowSummon.transform.Rotate(90f, 0f, 0f);
-                    arrowSummon.GetComponent<Rigidbody>().AddForce(arrow.transform.up * arrowSpeed);
+                    GameObject arrowSummon = Instantiate(arrow, arrowSpawnC.transform.position, playerRotationHolder.transform.rotation);
+                    arrowSummon.transform.Rotate(90f, 180f, 0f);
+                    arrowSummon.GetComponent<Rigidbody>().AddForce(playerRotationHolder.transform.forward * arrowSpeed);
                     Destroy(arrowSummon, 2f);
                     canAttack = false;
                     drawSpeed = 200f;
