@@ -321,6 +321,7 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0) && playerAnimator.GetBool("attacking") == false && canAttack == false && canAttack2 == true && attacking == false && stringTimer > 0 && whichAttack == 1 && weapon == 1 && recovering == false && recovering == false && playerAnimator.GetBool("recovering") == false)
             {
+                myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
                 playerAnimator.SetInteger("whichAttack", 2);
                 playerAnimator.SetBool("attacking", true);
                 whichAttack = 2;
@@ -794,10 +795,12 @@ public class PlayerController : MonoBehaviour
     IEnumerator SwordCoolDown()
     {
         yield return new WaitForSeconds(0.5f);
+        myRB.constraints = RigidbodyConstraints.FreezeAll;
         playerAnimator.SetBool("attacking", false);
         yield return new WaitForSeconds(0.5f);
         attacking = false;
         yield return new WaitForSeconds(1f);
+        myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
         canRotate = true;
         canAttack2 = true;
     }
