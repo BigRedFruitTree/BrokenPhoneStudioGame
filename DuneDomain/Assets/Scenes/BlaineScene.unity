@@ -2764,6 +2764,7 @@ MonoBehaviour:
   bossUiStuff: {fileID: 1290424080}
   bossBar: {fileID: 1102005375}
   bossanimator: {fileID: 1718042161}
+  transitionAttack: 0
   spawnRange: 0
   enemyScript: {fileID: 2032745260}
   meleeEnemyObject: {fileID: 0}
@@ -4928,7 +4929,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!195 &1514836991
 NavMeshAgent:
   m_ObjectHideFlags: 0

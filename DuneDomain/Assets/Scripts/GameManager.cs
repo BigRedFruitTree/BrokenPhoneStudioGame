@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
     public GameObject bossUiStuff;
     public Image bossBar;
     public Animator bossanimator;
+    public bool transitionAttack = false;
 
     [Header("Enemy Stuff")]
     public float spawnRange;
@@ -191,7 +192,7 @@ public class GameManager : MonoBehaviour
                     bossRigidBody.constraints = RigidbodyConstraints.FreezeAll;
                     bossanimator.SetBool("Iswalking", false);
                     bossanimator.SetBool("Issleeping", true);
-                    StartCoroutine("WaitShowAlert");
+                    NotWaitingAlertScreen.SetActive(true);
                     if (bridgeDistance <= 26)
                     {
                         StartCoroutine("WaitStart");
@@ -558,6 +559,14 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator WaitAttack1()
     {
+        if (Random.Range(1, 4) == 2)
+        {
+            transitionAttack = true;
+        }
+        else
+        {
+            transitionAttack = false;
+        }
         bossAgent.ResetPath();
         bossAgent.speed = 0;
         Vector3 lookDirection = (playerObject.transform.position - bossObject.transform.position);
@@ -567,7 +576,7 @@ public class GameManager : MonoBehaviour
         bossObject.transform.rotation = Quaternion.Euler(bossObject.transform.rotation.eulerAngles.x, awayRotation.eulerAngles.y, bossObject.transform.rotation.eulerAngles.z);
         yield return new WaitForSeconds(2f);
         bossanimator.SetBool("attacking", false);
-        if (Random.Range(1, 4) == 2)
+        if (transitionAttack == true)
         {
             bossAgent.speed = 0;
             bossAttack = 1;
@@ -664,12 +673,6 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         SpawnRock1atRandomPosition(3);
-    }
-
-    IEnumerator WaitShowAlert()
-    {
-        yield return new WaitForSeconds(4f);
-        NotWaitingAlertScreen.SetActive(true);
     }
 
     IEnumerator WaitForWalking()
