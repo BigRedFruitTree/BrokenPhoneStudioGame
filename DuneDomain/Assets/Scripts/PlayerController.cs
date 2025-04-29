@@ -555,7 +555,7 @@ public class PlayerController : MonoBehaviour
                     attacking = true;
                     drawSpeed = 200f;
                     myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
-                    StartCoroutine("BowCoolDown");
+                    StartCoroutine("CrossbowCoolDown");
                 }
                 if (weapon == 5 && drawSpeed <= 0)
                 {
@@ -880,6 +880,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator CrossbowCoolDown()
     {
         isCooldownOver = false;
+        playerAnimator.SetBool("attacking", false);
         attacking = false;
         yield return new WaitForSeconds(4f);
         drawSpeed = 200f;
