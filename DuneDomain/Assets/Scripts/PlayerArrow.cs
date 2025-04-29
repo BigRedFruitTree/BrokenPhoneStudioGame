@@ -19,6 +19,19 @@ public class PlayerArrow : MonoBehaviour
 
     }
 
+    public void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.name == "Rock")
+        {
+            Destroy(arrow);
+        }
+
+        if (collision.gameObject.name == "Rock2")
+        {
+            Destroy(arrow);
+        }
+    }
+
     public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.name == "Shield" && playerScript.isBlocking == true)

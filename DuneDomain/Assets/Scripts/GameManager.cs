@@ -134,8 +134,8 @@ public class GameManager : MonoBehaviour
 
             if (started == true && canSpawnRocks == true)
             {
-                SpawnRock1atRandomPosition(3);
-                SpawnRock2atRandomPosition(3);
+                SpawnRock1atRandomPosition(5);
+                SpawnRock2atRandomPosition(5);
                 canSpawnRocks = false;
             }
 
@@ -214,30 +214,30 @@ public class GameManager : MonoBehaviour
             if (timeUntilAppearance <= 0f && canRun == true)
             {
 
-                if (timeUntilAttack > 0f && bossDistance <= 40f)
+                if (timeUntilAttack > 0f && bossDistance <= 30f)
                 {
                     StartCoroutine("Wait");
                     timeUntilAttack--;
                 }
-                if (timeUntilAttack <= 0f && bossAttack == 0 && bossDistance <= 40f)
+                if (timeUntilAttack <= 0f && bossAttack == 0 && bossDistance <= 30f)
                 {
                     timeUntilAttack = 0f;
                     bossAttack = Random.Range(0, 4);
                 }
 
-                if (bossAttack == 1 && bossDistance <= 40f && bossanimator.GetBool("Dodgeback") == false)
+                if (bossAttack == 1 && bossDistance <= 30f && bossanimator.GetBool("Dodgeback") == false)
                 {
                     bossAgent.ResetPath();
                     bossanimator.SetBool("attacking", true);
                     StartCoroutine("WaitAttack1");
                 }
-                if (bossAttack == 2 && bossDistance <= 40f && bossanimator.GetBool("Dodgeback") == false)
+                if (bossAttack == 2 && bossDistance <= 30f && bossanimator.GetBool("Dodgeback") == false)
                 {
                     bossAgent.ResetPath();
                     bossanimator.SetBool("attacking", true);
                     StartCoroutine("WaitAttack2");
                 }
-                if (bossAttack == 3 && bossDistance <= 40f && bossanimator.GetBool("Dodgeback") == false)
+                if (bossAttack == 3 && bossDistance <= 30f && bossanimator.GetBool("Dodgeback") == false)
                 {
                     bossAgent.ResetPath();
                     bossanimator.SetBool("attacking", true);
@@ -248,6 +248,7 @@ public class GameManager : MonoBehaviour
                 if (bossDistance <= 16f && bossanimator.GetBool("Dodgeback") == false && canDash == true && bossanimator.GetBool("attacking") == false)
                 {
                     bossAgent.ResetPath();
+                    bossAgent.speed = 0;
                     StartCoroutine("WaitForWalking");
                 }
                 if (bossDistance > 16f && bossanimator.GetBool("Dodgeback") == false)

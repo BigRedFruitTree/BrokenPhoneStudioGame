@@ -120,11 +120,11 @@ public class MeleeEnemyManager : MonoBehaviour
         {
             if (gm.meleeEnemyMovePattern == 2)
             {
-                enemyRidigbody.AddForce(lookDirection * 100);
+                enemyRidigbody.AddForce(lookDirection * 2000);
             }
             else
             {
-                enemyRidigbody.AddForce(-lookDirection * 100);
+                enemyRidigbody.AddForce(-lookDirection * 2000);
             }
             canTakeDamage = false;
             health -= 6;
@@ -136,11 +136,11 @@ public class MeleeEnemyManager : MonoBehaviour
         {
             if (gm.meleeEnemyMovePattern == 2)
             {
-                enemyRidigbody.AddForce(lookDirection * 100);
+                enemyRidigbody.AddForce(lookDirection * 2500);
             }
             else
             {
-                enemyRidigbody.AddForce(-lookDirection * 100);
+                enemyRidigbody.AddForce(-lookDirection * 2500);
             }
             canTakeDamage = false;
             health -= 8;
@@ -152,11 +152,11 @@ public class MeleeEnemyManager : MonoBehaviour
         {
             if (gm.meleeEnemyMovePattern == 2)
             {
-                enemyRidigbody.AddForce(lookDirection * 1000);
+                enemyRidigbody.AddForce(lookDirection * 2000);
             }
             else
             {
-                enemyRidigbody.AddForce(-lookDirection * 1000);
+                enemyRidigbody.AddForce(-lookDirection * 2000);
             }
             canTakeDamage = false;
             health -= 7;
@@ -167,11 +167,11 @@ public class MeleeEnemyManager : MonoBehaviour
         {
             if (gm.meleeEnemyMovePattern == 2)
             {
-                enemyRidigbody.AddForce(lookDirection * 1000);
+                enemyRidigbody.AddForce(lookDirection * 2500);
             }
             else
             {
-                enemyRidigbody.AddForce(-lookDirection * 1000);
+                enemyRidigbody.AddForce(-lookDirection * 2500);
             }
             canTakeDamage = false;
             health -= 10;
@@ -182,11 +182,11 @@ public class MeleeEnemyManager : MonoBehaviour
         {
             if (gm.meleeEnemyMovePattern == 2)
             {
-                enemyRidigbody.AddForce(lookDirection * 1000);
+                enemyRidigbody.AddForce(lookDirection * 3000);
             }
             else
             {
-                enemyRidigbody.AddForce(-lookDirection * 1000);
+                enemyRidigbody.AddForce(-lookDirection * 3000);
             }
             canTakeDamage = false;
             health -= 12;
@@ -197,11 +197,11 @@ public class MeleeEnemyManager : MonoBehaviour
         {
             if (gm.meleeEnemyMovePattern == 2)
             {
-                enemyRidigbody.AddForce(lookDirection * 1000);
+                enemyRidigbody.AddForce(lookDirection * 3500);
             }
             else
             {
-                enemyRidigbody.AddForce(-lookDirection * 1000);
+                enemyRidigbody.AddForce(-lookDirection * 3500);
             }
             canTakeDamage = false;
             health -= 15;
@@ -212,11 +212,11 @@ public class MeleeEnemyManager : MonoBehaviour
         {
             if (gm.meleeEnemyMovePattern == 2)
             {
-                enemyRidigbody.AddForce(lookDirection * 1000);
+                enemyRidigbody.AddForce(lookDirection * 4000);
             }
             else
             {
-                enemyRidigbody.AddForce(-lookDirection * 1000);
+                enemyRidigbody.AddForce(-lookDirection * 4000);
             }
             canTakeDamage = false;
             health -= 20;
@@ -227,14 +227,29 @@ public class MeleeEnemyManager : MonoBehaviour
         {
             if (gm.meleeEnemyMovePattern == 2)
             {
-                enemyRidigbody.AddForce(lookDirection * 1000);
+                enemyRidigbody.AddForce(lookDirection * 2000);
             }
             else
             {
-                enemyRidigbody.AddForce(-lookDirection * 1000);
+                enemyRidigbody.AddForce(-lookDirection * 2000);
             }
             canTakeDamage = false;
             health -= 5;
+            StartCoroutine("WaitDamage");
+        }
+
+        if (other.gameObject.name == "Shield" && canTakeDamage == true && gm.GameOn == true && player.attacking == true)
+        {
+            if (gm.meleeEnemyMovePattern == 2)
+            {
+                enemyRidigbody.AddForce(lookDirection * 2000);
+            }
+            else
+            {
+                enemyRidigbody.AddForce(-lookDirection * 2000);
+            }
+            canTakeDamage = false;
+            health -= 4;
             StartCoroutine("WaitDamage");
         }
     }

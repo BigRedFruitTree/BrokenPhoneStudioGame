@@ -136,14 +136,14 @@ public class RangedEnemyManager : MonoBehaviour
         {
             if (gm.meleeEnemyMovePattern == 2)
             {
-                enemyRidigbody.AddForce(lookDirection * 100);
+                enemyRidigbody.AddForce(lookDirection * 2000);
             }
             else
             {
-                enemyRidigbody.AddForce(-lookDirection * 100);
+                enemyRidigbody.AddForce(-lookDirection * 2000);
             }
             canTakeDamage = false;
-            health -= 1;
+            health -= 6;
             StartCoroutine("WaitDamage");
 
         }
@@ -152,14 +152,14 @@ public class RangedEnemyManager : MonoBehaviour
         {
             if (gm.meleeEnemyMovePattern == 2)
             {
-                enemyRidigbody.AddForce(lookDirection * 100);
+                enemyRidigbody.AddForce(lookDirection * 2500);
             }
             else
             {
-                enemyRidigbody.AddForce(-lookDirection * 100);
+                enemyRidigbody.AddForce(-lookDirection * 2500);
             }
             canTakeDamage = false;
-            health -= 2;
+            health -= 8;
             StartCoroutine("WaitDamage");
 
         }
@@ -168,14 +168,14 @@ public class RangedEnemyManager : MonoBehaviour
         {
             if (gm.meleeEnemyMovePattern == 2)
             {
-                enemyRidigbody.AddForce(lookDirection * 1000);
+                enemyRidigbody.AddForce(lookDirection * 2000);
             }
             else
             {
-                enemyRidigbody.AddForce(-lookDirection * 1000);
+                enemyRidigbody.AddForce(-lookDirection * 2000);
             }
             canTakeDamage = false;
-            health -= 5;
+            health -= 7;
             StartCoroutine("WaitDamage");
         }
 
@@ -183,14 +183,14 @@ public class RangedEnemyManager : MonoBehaviour
         {
             if (gm.meleeEnemyMovePattern == 2)
             {
-                enemyRidigbody.AddForce(lookDirection * 1000);
+                enemyRidigbody.AddForce(lookDirection * 2500);
             }
             else
             {
-                enemyRidigbody.AddForce(-lookDirection * 1000);
+                enemyRidigbody.AddForce(-lookDirection * 2500);
             }
             canTakeDamage = false;
-            health -= 6;
+            health -= 10;
             StartCoroutine("WaitDamage");
         }
 
@@ -198,14 +198,14 @@ public class RangedEnemyManager : MonoBehaviour
         {
             if (gm.meleeEnemyMovePattern == 2)
             {
-                enemyRidigbody.AddForce(lookDirection * 1000);
+                enemyRidigbody.AddForce(lookDirection * 3000);
             }
             else
             {
-                enemyRidigbody.AddForce(-lookDirection * 1000);
+                enemyRidigbody.AddForce(-lookDirection * 3000);
             }
             canTakeDamage = false;
-            health -= 7;
+            health -= 12;
             StartCoroutine("WaitDamage");
         }
 
@@ -213,14 +213,14 @@ public class RangedEnemyManager : MonoBehaviour
         {
             if (gm.meleeEnemyMovePattern == 2)
             {
-                enemyRidigbody.AddForce(lookDirection * 1000);
+                enemyRidigbody.AddForce(lookDirection * 3500);
             }
             else
             {
-                enemyRidigbody.AddForce(-lookDirection * 1000);
+                enemyRidigbody.AddForce(-lookDirection * 3500);
             }
             canTakeDamage = false;
-            health -= 9;
+            health -= 15;
             StartCoroutine("WaitDamage");
         }
 
@@ -228,14 +228,14 @@ public class RangedEnemyManager : MonoBehaviour
         {
             if (gm.meleeEnemyMovePattern == 2)
             {
-                enemyRidigbody.AddForce(lookDirection * 1000);
+                enemyRidigbody.AddForce(lookDirection * 4000);
             }
             else
             {
-                enemyRidigbody.AddForce(-lookDirection * 1000);
+                enemyRidigbody.AddForce(-lookDirection * 4000);
             }
             canTakeDamage = false;
-            health -= 11;
+            health -= 20;
             StartCoroutine("WaitDamage");
         }
 
@@ -243,11 +243,26 @@ public class RangedEnemyManager : MonoBehaviour
         {
             if (gm.meleeEnemyMovePattern == 2)
             {
-                enemyRidigbody.AddForce(lookDirection * 1000);
+                enemyRidigbody.AddForce(lookDirection * 2000);
             }
             else
             {
-                enemyRidigbody.AddForce(-lookDirection * 1000);
+                enemyRidigbody.AddForce(-lookDirection * 2000);
+            }
+            canTakeDamage = false;
+            health -= 5;
+            StartCoroutine("WaitDamage");
+        }
+
+        if (other.gameObject.name == "Shield" && canTakeDamage == true && gm.GameOn == true && player.attacking == true)
+        {
+            if (gm.meleeEnemyMovePattern == 2)
+            {
+                enemyRidigbody.AddForce(lookDirection * 2000);
+            }
+            else
+            {
+                enemyRidigbody.AddForce(-lookDirection * 2000);
             }
             canTakeDamage = false;
             health -= 4;
