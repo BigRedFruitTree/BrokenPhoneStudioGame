@@ -525,9 +525,9 @@ public class PlayerController : MonoBehaviour
                     attacking = true;
                     arrowSpeed = 2500;
                     arrow.SetActive(true);
-                    GameObject arrowSummon = Instantiate(arrow, arrowSpawnB.transform.position, arrowSpawnB.transform.rotation);
-                    arrowSummon.transform.Rotate(180f, 0f, 0f);
-                    arrowSummon.GetComponent<Rigidbody>().AddForce(arrow.transform.forward * arrowSpeed);
+                    GameObject arrowSummon = Instantiate(arrow, arrowSpawnB.transform.position, playerRotationHolder.transform.rotation);
+                    arrowSummon.transform.Rotate(90f, 180f, 0f);
+                    arrowSummon.GetComponent<Rigidbody>().AddForce(playerRotationHolder.transform.forward * arrowSpeed);
                     canAttack = false;
                     drawSpeed = 100f;
                     Destroy(arrowSummon, 200f);
