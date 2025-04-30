@@ -68,6 +68,11 @@ public class GameManager : MonoBehaviour
     public GameObject pauseScreen;
     public GameObject weaponKeepButton;
     public GameObject weaponKeepTXT;
+    public GameObject TutorialScreen1;
+    public GameObject TutorialScreen2;
+    public GameObject TutorialScreen3;
+    public GameObject TutorialScreen4;
+    public GameObject TutorialScreen5;
     public GameObject bridge;
     public bool canSpawnRocks = true;
 
@@ -82,7 +87,7 @@ public class GameManager : MonoBehaviour
         {
             bossObject.SetActive(false);
             startCycle = false;
-            weaponScreen.SetActive(true);
+            TutorialScreen1.SetActive(true);
             if (rounds <= 0)
             {
                 weaponKeepButton.SetActive(false);
@@ -113,6 +118,10 @@ public class GameManager : MonoBehaviour
 
             playerController = GameObject.Find("Player").GetComponent<PlayerController>();
 
+        }
+        else
+        {
+            weaponScreen.SetActive(true);
         }
     }
 
@@ -534,6 +543,32 @@ public class GameManager : MonoBehaviour
         GameOn = true;
         pauseScreen.SetActive(false);
         Time.timeScale = 1;
+    }
+
+    public void ContinueToTutorialScreen2()
+    {
+        TutorialScreen1.SetActive(false);
+        TutorialScreen2.SetActive(true);
+    }
+    public void ContinueToTutorialScreen3()
+    {
+        TutorialScreen2.SetActive(false);
+        TutorialScreen3.SetActive(true);
+    }
+    public void ContinueToTutorialScreen4()
+    {
+        TutorialScreen3.SetActive(true);
+        TutorialScreen4.SetActive(false);
+    }
+    public void ContinueToTutorialScreen5()
+    {
+        TutorialScreen4.SetActive(false);
+        TutorialScreen5.SetActive(true);
+    }
+    public void FinishButton()
+    {
+        TutorialScreen5.SetActive(false);
+        weaponScreen.SetActive(true);
     }
 
     IEnumerator Wait()
