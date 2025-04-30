@@ -13,8 +13,9 @@ public class MeleeEnemyManager : MonoBehaviour
     public GameObject enemyObject;
     public NavMeshAgent agent;
     public Rigidbody enemyRidigbody;
-    public GameObject enemySword;
     public GameObject corpsePrefab;
+    public Animator animator;
+    public GameObject model;
 
     [Header("Stats")]
     public int health;
@@ -33,7 +34,8 @@ public class MeleeEnemyManager : MonoBehaviour
     void Start()
     {
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
-        enemySword = enemyObject.transform.GetChild(0).gameObject;
+        model = enemyObject.transform.GetChild(0).gameObject;
+        animator = model.GetComponent<Animator>();
         agent = enemyObject.GetComponent<NavMeshAgent>();
         timer = Random.Range(3f, 5f);
         health = 50 + gm.rounds;
@@ -50,14 +52,15 @@ public class MeleeEnemyManager : MonoBehaviour
         if (gm.GameOn == true && gm.GameOver == false)
         {
             float distance = Vector3.Distance(transform.position, playerObject.transform.position);
-            enemySword.SetActive(true);
-            if (gm.meleeEnemyMovePattern == 2 && canMove == true && dead == false)
+            if (gm.meleeEnemyMovePattern == 2 && canMove == true && dead == false && attacking == false && animator.GetBool("attacking") == false)
             {
+                animator.SetBool("moving", true);
                 lookDirection = (enemyObject.transform.position - playerObject.transform.position).normalized;
                 enemyRidigbody.AddForce(lookDirection * speed);
             }
-            else if (gm.meleeEnemyMovePattern == 1 && canMove == true && dead == false)
+            else if (gm.meleeEnemyMovePattern == 1 && canMove == true && dead == false && attacking == false && animator.GetBool("attacking") == false)
             {
+                animator.SetBool("moving", true);
                 lookDirection = (playerObject.transform.position - enemyObject.transform.position).normalized;
                 enemyRidigbody.AddForce(lookDirection * speed);
             }
@@ -77,28 +80,25 @@ public class MeleeEnemyManager : MonoBehaviour
 
             if (gm.GameOn == true && dead == false && distance < 10 && gm.meleeEnemyMovePattern == 1)
             {
-                if (timer > 0)
+                if (timer > 0f)
                 {
                     timer -= 1 * Time.deltaTime;
                 }
 
-                if (timer <= 0)
+                if (timer <= 0f)
                 {
-                    timer = 0;
-                    canAttack = true;
-                    attacking = true;
+                    timer = 0f;
                 }
 
-                if (attacking == true && canAttack == true && canMove == true)
+                if (canAttack == true && canMove == true && timer <= 0f)
                 {
-                    StartCoroutine("WaitAttack1");
+                    StartCoroutine("WaitAttack");
                 }
             }
-            else
+            if (gm.GameOn == true && dead == false && gm.meleeEnemyMovePattern == 2)
             {
                 attacking = false;
                 canAttack = false;
-                enemySword.transform.eulerAngles = new Vector3(0f, 0f, 0f);
                 canMove = true;
                 timer = Random.Range(3f, 5f);
             }
@@ -106,7 +106,7 @@ public class MeleeEnemyManager : MonoBehaviour
             if (health <= 0 && dead == false)
             {
                 Destroy(enemyObject);
-                Instantiate(corpsePrefab, new Vector3(enemyObject.transform.position.x, enemyObject.transform.position.y - 0.59f, enemyObject.transform.position.z), Quaternion.Euler(90, 0, 0));
+                Instantiate(corpsePrefab, new Vector3(enemyObject.transform.position.x, enemyObject.transform.position.y - 1f, enemyObject.transform.position.z), Quaternion.Euler(0, 0, -90));
                 dead = true;
             }
 
@@ -260,29 +260,62 @@ public class MeleeEnemyManager : MonoBehaviour
         canTakeDamage = true;
     }
 
-    IEnumerator WaitAttack1()
+    IEnumerator WaitAttack()
     {
         canMove = false;
         canRotate = false;
         yield return new WaitForSeconds(0.5f);
-        enemySword.transform.eulerAngles = new Vector3(90f, enemyObject.transform.eulerAngles.y, enemyObject.transform.eulerAngles.z);
-        enemyRidigbody.velocity += transform.forward * 30;
-        yield return new WaitForSeconds(0.4f);
-        attacking = false;
-        canAttack = false;
-        canRotate = true;
-        enemySword.transform.eulerAngles = new Vector3(0f, 0f, 0f);
-        timer = Random.Range(2f, 4f);
+        animator.SetBool("attacking", true);
+        animator.SetInteger("whichAttack", 1);
+        canAttack = true;
+        attacking = true;
+        enemyRidigbody.velocity += transform.forward * 20;
         yield return new WaitForSeconds(0.5f);
-        canRotate = false;
-        enemySword.transform.eulerAngles = new Vector3(90f, enemyObject.transform.eulerAngles.y, enemyObject.transform.eulerAngles.z);
-        enemyRidigbody.velocity += transform.forward * 30;
-        yield return new WaitForSeconds(0.4f);
+        animator.SetBool("attacking", false);
+        animator.SetInteger("whichAttack", 0);
         attacking = false;
         canAttack = false;
+        canRotate = false;
+        yield return new WaitForSeconds(0.5f);
+        animator.SetBool("attacking", true);
+        animator.SetInteger("whichAttack", 2);
+        canRotate = false;
+        attacking = true;
+        enemyRidigbody.velocity += transform.forward * 20;
+        yield return new WaitForSeconds(0.5f);
+        animator.SetBool("attacking", false);
+        animator.SetInteger("whichAttack", 0);
+        attacking = false;
+        canAttack = false;
+        canRotate = false;
+        canMove = true;
+        yield return new WaitForSeconds(0.5f);
+        animator.SetBool("attacking", true);
+        animator.SetInteger("whichAttack", 3);
+        canRotate = false;
+        attacking = true;
+        enemyRidigbody.velocity += transform.forward * 20;
+        yield return new WaitForSeconds(0.5f);
+        animator.SetBool("attacking", false);
+        animator.SetInteger("whichAttack", 0);
+        attacking = false;
+        canAttack = false;
+        canRotate = false;
+        canMove = false;
+        yield return new WaitForSeconds(0.5f);
+        animator.SetBool("attacking", true);
+        animator.SetInteger("whichAttack", 4);
+        canRotate = false;
+        attacking = true;
+        enemyRidigbody.velocity += transform.forward * 20;
+        yield return new WaitForSeconds(0.5f);
+        animator.SetBool("attacking", false);
+        animator.SetInteger("whichAttack", 0);
+        attacking = false;
         canRotate = true;
         canMove = true;
-        enemySword.transform.eulerAngles = new Vector3(0f, 0f, 0f);
+        yield return new WaitForSeconds(2f);
+        canAttack = true;
         timer = Random.Range(3f, 5f);
     }
 }
