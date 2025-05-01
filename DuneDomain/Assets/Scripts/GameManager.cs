@@ -87,7 +87,7 @@ public class GameManager : MonoBehaviour
         {
             bossObject.SetActive(false);
             startCycle = false;
-            TutorialScreen1.SetActive(true);
+            weaponScreen.SetActive(true);
             if (rounds <= 0)
             {
                 weaponKeepButton.SetActive(false);
