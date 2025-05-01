@@ -93,7 +93,7 @@ public class PlayerController : MonoBehaviour
         playerAnimator.SetInteger("weapon", 0);
         stringTimer = 2f;
         speed = 7f;
-        drawSpeed = 200f;
+        drawSpeed = 50f;
         stamina = 10;
         health = 100;
         maxHealth = 100;
@@ -530,7 +530,7 @@ public class PlayerController : MonoBehaviour
                     arrowSummon.transform.Rotate(90f, 180f, 0f);
                     arrowSummon.GetComponent<Rigidbody>().AddForce(playerRotationHolder.transform.forward * arrowSpeed);
                     canAttack = false;
-                    drawSpeed = 100f;
+                    drawSpeed = 50f;
                     Destroy(arrowSummon, 200f);
                     myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
                     StartCoroutine("BowCoolDown");
@@ -540,7 +540,7 @@ public class PlayerController : MonoBehaviour
                     playerAnimator.SetBool("attacking", true);
                     playerAnimator.SetBool("IsDrawing", false);
                     attacking = true;
-                    drawSpeed = 100f;
+                    drawSpeed = 50f;
                     myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
                     StartCoroutine("BowCoolDown");
                 }
@@ -550,7 +550,7 @@ public class PlayerController : MonoBehaviour
                     playerAnimator.SetBool("attacking", true);
                     playerAnimator.SetBool("IsDrawing", false);
                     attacking = true;
-                    drawSpeed = 200f;
+                    drawSpeed = 100f;
                     myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
                     StartCoroutine("CrossbowCoolDown");
                 }
@@ -566,7 +566,7 @@ public class PlayerController : MonoBehaviour
                     arrowSummon.GetComponent<Rigidbody>().AddForce(playerRotationHolder.transform.forward * arrowSpeed);
                     Destroy(arrowSummon, 2f);
                     canAttack = false;
-                    drawSpeed = 200f;
+                    drawSpeed = 100f;
                     myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
                     StartCoroutine("CrossbowCoolDown");
                 }
