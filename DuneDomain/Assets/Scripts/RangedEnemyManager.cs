@@ -13,11 +13,13 @@ public class RangedEnemyManager : MonoBehaviour
     public GameObject enemyObject;
     public NavMeshAgent agent;
     public Rigidbody enemyRidigbody;
-    public GameObject enemyBow;
+    //public GameObject enemyBow;
     public GameObject corpsePrefab;
     public GameObject arrow;
     private GameObject arrowSummon;
     public GameObject arrowSpawner;
+    public Animator animator;
+    public GameObject model;
 
     [Header("Stats")]
     public int health;
@@ -38,7 +40,9 @@ public class RangedEnemyManager : MonoBehaviour
     void Start()
     {
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
-        enemyBow = enemyObject.transform.GetChild(0).gameObject;
+        model = enemyObject.transform.GetChild(0).gameObject;
+        animator = model.GetComponent<Animator>();
+        //enemyBow = enemyObject.transform.GetChild(0).gameObject;
         arrowSpawner = enemyObject.transform.GetChild(1).gameObject;
         agent = enemyObject.GetComponent<NavMeshAgent>();
         timer = Random.Range(7f, 9f);
@@ -57,7 +61,7 @@ public class RangedEnemyManager : MonoBehaviour
         if (gm.GameOn == true && gm.GameOver == false)
         {
             float distance = Vector3.Distance(transform.position, playerObject.transform.position);
-            enemyBow.SetActive(true);
+            //enemyBow.SetActive(true);
             if (gm.rangedEnemyMovePattern == 2 && gm.GameOn == true && canWalk == true && dead == false || distance < 5 && gm.GameOn == true && canWalk == true && dead == false)
             {
                 lookDirection = (enemyObject.transform.position - playerObject.transform.position).normalized;
@@ -84,14 +88,14 @@ public class RangedEnemyManager : MonoBehaviour
 
             if (timer > 0f && gm.rangedEnemyMovePattern == 1)
             {
-                enemyBow.transform.eulerAngles = new Vector3(0f, enemyObject.transform.eulerAngles.y, 0f);
+                //enemyBow.transform.eulerAngles = new Vector3(0f, enemyObject.transform.eulerAngles.y, 0f);
                 timer -= 1 * Time.deltaTime;
             }
 
             if (timer <= 0f && timer2 > 0f && gm.rangedEnemyMovePattern == 1)
             {
                 canWalk = false;
-                enemyBow.transform.eulerAngles = new Vector3(0f, enemyObject.transform.eulerAngles.y, enemyObject.transform.eulerAngles.z);
+                //enemyBow.transform.eulerAngles = new Vector3(0f, enemyObject.transform.eulerAngles.y, enemyObject.transform.eulerAngles.z);
                 timer = 0f;
                 timer2 -= 1 * Time.deltaTime;
             }
@@ -108,7 +112,7 @@ public class RangedEnemyManager : MonoBehaviour
                 attacking = true;
                 arrowSummon = Instantiate(arrow, arrowSpawner.transform.position, arrowSpawner.transform.rotation);
                 arrowSummon.transform.Rotate(180f, 0f, 0f);
-                arrowSummon.GetComponent<Rigidbody>().AddForce(enemyBow.transform.forward * 2000);
+                arrowSummon.GetComponent<Rigidbody>().AddForce(arrowSpawner.transform.forward * 2000);
                 arrow.SetActive(true);
                 Destroy(arrowSummon, 2f);
                 attacking = false;
