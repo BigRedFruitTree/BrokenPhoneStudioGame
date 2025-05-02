@@ -43,7 +43,7 @@ public class RangedEnemyManager : MonoBehaviour
         model = enemyObject.transform.GetChild(0).gameObject;
         animator = model.GetComponent<Animator>();
         enemyBow = model.transform.GetChild(1).gameObject;
-        arrowSpawner = enemyBow.transform.GetChild(1).gameObject;
+        arrowSpawner = enemyBow.transform.GetChild(0).gameObject;
         agent = enemyObject.GetComponent<NavMeshAgent>();
         timer = Random.Range(7f, 9f);
         timer2 = 5f;
@@ -73,6 +73,10 @@ public class RangedEnemyManager : MonoBehaviour
                 lookDirection = (playerObject.transform.position - enemyObject.transform.position).normalized;
                 enemyRidigbody.AddForce(lookDirection * speed);
             }
+            else
+            {
+                animator.SetBool("moving", false);
+            }
 
             if (gm.rangedEnemyMovePattern == 2 && gm.GameOn == true && canRotate == true && dead == false)
             {
@@ -94,6 +98,7 @@ public class RangedEnemyManager : MonoBehaviour
 
             if (timer <= 0f && timer2 > 0f && gm.rangedEnemyMovePattern == 1)
             {
+                animator.SetBool("charging", true);
                 canWalk = false;
                 timer = 0f;
                 timer2 -= 1 * Time.deltaTime;
@@ -101,6 +106,7 @@ public class RangedEnemyManager : MonoBehaviour
            
             if (timer2 <= 0f && canAttack == false && gm.rangedEnemyMovePattern == 1)
             {
+                animator.SetBool("charging", false);
                 timer2 = 0f;
                 doneAttacking = false;
                 canAttack = true;
@@ -108,18 +114,7 @@ public class RangedEnemyManager : MonoBehaviour
 
             if (doneAttacking == false && canAttack == true && timer <= 0f && timer2 <= 0f && gm.rangedEnemyMovePattern == 1)
             {
-                attacking = true;
-                arrowSummon = Instantiate(arrow, arrowSpawner.transform.position, arrowSpawner.transform.rotation);
-                arrowSummon.transform.Rotate(180f, 0f, 0f);
-                arrowSummon.GetComponent<Rigidbody>().AddForce(arrowSpawner.transform.forward * 2000);
-                arrow.SetActive(true);
-                Destroy(arrowSummon, 2f);
-                attacking = false;
-                doneAttacking = true;
-                canWalk = true;
-                timer2 = 5f;
-                canAttack = false;
-                timer = Random.Range(7f, 9f);
+                StartCoroutine("Attack");
             }
 
             if (health <= 0 && dead == false)
@@ -277,5 +272,28 @@ public class RangedEnemyManager : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         canTakeDamage = true;
+    }
+
+    IEnumerator Attack()
+    {
+        yield return new WaitForSeconds(0.5f);
+        animator.SetBool("charging", false);
+        animator.SetBool("attacking", true);
+        attacking = true;
+        arrowSummon = Instantiate(arrow, arrowSpawner.transform.position, arrowSpawner.transform.rotation);
+        arrowSummon.transform.Rotate(180f, 0f, 0f);
+        arrowSummon.GetComponent<Rigidbody>().AddForce(arrowSpawner.transform.forward * 2000);
+        arrow.SetActive(true);
+        Destroy(arrowSummon, 2f);
+        yield return new WaitForSeconds(1f);
+        attacking = false;
+        animator.SetBool("attacking", false);
+        doneAttacking = true;
+        canWalk = true;
+        timer2 = 5f;
+        timer = Random.Range(7f, 9f);
+        yield return new WaitForSeconds(2f);
+        canAttack = false;
+        
     }
 }
