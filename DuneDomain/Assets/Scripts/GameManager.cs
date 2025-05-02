@@ -76,6 +76,9 @@ public class GameManager : MonoBehaviour
     public GameObject TutorialScreen5;
     public GameObject bridge;
     public bool canSpawnRocks = true;
+    public GameObject DirectionalLight;
+    public bool rotatetime = true;
+    public float lightrotation = 60f;
 
     [Header("Game Map Stuff")]
     public GameObject Rock1Prefab;
@@ -339,6 +342,19 @@ public class GameManager : MonoBehaviour
                 GameOn = false;
             }
         }
+        // time stuff
+        if (rotatetime == true && GameOn == true)
+        {
+            rotatetime = false;
+            DirectionalLight.transform.rotation = Quaternion.Euler(lightrotation, -30, 0);
+            lightrotation += 5;
+            StartCoroutine("RotateWait");
+        }
+    }
+    IEnumerator RotateWait()
+    {
+        yield return new WaitForSeconds(15f);
+        rotatetime = true;
     }
 
     //This Generates a random spawn position for the 2 enemy types
