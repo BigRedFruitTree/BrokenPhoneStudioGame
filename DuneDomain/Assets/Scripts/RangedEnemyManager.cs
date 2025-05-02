@@ -43,7 +43,7 @@ public class RangedEnemyManager : MonoBehaviour
         model = enemyObject.transform.GetChild(0).gameObject;
         animator = model.GetComponent<Animator>();
         enemyBow = model.transform.GetChild(1).gameObject;
-        arrowSpawner = enemyBow.transform.GetChild(0).gameObject;
+        arrowSpawner = model.transform.GetChild(0).gameObject;
         agent = enemyObject.GetComponent<NavMeshAgent>();
         timer = Random.Range(7f, 9f);
         timer2 = 5f;
@@ -60,6 +60,7 @@ public class RangedEnemyManager : MonoBehaviour
     {
         if (gm.GameOn == true && gm.GameOver == false)
         {
+
             float distance = Vector3.Distance(transform.position, playerObject.transform.position);
             if (gm.rangedEnemyMovePattern == 2 && gm.GameOn == true && canWalk == true && dead == false || distance < 5 && gm.GameOn == true && canWalk == true && dead == false)
             {
@@ -280,12 +281,12 @@ public class RangedEnemyManager : MonoBehaviour
         animator.SetBool("charging", false);
         animator.SetBool("attacking", true);
         attacking = true;
-        arrowSummon = Instantiate(arrow, arrowSpawner.transform.position, arrowSpawner.transform.rotation);
-        arrowSummon.transform.Rotate(180f, 0f, 0f);
-        arrowSummon.GetComponent<Rigidbody>().AddForce(arrowSpawner.transform.forward * 2000);
+        arrowSummon = Instantiate(arrow, arrowSpawner.transform.position, model.transform.rotation);
+        arrowSummon.transform.Rotate(90f, 90f, 0f);
+        arrowSummon.GetComponent<Rigidbody>().AddForce(enemyBow.transform.forward * 2000);
         arrow.SetActive(true);
         Destroy(arrowSummon, 2f);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.01f);
         attacking = false;
         animator.SetBool("attacking", false);
         doneAttacking = true;
