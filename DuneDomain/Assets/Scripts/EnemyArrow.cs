@@ -44,11 +44,6 @@ public class EnemyArrow : MonoBehaviour
             Destroy(arrow);
         }
 
-        if (other.gameObject.tag == "RangedEnemy")
-        {
-            Destroy(arrow);
-        }
-
         if (other.gameObject.tag == "MeleeEnemy")
         {
             Destroy(arrow);

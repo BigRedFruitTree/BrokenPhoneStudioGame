@@ -281,12 +281,12 @@ public class RangedEnemyManager : MonoBehaviour
         animator.SetBool("charging", false);
         animator.SetBool("attacking", true);
         attacking = true;
-        arrowSummon = Instantiate(arrow, arrowSpawner.transform.position, model.transform.rotation);
+        arrowSummon = Instantiate(arrow, arrowSpawner.transform.position, arrowSpawner.transform.rotation);
         arrowSummon.transform.Rotate(90f, 90f, 0f);
-        arrowSummon.GetComponent<Rigidbody>().AddForce(enemyBow.transform.forward * 2000);
+        arrowSummon.GetComponent<Rigidbody>().AddForce(-arrowSpawner.transform.right * 2000);
         arrow.SetActive(true);
         Destroy(arrowSummon, 2f);
-        yield return new WaitForSeconds(0.01f);
+        yield return new WaitForSeconds(0.001f);
         attacking = false;
         animator.SetBool("attacking", false);
         doneAttacking = true;

@@ -69,7 +69,6 @@ public class GameManager : MonoBehaviour
     public GameObject weaponKeepButton;
     public GameObject weaponKeepTXT;
     public GameObject TutorialStuff;
-    public GameObject TutorialScreen1;
     public GameObject TutorialScreen2;
     public GameObject TutorialScreen3;
     public GameObject TutorialScreen4;
@@ -92,7 +91,7 @@ public class GameManager : MonoBehaviour
             bossObject.SetActive(false);
             startCycle = false;
             TutorialStuff.SetActive(true);
-            TutorialScreen1.SetActive(true);
+            TutorialScreen2.SetActive(true);
             if (rounds <= 0)
             {
                 weaponKeepButton.SetActive(false);
@@ -563,11 +562,6 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
     }
 
-    public void ContinueToTutorialScreen2()
-    {
-        TutorialScreen1.SetActive(false);
-        TutorialScreen2.SetActive(true);
-    }
     public void ContinueToTutorialScreen3()
     {
         TutorialScreen2.SetActive(false);
