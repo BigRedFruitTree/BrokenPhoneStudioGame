@@ -225,47 +225,50 @@ public class GameManager : MonoBehaviour
                 bossanimator.SetBool("Issleeping", false);
             }
 
-            if (timeUntilAppearance <= 0f && canRun == true)
+            if (timeUntilAppearance <= 0f && canRun == true && timeUntilEatPhase > 0f)
             {
 
-                if (timeUntilAttack > 0f && bossDistance <= 30f && bossanimator.GetBool("Dodgeback") == false && canAttack == true)
+                if (timeUntilAttack > 0f && bossDistance <= 30f && bossanimator.GetBool("Dodgeback") == false && canAttack == true && timeUntilEatPhase > 0f)
                 {
                     StartCoroutine("Wait");
                     timeUntilAttack--;
                 }
-                if (timeUntilAttack <= 0f && bossAttack == 0 && bossDistance <= 30f && bossanimator.GetBool("Dodgeback") == false && canAttack == true)
+                if (timeUntilAttack <= 0f && bossAttack == 0 && bossDistance <= 30f && bossanimator.GetBool("Dodgeback") == false && canAttack == true && timeUntilEatPhase > 0f)
                 {
                     timeUntilAttack = 0f;
-                    bossAttack = 1;//Random.Range(0, 4);
+                    Random.Range(3, 0);
                 }
 
-                if (bossAttack == 1 && bossDistance <= 30f && bossanimator.GetBool("Dodgeback") == false && canAttack == true)
+                if (bossAttack == 1 && bossDistance <= 30f && bossanimator.GetBool("Dodgeback") == false && canAttack == true && timeUntilEatPhase > 0f)
                 {
+                    bossanimator.SetInteger("whichAttack", 1);
                     bossAgent.ResetPath();
                     bossanimator.SetBool("attacking", true);
                     StartCoroutine("WaitAttack1");
                 }
-                if (bossAttack == 2 && bossDistance <= 30f && bossanimator.GetBool("Dodgeback") == false && canAttack == true)
+                if (bossAttack == 2 && bossDistance <= 30f && bossanimator.GetBool("Dodgeback") == false && canAttack == true && timeUntilEatPhase > 0f)
                 {
+                    bossanimator.SetInteger("whichAttack", 2);
                     bossAgent.ResetPath();
                     bossanimator.SetBool("attacking", true);
                     StartCoroutine("WaitAttack2");
                 }
-                if (bossAttack == 3 && bossDistance <= 30f && bossanimator.GetBool("Dodgeback") == false && canAttack == true)
+                if (bossAttack == 3 && bossDistance <= 30f && bossanimator.GetBool("Dodgeback") == false && canAttack == true && timeUntilEatPhase > 0f)
                 {
+                    bossanimator.SetInteger("whichAttack", 3);
                     bossAgent.ResetPath();
                     bossanimator.SetBool("attacking", true);
                     StartCoroutine("WaitAttack3");
                 }
 
                 timeUntilAppearance = 0f;
-                if (bossDistance <= 16f && bossanimator.GetBool("Dodgeback") == false && canDash == true && bossanimator.GetBool("attacking") == false)
+                if (bossDistance <= 16f && bossanimator.GetBool("Dodgeback") == false && canDash == true && bossanimator.GetBool("attacking") == false && timeUntilEatPhase > 0f)
                 {
                     bossAgent.ResetPath();
                     bossAgent.speed = 0;
                     StartCoroutine("WaitForWalking");
                 }
-                if (bossDistance > 16f && bossanimator.GetBool("Dodgeback") == false)
+                if (bossDistance > 16f && bossanimator.GetBool("Dodgeback") == false && timeUntilEatPhase > 0f)
                 {
                     bossAgent.destination = playerObject.transform.position;
                     bossanimator.SetBool("Isaggressive", true);
@@ -604,6 +607,7 @@ public class GameManager : MonoBehaviour
         bossanimator.SetBool("Isaggressive", true);
         NotWaitingAlertScreen.SetActive(false);
         yield return new WaitForSeconds(2f);
+        bossUiStuff.SetActive(true);
         canRun = true;
         bossanimator.SetBool("Iswalking", true);
     }
@@ -668,7 +672,19 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator WaitAttack2()
     {
+        bossanimator.SetInteger("whichAttack", 2);
         canAttack = false;
+        int tempI = Random.Range(1, 4);
+        if (tempI == 2)
+        {
+            Debug.Log("Its" + tempI);
+            transitionAttack = true;
+        }
+        else
+        {
+            Debug.Log("Its" + tempI);
+            transitionAttack = false;
+        }
         bossAgent.ResetPath();
         bossAgent.speed = 0;
         Vector3 lookDirection = (playerObject.transform.position - bossObject.transform.position);
@@ -677,17 +693,57 @@ public class GameManager : MonoBehaviour
         Quaternion awayRotation = Quaternion.LookRotation(lookDirection);
         bossObject.transform.rotation = Quaternion.Euler(bossObject.transform.rotation.eulerAngles.x, awayRotation.eulerAngles.y, bossObject.transform.rotation.eulerAngles.z);
         yield return new WaitForSeconds(2f);
-        bossAgent.speed = 5;
-        bossAttack = 0;
-        timeUntilAttack = Random.Range(100f, 150f);
-        bossAgent.destination = playerObject.transform.position;
         bossanimator.SetBool("attacking", false);
-        yield return new WaitForSeconds(2f);
-        canAttack = true;
+        if (transitionAttack == true)
+        {
+            bossAgent.speed = 0;
+            bossAttack = 1;
+            lookDirection = (playerObject.transform.position - bossObject.transform.position);
+            lookDirection.y = 0f;
+            lookDirection.Normalize();
+            awayRotation = Quaternion.LookRotation(lookDirection);
+            bossObject.transform.rotation = Quaternion.Euler(bossObject.transform.rotation.eulerAngles.x, awayRotation.eulerAngles.y, bossObject.transform.rotation.eulerAngles.z);
+            bossanimator.SetBool("attacking", true);
+            bossanimator.SetBool("transitionAttack", true);
+            yield return new WaitForSeconds(2.5f);
+            bossAgent.speed = 5;
+            bossAttack = 0;
+            timeUntilAttack = Random.Range(100f, 150f);
+            bossAgent.destination = playerObject.transform.position;
+            bossanimator.SetBool("attacking", false);
+            bossanimator.SetBool("transitionAttack", false);
+            bossanimator.SetInteger("whichAttack", 0);
+            yield return new WaitForSeconds(2f);
+            canAttack = true;
+        }
+        else
+        {
+            bossAgent.speed = 5;
+            bossAttack = 0;
+            timeUntilAttack = Random.Range(100f, 150f);
+            bossAgent.destination = playerObject.transform.position;
+            bossanimator.SetBool("attacking", false);
+            bossanimator.SetBool("transitionAttack", false);
+            bossanimator.SetInteger("whichAttack", 0);
+            yield return new WaitForSeconds(2f);
+            canAttack = true;
+        }
     }
     IEnumerator WaitAttack3()
     {
+        bossanimator.SetInteger("whichAttack", 3);
         canAttack = false;
+        int tempI = Random.Range(1, 4);
+        if (tempI == 2)
+        {
+            Debug.Log("Its" + tempI);
+            transitionAttack = true;
+        }
+        else
+        {
+            Debug.Log("Its" + tempI);
+            transitionAttack = false;
+        }
         bossAgent.ResetPath();
         bossAgent.speed = 0;
         Vector3 lookDirection = (playerObject.transform.position - bossObject.transform.position);
@@ -696,13 +752,41 @@ public class GameManager : MonoBehaviour
         Quaternion awayRotation = Quaternion.LookRotation(lookDirection);
         bossObject.transform.rotation = Quaternion.Euler(bossObject.transform.rotation.eulerAngles.x, awayRotation.eulerAngles.y, bossObject.transform.rotation.eulerAngles.z);
         yield return new WaitForSeconds(2f);
-        bossAgent.speed = 5;
-        bossAttack = 0;
-        timeUntilAttack = Random.Range(100f, 150f);
-        bossAgent.destination = playerObject.transform.position;
         bossanimator.SetBool("attacking", false);
-        yield return new WaitForSeconds(2f);
-        canAttack = true;
+        if (transitionAttack == true)
+        {
+            bossAgent.speed = 0;
+            bossAttack = 1;
+            lookDirection = (playerObject.transform.position - bossObject.transform.position);
+            lookDirection.y = 0f;
+            lookDirection.Normalize();
+            awayRotation = Quaternion.LookRotation(lookDirection);
+            bossObject.transform.rotation = Quaternion.Euler(bossObject.transform.rotation.eulerAngles.x, awayRotation.eulerAngles.y, bossObject.transform.rotation.eulerAngles.z);
+            bossanimator.SetBool("attacking", true);
+            bossanimator.SetBool("transitionAttack", true);
+            yield return new WaitForSeconds(2.5f);
+            bossAgent.speed = 5;
+            bossAttack = 0;
+            timeUntilAttack = Random.Range(100f, 150f);
+            bossAgent.destination = playerObject.transform.position;
+            bossanimator.SetBool("attacking", false);
+            bossanimator.SetBool("transitionAttack", false);
+            bossanimator.SetInteger("whichAttack", 0);
+            yield return new WaitForSeconds(2f);
+            canAttack = true;
+        }
+        else
+        {
+            bossAgent.speed = 5;
+            bossAttack = 0;
+            timeUntilAttack = Random.Range(100f, 150f);
+            bossAgent.destination = playerObject.transform.position;
+            bossanimator.SetBool("attacking", false);
+            bossanimator.SetBool("transitionAttack", false);
+            bossanimator.SetInteger("whichAttack", 0);
+            yield return new WaitForSeconds(2f);
+            canAttack = true;
+        }
     }
     IEnumerator WaitBossAway()
     {
