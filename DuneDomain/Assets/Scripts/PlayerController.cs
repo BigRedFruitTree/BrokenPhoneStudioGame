@@ -78,7 +78,12 @@ public class PlayerController : MonoBehaviour
     public MeleeEnemyManager enemyScriptM;
     public RangedEnemyManager enemyScriptR;
     public AudioSource AudioSource;
+    public AudioClip Slash;
+    public AudioClip Woosh;
     public AudioClip stabsound;
+    public AudioClip hammersound;
+    public AudioClip hammerchargesound;
+    public AudioClip shieldblock;
 
 
     // Start is called before the first frame update
@@ -288,6 +293,8 @@ public class PlayerController : MonoBehaviour
                     canAttack = false;
                     canMove = false;
                     canRotate = false;
+                    AudioSource.clip = hammersound;
+                    AudioSource.Play();
                     stringCount = true;
                     StartCoroutine("HammerCoolDownBase");
                 }
@@ -630,6 +637,8 @@ public class PlayerController : MonoBehaviour
                 isDashing = false;
                 canAttack = false;
                 canMove = true;
+                AudioSource.clip = hammerchargesound;
+                AudioSource.Play();
                 StartCoroutine("WaitDraw");
             }
 

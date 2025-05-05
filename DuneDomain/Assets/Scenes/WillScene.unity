@@ -1680,6 +1680,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 701388782}
     - target: {fileID: 7388749027389276443, guid: 5a82a0fe6b9e7434b92b6551918010e7, type: 3}
+      propertyPath: Slash
+      value: 
+      objectReference: {fileID: 8300000, guid: 3c80cf36850505a4abaa32db716c6662, type: 3}
+    - target: {fileID: 7388749027389276443, guid: 5a82a0fe6b9e7434b92b6551918010e7, type: 3}
+      propertyPath: Woosh
+      value: 
+      objectReference: {fileID: 8300000, guid: 9ff5dc6dbe9937b4299a3bda6870340a, type: 3}
+    - target: {fileID: 7388749027389276443, guid: 5a82a0fe6b9e7434b92b6551918010e7, type: 3}
       propertyPath: Pausemenu
       value: 
       objectReference: {fileID: 1291422480}
@@ -1688,9 +1696,25 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 655429393}
     - target: {fileID: 7388749027389276443, guid: 5a82a0fe6b9e7434b92b6551918010e7, type: 3}
+      propertyPath: stabsound
+      value: 
+      objectReference: {fileID: 8300000, guid: 8050118ab7b64054ebf5a034b8b4cb77, type: 3}
+    - target: {fileID: 7388749027389276443, guid: 5a82a0fe6b9e7434b92b6551918010e7, type: 3}
+      propertyPath: hammersound
+      value: 
+      objectReference: {fileID: 8300000, guid: 1236b1ae33f293544bf48975fbdb1b93, type: 3}
+    - target: {fileID: 7388749027389276443, guid: 5a82a0fe6b9e7434b92b6551918010e7, type: 3}
+      propertyPath: shieldblock
+      value: 
+      objectReference: {fileID: 8300000, guid: 70859ef58b9f0aa449580c7e18f35021, type: 3}
+    - target: {fileID: 7388749027389276443, guid: 5a82a0fe6b9e7434b92b6551918010e7, type: 3}
       propertyPath: inputHandler
       value: 
       objectReference: {fileID: 1747783861}
+    - target: {fileID: 7388749027389276443, guid: 5a82a0fe6b9e7434b92b6551918010e7, type: 3}
+      propertyPath: hammerchargesound
+      value: 
+      objectReference: {fileID: 8300000, guid: 6c54e4bfd2448e843814a2ebe9d65e3a, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
