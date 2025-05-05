@@ -277,7 +277,8 @@ public class RangedEnemyManager : MonoBehaviour
 
     IEnumerator Attack()
     {
-        yield return new WaitForSeconds(0.5f);
+        canAttack = false;
+        yield return new WaitForSeconds(0.1f);
         animator.SetBool("charging", false);
         animator.SetBool("attacking", true);
         attacking = true;
@@ -286,7 +287,7 @@ public class RangedEnemyManager : MonoBehaviour
         arrowSummon.GetComponent<Rigidbody>().AddForce(-arrowSpawner.transform.right * 2000);
         arrow.SetActive(true);
         Destroy(arrowSummon, 2f);
-        yield return new WaitForSeconds(0.001f);
+        yield return new WaitForSeconds(0.1f);
         attacking = false;
         animator.SetBool("attacking", false);
         doneAttacking = true;
@@ -294,7 +295,7 @@ public class RangedEnemyManager : MonoBehaviour
         timer2 = 5f;
         timer = Random.Range(7f, 9f);
         yield return new WaitForSeconds(2f);
-        canAttack = false;
+        canAttack = true;
         
     }
 }
