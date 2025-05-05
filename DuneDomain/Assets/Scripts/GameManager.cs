@@ -609,6 +609,7 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator WaitAttack1()
     {
+        bossanimator.SetInteger("whichAttack", 1);
         canAttack = false;
         int tempI = Random.Range(1, 4);
         if (tempI == 2)
@@ -648,6 +649,7 @@ public class GameManager : MonoBehaviour
             bossAgent.destination = playerObject.transform.position;
             bossanimator.SetBool("attacking", false);
             bossanimator.SetBool("transitionAttack", false);
+            bossanimator.SetInteger("whichAttack", 0);
             yield return new WaitForSeconds(2f);
             canAttack = true;
         }
@@ -659,6 +661,7 @@ public class GameManager : MonoBehaviour
             bossAgent.destination = playerObject.transform.position;
             bossanimator.SetBool("attacking", false);
             bossanimator.SetBool("transitionAttack", false);
+            bossanimator.SetInteger("whichAttack", 0);
             yield return new WaitForSeconds(2f);
             canAttack = true;
         }
