@@ -828,12 +828,6 @@ public class GameManager : MonoBehaviour
         rounds += 1;
     }
 
-    IEnumerator WaitAddRock1()
-    {
-        yield return new WaitForSeconds(2f);
-        SpawnRock1atRandomPosition(3);
-    }
-
     IEnumerator WaitForWalking()
     {
         canDash = false;
