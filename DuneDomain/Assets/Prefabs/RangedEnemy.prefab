@@ -4214,7 +4214,7 @@ MonoBehaviour:
   timer: 0
   timer2: 0
   attacking: 0
-  canAttack: 0
+  canAttack: 1
   canWalk: 1
   canRotate: 1
   doneAttacking: 1

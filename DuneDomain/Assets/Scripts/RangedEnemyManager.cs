@@ -30,7 +30,7 @@ public class RangedEnemyManager : MonoBehaviour
     public float timer;
     public float timer2;
     public bool attacking = false;
-    public bool canAttack = false;
+    public bool canAttack = true;
     public bool canWalk = true;
     public bool canRotate = true;
     public bool doneAttacking = true;
@@ -104,17 +104,11 @@ public class RangedEnemyManager : MonoBehaviour
                 timer = 0f;
                 timer2 -= 1 * Time.deltaTime;
             }
-           
-            if (timer2 <= 0f && canAttack == false && gm.rangedEnemyMovePattern == 1)
-            {
-                animator.SetBool("charging", false);
-                timer2 = 0f;
-                doneAttacking = false;
-                canAttack = true;
-            }
 
-            if (doneAttacking == false && canAttack == true && timer <= 0f && timer2 <= 0f && gm.rangedEnemyMovePattern == 1)
+            if (doneAttacking == true && canAttack == true && timer <= 0f && timer2 <= 0f && gm.rangedEnemyMovePattern == 1)
             {
+                timer2 = 0f;
+                Debug.Log("Ow");
                 StartCoroutine("Attack");
             }
 
@@ -278,6 +272,7 @@ public class RangedEnemyManager : MonoBehaviour
     IEnumerator Attack()
     {
         canAttack = false;
+        doneAttacking = false;
         yield return new WaitForSeconds(0.1f);
         animator.SetBool("charging", false);
         animator.SetBool("attacking", true);
