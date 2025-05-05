@@ -309,7 +309,6 @@ public class GameManager : MonoBehaviour
                     bossUiStuff.SetActive(false);
                     StartCoroutine("WaitBossAway");
                     StartCoroutine("WaitWeaponScreen");
-                    StartCoroutine("WaitAddRock1");
 
                 }
             }
@@ -570,16 +569,19 @@ public class GameManager : MonoBehaviour
         TutorialScreen2.SetActive(false);
         TutorialScreen3.SetActive(true);
     }
+
     public void ContinueToTutorialScreen4()
     {
         TutorialScreen3.SetActive(false);
         TutorialScreen4.SetActive(true);
     }
+
     public void ContinueToTutorialScreen5()
     {
         TutorialScreen4.SetActive(false);
         TutorialScreen5.SetActive(true);
     }
+
     public void FinishButton()
     {
         TutorialStuff.SetActive(false);
@@ -656,6 +658,7 @@ public class GameManager : MonoBehaviour
             bossanimator.SetInteger("whichAttack", 0);
             yield return new WaitForSeconds(2f);
             canAttack = true;
+            timeUntilAttack = Random.Range(200f, 300f);
         }
         else
         {
@@ -668,6 +671,7 @@ public class GameManager : MonoBehaviour
             bossanimator.SetInteger("whichAttack", 0);
             yield return new WaitForSeconds(2f);
             canAttack = true;
+            timeUntilAttack = Random.Range(200f, 300f);
         }
     }
     IEnumerator WaitAttack2()
@@ -715,6 +719,7 @@ public class GameManager : MonoBehaviour
             bossanimator.SetInteger("whichAttack", 0);
             yield return new WaitForSeconds(2f);
             canAttack = true;
+            timeUntilAttack = Random.Range(200f, 300f);
         }
         else
         {
@@ -727,6 +732,7 @@ public class GameManager : MonoBehaviour
             bossanimator.SetInteger("whichAttack", 0);
             yield return new WaitForSeconds(2f);
             canAttack = true;
+            timeUntilAttack = Random.Range(200f, 300f);
         }
     }
     IEnumerator WaitAttack3()
@@ -774,6 +780,7 @@ public class GameManager : MonoBehaviour
             bossanimator.SetInteger("whichAttack", 0);
             yield return new WaitForSeconds(2f);
             canAttack = true;
+            timeUntilAttack = Random.Range(200f, 300f);
         }
         else
         {
@@ -786,6 +793,7 @@ public class GameManager : MonoBehaviour
             bossanimator.SetInteger("whichAttack", 0);
             yield return new WaitForSeconds(2f);
             canAttack = true;
+            timeUntilAttack = Random.Range(200f, 300f);
         }
     }
     IEnumerator WaitBossAway()
