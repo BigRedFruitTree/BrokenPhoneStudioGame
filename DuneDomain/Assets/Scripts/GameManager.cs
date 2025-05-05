@@ -207,7 +207,7 @@ public class GameManager : MonoBehaviour
                     bossanimator.SetBool("Iswalking", false);
                     bossanimator.SetBool("Issleeping", true);
                     NotWaitingAlertScreen.SetActive(true);
-                    if (bridgeDistance <= 26)
+                    if (bridgeDistance <= 29)
                     {
                         StartCoroutine("WaitStart");
                     }
@@ -225,35 +225,35 @@ public class GameManager : MonoBehaviour
                 bossanimator.SetBool("Issleeping", false);
             }
 
-            if (timeUntilAppearance <= 0f && canRun == true && timeUntilEatPhase > 0f)
+            if (timeUntilAppearance <= 0f && canRun == true && bossEating == false)
             {
 
-                if (timeUntilAttack > 0f && bossDistance <= 30f && bossanimator.GetBool("Dodgeback") == false && canAttack == true && timeUntilEatPhase > 0f)
+                if (timeUntilAttack > 0f && bossDistance <= 30f && bossanimator.GetBool("Dodgeback") == false && canAttack == true && bossEating == false)
                 {
                     StartCoroutine("Wait");
                     timeUntilAttack--;
                 }
-                if (timeUntilAttack <= 0f && bossAttack == 0 && bossDistance <= 30f && bossanimator.GetBool("Dodgeback") == false && canAttack == true && timeUntilEatPhase > 0f)
+                if (timeUntilAttack <= 0f && bossAttack == 0 && bossDistance <= 30f && bossanimator.GetBool("Dodgeback") == false && canAttack == true && bossEating == false)
                 {
                     timeUntilAttack = 0f;
                     Random.Range(3, 0);
                 }
 
-                if (bossAttack == 1 && bossDistance <= 30f && bossanimator.GetBool("Dodgeback") == false && canAttack == true && timeUntilEatPhase > 0f)
+                if (bossAttack == 1 && bossDistance <= 30f && bossanimator.GetBool("Dodgeback") == false && canAttack == true && bossEating == false)
                 {
                     bossanimator.SetInteger("whichAttack", 1);
                     bossAgent.ResetPath();
                     bossanimator.SetBool("attacking", true);
                     StartCoroutine("WaitAttack1");
                 }
-                if (bossAttack == 2 && bossDistance <= 30f && bossanimator.GetBool("Dodgeback") == false && canAttack == true && timeUntilEatPhase > 0f)
+                if (bossAttack == 2 && bossDistance <= 30f && bossanimator.GetBool("Dodgeback") == false && canAttack == true && bossEating == false)
                 {
                     bossanimator.SetInteger("whichAttack", 2);
                     bossAgent.ResetPath();
                     bossanimator.SetBool("attacking", true);
                     StartCoroutine("WaitAttack2");
                 }
-                if (bossAttack == 3 && bossDistance <= 30f && bossanimator.GetBool("Dodgeback") == false && canAttack == true && timeUntilEatPhase > 0f)
+                if (bossAttack == 3 && bossDistance <= 30f && bossanimator.GetBool("Dodgeback") == false && canAttack == true && bossEating == false)
                 {
                     bossanimator.SetInteger("whichAttack", 3);
                     bossAgent.ResetPath();
@@ -262,13 +262,13 @@ public class GameManager : MonoBehaviour
                 }
 
                 timeUntilAppearance = 0f;
-                if (bossDistance <= 16f && bossanimator.GetBool("Dodgeback") == false && canDash == true && bossanimator.GetBool("attacking") == false && timeUntilEatPhase > 0f)
+                if (bossDistance <= 16f && bossanimator.GetBool("Dodgeback") == false && canDash == true && bossanimator.GetBool("attacking") == false && bossEating == false)
                 {
                     bossAgent.ResetPath();
                     bossAgent.speed = 0;
                     StartCoroutine("WaitForWalking");
                 }
-                if (bossDistance > 16f && bossanimator.GetBool("Dodgeback") == false && timeUntilEatPhase > 0f)
+                if (bossDistance > 16f && bossanimator.GetBool("Dodgeback") == false && bossEating == false)
                 {
                     bossAgent.destination = playerObject.transform.position;
                     bossanimator.SetBool("Isaggressive", true);
