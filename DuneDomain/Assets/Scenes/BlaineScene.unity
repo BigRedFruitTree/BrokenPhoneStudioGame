@@ -2549,6 +2549,7 @@ GameObject:
   m_Component:
   - component: {fileID: 624562656}
   - component: {fileID: 624562655}
+  - component: {fileID: 624562657}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2620,13 +2621,17 @@ MonoBehaviour:
   weaponKeepButton: {fileID: 1153175055}
   weaponKeepTXT: {fileID: 1415284487}
   TutorialStuff: {fileID: 26134198}
-  TutorialScreen2: {fileID: 0}
   TutorialScreen3: {fileID: 620542611}
   TutorialScreen4: {fileID: 1999404829}
   TutorialScreen5: {fileID: 1148482034}
   bridge: {fileID: 4981776976151835456}
   canSpawnRocks: 1
   Rock1Prefab: {fileID: 8362784621349634397, guid: 7f2b8532666acc549896008347694d26, type: 3}
+  audioSource: {fileID: 624562657}
+  bossThemeIntro: {fileID: 8300000, guid: 143b321767c5e424788d89940a310cc1, type: 3}
+  bossThemeLoop: {fileID: 8300000, guid: 1349d407a69147a4e8f47a8a17603bcf, type: 3}
+  cultistTheme: {fileID: 8300000, guid: c57043e6719ccaa45b1ed2e96c3f3162, type: 3}
+  endSong: {fileID: 8300000, guid: 1786d04b25f718640b57af9bbb039b96, type: 3}
 --- !u!4 &624562656
 Transform:
   m_ObjectHideFlags: 0
@@ -2636,12 +2641,109 @@ Transform:
   m_GameObject: {fileID: 624562654}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 283.05392, y: 205.75342, z: 432.39108}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &624562657
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 624562654}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 50
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &638722102
 GameObject:
   m_ObjectHideFlags: 0
@@ -9386,6 +9488,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 674175292341571796, guid: 5a82a0fe6b9e7434b92b6551918010e7, type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 674175292341571796, guid: 5a82a0fe6b9e7434b92b6551918010e7, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3776295856104632847, guid: 5a82a0fe6b9e7434b92b6551918010e7, type: 3}
       propertyPath: m_Name
       value: Player

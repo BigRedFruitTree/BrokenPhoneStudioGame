@@ -78,6 +78,11 @@ public class GameManager : MonoBehaviour
     public GameObject bridge;
     public bool canSpawnRocks = true;
     public GameObject Rock1Prefab;
+    public AudioSource audioSource;
+    public AudioClip bossThemeIntro;
+    public AudioClip bossThemeLoop;
+    public AudioClip cultistTheme;
+    public AudioClip endSong;
 
     // Start is called before the first frame update
     void Start()
@@ -385,6 +390,8 @@ public class GameManager : MonoBehaviour
             playerController.hammer.SetActive(false);
             playerAnimator.SetInteger("weapon", 1);
             playerController.stringCooldown = 2f;
+            audioSource.clip = cultistTheme;
+            audioSource.Play();
             weapon = chosenWeapon;
             GameOn = true;
             StartCoroutine("Wait");
@@ -403,6 +410,8 @@ public class GameManager : MonoBehaviour
             playerController.shield.SetActive(false);
             playerController.hammer.SetActive(false);
             weaponScreen.SetActive(false);
+            audioSource.clip = cultistTheme;
+            audioSource.Play();
             weapon = chosenWeapon;
             GameOn = true;
             StartCoroutine("Wait");
@@ -422,6 +431,8 @@ public class GameManager : MonoBehaviour
             playerController.spear.SetActive(false);
             playerController.shield.SetActive(false);
             playerController.drawSpeed = 200f;
+            audioSource.clip = cultistTheme;
+            audioSource.Play();
             weapon = chosenWeapon;
             GameOn = true;
             StartCoroutine("Wait");
@@ -440,6 +451,8 @@ public class GameManager : MonoBehaviour
             playerController.sword.SetActive(false);
             playerController.crossbow.SetActive(false);
             playerController.hammer.SetActive(false);
+            audioSource.clip = cultistTheme;
+            audioSource.Play();
             weapon = chosenWeapon;
             GameOn = true;
             StartCoroutine("Wait");
@@ -458,6 +471,8 @@ public class GameManager : MonoBehaviour
             playerController.shield.SetActive(false);
             playerController.hammer.SetActive(false);
             weaponScreen.SetActive(false);
+            audioSource.clip = cultistTheme;
+            audioSource.Play();
             weapon = chosenWeapon;
             GameOn = true;
             StartCoroutine("Wait");
@@ -473,6 +488,8 @@ public class GameManager : MonoBehaviour
                 startCycle = true;
 
             weaponScreen.SetActive(false);
+            audioSource.clip = cultistTheme;
+            audioSource.Play();
             GameOn = true;
             StartCoroutine("Wait");
         }
@@ -482,6 +499,8 @@ public class GameManager : MonoBehaviour
                 startCycle = true;
 
             playerController.drawSpeed = 100f;
+            audioSource.clip = cultistTheme;
+            audioSource.Play();
             weaponScreen.SetActive(false);
             GameOn = true;
             StartCoroutine("Wait");
@@ -493,6 +512,8 @@ public class GameManager : MonoBehaviour
 
             weaponScreen.SetActive(false);
             playerController.drawSpeed = 200f;
+            audioSource.clip = cultistTheme;
+            audioSource.Play();
             GameOn = true;
             StartCoroutine("Wait");
         }
@@ -502,6 +523,8 @@ public class GameManager : MonoBehaviour
                 startCycle = true;
 
             weaponScreen.SetActive(false);
+            audioSource.clip = cultistTheme;
+            audioSource.Play();
             GameOn = true;
             StartCoroutine("Wait");
         }
@@ -511,6 +534,8 @@ public class GameManager : MonoBehaviour
                 startCycle = true;
 
             playerController.drawSpeed = 200f;
+            audioSource.clip = cultistTheme;
+            audioSource.Play();
             weaponScreen.SetActive(false);
             GameOn = true;
             StartCoroutine("Wait");
