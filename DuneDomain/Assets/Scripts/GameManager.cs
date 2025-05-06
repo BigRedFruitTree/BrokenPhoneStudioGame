@@ -69,8 +69,6 @@ public class GameManager : MonoBehaviour
     public GameObject deathScreen;
     public GameObject NotWaitingAlertScreen;
     public GameObject winScreen;
-    public GameObject weaponKeepButton;
-    public GameObject weaponKeepTXT;
     public GameObject TutorialStuff;
     public GameObject TutorialScreen3;
     public GameObject TutorialScreen4;
@@ -93,12 +91,6 @@ public class GameManager : MonoBehaviour
             startCycle = false;
             TutorialStuff.SetActive(true);
             TutorialScreen3.SetActive(true);
-            if (rounds <= 0)
-            {
-                weaponKeepButton.SetActive(false);
-                weaponKeepTXT.SetActive(false);
-            }
-
             timeUntilAppearance = 6000f;
             timeUntilEatPhase = 2000f;
             timeUntilAttack = UnityEngine.Random.Range(200f, 300f);
@@ -331,6 +323,11 @@ public class GameManager : MonoBehaviour
                 Time.timeScale = 0;
             }
 
+            if (rounds >= 2 && bossEating == false && timeUntilEatPhase <= 0 && timeUntilAppearance <= 0)
+            {
+                audioSource.clip = bossThemeLoop;
+                audioSource.Play();
+            }
         }
     }
 
@@ -420,7 +417,7 @@ public class GameManager : MonoBehaviour
         }
         if (chosenWeapon == 3)
         {
-            if (rounds > 1)
+            if (rounds >= 1)
                 startCycle = true;
 
             weaponScreen.SetActive(false);
@@ -441,7 +438,7 @@ public class GameManager : MonoBehaviour
         }
         if (chosenWeapon == 4)
         {
-            if (rounds > 1)
+            if (rounds >= 1)
                 startCycle = true;
 
             weaponScreen.SetActive(false);
@@ -461,7 +458,7 @@ public class GameManager : MonoBehaviour
         }
         if (chosenWeapon == 5)
         {
-            if (rounds > 1)
+            if (rounds >= 1)
                 startCycle = true;
 
             playerController.drawSpeed = 200f;
@@ -482,69 +479,7 @@ public class GameManager : MonoBehaviour
         playerAnimator.SetBool("gm", true);
     }
 
-    public void KeepWeapon()
-    {
-        if (weapon == 1)
-        {
-            if (rounds > 1)
-                startCycle = true;
-
-            weaponScreen.SetActive(false);
-            audioSource.clip = cultistTheme;
-            audioSource.Play();
-            GameOn = true;
-            StartCoroutine("Wait");
-        }
-        if (weapon == 2)
-        {
-            if (rounds > 1)
-                startCycle = true;
-
-            playerController.drawSpeed = 100f;
-            audioSource.clip = cultistTheme;
-            audioSource.Play();
-            weaponScreen.SetActive(false);
-            GameOn = true;
-            StartCoroutine("Wait");
-        }
-        if (weapon == 3)
-        {
-            if (rounds > 1)
-                startCycle = true;
-
-            weaponScreen.SetActive(false);
-            playerController.drawSpeed = 200f;
-            audioSource.clip = cultistTheme;
-            audioSource.Play();
-            GameOn = true;
-            StartCoroutine("Wait");
-        }
-        if (weapon == 4)
-        {
-            if (rounds > 1)
-                startCycle = true;
-
-            weaponScreen.SetActive(false);
-            audioSource.clip = cultistTheme;
-            audioSource.Play();
-            GameOn = true;
-            StartCoroutine("Wait");
-        }
-        if (weapon == 5)
-        {
-            if (rounds > 1)
-                startCycle = true;
-
-            playerController.drawSpeed = 200f;
-            audioSource.clip = cultistTheme;
-            audioSource.Play();
-            weaponScreen.SetActive(false);
-            GameOn = true;
-            StartCoroutine("Wait");
-        }
-        playerAnimator.SetBool("gm", true);
-
-    }
+    
 
     public void LoadScene(int SceneID)
     {
@@ -865,8 +800,6 @@ public class GameManager : MonoBehaviour
         playerAnimator.SetBool("isMoving", false);
         GameOn = false;
         weaponScreen.SetActive(true);
-        weaponKeepButton.SetActive(true);
-        weaponKeepTXT.SetActive(true);
         rounds += 1;
     }
 
