@@ -193,6 +193,8 @@ public class GameManager : MonoBehaviour
                     NotWaitingAlertScreen.SetActive(true);
                     if (bridgeDistance <= 29)
                     {
+                        audioSource.clip = bossThemeIntro;
+                        audioSource.Play();
                         StartCoroutine("WaitStart");
                     }
                 }
