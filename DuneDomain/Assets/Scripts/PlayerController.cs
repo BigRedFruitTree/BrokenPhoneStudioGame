@@ -292,6 +292,7 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0) && playerAnimator.GetBool("attacking") == false && canAttack == false && canAttack2 == true && attacking == false && stringTimer > 0 && whichAttack == 2 && gm.weapon == 1&& recovering == false && playerAnimator.GetBool("recovering") == false)
             {
+                myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
                 playerAnimator.SetInteger("whichAttack", 3);
                 playerAnimator.SetBool("attacking", true);
                 whichAttack = 3;
@@ -312,6 +313,7 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0) && playerAnimator.GetBool("attacking") == false && canAttack == false && canAttack2 == true && attacking == false && stringTimer > 0 && whichAttack == 3 && gm.weapon == 1 && recovering == false && playerAnimator.GetBool("recovering") == false)
             {
+                myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
                 playerAnimator.SetInteger("whichAttack", 4);
                 playerAnimator.SetBool("attacking", true);
                 whichAttack = 4;
@@ -333,6 +335,7 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0) && playerAnimator.GetBool("attacking") == false && canAttack == false && canAttack2 == true && attacking == false && stringTimer > 0 && whichAttack == 1 && gm.weapon == 3 && recovering == false && recovering == false && playerAnimator.GetBool("recovering") == false)
             {
+                myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
                 playerAnimator.SetInteger("whichAttack", 2);
                 playerAnimator.SetBool("attacking", true);
                 whichAttack = 2;
@@ -353,6 +356,7 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0) && playerAnimator.GetBool("attacking") == false && canAttack == false && canAttack2 == true && attacking == false && stringTimer > 0 && whichAttack == 2 && gm.weapon == 3 && recovering == false && playerAnimator.GetBool("recovering") == false)
             {
+                myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
                 playerAnimator.SetInteger("whichAttack", 3);
                 playerAnimator.SetBool("attacking", true);
                 whichAttack = 3;
@@ -373,6 +377,7 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0) && playerAnimator.GetBool("attacking") == false && canAttack == false && canAttack2 == true && attacking == false && stringTimer > 0 && whichAttack == 3 && gm.weapon == 3 && recovering == false && playerAnimator.GetBool("recovering") == false)
             {
+                myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
                 playerAnimator.SetInteger("whichAttack", 4);
                 playerAnimator.SetBool("attacking", true);
                 whichAttack = 4;
@@ -394,7 +399,7 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0) && playerAnimator.GetBool("attacking") == false && canAttack == false && canAttack2 == true && attacking == false && stringTimer > 0 && whichAttack == 1 && gm.weapon == 4 && recovering == false && recovering == false && playerAnimator.GetBool("recovering") == false)
             {
-
+                myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
                 playerAnimator.SetInteger("whichAttack", 2);
                 playerAnimator.SetBool("attacking", true);
                 whichAttack = 2;
@@ -415,6 +420,7 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0) && playerAnimator.GetBool("attacking") == false && canAttack == false && canAttack2 == true && attacking == false && stringTimer > 0 && whichAttack == 2 && gm.weapon == 4 && recovering == false && playerAnimator.GetBool("recovering") == false)
             {
+                myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
                 playerAnimator.SetInteger("whichAttack", 3);
                 playerAnimator.SetBool("attacking", true);
                 whichAttack = 3;
@@ -435,6 +441,7 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0) && playerAnimator.GetBool("attacking") == false && canAttack == false && canAttack2 == true && attacking == false && stringTimer > 0 && whichAttack == 3 && gm.weapon == 4 && recovering == false && playerAnimator.GetBool("recovering") == false)
             {
+                myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
                 playerAnimator.SetInteger("whichAttack", 4);
                 playerAnimator.SetBool("attacking", true);
                 whichAttack = 4;
