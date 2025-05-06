@@ -70,8 +70,7 @@ public class BossManager : MonoBehaviour
         }
 
         if (other.gameObject.name == "Sword" && canTakeDamage == true && gm.GameOn == true && player.attacking == true)
-        {
-           
+        { 
             canTakeDamage = false;
             health -= 5;
             StartCoroutine("WaitDamage");
@@ -86,32 +85,28 @@ public class BossManager : MonoBehaviour
         }
 
         if (other.gameObject.name == "Hammer" && canTakeDamage == true && gm.GameOn == true && player.attacking == true && player.chargeLevel == 1)
-        {
-           
+        {     
             canTakeDamage = false;
             health -= 7;
             StartCoroutine("WaitDamage");
         }
 
         if (other.gameObject.name == "Hammer" && canTakeDamage == true && gm.GameOn == true && player.attacking == true && player.chargeLevel == 2)
-        {
-            
+        { 
             canTakeDamage = false;
             health -= 9;
             StartCoroutine("WaitDamage");
         }
 
         if (other.gameObject.name == "Hammer" && canTakeDamage == true && gm.GameOn == true && player.attacking == true && player.chargeLevel == 3)
-        {
-            
+        {  
             canTakeDamage = false;
             health -= 11;
             StartCoroutine("WaitDamage");
         }
 
         if (other.gameObject.name == "Spear" && canTakeDamage == true && gm.GameOn == true && player.attacking == true)
-        {
-            
+        {  
             canTakeDamage = false;
             health -= 4;
             StartCoroutine("WaitDamage");

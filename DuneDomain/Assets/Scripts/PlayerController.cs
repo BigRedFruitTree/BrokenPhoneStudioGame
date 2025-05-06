@@ -639,31 +639,26 @@ public class PlayerController : MonoBehaviour
                 stamina -= 3;
                 StartCoroutine("WaitDash");
                 StartCoroutine("WaitDamage");
-            }
-
-            if (stamina < 0f)
-                stamina = 0f;
-
-            if (isDashing == false)
-                stamina += 1f * Time.deltaTime;
-
-            if (stamina > 10f)
-                stamina = 10f;
-
-            if (health < 0)
-                health = 0;
-
-            if (health == 0)
-                gm.GameOver = true;
+            }            
 
             if (health > 0)
             {
+                gm.GameOver = true;
+                if (stamina > 10f)
+                    stamina = 10f;
+
+                if (stamina < 0f)
+                    stamina = 0f;
+
+                if (isDashing == false)
+                    stamina += 1f * Time.deltaTime;
+                
                 StartCoroutine("WaitCheckNearestEnemy");
             }
         }
     }
    
-    public void OnTriggerStay(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
        if (other.gameObject.tag == "EnemySword" && canTakeDamage == true && gm.GameOn == true && enemyScriptM.attacking == true)
        {
@@ -781,7 +776,6 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         attacking = false;
         yield return new WaitForSeconds(1f);
-        myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
         canRotate = true;
         canAttack2 = true;
     }
@@ -789,6 +783,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator HammerCoolDownBase()
     {
         yield return new WaitForSeconds(0.5f);
+        myRB.constraints = RigidbodyConstraints.FreezeAll;
         playerAnimator.SetBool("attacking", false);
         yield return new WaitForSeconds(0.5f);
         attacking = false;
@@ -839,6 +834,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator SpearCoolDown()
     {
         yield return new WaitForSeconds(0.5f);
+        myRB.constraints = RigidbodyConstraints.FreezeAll;
         playerAnimator.SetBool("attacking", false);
         yield return new WaitForSeconds(0.5f);
         attacking = false;
