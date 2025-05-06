@@ -118,24 +118,24 @@ public class MeleeEnemyManager : MonoBehaviour
     {
         if (other.gameObject.tag == "Shot" && canTakeDamage == true && gm.GameOn == true)
         {
-            if (gm.enemyMovementPattern == 2 && player.weapon == 5)
+            if (gm.enemyMovementPattern == 2 && gm.weapon == 5)
             {
                 enemyRidigbody.AddForce(lookDirection * 2500);
             }
-            else if (gm.enemyMovementPattern == 1 && player.weapon == 5)
+            else if (gm.enemyMovementPattern == 1 && gm.weapon == 5)
             {
                 enemyRidigbody.AddForce(-lookDirection * 2500);
             }
-            if (gm.enemyMovementPattern == 2 && player.weapon == 2)
+            if (gm.enemyMovementPattern == 2 && gm.weapon == 2)
             {
                 enemyRidigbody.AddForce(lookDirection * 2000);
             }
-            else if (gm.enemyMovementPattern == 1 && player.weapon == 2)
+            else if (gm.enemyMovementPattern == 1 && gm.weapon == 2)
             {
                 enemyRidigbody.AddForce(-lookDirection * 2000);
             }
             canTakeDamage = false;
-            if (player.weapon == 5)
+            if (gm.weapon == 5)
             {
                 health -= 8;
             }

@@ -3255,6 +3255,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerController: {fileID: 1652962759}
+  playerAnimator: {fileID: 1814140888}
   playerObject: {fileID: 1652962752}
   playerUiStuff: {fileID: 1595543073}
   pHealthBar: {fileID: 497366808}
@@ -3283,6 +3284,9 @@ MonoBehaviour:
   bossanimator: {fileID: 1039655225}
   transitionAttack: 0
   canAttack: 1
+  areHandsActive: 0
+  isHeadActive: 0
+  isTailActive: 0
   spawnRange: 0
   enemyScript: {fileID: 5037234301272502123}
   meleeEnemyPrefab: {fileID: 8703838743317718710, guid: dbb47fb935dcd884a92b5bea53302ed0, type: 3}
@@ -8746,6 +8750,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1802467951}
   m_CullTransparentMesh: 1
+--- !u!95 &1814140888 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5864631697487723206, guid: 5a82a0fe6b9e7434b92b6551918010e7, type: 3}
+  m_PrefabInstance: {fileID: 3515194967970773192}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1816818566
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,11 +4,15 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.AI;
 using UnityEngine.UI;
+using UnityEngine.SocialPlatforms.Impl;
+using Cinemachine.Utility;
+using System;
 
 public class GameManager : MonoBehaviour
 {
     [Header("Player Stuff")]
     public PlayerController playerController;
+    public Animator playerAnimator;
     public GameObject playerObject;
     public GameObject playerUiStuff;
     public Image pHealthBar;
@@ -93,7 +97,7 @@ public class GameManager : MonoBehaviour
 
             timeUntilAppearance = 6000f;
             timeUntilEatPhase = 2000f;
-            timeUntilAttack = Random.Range(200f, 300f);
+            timeUntilAttack = UnityEngine.Random.Range(200f, 300f);
             rounds = 1;
             spawnRange = 50f;
 
@@ -211,8 +215,8 @@ public class GameManager : MonoBehaviour
                 if (timeUntilAttack <= 0f && bossAttack == 0 && bossDistance <= 30f && bossanimator.GetBool("Dodgeback") == false && canAttack == true && timeUntilEatPhase > 0f)
                 {
                     timeUntilAttack = 0f;
-                    bossAttack = Random.Range(4, 0);
-                    Debug.Log("Hes doing number" + bossAttack);
+                    bossAttack = UnityEngine.Random.Range(4, 0);
+                    Debug.Log("Hes doing number " + bossAttack);
                 }
 
                 if (bossAttack == 1 && bossDistance <= 30f && bossanimator.GetBool("Dodgeback") == false && canAttack == true && timeUntilEatPhase > 0f)
@@ -343,8 +347,8 @@ public class GameManager : MonoBehaviour
 
     public Vector3 GenerateSpawnPos()
     {
-        float spawnPosX = Random.Range(-spawnRange, spawnRange);
-        float spawnPosZ = Random.Range(-spawnRange, spawnRange);
+        float spawnPosX = UnityEngine.Random.Range(-spawnRange, spawnRange);
+        float spawnPosZ = UnityEngine.Random.Range(-spawnRange, spawnRange);
         Vector3 randomPos = new Vector3(spawnPosX, 1.5f, spawnPosZ);
         return randomPos;
     }
@@ -359,8 +363,8 @@ public class GameManager : MonoBehaviour
     }
     public Vector3 RandomRockPosition()
     {
-        float spawnPosX = Random.Range(-spawnRange, spawnRange);
-        float spawnPosZ = Random.Range(-spawnRange, spawnRange);
+        float spawnPosX = UnityEngine.Random.Range(-spawnRange, spawnRange);
+        float spawnPosZ = UnityEngine.Random.Range(-spawnRange, spawnRange);
         Vector3 randomPos = new Vector3(spawnPosX, 1.5f, spawnPosZ);
         return randomPos;
 
@@ -374,6 +378,14 @@ public class GameManager : MonoBehaviour
                 startCycle = true;
 
             weaponScreen.SetActive(false);
+            playerController.sword.SetActive(true);
+            playerController.bow.SetActive(false);
+            playerController.crossbow.SetActive(false);
+            playerController.spear.SetActive(false);
+            playerController.shield.SetActive(false);
+            playerController.hammer.SetActive(false);
+            playerAnimator.SetInteger("weapon", 1);
+            playerController.stringCooldown = 2f;
             weapon = chosenWeapon;
             GameOn = true;
             StartCoroutine("Wait");
@@ -384,6 +396,13 @@ public class GameManager : MonoBehaviour
                 startCycle = true;
 
             playerController.drawSpeed = 100f;
+            playerAnimator.SetInteger("weapon", 2);
+            playerController.bow.SetActive(true);
+            playerController.sword.SetActive(false);
+            playerController.crossbow.SetActive(false);
+            playerController.spear.SetActive(false);
+            playerController.shield.SetActive(false);
+            playerController.hammer.SetActive(false);
             weaponScreen.SetActive(false);
             weapon = chosenWeapon;
             GameOn = true;
@@ -395,6 +414,14 @@ public class GameManager : MonoBehaviour
                 startCycle = true;
 
             weaponScreen.SetActive(false);
+            playerAnimator.SetInteger("weapon", 3);
+            playerController.stringCooldown = 2.7f;
+            playerController.hammer.SetActive(true);
+            playerController.bow.SetActive(false);
+            playerController.sword.SetActive(false);
+            playerController.crossbow.SetActive(false);
+            playerController.spear.SetActive(false);
+            playerController.shield.SetActive(false);
             playerController.drawSpeed = 200f;
             weapon = chosenWeapon;
             GameOn = true;
@@ -406,6 +433,14 @@ public class GameManager : MonoBehaviour
                 startCycle = true;
 
             weaponScreen.SetActive(false);
+            playerAnimator.SetInteger("weapon", 4);
+            playerController.stringCooldown = 1.2f;
+            playerController.spear.SetActive(true);
+            playerController.shield.SetActive(true);
+            playerController.bow.SetActive(false);
+            playerController.sword.SetActive(false);
+            playerController.crossbow.SetActive(false);
+            playerController.hammer.SetActive(false);
             weapon = chosenWeapon;
             GameOn = true;
             StartCoroutine("Wait");
@@ -416,11 +451,19 @@ public class GameManager : MonoBehaviour
                 startCycle = true;
 
             playerController.drawSpeed = 200f;
+            playerAnimator.SetInteger("weapon", 5);
+            playerController.crossbow.SetActive(true); 
+            playerController.bow.SetActive(false);
+            playerController.sword.SetActive(false);
+            playerController.spear.SetActive(false);
+            playerController.shield.SetActive(false);
+            playerController.hammer.SetActive(false);
             weaponScreen.SetActive(false);
             weapon = chosenWeapon;
             GameOn = true;
             StartCoroutine("Wait");
         }
+        playerAnimator.SetBool("gm", true);
     }
 
     public void KeepWeapon()
@@ -473,6 +516,7 @@ public class GameManager : MonoBehaviour
             GameOn = true;
             StartCoroutine("Wait");
         }
+        playerAnimator.SetBool("gm", true);
 
     }
 
@@ -567,7 +611,7 @@ public class GameManager : MonoBehaviour
         bossanimator.SetInteger("whichAttack", 1);
         areHandsActive = true;
         canAttack = false;
-        int tempI = Random.Range(1, 4);
+        int tempI = UnityEngine.Random.Range(1, 4);
         if (tempI == 2)
         {
             Debug.Log("Its" + tempI);
@@ -596,35 +640,35 @@ public class GameManager : MonoBehaviour
             bossAgent.speed = 5;
             isTailActive = false;
             bossAttack = 0;
-            timeUntilAttack = Random.Range(100f, 150f);
+            timeUntilAttack = UnityEngine.Random.Range(100f, 150f);
             bossAgent.destination = playerObject.transform.position;
             bossanimator.SetBool("attacking", false);
             bossanimator.SetBool("transitionAttack", false);
             bossanimator.SetInteger("whichAttack", 0);
             yield return new WaitForSeconds(2f);
             canAttack = true;
-            timeUntilAttack = Random.Range(200f, 300f);
+            timeUntilAttack = UnityEngine.Random.Range(200f, 300f);
         }
         else
         {
             areHandsActive = false;
             bossAgent.speed = 5;
             bossAttack = 0;
-            timeUntilAttack = Random.Range(100f, 150f);
+            timeUntilAttack = UnityEngine.Random.Range(100f, 150f);
             bossAgent.destination = playerObject.transform.position;
             bossanimator.SetBool("attacking", false);
             bossanimator.SetBool("transitionAttack", false);
             bossanimator.SetInteger("whichAttack", 0);
             yield return new WaitForSeconds(2f);
             canAttack = true;
-            timeUntilAttack = Random.Range(200f, 300f);
+            timeUntilAttack = UnityEngine.Random.Range(200f, 300f);
         }
     }
     IEnumerator WaitAttack2()
     {
         bossanimator.SetInteger("whichAttack", 2);
         canAttack = false;
-        int tempI = Random.Range(4, 0);
+        int tempI = UnityEngine.Random.Range(4, 0);
         if (tempI == 2)
         {
             Debug.Log("Its " + tempI);
@@ -652,7 +696,7 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(2.5f);
             bossAgent.speed = 5;
             bossAttack = 0;
-            timeUntilAttack = Random.Range(100f, 150f);
+            timeUntilAttack = UnityEngine.Random.Range(100f, 150f);
             bossAgent.destination = playerObject.transform.position;
             bossanimator.SetBool("attacking", false);
             bossanimator.SetBool("transitionAttack", false);
@@ -660,13 +704,13 @@ public class GameManager : MonoBehaviour
             areHandsActive = false;
             yield return new WaitForSeconds(2f);
             canAttack = true;
-            timeUntilAttack = Random.Range(200f, 300f);
+            timeUntilAttack = UnityEngine.Random.Range(200f, 300f);
         }
         else
         {
             bossAgent.speed = 5;
             bossAttack = 0;
-            timeUntilAttack = Random.Range(100f, 150f);
+            timeUntilAttack = UnityEngine.Random.Range(100f, 150f);
             bossAgent.destination = playerObject.transform.position;
             bossanimator.SetBool("attacking", false);
             bossanimator.SetBool("transitionAttack", false);
@@ -674,14 +718,14 @@ public class GameManager : MonoBehaviour
             bossanimator.SetInteger("whichAttack", 0);
             yield return new WaitForSeconds(2f);
             canAttack = true;
-            timeUntilAttack = Random.Range(200f, 300f);
+            timeUntilAttack = UnityEngine.Random.Range(200f, 300f);
         }
     }
     IEnumerator WaitAttack3()
     {
         bossanimator.SetInteger("whichAttack", 3);
         canAttack = false;
-        int tempI = Random.Range(4, 1);
+        int tempI = UnityEngine.Random.Range(4, 1);
         if (tempI == 2)
         {
             Debug.Log("Its " + tempI);
@@ -713,27 +757,27 @@ public class GameManager : MonoBehaviour
             isHeadActive = false;
             areHandsActive = false;
             bossAttack = 0;
-            timeUntilAttack = Random.Range(100f, 150f);
+            timeUntilAttack = UnityEngine.Random.Range(100f, 150f);
             bossAgent.destination = playerObject.transform.position;
             bossanimator.SetBool("attacking", false);
             bossanimator.SetBool("transitionAttack", false);
             bossanimator.SetInteger("whichAttack", 0);
             yield return new WaitForSeconds(2f);
             canAttack = true;
-            timeUntilAttack = Random.Range(200f, 300f);
+            timeUntilAttack = UnityEngine.Random.Range(200f, 300f);
         }
         else
         {
             bossAgent.speed = 5;
             bossAttack = 0;
-            timeUntilAttack = Random.Range(100f, 150f);
+            timeUntilAttack = UnityEngine.Random.Range(100f, 150f);
             bossAgent.destination = playerObject.transform.position;
             bossanimator.SetBool("attacking", false);
             bossanimator.SetBool("transitionAttack", false);
             bossanimator.SetInteger("whichAttack", 0);
             yield return new WaitForSeconds(2f);
             canAttack = true;
-            timeUntilAttack = Random.Range(200f, 300f);
+            timeUntilAttack = UnityEngine.Random.Range(200f, 300f);
         }
     }
     IEnumerator WaitAttack4()
@@ -761,7 +805,7 @@ public class GameManager : MonoBehaviour
         bossAttack = 0;
         yield return new WaitForSeconds(2.5f);
         canAttack = true;
-        timeUntilAttack = Random.Range(200f, 300f);
+        timeUntilAttack = UnityEngine.Random.Range(200f, 300f);
     }
     IEnumerator WaitBossAway()
     {
@@ -792,6 +836,13 @@ public class GameManager : MonoBehaviour
     {
         startCycle = true;
         yield return new WaitForSeconds(3f);
+        playerAnimator.SetBool("gm", false);
+        playerAnimator.SetInteger("whichAttack", 0);
+        playerAnimator.SetBool("attacking", false);
+        playerAnimator.SetBool("IsCharging", false);
+        playerAnimator.SetBool("isDashing", false);
+        playerAnimator.SetBool("IsDrawing", false);
+        playerAnimator.SetBool("isMoving", false);
         GameOn = false;
         weaponScreen.SetActive(true);
         weaponKeepButton.SetActive(true);

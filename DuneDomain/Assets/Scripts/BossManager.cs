@@ -52,7 +52,7 @@ public class BossManager : MonoBehaviour
     public void OnTriggerEnter(Collider other)
     {
 
-        if (other.gameObject.tag == "Shot" && canTakeDamage == true && gm.GameOn == true && player.weapon == 2)
+        if (other.gameObject.tag == "Shot" && canTakeDamage == true && gm.GameOn == true && gm.weapon == 2)
         {
             canTakeDamage = false;
             health -= 1;
@@ -60,7 +60,7 @@ public class BossManager : MonoBehaviour
 
         }
 
-        if (other.gameObject.tag == "Shot" && canTakeDamage == true && gm.GameOn == true && player.weapon == 5)
+        if (other.gameObject.tag == "Shot" && canTakeDamage == true && gm.GameOn == true && gm.weapon == 5)
         {
            
             canTakeDamage = false;
