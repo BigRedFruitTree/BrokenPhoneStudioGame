@@ -7,8 +7,6 @@ TagManager:
   - BossSpawn
   - Shot
   - MeleeEnemy
-  - MeleeEnemySpawn
-  - Wall
   - RangedEnemy
   - EnemySword
   - EnemyBow

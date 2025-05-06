@@ -53,8 +53,7 @@ public class GameManager : MonoBehaviour
     public GameObject[] meleeEnemyNumber;
     public GameObject[] rangedEnemyNumber;
     public GameObject[] enemyCorpseNumber;
-    public int meleeEnemyMovePattern = 0;
-    public int rangedEnemyMovePattern = 0;
+    public int enemyMovementPattern = 0;
 
     [Header("GameManager Stuff")]
     public bool GameOn = false;
@@ -65,7 +64,6 @@ public class GameManager : MonoBehaviour
     public GameObject deathScreen;
     public GameObject NotWaitingAlertScreen;
     public GameObject winScreen;
-    public GameObject pauseScreen;
     public GameObject weaponKeepButton;
     public GameObject weaponKeepTXT;
     public GameObject TutorialStuff;
@@ -75,9 +73,6 @@ public class GameManager : MonoBehaviour
     public GameObject TutorialScreen5;
     public GameObject bridge;
     public bool canSpawnRocks = true;
-    public GameObject DirectionalLight;
-    public bool rotatetime = true;
-    public float lightrotation = 60f;
 
     [Header("Game Map Stuff")]
     public GameObject Rock1Prefab;
@@ -141,6 +136,7 @@ public class GameManager : MonoBehaviour
             bossDistance = Vector3.Distance(bossObject.transform.position, playerObject.transform.position);
             bridgeDistance = Vector3.Distance(bridge.transform.position, playerObject.transform.position);
             sleepDistance = Vector3.Distance(bossSleepPoint.transform.position, bossObject.transform.position);
+
             if (bossScript.health <= 0)
             {
                 winScreen.SetActive(true);
@@ -157,31 +153,22 @@ public class GameManager : MonoBehaviour
             enemyCorpseNumber = GameObject.FindGameObjectsWithTag("EnemyCorpse");
             rangedEnemyNumber = GameObject.FindGameObjectsWithTag("RangedEnemy");
 
-            while (meleeEnemyNumber.Length > 14)
+            while (meleeEnemyNumber.Length > 9)
             {
                 Destroy(GameObject.FindGameObjectWithTag("MeleeEnemy"));
             }
-            while (rangedEnemyNumber.Length > 14)
+            while (rangedEnemyNumber.Length > 9)
             {
                 Destroy(GameObject.FindGameObjectWithTag("RangedEnemy"));
             }
 
-            if (enemyCorpseNumber.Length >= rangedEnemyNumber.Length)
-            {
-                rangedEnemyMovePattern = 2;
-            }
-            else
-            {
-                rangedEnemyMovePattern = 1;
-            }
-
             if (enemyCorpseNumber.Length >= meleeEnemyNumber.Length)
             {
-                meleeEnemyMovePattern = 2;
+                enemyMovementPattern = 2;
             }
             else
             {
-                meleeEnemyMovePattern = 1;
+                enemyMovementPattern = 1;
             }
 
             if (timeUntilAppearance > 0f)
@@ -233,6 +220,7 @@ public class GameManager : MonoBehaviour
                     StartCoroutine("Wait");
                     timeUntilAttack--;
                 }
+
                 if (timeUntilAttack <= 0f && bossAttack == 0 && bossDistance <= 30f && bossanimator.GetBool("Dodgeback") == false && canAttack == true && bossEating == false)
                 {
                     timeUntilAttack = 0f;
@@ -336,26 +324,7 @@ public class GameManager : MonoBehaviour
                 Time.timeScale = 0;
             }
 
-            if (Input.GetKeyDown(KeyCode.Escape) && GameOn == true && playerController.health > 0 && bossScript.health > 0)
-            {
-                pauseScreen.SetActive(true);
-                Time.timeScale = 0;
-                GameOn = false;
-            }
         }
-        // time stuff
-        if (rotatetime == true && GameOn == true)
-        {
-            rotatetime = false;
-            DirectionalLight.transform.rotation = Quaternion.Euler(lightrotation, -30, 0);
-            lightrotation += 5;
-            StartCoroutine("RotateWait");
-        }
-    }
-    IEnumerator RotateWait()
-    {
-        yield return new WaitForSeconds(15f);
-        rotatetime = true;
     }
 
     //This Generates a random spawn position for the 2 enemy types
@@ -556,14 +525,6 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneID);
     }
-
-    public void ResumeGame()
-    {
-        GameOn = true;
-        pauseScreen.SetActive(false);
-        Time.timeScale = 1;
-    }
-
     public void ContinueToTutorialScreen3()
     {
         TutorialScreen2.SetActive(false);

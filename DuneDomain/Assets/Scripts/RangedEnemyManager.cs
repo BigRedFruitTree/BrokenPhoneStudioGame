@@ -62,13 +62,13 @@ public class RangedEnemyManager : MonoBehaviour
         {
 
             float distance = Vector3.Distance(transform.position, playerObject.transform.position);
-            if (gm.rangedEnemyMovePattern == 2 && gm.GameOn == true && canWalk == true && dead == false || distance < 5 && gm.GameOn == true && canWalk == true && dead == false)
+            if (gm.enemyMovementPattern == 2 && gm.GameOn == true && canWalk == true && dead == false || distance < 5 && gm.GameOn == true && canWalk == true && dead == false)
             {
                 animator.SetBool("moving", true);
                 lookDirection = (enemyObject.transform.position - playerObject.transform.position).normalized;
                 enemyRidigbody.AddForce(lookDirection * speed);
             }
-            else if (gm.rangedEnemyMovePattern == 1 && gm.GameOn == true && canWalk == true && dead == false)
+            else if (gm.enemyMovementPattern == 1 && gm.GameOn == true && canWalk == true && dead == false)
             {
                 animator.SetBool("moving", true);
                 lookDirection = (playerObject.transform.position - enemyObject.transform.position).normalized;
@@ -79,25 +79,25 @@ public class RangedEnemyManager : MonoBehaviour
                 animator.SetBool("moving", false);
             }
 
-            if (gm.rangedEnemyMovePattern == 2 && gm.GameOn == true && canRotate == true && dead == false)
+            if (gm.enemyMovementPattern == 2 && gm.GameOn == true && canRotate == true && dead == false)
             {
                 lookDirection = (enemyObject.transform.position - playerObject.transform.position).normalized;
                 Quaternion awayRotation = Quaternion.LookRotation(lookDirection);
                 enemyObject.transform.rotation = Quaternion.Euler(enemyObject.transform.rotation.eulerAngles.x, awayRotation.eulerAngles.y, enemyObject.transform.rotation.eulerAngles.z);
             }
-            else if (gm.rangedEnemyMovePattern == 1 && gm.GameOn == true && canRotate == true && dead == false)
+            else if (gm.enemyMovementPattern == 1 && gm.GameOn == true && canRotate == true && dead == false)
             {
                 lookDirection = (playerObject.transform.position - enemyObject.transform.position).normalized;
                 Quaternion awayRotation = Quaternion.LookRotation(lookDirection);
                 enemyObject.transform.rotation = Quaternion.Euler(enemyObject.transform.rotation.eulerAngles.x, awayRotation.eulerAngles.y, enemyObject.transform.rotation.eulerAngles.z);
             }
 
-            if (timer > 0f && gm.rangedEnemyMovePattern == 1)
+            if (timer > 0f && gm.enemyMovementPattern == 1)
             {
                 timer -= 1 * Time.deltaTime;
             }
 
-            if (timer <= 0f && timer2 > 0f && gm.rangedEnemyMovePattern == 1)
+            if (timer <= 0f && timer2 > 0f && gm.enemyMovementPattern == 1)
             {
                 animator.SetBool("charging", true);
                 canWalk = false;
@@ -105,10 +105,9 @@ public class RangedEnemyManager : MonoBehaviour
                 timer2 -= 1 * Time.deltaTime;
             }
 
-            if (doneAttacking == true && canAttack == true && timer <= 0f && timer2 <= 0f && gm.rangedEnemyMovePattern == 1)
+            if (doneAttacking == true && canAttack == true && timer <= 0f && timer2 <= 0f && gm.enemyMovementPattern == 1)
             {
                 timer2 = 0f;
-                Debug.Log("Ow");
                 StartCoroutine("Attack");
             }
 
@@ -127,7 +126,7 @@ public class RangedEnemyManager : MonoBehaviour
     {
         if (other.gameObject.tag == "Shot" && canTakeDamage == true && gm.GameOn == true && player.weapon == 2)
         {
-            if (gm.meleeEnemyMovePattern == 2)
+            if (gm.enemyMovementPattern == 2)
             {
                 enemyRidigbody.AddForce(lookDirection * 2000);
             }
@@ -143,7 +142,7 @@ public class RangedEnemyManager : MonoBehaviour
 
         if (other.gameObject.tag == "Shot" && canTakeDamage == true && gm.GameOn == true && player.weapon == 5)
         {
-            if (gm.meleeEnemyMovePattern == 2)
+            if (gm.enemyMovementPattern == 2)
             {
                 enemyRidigbody.AddForce(lookDirection * 2500);
             }
@@ -159,7 +158,7 @@ public class RangedEnemyManager : MonoBehaviour
 
         if (other.gameObject.name == "Sword" && canTakeDamage == true && gm.GameOn == true && player.attacking == true)
         {
-            if (gm.meleeEnemyMovePattern == 2)
+            if (gm.enemyMovementPattern == 2)
             {
                 enemyRidigbody.AddForce(lookDirection * 2000);
             }
@@ -174,7 +173,7 @@ public class RangedEnemyManager : MonoBehaviour
 
         if (other.gameObject.name == "Hammer" && canTakeDamage == true && gm.GameOn == true && player.attacking == true)
         {
-            if (gm.meleeEnemyMovePattern == 2)
+            if (gm.enemyMovementPattern == 2)
             {
                 enemyRidigbody.AddForce(lookDirection * 2500);
             }
@@ -189,7 +188,7 @@ public class RangedEnemyManager : MonoBehaviour
 
         if (other.gameObject.name == "Hammer" && canTakeDamage == true && gm.GameOn == true && player.attacking == true && player.chargeLevel == 1)
         {
-            if (gm.meleeEnemyMovePattern == 2)
+            if (gm.enemyMovementPattern == 2)
             {
                 enemyRidigbody.AddForce(lookDirection * 3000);
             }
@@ -204,7 +203,7 @@ public class RangedEnemyManager : MonoBehaviour
 
         if (other.gameObject.name == "Hammer" && canTakeDamage == true && gm.GameOn == true && player.attacking == true && player.chargeLevel == 2)
         {
-            if (gm.meleeEnemyMovePattern == 2)
+            if (gm.enemyMovementPattern == 2)
             {
                 enemyRidigbody.AddForce(lookDirection * 3500);
             }
@@ -219,7 +218,7 @@ public class RangedEnemyManager : MonoBehaviour
 
         if (other.gameObject.name == "Hammer" && canTakeDamage == true && gm.GameOn == true && player.attacking == true && player.chargeLevel == 3)
         {
-            if (gm.meleeEnemyMovePattern == 2)
+            if (gm.enemyMovementPattern == 2)
             {
                 enemyRidigbody.AddForce(lookDirection * 4000);
             }
@@ -234,7 +233,7 @@ public class RangedEnemyManager : MonoBehaviour
 
         if (other.gameObject.name == "Spear" && canTakeDamage == true && gm.GameOn == true && player.attacking == true)
         {
-            if (gm.meleeEnemyMovePattern == 2)
+            if (gm.enemyMovementPattern == 2)
             {
                 enemyRidigbody.AddForce(lookDirection * 2000);
             }
@@ -249,7 +248,7 @@ public class RangedEnemyManager : MonoBehaviour
 
         if (other.gameObject.name == "Shield" && canTakeDamage == true && gm.GameOn == true && player.attacking == true)
         {
-            if (gm.meleeEnemyMovePattern == 2)
+            if (gm.enemyMovementPattern == 2)
             {
                 enemyRidigbody.AddForce(lookDirection * 2000);
             }

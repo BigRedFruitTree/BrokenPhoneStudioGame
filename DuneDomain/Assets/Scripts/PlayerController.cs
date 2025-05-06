@@ -727,6 +727,48 @@ public class PlayerController : MonoBehaviour
            }
            StartCoroutine("WaitDamage"); 
        }
+
+       if (other.gameObject.name == "Handr" && canTakeDamage == true && gm.GameOn == true)
+       {
+           canTakeDamage = false;
+           if (isBlocking == true)
+           {
+               health -= 10;
+           }
+           else
+           {
+               health -= 20;
+           }
+           StartCoroutine("WaitDamage");
+       }
+
+       if (other.gameObject.name == "Handl" && canTakeDamage == true && gm.GameOn == true)
+       {
+           canTakeDamage = false;
+           if (isBlocking == true)
+           {
+               health -= 10;
+           }
+           else
+           {
+               health -= 20;
+           }
+           StartCoroutine("WaitDamage");
+       }
+       
+       if (other.gameObject.name == "Tailblade" && canTakeDamage == true && gm.GameOn == true)
+       {
+           canTakeDamage = false;
+           if (isBlocking == true)
+           {
+               health -= 15;
+           }
+           else
+           {
+               health -= 25;
+           }
+           StartCoroutine("WaitDamage");
+       }
     }
 
     public MeleeEnemyManager GetNearestTargetM()
