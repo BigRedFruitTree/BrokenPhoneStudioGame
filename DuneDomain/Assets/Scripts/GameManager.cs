@@ -138,6 +138,8 @@ public class GameManager : MonoBehaviour
                 canSpawnRocks = false;
             }
 
+            
+
             meleeEnemyNumber = GameObject.FindGameObjectsWithTag("MeleeEnemy");
             enemyCorpseNumber = GameObject.FindGameObjectsWithTag("EnemyCorpse");
             rangedEnemyNumber = GameObject.FindGameObjectsWithTag("RangedEnemy");
@@ -191,11 +193,13 @@ public class GameManager : MonoBehaviour
                     }
                 }
             }
-            else if (timeUntilAppearance <= 0f && canRun == false)
+            else if (rounds > 1 && timeUntilAppearance <= 0f && canRun == false)
             {
                 bossObject.SetActive(true);
                 bossAgent.speed = 5;
                 canRun = true;
+                audioSource.clip = bossThemeLoop;
+                audioSource.Play();
                 bossanimator.SetBool("Isaggressive", true);
                 bossanimator.SetBool("Iswalking", true);
                 bossanimator.SetBool("Issleeping", false);
