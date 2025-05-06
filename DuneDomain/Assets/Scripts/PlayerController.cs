@@ -639,11 +639,13 @@ public class PlayerController : MonoBehaviour
                 stamina -= 3;
                 StartCoroutine("WaitDash");
                 StartCoroutine("WaitDamage");
-            }            
+            }
+
+            if(health <= 0)
+               gm.GameOver = true;
 
             if (health > 0)
             {
-                gm.GameOver = true;
                 if (stamina > 10f)
                     stamina = 10f;
 
