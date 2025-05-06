@@ -540,6 +540,7 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetMouseButtonUp(1) && gm.weapon == 3 && isDashing == false && isBlocking == false)
             {
+                AudioSource.Stop();
                 if (gm.weapon == 3 && drawSpeed >= 133.34f)
                 {
                     playerAnimator.SetBool("IsCharging", false);
@@ -549,6 +550,8 @@ public class PlayerController : MonoBehaviour
                     attacking = true;
                     canAttack = false;
                     drawSpeed = 200f;
+                    AudioSource.clip = hammersound;
+                    AudioSource.Play();
                     myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
                     StartCoroutine("HammerCoolDown1");
                 }
@@ -561,6 +564,8 @@ public class PlayerController : MonoBehaviour
                     attacking = true;
                     canAttack = false;
                     drawSpeed = 200f;
+                    AudioSource.clip = hammersound;
+                    AudioSource.Play();
                     myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
                     StartCoroutine("HammerCoolDown2");
                 }
@@ -573,6 +578,8 @@ public class PlayerController : MonoBehaviour
                     attacking = true;
                     canAttack = false;
                     drawSpeed = 200f;
+                    AudioSource.clip = hammersound;
+                    AudioSource.Play();
                     myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
                     StartCoroutine("HammerCoolDown3");
                 }
@@ -596,9 +603,12 @@ public class PlayerController : MonoBehaviour
                 isDashing = false;
                 canAttack = false;
                 canMove = true;
-                AudioSource.clip = hammerchargesound;
-                AudioSource.Play();
                 StartCoroutine("WaitDraw");
+            }
+
+            if (Input.GetMouseButtonDown(1) && isCharging == true)
+            {
+                AudioSource.PlayOneShot(hammerchargesound);
             }
 
             if (Input.GetMouseButtonUp(1) && isBlocking == true && canUnblock == true && canBlock == false && gm.weapon == 4)
@@ -650,10 +660,6 @@ public class PlayerController : MonoBehaviour
             {
                 StartCoroutine("WaitCheckNearestEnemy");
             }
-        }
-        else
-        {
-
         }
     }
    

@@ -277,7 +277,7 @@
                 {
                     "name": "",
                     "id": "3a7424d3-db98-4a2b-9e33-c9b341425018",
-                    "path": "<Joystick>/{SecondaryAction}",
+                    "path": "<Joystick>/{PrimaryAction}",
                     "interactions": "",
                     "processors": "",
                     "groups": "Joystick",
