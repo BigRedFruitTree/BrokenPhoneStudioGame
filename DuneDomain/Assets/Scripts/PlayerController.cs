@@ -74,9 +74,7 @@ public class PlayerController : MonoBehaviour
     public GameObject arrow;
     public GameObject arrowSpawnB;
     public GameObject arrowSpawnC;
-    public Canvas Pausemenu;
     public MeleeEnemyManager enemyScriptM;
-    public RangedEnemyManager enemyScriptR;
     public AudioSource AudioSource;
     public AudioClip Slash;
     public AudioClip Woosh;
@@ -664,7 +662,6 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.F) && stamina > 2 && isBlocking == false && canDash == true && attacking == false && playerAnimator.GetBool("attacking") == false && playerAnimator.GetInteger("whichAttack") == 0)
             {
-                Debug.Log("Pressed");
                 playerAnimator.SetBool("isDashing", true);
                 canTakeDamage = false;
                 canMove = false;
@@ -788,25 +785,6 @@ public class PlayerController : MonoBehaviour
 
        return nearestTarget;
     }
-
-    public RangedEnemyManager GetNearestTargetR()
-    {
-        RangedEnemyManager nearestTarget = null;
-        float nearestDistance = Mathf.Infinity;
-
-        foreach (var enemy in gm.rangedEnemyNumber)
-        {
-            float distance = Vector3.Distance(playerObject.transform.position, enemy.transform.position);
-            if (distance < nearestDistance)
-            {
-                nearestDistance = distance;
-                nearestTarget = enemy.GetComponent<RangedEnemyManager>();
-            }
-        }
-
-        return nearestTarget;
-    }
-
     IEnumerator WaitDamage()
     {
          yield return new WaitForSeconds(1f);
@@ -955,6 +933,5 @@ public class PlayerController : MonoBehaviour
     {
          yield return new WaitForSeconds(0.1f);
          enemyScriptM = GetNearestTargetM();
-         enemyScriptR = GetNearestTargetR();
     }   
 }

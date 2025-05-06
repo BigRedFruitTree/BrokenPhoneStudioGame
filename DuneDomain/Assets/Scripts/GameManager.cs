@@ -25,8 +25,8 @@ public class GameManager : MonoBehaviour
     public bool isProcessingTarget = false;
     public int bossAttack = 0;
     public bool bossAttacking = false;
-    public float sleepDistance;
-    public float bossDistance;
+    private float sleepDistance;
+    private float bossDistance;
     public float bridgeDistance;
     public bool canRun;
     public bool canDash = true;
@@ -46,9 +46,7 @@ public class GameManager : MonoBehaviour
     [Header("Enemy Stuff")]
     public float spawnRange;
     public MeleeEnemyManager enemyScript;
-    public GameObject meleeEnemyObject;
     public GameObject meleeEnemyPrefab;
-    public GameObject rangedEnemyObject;
     public GameObject rangedEnemyPrefab;
     public GameObject[] meleeEnemyNumber;
     public GameObject[] rangedEnemyNumber;
@@ -73,10 +71,7 @@ public class GameManager : MonoBehaviour
     public GameObject TutorialScreen5;
     public GameObject bridge;
     public bool canSpawnRocks = true;
-
-    [Header("Game Map Stuff")]
     public GameObject Rock1Prefab;
-    public GameObject Rock2Prefab;
 
     // Start is called before the first frame update
     void Start()
@@ -98,22 +93,12 @@ public class GameManager : MonoBehaviour
             timeUntilAttack = Random.Range(200f, 300f);
             rounds = 1;
             spawnRange = 50f;
-            meleeEnemyObject = meleeEnemyPrefab;
-            rangedEnemyObject = rangedEnemyPrefab;
 
             if (enemyCorpseNumber == null || enemyCorpseNumber.Length == 0) return;
 
             SetNextTarget();
-            if (rounds == 1 && sleepDistance > 4f)
-            {
-                bossanimator.SetBool("Isaggressive", false);
-                bossAgent.speed = 3;
-            }
-            else
-            {
-                bossanimator.SetBool("Isaggressive", true);
-                bossAgent.speed = 5;
-            }
+            bossanimator.SetBool("Isaggressive", false);
+            bossAgent.speed = 3;
 
             playerController = GameObject.Find("Player").GetComponent<PlayerController>();
 
@@ -140,12 +125,13 @@ public class GameManager : MonoBehaviour
             if (bossScript.health <= 0)
             {
                 winScreen.SetActive(true);
+                Time.timeScale = 0;
+                GameOn = false;
             }
 
             if (started == true && canSpawnRocks == true)
             {
                 SpawnRock1atRandomPosition(5);
-                SpawnRock2atRandomPosition(5);
                 canSpawnRocks = false;
             }
 
@@ -200,9 +186,7 @@ public class GameManager : MonoBehaviour
                     }
                 }
             }
-
-
-            if (rounds > 1 && timeUntilAppearance <= 0f && canRun == false)
+            else if (timeUntilAppearance <= 0f && canRun == false)
             {
                 bossObject.SetActive(true);
                 bossAgent.speed = 5;
@@ -360,15 +344,6 @@ public class GameManager : MonoBehaviour
             Instantiate(Rock1Prefab, RandomRockPosition(), Rock1Prefab.transform.rotation);
         }
     }
-    public void SpawnRock2atRandomPosition(int numberToSpawn)
-    {
-
-        for (int i = 0; i < numberToSpawn; i++)
-        {
-            Instantiate(Rock2Prefab, RandomRockPosition(), Rock2Prefab.transform.rotation);
-        }
-    }
-
     public Vector3 RandomRockPosition()
     {
         float spawnPosX = Random.Range(-spawnRange, spawnRange);
