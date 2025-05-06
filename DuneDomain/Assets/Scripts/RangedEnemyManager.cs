@@ -114,7 +114,7 @@ public class RangedEnemyManager : MonoBehaviour
             if (health <= 0 && dead == false)
             {
                 Destroy(enemyObject);
-                Instantiate(corpsePrefab, new Vector3(enemyObject.transform.position.x, enemyObject.transform.position.y - 0.59f, enemyObject.transform.position.z), Quaternion.Euler(90f, 0f, 0f));
+                Instantiate(corpsePrefab, new Vector3(enemyObject.transform.position.x, enemyObject.transform.position.y - 1f, enemyObject.transform.position.z), Quaternion.Euler(0, 0, -90));
                 dead = true;
             }
 

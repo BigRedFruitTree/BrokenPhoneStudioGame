@@ -725,21 +725,7 @@ public class PlayerController : MonoBehaviour
            StartCoroutine("WaitDamage"); 
        }
 
-       if (other.gameObject.name == "Handr" && canTakeDamage == true && gm.GameOn == true)
-       {
-           canTakeDamage = false;
-           if (isBlocking == true)
-           {
-               health -= 10;
-           }
-           else
-           {
-               health -= 20;
-           }
-           StartCoroutine("WaitDamage");
-       }
-
-       if (other.gameObject.name == "Handl" && canTakeDamage == true && gm.GameOn == true)
+       if (other.gameObject.name == "Handr" && canTakeDamage == true && gm.GameOn == true || other.gameObject.name == "Handl" && canTakeDamage == true && gm.GameOn == true || other.gameObject.name == "Head" && canTakeDamage == true && gm.GameOn == true)
        {
            canTakeDamage = false;
            if (isBlocking == true)
@@ -753,7 +739,7 @@ public class PlayerController : MonoBehaviour
            StartCoroutine("WaitDamage");
        }
        
-       if (other.gameObject.name == "Tailblade" && canTakeDamage == true && gm.GameOn == true)
+       if (other.gameObject.name == "Tailblade" && canTakeDamage == true && gm.GameOn == true || other.gameObject.name == "Jaw" && canTakeDamage == true && gm.GameOn == true)
        {
            canTakeDamage = false;
            if (isBlocking == true)
