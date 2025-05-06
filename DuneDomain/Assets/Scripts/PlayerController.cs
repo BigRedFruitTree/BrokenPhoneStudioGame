@@ -781,7 +781,6 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         attacking = false;
         yield return new WaitForSeconds(1f);
-        myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
         canRotate = true;
         canAttack2 = true;
     }
@@ -789,6 +788,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator HammerCoolDownBase()
     {
         yield return new WaitForSeconds(0.5f);
+        myRB.constraints = RigidbodyConstraints.FreezeAll;
         playerAnimator.SetBool("attacking", false);
         yield return new WaitForSeconds(0.5f);
         attacking = false;
@@ -839,6 +839,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator SpearCoolDown()
     {
         yield return new WaitForSeconds(0.5f);
+        myRB.constraints = RigidbodyConstraints.FreezeAll;
         playerAnimator.SetBool("attacking", false);
         yield return new WaitForSeconds(0.5f);
         attacking = false;
