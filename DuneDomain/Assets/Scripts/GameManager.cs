@@ -42,6 +42,9 @@ public class GameManager : MonoBehaviour
     public Animator bossanimator;
     public bool transitionAttack = false;
     public bool canAttack = true;
+    public bool areHandsActive = false;
+    public bool isHeadActive = false;
+    public bool isTailActive = false;
 
     [Header("Enemy Stuff")]
     public float spawnRange;
@@ -562,6 +565,7 @@ public class GameManager : MonoBehaviour
     IEnumerator WaitAttack1()
     {
         bossanimator.SetInteger("whichAttack", 1);
+        areHandsActive = true;
         canAttack = false;
         int tempI = Random.Range(1, 4);
         if (tempI == 2)
@@ -584,10 +588,13 @@ public class GameManager : MonoBehaviour
             bossAgent.speed = 0;
             bossAttack = 1;
             bossAgent.destination = playerObject.transform.position;
+            areHandsActive = false;
+            isTailActive = true;
             bossanimator.SetBool("attacking", true);
             bossanimator.SetBool("transitionAttack", true);
             yield return new WaitForSeconds(2.5f);
             bossAgent.speed = 5;
+            isTailActive = false;
             bossAttack = 0;
             timeUntilAttack = Random.Range(100f, 150f);
             bossAgent.destination = playerObject.transform.position;
@@ -600,6 +607,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            areHandsActive = false;
             bossAgent.speed = 5;
             bossAttack = 0;
             timeUntilAttack = Random.Range(100f, 150f);
@@ -619,17 +627,18 @@ public class GameManager : MonoBehaviour
         int tempI = Random.Range(4, 0);
         if (tempI == 2)
         {
-            Debug.Log("Its" + tempI);
+            Debug.Log("Its " + tempI);
             transitionAttack = true;
         }
         else
         {
-            Debug.Log("Its" + tempI);
+            Debug.Log("Its " + tempI);
             transitionAttack = false;
         }
         bossAgent.ResetPath();
         bossAgent.destination = playerObject.transform.position;
         bossAgent.speed = 6;
+        isHeadActive = true;
         yield return new WaitForSeconds(2f);
         bossanimator.SetBool("attacking", false);
         if (transitionAttack == true)
@@ -638,6 +647,8 @@ public class GameManager : MonoBehaviour
             bossAttack = 2;
             bossanimator.SetBool("attacking", true);
             bossanimator.SetBool("transitionAttack", true);
+            areHandsActive = true;
+            isHeadActive = false;
             yield return new WaitForSeconds(2.5f);
             bossAgent.speed = 5;
             bossAttack = 0;
@@ -646,6 +657,7 @@ public class GameManager : MonoBehaviour
             bossanimator.SetBool("attacking", false);
             bossanimator.SetBool("transitionAttack", false);
             bossanimator.SetInteger("whichAttack", 0);
+            areHandsActive = false;
             yield return new WaitForSeconds(2f);
             canAttack = true;
             timeUntilAttack = Random.Range(200f, 300f);
@@ -658,6 +670,7 @@ public class GameManager : MonoBehaviour
             bossAgent.destination = playerObject.transform.position;
             bossanimator.SetBool("attacking", false);
             bossanimator.SetBool("transitionAttack", false);
+            areHandsActive = false;
             bossanimator.SetInteger("whichAttack", 0);
             yield return new WaitForSeconds(2f);
             canAttack = true;
@@ -682,6 +695,8 @@ public class GameManager : MonoBehaviour
         bossAgent.ResetPath();
         bossAgent.speed = 0;
         bossAgent.destination = playerObject.transform.position;
+        isHeadActive = true;
+        areHandsActive = true;
         yield return new WaitForSeconds(2f);
         bossanimator.SetBool("attacking", false);
         if (transitionAttack == true)
@@ -689,10 +704,14 @@ public class GameManager : MonoBehaviour
             bossAgent.speed = 0;
             bossAttack = 3;
             bossAgent.destination = playerObject.transform.position;
+            isHeadActive = true;
+            areHandsActive = false;
             bossanimator.SetBool("attacking", true);
             bossanimator.SetBool("transitionAttack", true);
             yield return new WaitForSeconds(2.5f);
             bossAgent.speed = 5;
+            isHeadActive = false;
+            areHandsActive = false;
             bossAttack = 0;
             timeUntilAttack = Random.Range(100f, 150f);
             bossAgent.destination = playerObject.transform.position;
@@ -720,6 +739,8 @@ public class GameManager : MonoBehaviour
     IEnumerator WaitAttack4()
     {
         bossanimator.SetInteger("whichAttack", 4);
+        isHeadActive = true;
+        areHandsActive = true;
         canAttack = false;
         bossAgent.ResetPath();
         bossAgent.speed = 0;
@@ -733,7 +754,12 @@ public class GameManager : MonoBehaviour
         bossanimator.SetBool("transitionAttack", true);
         yield return new WaitForSeconds(2.5f);
         bossAgent.speed = 5;
+        bossanimator.SetBool("transitionAttack", false);
+        bossanimator.SetBool("attacking", false);
+        isHeadActive = false;
+        areHandsActive= false;
         bossAttack = 0;
+        yield return new WaitForSeconds(2.5f);
         canAttack = true;
         timeUntilAttack = Random.Range(200f, 300f);
     }

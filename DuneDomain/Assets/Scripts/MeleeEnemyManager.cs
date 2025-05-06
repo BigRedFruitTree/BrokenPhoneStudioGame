@@ -116,36 +116,34 @@ public class MeleeEnemyManager : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Shot" && canTakeDamage == true && gm.GameOn == true && player.weapon == 2)
+        if (other.gameObject.tag == "Shot" && canTakeDamage == true && gm.GameOn == true)
         {
-            if (gm.enemyMovementPattern == 2)
+            if (gm.enemyMovementPattern == 2 && player.weapon == 5)
+            {
+                enemyRidigbody.AddForce(lookDirection * 2500);
+            }
+            else if (gm.enemyMovementPattern == 1 && player.weapon == 5)
+            {
+                enemyRidigbody.AddForce(-lookDirection * 2500);
+            }
+            if (gm.enemyMovementPattern == 2 && player.weapon == 2)
             {
                 enemyRidigbody.AddForce(lookDirection * 2000);
             }
-            else
+            else if (gm.enemyMovementPattern == 1 && player.weapon == 2)
             {
                 enemyRidigbody.AddForce(-lookDirection * 2000);
             }
             canTakeDamage = false;
-            health -= 6;
-            StartCoroutine("WaitDamage");
-
-        }
-
-        if (other.gameObject.tag == "Shot" && canTakeDamage == true && gm.GameOn == true && player.weapon == 5)
-        {
-            if (gm.enemyMovementPattern == 2)
+            if (player.weapon == 5)
             {
-                enemyRidigbody.AddForce(lookDirection * 2500);
+                health -= 8;
             }
             else
             {
-                enemyRidigbody.AddForce(-lookDirection * 2500);
+                health -= 6;
             }
-            canTakeDamage = false;
-            health -= 8;
             StartCoroutine("WaitDamage");
-
         }
 
         if (other.gameObject.name == "Sword" && canTakeDamage == true && gm.GameOn == true && player.attacking == true)
