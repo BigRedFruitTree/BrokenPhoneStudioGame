@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     public bool isProcessingTarget = false;
     public int bossAttack = 0;
     public bool bossAttacking = false;
-    private float sleepDistance;
+    public float sleepDistance;
     private float bossDistance;
     public float bridgeDistance;
     public bool canRun;
@@ -275,7 +275,7 @@ public class GameManager : MonoBehaviour
                     {
                         SetNextTarget();
                     }
-                    if (!isProcessingTarget && currentTarget != null && !bossAgent.pathPending && bossAgent.remainingDistance <= bossAgent.stoppingDistance)
+                    if (!isProcessingTarget && currentTarget != null && !bossAgent.pathPending && bossAgent.remainingDistance <= 10f)
                     {
                         bossEating = true;
                         bossanimator.SetBool("Isaggressive", true);

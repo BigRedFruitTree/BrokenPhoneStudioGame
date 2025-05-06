@@ -2585,6 +2585,7 @@ MonoBehaviour:
   isProcessingTarget: 0
   bossAttack: 0
   bossAttacking: 0
+  sleepDistance: 0
   bridgeDistance: 0
   canRun: 0
   canDash: 1
@@ -3685,7 +3686,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 155293509051133029, guid: b2073c2dd3c839a4b96e13b04881d603, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2399107711272898807, guid: b2073c2dd3c839a4b96e13b04881d603, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3735,6 +3736,10 @@ PrefabInstance:
       propertyPath: bossSpawn
       value: 
       objectReference: {fileID: 1594994284}
+    - target: {fileID: 6769200101655977866, guid: b2073c2dd3c839a4b96e13b04881d603, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7082386655192020874, guid: b2073c2dd3c839a4b96e13b04881d603, type: 3}
       propertyPath: m_Enabled
       value: 0

@@ -55,7 +55,7 @@ public class BossManager : MonoBehaviour
         if (other.gameObject.tag == "Shot" && canTakeDamage == true && gm.GameOn == true && gm.weapon == 2)
         {
             canTakeDamage = false;
-            health -= 1;
+            health -= 5;
             StartCoroutine("WaitDamage");
 
         }
@@ -64,7 +64,7 @@ public class BossManager : MonoBehaviour
         {
            
             canTakeDamage = false;
-            health -= 2;
+            health -= 8;
             StartCoroutine("WaitDamage");
 
         }
@@ -72,7 +72,7 @@ public class BossManager : MonoBehaviour
         if (other.gameObject.name == "Sword" && canTakeDamage == true && gm.GameOn == true && player.attacking == true)
         { 
             canTakeDamage = false;
-            health -= 5;
+            health -= 6;
             StartCoroutine("WaitDamage");
         }
 
@@ -80,28 +80,28 @@ public class BossManager : MonoBehaviour
         {
             
             canTakeDamage = false;
-            health -= 6;
+            health -= 9;
             StartCoroutine("WaitDamage");
         }
 
         if (other.gameObject.name == "Hammer" && canTakeDamage == true && gm.GameOn == true && player.attacking == true && player.chargeLevel == 1)
         {     
             canTakeDamage = false;
-            health -= 7;
+            health -= 10;
             StartCoroutine("WaitDamage");
         }
 
         if (other.gameObject.name == "Hammer" && canTakeDamage == true && gm.GameOn == true && player.attacking == true && player.chargeLevel == 2)
         { 
             canTakeDamage = false;
-            health -= 9;
+            health -= 14;
             StartCoroutine("WaitDamage");
         }
 
         if (other.gameObject.name == "Hammer" && canTakeDamage == true && gm.GameOn == true && player.attacking == true && player.chargeLevel == 3)
         {  
             canTakeDamage = false;
-            health -= 11;
+            health -= 18;
             StartCoroutine("WaitDamage");
         }
 
@@ -112,7 +112,7 @@ public class BossManager : MonoBehaviour
             StartCoroutine("WaitDamage");
         }
 
-        if (animator.GetBool("Issleeping") == true)
+        if (animator.GetBool("Issleeping") == true || gm.sleepDistance > 4f)
         {
             canTakeDamage = false;
         }
