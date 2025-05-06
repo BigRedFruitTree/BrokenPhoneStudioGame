@@ -215,6 +215,8 @@ public class PlayerController : MonoBehaviour
                     canMove = false;
                     canRotate = false;
                     stringCount = true;
+                    AudioSource.clip = Slash;
+                    AudioSource.Play();
                     StartCoroutine("SwordCoolDown");
                 }
 
@@ -283,6 +285,8 @@ public class PlayerController : MonoBehaviour
                 canMove = false;
                 canRotate = false;
                 stringCount = true;
+                AudioSource.clip = Slash;
+                AudioSource.Play();
                 StartCoroutine("SwordCoolDown");  
             }
 
@@ -301,6 +305,8 @@ public class PlayerController : MonoBehaviour
                 canMove = false;
                 canRotate = false;
                 stringCount = true;
+                AudioSource.clip = Slash;
+                AudioSource.Play();
                 StartCoroutine("SwordCoolDown");  
             }
 
@@ -319,6 +325,8 @@ public class PlayerController : MonoBehaviour
                 canMove = false;
                 canRotate = false;
                 stringCount = true;
+                AudioSource.clip = stabsound;
+                AudioSource.Play();
                 StartCoroutine("SwordCoolDown"); 
                 StartCoroutine("WaitEndString");  
             }
@@ -338,6 +346,7 @@ public class PlayerController : MonoBehaviour
                 canMove = false;
                 canRotate = false;
                 stringCount = true;
+                AudioSource.clip = hammersound;
                 AudioSource.Play();
                 StartCoroutine("HammerCoolDownBase");
             }
@@ -357,6 +366,7 @@ public class PlayerController : MonoBehaviour
                 canMove = false;
                 canRotate = false;
                 stringCount = true;
+                AudioSource.clip = hammersound;
                 AudioSource.Play();
                 StartCoroutine("HammerCoolDownBase");
             }
@@ -376,6 +386,7 @@ public class PlayerController : MonoBehaviour
                 canMove = false;
                 canRotate = false;
                 stringCount = true;
+                AudioSource.clip = hammersound;
                 AudioSource.Play();
                 StartCoroutine("HammerCoolDownBase");
                 StartCoroutine("WaitEndString");
@@ -397,6 +408,7 @@ public class PlayerController : MonoBehaviour
                 canMove = false;
                 canRotate = false;
                 stringCount = true;
+                AudioSource.clip = shieldblock;
                 AudioSource.Play();
                 StartCoroutine("SpearCoolDown");
             }
@@ -416,6 +428,7 @@ public class PlayerController : MonoBehaviour
                 canMove = false;
                 canRotate = false;
                 stringCount = true;
+                AudioSource.clip = shieldblock;
                 AudioSource.Play();
                 StartCoroutine("SpearCoolDown");
             }
@@ -435,6 +448,7 @@ public class PlayerController : MonoBehaviour
                 canMove = false;
                 canRotate = false;
                 stringCount = true;
+                AudioSource.clip = stabsound;
                 AudioSource.Play();
                 StartCoroutine("SpearCoolDown");
                 StartCoroutine("WaitEndString");
@@ -474,6 +488,8 @@ public class PlayerController : MonoBehaviour
                     attacking = true;
                     arrowSpeed = 2500;
                     arrow.SetActive(true);
+                    AudioSource.clip = Woosh;
+                    AudioSource.Play();
                     GameObject arrowSummon = Instantiate(arrow, arrowSpawnB.transform.position, playerRotationHolder.transform.rotation);
                     arrowSummon.transform.Rotate(90f, 180f, 0f);
                     arrowSummon.GetComponent<Rigidbody>().AddForce(playerRotationHolder.transform.forward * arrowSpeed);
@@ -507,6 +523,8 @@ public class PlayerController : MonoBehaviour
                     playerAnimator.SetBool("attacking", true);
                     playerAnimator.SetBool("IsDrawing", false);
                     attacking = true;
+                    AudioSource.clip = Woosh;
+                    AudioSource.Play();
                     arrowSpeed = 4500;
                     arrow.SetActive(true);
                     GameObject arrowSummon = Instantiate(arrow, arrowSpawnC.transform.position, playerRotationHolder.transform.rotation);
@@ -600,6 +618,8 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.F) && stamina > 2 && isBlocking == false && canDash == true && attacking == false && playerAnimator.GetBool("attacking") == false && playerAnimator.GetInteger("whichAttack") == 0)
             {
+                AudioSource.clip = Woosh;
+                AudioSource.Play();
                 playerAnimator.SetBool("isDashing", true);
                 canTakeDamage = false;
                 canMove = false;

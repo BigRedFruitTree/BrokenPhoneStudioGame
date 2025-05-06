@@ -1192,7 +1192,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4763074582490574155
 Transform:
   m_ObjectHideFlags: 0
@@ -3544,7 +3544,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 10
   maxHealth: 10
-  weapon: 0
   canAttack: 1
   canAttack2: 1
   arrowSpeed: 0
@@ -3591,11 +3590,14 @@ MonoBehaviour:
   arrow: {fileID: 1467756920706540577, guid: 8637a1b38a835a142bf4cdce50316ac1, type: 3}
   arrowSpawnB: {fileID: 6906909434937435643}
   arrowSpawnC: {fileID: 8225600639243796099}
-  Pausemenu: {fileID: 0}
   enemyScriptM: {fileID: 0}
-  enemyScriptR: {fileID: 0}
   AudioSource: {fileID: 674175292341571796}
-  stabsound: {fileID: 0}
+  Slash: {fileID: 8300000, guid: 3c80cf36850505a4abaa32db716c6662, type: 3}
+  Woosh: {fileID: 8300000, guid: 9ff5dc6dbe9937b4299a3bda6870340a, type: 3}
+  stabsound: {fileID: 8300000, guid: 8050118ab7b64054ebf5a034b8b4cb77, type: 3}
+  hammersound: {fileID: 8300000, guid: 1236b1ae33f293544bf48975fbdb1b93, type: 3}
+  hammerchargesound: {fileID: 8300000, guid: 6c54e4bfd2448e843814a2ebe9d65e3a, type: 3}
+  shieldblock: {fileID: 8300000, guid: 70859ef58b9f0aa449580c7e18f35021, type: 3}
 --- !u!82 &674175292341571796
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4784,7 +4786,7 @@ Transform:
   m_GameObject: {fileID: 5044713881093067308}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.506, z: 0}
+  m_LocalPosition: {x: 0, y: 0.402, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
