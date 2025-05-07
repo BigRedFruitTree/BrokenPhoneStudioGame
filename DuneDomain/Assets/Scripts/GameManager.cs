@@ -115,7 +115,7 @@ public class GameManager : MonoBehaviour
         if (GameOn == true && GameOver == false && started == true && SceneManager.GetActiveScene().buildIndex > 0)
         {
             pHealthBar.fillAmount = Mathf.Clamp((float)playerController.health / (float)playerController.maxHealth, 0, 1);
-            ChargeMeter.fillAmount = Mathf.Clamp((float)playerController.drawSpeed / (float)100, 0, 1);
+            ChargeMeter.fillAmount = Mathf.Clamp((float)playerController.drawSpeed / (float)playerController.maxdrawSpeed, 0, 1);
             bossBar.fillAmount = Mathf.Clamp((float)bossScript.health / (float)100, 0, 1);
             pStaminaBar.fillAmount = Mathf.Clamp((float)playerController.stamina / (float)10, 0, 1);
             playerUiStuff.SetActive(true);
@@ -322,6 +322,8 @@ public class GameManager : MonoBehaviour
 
             if (playerController.health <= 0)
             {
+                ChargeObject.SetActive(false);
+                playerUiStuff.SetActive(false);
                 GameOn = false;
                 GameOver = true;
                 deathScreen.SetActive(true);
@@ -377,6 +379,7 @@ public class GameManager : MonoBehaviour
         if (chosenWeapon == 1)
         {
             weaponScreen.SetActive(false);
+            ChargeObject.SetActive(false);
             playerController.sword.SetActive(true);
             playerController.bow.SetActive(false);
             playerController.crossbow.SetActive(false);
@@ -393,8 +396,10 @@ public class GameManager : MonoBehaviour
         }
         if (chosenWeapon == 2)
         {
-            playerController.drawSpeed = 100f;
+            playerController.drawSpeed = 50f;
+            playerController.maxdrawSpeed = 50f;
             playerAnimator.SetInteger("weapon", 2);
+            ChargeObject.SetActive(true);
             playerController.bow.SetActive(true);
             playerController.sword.SetActive(false);
             playerController.crossbow.SetActive(false);
@@ -412,6 +417,7 @@ public class GameManager : MonoBehaviour
         {
             weaponScreen.SetActive(false);
             playerAnimator.SetInteger("weapon", 3);
+            ChargeObject.SetActive(true);
             playerController.stringCooldown = 2.7f;
             playerController.hammer.SetActive(true);
             playerController.bow.SetActive(false);
@@ -419,6 +425,7 @@ public class GameManager : MonoBehaviour
             playerController.crossbow.SetActive(false);
             playerController.spear.SetActive(false);
             playerController.shield.SetActive(false);
+            playerController.maxdrawSpeed = 200f;
             playerController.drawSpeed = 200f;
             audioSource.clip = cultistTheme;
             audioSource.Play();
@@ -430,6 +437,7 @@ public class GameManager : MonoBehaviour
         {
             weaponScreen.SetActive(false);
             playerAnimator.SetInteger("weapon", 4);
+            ChargeObject.SetActive(false);
             playerController.stringCooldown = 1.2f;
             playerController.spear.SetActive(true);
             playerController.shield.SetActive(true);
@@ -445,8 +453,10 @@ public class GameManager : MonoBehaviour
         }
         if (chosenWeapon == 5)
         {
-            playerController.drawSpeed = 200f;
+            playerController.maxdrawSpeed = 100f;
+            playerController.drawSpeed = 100f;
             playerAnimator.SetInteger("weapon", 5);
+            ChargeObject.SetActive(true);
             playerController.crossbow.SetActive(true); 
             playerController.bow.SetActive(false);
             playerController.sword.SetActive(false);
