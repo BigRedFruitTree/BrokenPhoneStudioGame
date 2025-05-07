@@ -72,7 +72,8 @@ public class GameManager : MonoBehaviour
     public GameObject TutorialScreen3;
     public GameObject TutorialScreen4;
     public GameObject TutorialScreen5;
-    public GameObject ChargeMeter;
+    public GameObject ChargeObject;
+    public Image ChargeMeter;
     public GameObject bridge;
     public bool canSpawnRocks = true;
     public GameObject Rock1Prefab;
@@ -114,6 +115,7 @@ public class GameManager : MonoBehaviour
         if (GameOn == true && GameOver == false && started == true && SceneManager.GetActiveScene().buildIndex > 0)
         {
             pHealthBar.fillAmount = Mathf.Clamp((float)playerController.health / (float)playerController.maxHealth, 0, 1);
+            ChargeMeter.fillAmount = Mathf.Clamp((float)playerController.drawSpeed / (float)100, 0, 1);
             bossBar.fillAmount = Mathf.Clamp((float)bossScript.health / (float)100, 0, 1);
             pStaminaBar.fillAmount = Mathf.Clamp((float)playerController.stamina / (float)10, 0, 1);
             playerUiStuff.SetActive(true);
@@ -151,7 +153,7 @@ public class GameManager : MonoBehaviour
                 Destroy(GameObject.FindGameObjectWithTag("RangedEnemy"));
             }
 
-            if (enemyCorpseNumber.Length >= meleeEnemyNumber.Length || enemyCorpseNumber.Length >= rangedEnemyNumber.Length)
+            if (enemyCorpseNumber.Length >= meleeEnemyNumber.Length)
             {
                 enemyMovementPattern = 2;
             }
