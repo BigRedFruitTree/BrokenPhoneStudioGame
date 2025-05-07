@@ -496,7 +496,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &84771257
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3434,11 +3434,11 @@ MonoBehaviour:
   timeUntilAttack: 0
   rounds: 0
   bossEating: 0
-  startCycle: 0
   canBossEat: 0
   isProcessingTarget: 0
   bossAttack: 0
   bossAttacking: 0
+  sleepDistance: 0
   bridgeDistance: 0
   canRun: 0
   canDash: 1
@@ -3476,6 +3476,8 @@ MonoBehaviour:
   TutorialScreen3: {fileID: 359872897}
   TutorialScreen4: {fileID: 1422147671}
   TutorialScreen5: {fileID: 1274865190}
+  ChargeObject: {fileID: 0}
+  ChargeMeter: {fileID: 0}
   bridge: {fileID: 1695947645}
   canSpawnRocks: 1
   Rock1Prefab: {fileID: 8362784621349634397, guid: 06bfa0e5a3fb5e44eafcfa5ebcaa0e0d, type: 3}
@@ -7406,7 +7408,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1263047934
 RectTransform:
   m_ObjectHideFlags: 0
