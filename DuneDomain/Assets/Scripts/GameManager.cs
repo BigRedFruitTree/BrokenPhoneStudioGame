@@ -24,7 +24,6 @@ public class GameManager : MonoBehaviour
     public float timeUntilAttack;
     public int rounds;
     public bool bossEating = false;
-    public bool startCycle;
     public bool canBossEat = false;
     public bool isProcessingTarget = false;
     public int bossAttack = 0;
@@ -88,7 +87,6 @@ public class GameManager : MonoBehaviour
         if (SceneManager.GetActiveScene().buildIndex > 0)
         {
             bossObject.SetActive(false);
-            startCycle = false;
             TutorialStuff.SetActive(true);
             TutorialScreen3.SetActive(true);
             timeUntilAppearance = 6000f;
@@ -295,7 +293,7 @@ public class GameManager : MonoBehaviour
 
             if (bossEating == false && timeUntilEatPhase <= 0f && enemyCorpseNumber.Length == 0)
             {
-                if (rounds > 0 && startCycle == false)
+                if (rounds > 0)
                 {
                     bossUiStuff.SetActive(false);
                     StartCoroutine("WaitBossAway");
@@ -304,19 +302,18 @@ public class GameManager : MonoBehaviour
                 }
             }
 
-            if (bossEating == false && timeUntilEatPhase <= 0f && startCycle == true && enemyCorpseNumber.Length == 0)
+            if (bossEating == false && timeUntilEatPhase <= 0f && enemyCorpseNumber.Length == 0)
             {
                 if (meleeEnemyNumber.Length < 15)
                 {
-                    SpawnMelee(rounds);
+                    SpawnMelee(1);
                 }
                 if (rangedEnemyNumber.Length < 15 && rounds >= 2)
                 {
-                    SpawnRanged(rounds);
+                    SpawnRanged(1);
                 }
                 timeUntilAppearance = 6000f;
                 timeUntilEatPhase = 2000f;
-                startCycle = false;
             }
 
             if (playerController.health <= 0)
@@ -381,9 +378,6 @@ public class GameManager : MonoBehaviour
     {
         if (chosenWeapon == 1)
         {
-            if (rounds > 1)
-                startCycle = true;
-
             weaponScreen.SetActive(false);
             playerController.sword.SetActive(true);
             playerController.bow.SetActive(false);
@@ -401,9 +395,6 @@ public class GameManager : MonoBehaviour
         }
         if (chosenWeapon == 2)
         {
-            if (rounds > 1)
-                startCycle = true;
-
             playerController.drawSpeed = 100f;
             playerAnimator.SetInteger("weapon", 2);
             playerController.bow.SetActive(true);
@@ -421,9 +412,6 @@ public class GameManager : MonoBehaviour
         }
         if (chosenWeapon == 3)
         {
-            if (rounds >= 1)
-                startCycle = true;
-
             weaponScreen.SetActive(false);
             playerAnimator.SetInteger("weapon", 3);
             playerController.stringCooldown = 2.7f;
@@ -442,9 +430,6 @@ public class GameManager : MonoBehaviour
         }
         if (chosenWeapon == 4)
         {
-            if (rounds >= 1)
-                startCycle = true;
-
             weaponScreen.SetActive(false);
             playerAnimator.SetInteger("weapon", 4);
             playerController.stringCooldown = 1.2f;
@@ -462,9 +447,6 @@ public class GameManager : MonoBehaviour
         }
         if (chosenWeapon == 5)
         {
-            if (rounds >= 1)
-                startCycle = true;
-
             playerController.drawSpeed = 200f;
             playerAnimator.SetInteger("weapon", 5);
             playerController.crossbow.SetActive(true); 
@@ -792,8 +774,7 @@ public class GameManager : MonoBehaviour
     }
 
     IEnumerator WaitWeaponScreen()
-    {
-        startCycle = true;
+    { 
         yield return new WaitForSeconds(3f);
         playerAnimator.SetBool("gm", false);
         playerAnimator.SetInteger("whichAttack", 0);
