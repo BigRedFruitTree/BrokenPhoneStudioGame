@@ -30,7 +30,6 @@ public class PlayerController : MonoBehaviour
     public bool canBlock = true;
     public bool isBlocking = false;
     public bool canUnblock = false;
-    public bool isPaused = false;
     public float stringTimer;
     public int whichAttack = 1;
     public bool isCharging = false;
@@ -113,7 +112,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gm.GameOn == true && gm.GameOver == false && gm.started == true && isPaused == false)
+        if (gm.GameOn == true && gm.GameOver == false && gm.started == true)
         {
             playerCam.transform.position = cameraHolder.transform.position;
 
@@ -649,7 +648,18 @@ public class PlayerController : MonoBehaviour
             }
 
             if(health <= 0)
-               gm.GameOver = true;
+            {
+                AudioSource.Stop();
+                gm.GameOver = true;
+                playerAnimator.SetInteger("whichAttack", 0);
+                playerAnimator.SetBool("gm", false);
+                playerAnimator.SetBool("attacking", false);
+                playerAnimator.SetBool("IsCharging", false);
+                playerAnimator.SetBool("isDashing", false);
+                playerAnimator.SetBool("IsDrawing", false);
+                playerAnimator.SetBool("isMoving", false);
+                playerAnimator.SetInteger("weapon", 0);
+            }
 
             if (health > 0)
             {

@@ -104,10 +104,6 @@ public class GameManager : MonoBehaviour
             playerController = GameObject.Find("Player").GetComponent<PlayerController>();
 
         }
-        else
-        {
-            weaponScreen.SetActive(true);
-        }
     }
 
     // Update is called once per frame
@@ -125,6 +121,10 @@ public class GameManager : MonoBehaviour
 
             if (bossScript.health <= 0)
             {
+                bossUiStuff.SetActive(false);
+                playerUiStuff.SetActive(false);
+                audioSource.clip = endSong;
+                audioSource.Play();
                 winScreen.SetActive(true);
                 Time.timeScale = 0;
                 GameOn = false;
@@ -134,9 +134,7 @@ public class GameManager : MonoBehaviour
             {
                 SpawnRock1atRandomPosition(5);
                 canSpawnRocks = false;
-            }
-
-            
+            }  
 
             meleeEnemyNumber = GameObject.FindGameObjectsWithTag("MeleeEnemy");
             enemyCorpseNumber = GameObject.FindGameObjectsWithTag("EnemyCorpse");
@@ -183,16 +181,17 @@ public class GameManager : MonoBehaviour
                     bossanimator.SetBool("Iswalking", false);
                     bossanimator.SetBool("Issleeping", true);
                     NotWaitingAlertScreen.SetActive(true);
-                    if (bridgeDistance <= 29)
+                    if (bridgeDistance <= 29 && bossanimator.GetBool("Isaggressive") == false)
                     {
-                        audioSource.clip = bossThemeIntro;
-                        audioSource.Play();
                         StartCoroutine("WaitStart");
+                        audioSource.clip = bossThemeLoop;
+                        audioSource.Play();
                     }
                 }
             }
             else if (rounds > 1 && timeUntilAppearance <= 0f && canRun == false)
             {
+                bossUiStuff.SetActive(true);
                 bossObject.SetActive(true);
                 bossAgent.speed = 5;
                 canRun = true;
@@ -295,6 +294,7 @@ public class GameManager : MonoBehaviour
             {
                 if (rounds > 0)
                 {
+                    audioSource.Stop();
                     bossUiStuff.SetActive(false);
                     StartCoroutine("WaitBossAway");
                     StartCoroutine("WaitWeaponScreen");
@@ -322,12 +322,6 @@ public class GameManager : MonoBehaviour
                 GameOver = true;
                 deathScreen.SetActive(true);
                 Time.timeScale = 0;
-            }
-
-            if (rounds >= 2 && bossEating == false && timeUntilEatPhase <= 0 && timeUntilAppearance <= 0)
-            {
-                audioSource.clip = bossThemeLoop;
-                audioSource.Play();
             }
         }
     }
@@ -391,7 +385,7 @@ public class GameManager : MonoBehaviour
             audioSource.Play();
             weapon = chosenWeapon;
             GameOn = true;
-            StartCoroutine("Wait");
+            started = true;
         }
         if (chosenWeapon == 2)
         {
@@ -408,7 +402,7 @@ public class GameManager : MonoBehaviour
             audioSource.Play();
             weapon = chosenWeapon;
             GameOn = true;
-            StartCoroutine("Wait");
+            started = true;
         }
         if (chosenWeapon == 3)
         {
@@ -426,7 +420,7 @@ public class GameManager : MonoBehaviour
             audioSource.Play();
             weapon = chosenWeapon;
             GameOn = true;
-            StartCoroutine("Wait");
+            started = true;
         }
         if (chosenWeapon == 4)
         {
@@ -443,7 +437,7 @@ public class GameManager : MonoBehaviour
             audioSource.Play();
             weapon = chosenWeapon;
             GameOn = true;
-            StartCoroutine("Wait");
+            started = true;
         }
         if (chosenWeapon == 5)
         {
@@ -460,7 +454,7 @@ public class GameManager : MonoBehaviour
             audioSource.Play();
             weapon = chosenWeapon;
             GameOn = true;
-            StartCoroutine("Wait");
+            started = true;
         }
         playerAnimator.SetBool("gm", true);
     }
@@ -531,6 +525,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator WaitStart()
     {
+        bossanimator.SetBool("Isaggressive", true);
         yield return new WaitForSeconds(1f);
         bossRigidBody.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
         bossAgent.speed = 5;
