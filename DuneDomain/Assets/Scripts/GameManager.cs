@@ -72,6 +72,7 @@ public class GameManager : MonoBehaviour
     public GameObject TutorialScreen3;
     public GameObject TutorialScreen4;
     public GameObject TutorialScreen5;
+    public GameObject ChargeMeter;
     public GameObject bridge;
     public bool canSpawnRocks = true;
     public GameObject Rock1Prefab;
@@ -94,6 +95,7 @@ public class GameManager : MonoBehaviour
             timeUntilAttack = UnityEngine.Random.Range(200f, 300f);
             rounds = 1;
             spawnRange = 50f;
+            Time.timeScale = 1;
 
             if (enemyCorpseNumber == null || enemyCorpseNumber.Length == 0) return;
 
