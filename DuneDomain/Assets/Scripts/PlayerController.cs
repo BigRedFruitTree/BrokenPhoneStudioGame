@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     public int arrowSpeed;
     public bool canMove = true;
     public float drawSpeed;
+    public float maxdrawSpeed;
     public bool canDash = true;
     public bool canTakeDamage = true;
     public bool attacking = false;
@@ -790,11 +791,10 @@ public class PlayerController : MonoBehaviour
     IEnumerator SwordCoolDown()
     {
         yield return new WaitForSeconds(0.5f);
-        myRB.constraints = RigidbodyConstraints.FreezeAll;
         playerAnimator.SetBool("attacking", false);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.1f);
         attacking = false;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         canRotate = true;
         canAttack2 = true;
     }
