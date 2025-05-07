@@ -250,6 +250,11 @@ public class MeleeEnemyManager : MonoBehaviour
             health -= 4;
             StartCoroutine("WaitDamage");
         }
+
+        if (other.gameObject.tag == "Wall" && gm.enemyMovementPattern == 2 && gm.GameOn == true)
+        {
+            Destroy(gameObject);
+        }
     }
 
     IEnumerator WaitDamage()

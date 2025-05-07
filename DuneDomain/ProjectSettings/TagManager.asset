@@ -8,11 +8,11 @@ TagManager:
   - Shot
   - MeleeEnemy
   - RangedEnemy
-  - EnemySword
-  - EnemyBow
   - EnemyCorpse
   - EnemyShot
   - Environment
+  - Rocks
+  - Wall
   layers:
   - Default
   - TransparentFX

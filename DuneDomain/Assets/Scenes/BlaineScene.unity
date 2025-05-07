@@ -602,7 +602,7 @@ GameObject:
   - component: {fileID: 93630797}
   m_Layer: 0
   m_Name: ColliderReplacement (11)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -857,7 +857,7 @@ GameObject:
   - component: {fileID: 228320572}
   m_Layer: 0
   m_Name: ColliderReplacement (1)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1675,7 +1675,7 @@ GameObject:
   - component: {fileID: 338604402}
   m_Layer: 0
   m_Name: ColliderReplacement (3)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1864,7 +1864,7 @@ GameObject:
   - component: {fileID: 414625218}
   m_Layer: 0
   m_Name: ColliderReplacement (9)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1917,7 +1917,7 @@ GameObject:
   - component: {fileID: 415554513}
   m_Layer: 0
   m_Name: ColliderReplacement (13)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2749,7 +2749,7 @@ GameObject:
   - component: {fileID: 638722108}
   m_Layer: 0
   m_Name: ColliderReplacement (10)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3936,7 +3936,7 @@ GameObject:
   - component: {fileID: 1082181752}
   m_Layer: 0
   m_Name: ColliderReplacement (5)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4466,7 +4466,7 @@ GameObject:
   - component: {fileID: 1234465313}
   m_Layer: 0
   m_Name: ColliderReplacement
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4657,7 +4657,7 @@ GameObject:
   - component: {fileID: 1268676469}
   m_Layer: 0
   m_Name: ColliderReplacement (2)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5563,7 +5563,7 @@ GameObject:
   - component: {fileID: 1492018537}
   m_Layer: 0
   m_Name: ColliderReplacement (4)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5750,7 +5750,7 @@ GameObject:
   - component: {fileID: 1523768263}
   m_Layer: 0
   m_Name: ColliderReplacement (7)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7529,7 +7529,7 @@ GameObject:
   - component: {fileID: 1844859715}
   m_Layer: 0
   m_Name: ColliderReplacement (6)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7582,7 +7582,7 @@ GameObject:
   - component: {fileID: 1867623731}
   m_Layer: 0
   m_Name: ColliderReplacement (12)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8187,7 +8187,7 @@ GameObject:
   - component: {fileID: 2053919560}
   m_Layer: 0
   m_Name: ColliderReplacement (8)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9402,18 +9402,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2123153272738267728, guid: dbb47fb935dcd884a92b5bea53302ed0, type: 3}
-      propertyPath: m_Speed
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2123153272738267728, guid: dbb47fb935dcd884a92b5bea53302ed0, type: 3}
-      propertyPath: m_Acceleration
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2123153272738267728, guid: dbb47fb935dcd884a92b5bea53302ed0, type: 3}
-      propertyPath: m_AngularSpeed
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 3729309429417477046, guid: dbb47fb935dcd884a92b5bea53302ed0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.8913326

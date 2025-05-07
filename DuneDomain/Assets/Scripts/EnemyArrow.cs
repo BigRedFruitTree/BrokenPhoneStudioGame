@@ -40,6 +40,11 @@ public class EnemyArrow : MonoBehaviour
             Destroy(arrow);
         }
 
+        if (other.gameObject.tag == "Rocks")
+        {
+            Destroy(arrow);
+        }
+
         if (other.gameObject.name == "Boss")
         {
             Destroy(arrow);

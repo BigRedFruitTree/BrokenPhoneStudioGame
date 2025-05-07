@@ -13,7 +13,6 @@ public class RangedEnemyManager : MonoBehaviour
     public GameObject enemyObject;
     public NavMeshAgent agent;
     public Rigidbody enemyRidigbody;
-    public GameObject enemyBow;
     public GameObject corpsePrefab;
     public GameObject arrow;
     private GameObject arrowSummon;
@@ -42,7 +41,6 @@ public class RangedEnemyManager : MonoBehaviour
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
         model = enemyObject.transform.GetChild(0).gameObject;
         animator = model.GetComponent<Animator>();
-        enemyBow = model.transform.GetChild(1).gameObject;
         arrowSpawner = model.transform.GetChild(0).gameObject;
         agent = enemyObject.GetComponent<NavMeshAgent>();
         timer = Random.Range(7f, 9f);
@@ -260,6 +258,11 @@ public class RangedEnemyManager : MonoBehaviour
             canTakeDamage = false;
             health -= 4;
             StartCoroutine("WaitDamage");
+        }
+
+        if (other.gameObject.tag == "Wall" && gm.enemyMovementPattern == 2 && gm.GameOn == true)
+        {
+            Destroy(gameObject);
         }
     }
 

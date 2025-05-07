@@ -151,7 +151,7 @@ public class GameManager : MonoBehaviour
                 Destroy(GameObject.FindGameObjectWithTag("RangedEnemy"));
             }
 
-            if (enemyCorpseNumber.Length >= meleeEnemyNumber.Length)
+            if (enemyCorpseNumber.Length >= meleeEnemyNumber.Length || enemyCorpseNumber.Length >= rangedEnemyNumber.Length)
             {
                 enemyMovementPattern = 2;
             }

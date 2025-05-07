@@ -460,7 +460,7 @@ GameObject:
   - component: {fileID: 5165208313749063023}
   m_Layer: 0
   m_Name: Bow.002
-  m_TagString: EnemyBow
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4200,7 +4200,6 @@ MonoBehaviour:
   enemyObject: {fileID: 6878104952680005038}
   agent: {fileID: 0}
   enemyRidigbody: {fileID: 0}
-  enemyBow: {fileID: 0}
   corpsePrefab: {fileID: 4340697808561044741, guid: a2261d378dfad0248b81f73b795db54a, type: 3}
   arrow: {fileID: 7613350594052414490, guid: ab5fc5447a871b44cb2766eed461304b, type: 3}
   arrowSpawner: {fileID: 0}
