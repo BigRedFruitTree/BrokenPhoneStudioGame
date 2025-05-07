@@ -37,7 +37,6 @@ public class PlayerController : MonoBehaviour
     public bool canCharge = false;
     public bool isGoingtoCharge = false;
     public int chargeLevel = 0;
-    public float stringCooldown = 0f;
     public bool stringCount = false;
     public bool canRotate = false;
     public bool dashingEnd = false;
@@ -772,7 +771,7 @@ public class PlayerController : MonoBehaviour
         myRB.constraints = RigidbodyConstraints.FreezeAll;
         whichAttack = 0;
         playerAnimator.SetBool("attacking", false);
-        yield return new WaitForSeconds(stringCooldown);
+        yield return new WaitForSeconds(2f);
         playerAnimator.SetBool("recovering", false);
         recovering = false;
         attacking = false;
@@ -792,6 +791,7 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         playerAnimator.SetBool("attacking", false);
+        myRB.constraints = RigidbodyConstraints.FreezeAll;
         yield return new WaitForSeconds(0.1f);
         attacking = false;
         yield return new WaitForSeconds(0.5f);
