@@ -387,7 +387,6 @@ public class GameManager : MonoBehaviour
             playerController.shield.SetActive(false);
             playerController.hammer.SetActive(false);
             playerAnimator.SetInteger("weapon", 1);
-            playerController.stringCooldown = 2f;
             audioSource.clip = cultistTheme;
             audioSource.Play();
             weapon = chosenWeapon;
@@ -418,7 +417,6 @@ public class GameManager : MonoBehaviour
             weaponScreen.SetActive(false);
             playerAnimator.SetInteger("weapon", 3);
             ChargeObject.SetActive(true);
-            playerController.stringCooldown = 2.7f;
             playerController.hammer.SetActive(true);
             playerController.bow.SetActive(false);
             playerController.sword.SetActive(false);
@@ -438,7 +436,6 @@ public class GameManager : MonoBehaviour
             weaponScreen.SetActive(false);
             playerAnimator.SetInteger("weapon", 4);
             ChargeObject.SetActive(false);
-            playerController.stringCooldown = 1.2f;
             playerController.spear.SetActive(true);
             playerController.shield.SetActive(true);
             playerController.bow.SetActive(false);
