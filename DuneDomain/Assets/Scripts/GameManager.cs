@@ -96,7 +96,7 @@ public class GameManager : MonoBehaviour
             TutorialStuff.SetActive(true);
             TutorialScreen3.SetActive(true);
             timeUntilAppearance = 6000f;
-            timeUntilEatPhase = 2000f;
+            timeUntilEatPhase = 4000f;
             timeUntilAttack = UnityEngine.Random.Range(200f, 300f);
             rounds = 1;
             spawnRange = 50f;
@@ -320,7 +320,7 @@ public class GameManager : MonoBehaviour
                     SpawnRanged(1);
                 }
                 timeUntilAppearance = 6000f;
-                timeUntilEatPhase = 2000f;
+                timeUntilEatPhase = 4000f;
             }
 
             if (playerController.health <= 0)
@@ -792,14 +792,11 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         bossAgent.speed = 0;
         bossanimator.SetBool("Dodgeback", true);
+        bossAgent.destination = playerObject.transform.position;
         bossanimator.SetBool("Iswalking", false);
         yield return new WaitForSeconds(0.5f);
         bossAgent.speed = 0;
         bossAgent.destination = playerObject.transform.position;
-        Vector3 lookDirection = (playerObject.transform.position - bossObject.transform.position);
-        lookDirection.y = 0f;
-        lookDirection.Normalize();
-        bossRigidBody.AddForce(-lookDirection * 6000000f);
         yield return new WaitForSeconds(1f);
         bossanimator.SetBool("Iswalking", true);
         bossanimator.SetBool("Dodgeback", false);
