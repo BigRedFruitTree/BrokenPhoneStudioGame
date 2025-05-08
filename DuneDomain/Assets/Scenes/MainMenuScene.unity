@@ -547,6 +547,7 @@ MonoBehaviour:
   TutorialScreen3: {fileID: 0}
   TutorialScreen4: {fileID: 0}
   TutorialScreen5: {fileID: 0}
+  ChargeObject: {fileID: 0}
   ChargeMeter: {fileID: 0}
   bridge: {fileID: 0}
   canSpawnRocks: 1
@@ -592,7 +593,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 276, y: -212}
+  m_AnchoredPosition: {x: 9, y: -212}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &664479096
@@ -641,7 +642,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1511709476}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: StartGame
+        m_MethodName: LoadScene
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -846,6 +847,7 @@ MonoBehaviour:
   TutorialScreen3: {fileID: 0}
   TutorialScreen4: {fileID: 0}
   TutorialScreen5: {fileID: 0}
+  ChargeObject: {fileID: 0}
   ChargeMeter: {fileID: 0}
   bridge: {fileID: 0}
   canSpawnRocks: 1

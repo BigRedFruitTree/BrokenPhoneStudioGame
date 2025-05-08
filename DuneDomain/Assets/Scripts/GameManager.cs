@@ -504,11 +504,6 @@ public class GameManager : MonoBehaviour
         }
         return nearestTarget;
     }
-
-    public void StartGame(int SceneID)
-    {
-        SceneManager.LoadScene(SceneID);
-    }
     public void ContinueToTutorialScreen4()
     {
         TutorialScreen3.SetActive(false);

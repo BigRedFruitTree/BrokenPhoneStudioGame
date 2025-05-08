@@ -200,62 +200,37 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0) && canAttack == true && gm.weapon > 0 && isDashing == false && attacking == false && isBlocking == false && recovering == false && playerAnimator.GetBool("recovering") == false)
             {
+               
+                playerAnimator.SetBool("attacking", true);
+                playerAnimator.SetInteger("whichAttack", 1);
+                whichAttack = 1;
+                if (!recovering)
+                {
+                    myRB.velocity += playerRotationHolder.transform.forward * 30f;
+                }
+                attacking = true;
+                canAttack = false;
+                canMove = false;
+                canRotate = false;
+                stringCount = true;
                 if (gm.weapon == 1)
                 {
-                    playerAnimator.SetBool("attacking", true);
-                    playerAnimator.SetInteger("whichAttack", 1);
-                    whichAttack = 1;
-                    if (!recovering)
-                    {
-                        myRB.velocity += playerRotationHolder.transform.forward * 30f;
-                    }
-                    attacking = true;
-                    canAttack = false;
-                    canMove = false;
-                    canRotate = false;
-                    stringCount = true;
                     AudioSource.clip = Slash;
                     AudioSource.Play();
-                    StartCoroutine("SwordCoolDown");
                 }
-
-                if (gm.weapon == 3)
+                else if (gm.weapon == 3)
                 {
-                    playerAnimator.SetBool("attacking", true);
-                    playerAnimator.SetInteger("whichAttack", 1);
-                    playerAnimator.SetBool("IsCharging", false);
-                    canCharge = true;
-                    isCharging = false;
-                    whichAttack = 1;
-                    if (!recovering)
-                    {
-                        myRB.velocity += playerRotationHolder.transform.forward * 20f;
-                    }
-                    attacking = true;
-                    canAttack = false;
-                    canMove = false;
-                    canRotate = false;
                     AudioSource.clip = hammersound;
                     AudioSource.Play();
-                    stringCount = true;
-                    StartCoroutine("HammerCoolDownBase");
                 }
-
-                if (gm.weapon == 4)
+                else if (gm.weapon == 5)
                 {
-                    playerAnimator.SetBool("attacking", true);
-                    playerAnimator.SetInteger("whichAttack", 1);
-                    whichAttack = 1;
-                    myRB.velocity += playerRotationHolder.transform.forward * 40f;
-                    attacking = true;
-                    canAttack = false;
-                    canMove = false;
-                    canRotate = false;
-                    stringCount = true;
                     AudioSource.clip = stabsound;
                     AudioSource.Play();
-                    StartCoroutine("SpearCoolDown");
                 }
+                StartCoroutine("AttackStringCoolDown");
+                
+                
             } 
 
             if (stringCount == true && stringTimer > 0f)
@@ -268,7 +243,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            if (Input.GetMouseButtonDown(0) && playerAnimator.GetBool("attacking") == false && canAttack == false && canAttack2 == true && attacking == false && stringTimer > 0 && whichAttack == 1 && gm.weapon == 1 && recovering == false && recovering == false && playerAnimator.GetBool("recovering") == false)
+            if (Input.GetMouseButtonDown(0) && playerAnimator.GetBool("attacking") == false && canAttack == false && canAttack2 == true && attacking == false && stringTimer > 0 && whichAttack == 1 && gm.weapon != 2 && recovering == false && recovering == false && playerAnimator.GetBool("recovering") == false || Input.GetMouseButtonDown(0) && playerAnimator.GetBool("attacking") == false && canAttack == false && canAttack2 == true && attacking == false && stringTimer > 0 && whichAttack == 1 && gm.weapon != 5 && recovering == false && recovering == false && playerAnimator.GetBool("recovering") == false)
             {
                 myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
                 playerAnimator.SetInteger("whichAttack", 2);
@@ -284,9 +259,22 @@ public class PlayerController : MonoBehaviour
                 canMove = false;
                 canRotate = false;
                 stringCount = true;
-                AudioSource.clip = Slash;
-                AudioSource.Play();
-                StartCoroutine("SwordCoolDown");  
+                if (gm.weapon == 1)
+                {
+                    AudioSource.clip = Slash;
+                    AudioSource.Play();
+                }
+                else if (gm.weapon == 3)
+                {
+                    AudioSource.clip = hammersound;
+                    AudioSource.Play();
+                }
+                else if (gm.weapon == 5)
+                {
+                    AudioSource.clip = stabsound;
+                    AudioSource.Play();
+                }
+                StartCoroutine("AttackStringCoolDown");  
             }
 
             if (Input.GetMouseButtonDown(0) && playerAnimator.GetBool("attacking") == false && canAttack == false && canAttack2 == true && attacking == false && stringTimer > 0 && whichAttack == 2 && gm.weapon == 1&& recovering == false && playerAnimator.GetBool("recovering") == false)
@@ -305,9 +293,22 @@ public class PlayerController : MonoBehaviour
                 canMove = false;
                 canRotate = false;
                 stringCount = true;
-                AudioSource.clip = Slash;
-                AudioSource.Play();
-                StartCoroutine("SwordCoolDown");  
+                if (gm.weapon == 1)
+                {
+                    AudioSource.clip = Slash;
+                    AudioSource.Play();
+                }
+                else if (gm.weapon == 3)
+                {
+                    AudioSource.clip = hammersound;
+                    AudioSource.Play();
+                }
+                else if (gm.weapon == 5)
+                {
+                    AudioSource.clip = stabsound;
+                    AudioSource.Play();
+                }
+                StartCoroutine("AttackStringCoolDown");  
             }
 
             if (Input.GetMouseButtonDown(0) && playerAnimator.GetBool("attacking") == false && canAttack == false && canAttack2 == true && attacking == false && stringTimer > 0 && whichAttack == 3 && gm.weapon == 1 && recovering == false && playerAnimator.GetBool("recovering") == false)
@@ -326,138 +327,18 @@ public class PlayerController : MonoBehaviour
                 canMove = false;
                 canRotate = false;
                 stringCount = true;
-                AudioSource.clip = stabsound;
-                AudioSource.Play();
-                StartCoroutine("SwordCoolDown"); 
+                if (gm.weapon == 1 || gm.weapon == 5)
+                {
+                    AudioSource.clip = Slash;
+                    AudioSource.Play();
+                }
+                else if (gm.weapon == 3)
+                {
+                    AudioSource.clip = hammersound;
+                    AudioSource.Play();
+                }
+                StartCoroutine("AttackStringCoolDown"); 
                 StartCoroutine("WaitEndString");  
-            }
-
-            if (Input.GetMouseButtonDown(0) && playerAnimator.GetBool("attacking") == false && canAttack == false && canAttack2 == true && attacking == false && stringTimer > 0 && whichAttack == 1 && gm.weapon == 3 && recovering == false && recovering == false && playerAnimator.GetBool("recovering") == false)
-            {
-                myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
-                playerAnimator.SetInteger("whichAttack", 2);
-                playerAnimator.SetBool("attacking", true);
-                whichAttack = 2;
-                stringTimer = 2f;
-                if (!recovering)
-                {
-                    myRB.velocity += playerRotationHolder.transform.forward * 20f;
-                }
-                attacking = true;
-                canAttack2 = false;
-                canMove = false;
-                canRotate = false;
-                stringCount = true;
-                AudioSource.clip = hammersound;
-                AudioSource.Play();
-                StartCoroutine("HammerCoolDownBase");
-            }
-
-            if (Input.GetMouseButtonDown(0) && playerAnimator.GetBool("attacking") == false && canAttack == false && canAttack2 == true && attacking == false && stringTimer > 0 && whichAttack == 2 && gm.weapon == 3 && recovering == false && playerAnimator.GetBool("recovering") == false)
-            {
-                myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
-                playerAnimator.SetInteger("whichAttack", 3);
-                playerAnimator.SetBool("attacking", true);
-                whichAttack = 3;
-                stringTimer = 2f;
-                if (!recovering)
-                {
-                    myRB.velocity += playerRotationHolder.transform.forward * 20f;
-                }
-                attacking = true;
-                canAttack2 = false;
-                canMove = false;
-                canRotate = false;
-                stringCount = true;
-                AudioSource.clip = hammersound;
-                AudioSource.Play();
-                StartCoroutine("HammerCoolDownBase");
-            }
-
-            if (Input.GetMouseButtonDown(0) && playerAnimator.GetBool("attacking") == false && canAttack == false && canAttack2 == true && attacking == false && stringTimer > 0 && whichAttack == 3 && gm.weapon == 3 && recovering == false && playerAnimator.GetBool("recovering") == false)
-            {
-                myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
-                playerAnimator.SetInteger("whichAttack", 4);
-                playerAnimator.SetBool("attacking", true);
-                whichAttack = 4;
-                stringTimer = 2f;
-                if (!recovering)
-                {
-                    myRB.velocity += playerRotationHolder.transform.forward * 40f;
-                }
-                attacking = true;
-                canAttack2 = false;
-                canMove = false;
-                canRotate = false;
-                stringCount = true;
-                AudioSource.clip = hammersound;
-                AudioSource.Play();
-                StartCoroutine("HammerCoolDownBase");
-                StartCoroutine("WaitEndString");
-            }
-
-            if (Input.GetMouseButtonDown(0) && playerAnimator.GetBool("attacking") == false && canAttack == false && canAttack2 == true && attacking == false && stringTimer > 0 && whichAttack == 1 && gm.weapon == 4 && recovering == false && recovering == false && playerAnimator.GetBool("recovering") == false)
-            {
-                myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
-                playerAnimator.SetInteger("whichAttack", 2);
-                playerAnimator.SetBool("attacking", true);
-                whichAttack = 2;
-                stringTimer = 2f;
-                if (!recovering)
-                {
-                    myRB.velocity += playerRotationHolder.transform.forward * 30f;
-                }
-                attacking = true;
-                canAttack2 = false;
-                canMove = false;
-                canRotate = false;
-                stringCount = true;
-                AudioSource.clip = shieldblock;
-                AudioSource.Play();
-                StartCoroutine("SpearCoolDown");
-            }
-
-            if (Input.GetMouseButtonDown(0) && playerAnimator.GetBool("attacking") == false && canAttack == false && canAttack2 == true && attacking == false && stringTimer > 0 && whichAttack == 2 && gm.weapon == 4 && recovering == false && playerAnimator.GetBool("recovering") == false)
-            {
-                myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
-                playerAnimator.SetInteger("whichAttack", 3);
-                playerAnimator.SetBool("attacking", true);
-                whichAttack = 3;
-                stringTimer = 2f;
-                if (!recovering)
-                {
-                    myRB.velocity += playerRotationHolder.transform.forward * 30f;
-                }
-                attacking = true;
-                canAttack2 = false;
-                canMove = false;
-                canRotate = false;
-                stringCount = true;
-                AudioSource.clip = shieldblock;
-                AudioSource.Play();
-                StartCoroutine("SpearCoolDown");
-            }
-
-            if (Input.GetMouseButtonDown(0) && playerAnimator.GetBool("attacking") == false && canAttack == false && canAttack2 == true && attacking == false && stringTimer > 0 && whichAttack == 3 && gm.weapon == 4 && recovering == false && playerAnimator.GetBool("recovering") == false)
-            {
-                myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
-                playerAnimator.SetInteger("whichAttack", 4);
-                playerAnimator.SetBool("attacking", true);
-                whichAttack = 4;
-                stringTimer = 2f;
-                if (!recovering)
-                {
-                    myRB.velocity += playerRotationHolder.transform.forward * 40f;
-                }
-                attacking = true;
-                canAttack2 = false;
-                canMove = false;
-                canRotate = false;
-                stringCount = true;
-                AudioSource.clip = stabsound;
-                AudioSource.Play();
-                StartCoroutine("SpearCoolDown");
-                StartCoroutine("WaitEndString");
             }
 
             if (Input.GetMouseButton(0) && isCooldownOver == true && gm.weapon > 0 && isDashing == false && isBlocking == false)
@@ -549,46 +430,26 @@ public class PlayerController : MonoBehaviour
                 AudioSource.Stop();
                 if (gm.weapon == 3 && drawSpeed >= 133.34f)
                 {
-                    playerAnimator.SetBool("IsCharging", false);
-                    playerAnimator.SetBool("attacking", true);
                     chargeLevel = 1;
-                    isCharging = false;
-                    attacking = true;
-                    canAttack = false;
-                    drawSpeed = 200f;
-                    AudioSource.clip = hammersound;
-                    AudioSource.Play();
-                    myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
-                    StartCoroutine("HammerCoolDown1");
                 }
                 if (gm.weapon == 3 && drawSpeed > 66.67f && drawSpeed < 133.34)
                 {
-                    playerAnimator.SetBool("IsCharging", false);
-                    playerAnimator.SetBool("attacking", true);
                     chargeLevel = 2;
-                    isCharging = false;
-                    attacking = true;
-                    canAttack = false;
-                    drawSpeed = 200f;
-                    AudioSource.clip = hammersound;
-                    AudioSource.Play();
-                    myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
-                    StartCoroutine("HammerCoolDown2");
                 }
                 if (gm.weapon == 3 && drawSpeed <= 66.67f)
                 {
-                    playerAnimator.SetBool("IsCharging", false);
-                    playerAnimator.SetBool("attacking", true);
                     chargeLevel = 3;
-                    isCharging = false;
-                    attacking = true;
-                    canAttack = false;
-                    drawSpeed = 200f;
-                    AudioSource.clip = hammersound;
-                    AudioSource.Play();
-                    myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
-                    StartCoroutine("HammerCoolDown3");
                 }
+                playerAnimator.SetBool("IsCharging", false);
+                playerAnimator.SetBool("attacking", true);
+                isCharging = false;
+                attacking = true;
+                canAttack = false;
+                drawSpeed = 200f;
+                AudioSource.clip = hammersound;
+                AudioSource.Play();
+                myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
+                StartCoroutine("HammerCoolDownCharge");
             }
             
             if (Input.GetMouseButton(1) && canMove == true && isBlocking == false && gm.weapon == 4)
@@ -787,7 +648,7 @@ public class PlayerController : MonoBehaviour
          drawSpeed--;
     }
 
-    IEnumerator SwordCoolDown()
+    IEnumerator AttackStringCoolDown()
     {
         yield return new WaitForSeconds(0.5f);
         playerAnimator.SetBool("attacking", false);
@@ -798,20 +659,7 @@ public class PlayerController : MonoBehaviour
         canRotate = true;
         canAttack2 = true;
     }
-
-    IEnumerator HammerCoolDownBase()
-    {
-        yield return new WaitForSeconds(0.5f);
-        myRB.constraints = RigidbodyConstraints.FreezeAll;
-        playerAnimator.SetBool("attacking", false);
-        yield return new WaitForSeconds(0.5f);
-        attacking = false;
-        yield return new WaitForSeconds(1.5f);
-        canRotate = true;
-        canAttack2 = true;
-    }
-
-    IEnumerator HammerCoolDown1()
+    IEnumerator HammerCoolDownCharge()
     {
         yield return new WaitForSeconds(1f);
         playerAnimator.SetBool("attacking", false);
@@ -823,45 +671,6 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(2.7f);
         canAttack = true;
     }
-
-    IEnumerator HammerCoolDown2()
-    {
-        yield return new WaitForSeconds(1f);
-        playerAnimator.SetBool("attacking", false);
-        isCharging = false;
-        chargeLevel = 0;
-        canMove = true;
-        canRotate = true;
-        attacking = false;
-        yield return new WaitForSeconds(3f);
-        canAttack = true;
-    }
-
-    IEnumerator HammerCoolDown3()
-    {
-        yield return new WaitForSeconds(1f);
-        playerAnimator.SetBool("attacking", false);
-        isCharging = false;
-        chargeLevel = 0;
-        canMove = true;
-        canRotate = true;
-        attacking = false;
-        yield return new WaitForSeconds(3.7f);
-        canAttack = true;
-    }
-
-    IEnumerator SpearCoolDown()
-    {
-        yield return new WaitForSeconds(0.5f);
-        myRB.constraints = RigidbodyConstraints.FreezeAll;
-        playerAnimator.SetBool("attacking", false);
-        yield return new WaitForSeconds(0.5f);
-        attacking = false;
-        yield return new WaitForSeconds(1.5f);
-        canRotate = true;
-        canAttack2 = true;
-    }
-
     IEnumerator BowCoolDown()
     {
         isCooldownOver = false;
