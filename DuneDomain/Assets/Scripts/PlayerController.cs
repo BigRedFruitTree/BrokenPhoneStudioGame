@@ -198,7 +198,7 @@ public class PlayerController : MonoBehaviour
             if (canMove == false)
                 playerAnimator.SetBool("isMoving", false);
 
-            if (Input.GetMouseButtonDown(0) && canAttack == true && gm.weapon > 0 && isDashing == false && attacking == false && isBlocking == false && recovering == false && playerAnimator.GetBool("recovering") == false)
+            if (Input.GetMouseButtonDown(0) && canAttack == true && gm.weapon != 2 && gm.weapon != 5 && isDashing == false && attacking == false && isBlocking == false && recovering == false && playerAnimator.GetBool("recovering") == false)
             {
                
                 playerAnimator.SetBool("attacking", true);
@@ -243,7 +243,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            if (Input.GetMouseButtonDown(0) && playerAnimator.GetBool("attacking") == false && canAttack == false && canAttack2 == true && attacking == false && stringTimer > 0 && whichAttack == 1 && gm.weapon != 2 && recovering == false && recovering == false && playerAnimator.GetBool("recovering") == false || Input.GetMouseButtonDown(0) && playerAnimator.GetBool("attacking") == false && canAttack == false && canAttack2 == true && attacking == false && stringTimer > 0 && whichAttack == 1 && gm.weapon != 5 && recovering == false && recovering == false && playerAnimator.GetBool("recovering") == false)
+            if (Input.GetMouseButtonDown(0) && playerAnimator.GetBool("attacking") == false && canAttack == false && canAttack2 == true && attacking == false && stringTimer > 0 && whichAttack == 1 && gm.weapon != 2 && gm.weapon != 5 && recovering == false && recovering == false && playerAnimator.GetBool("recovering") == false)
             {
                 myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
                 playerAnimator.SetInteger("whichAttack", 2);
@@ -277,7 +277,7 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine("AttackStringCoolDown");  
             }
 
-            if (Input.GetMouseButtonDown(0) && playerAnimator.GetBool("attacking") == false && canAttack == false && canAttack2 == true && attacking == false && stringTimer > 0 && whichAttack == 2 && gm.weapon != 2 && recovering == false && recovering == false && playerAnimator.GetBool("recovering") == false || Input.GetMouseButtonDown(0) && playerAnimator.GetBool("attacking") == false && canAttack == false && canAttack2 == true && attacking == false && stringTimer > 0 && whichAttack == 2 && gm.weapon != 5 && recovering == false && recovering == false && playerAnimator.GetBool("recovering") == false)
+            if (Input.GetMouseButtonDown(0) && playerAnimator.GetBool("attacking") == false && canAttack == false && canAttack2 == true && attacking == false && stringTimer > 0 && whichAttack == 2 && gm.weapon != 2 && gm.weapon != 5 && recovering == false && recovering == false && playerAnimator.GetBool("recovering") == false)
             {
                 myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
                 playerAnimator.SetInteger("whichAttack", 3);
@@ -311,7 +311,7 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine("AttackStringCoolDown");  
             }
 
-            if (Input.GetMouseButtonDown(0) && playerAnimator.GetBool("attacking") == false && canAttack == false && canAttack2 == true && attacking == false && stringTimer > 0 && whichAttack == 3 && gm.weapon != 2 && recovering == false && recovering == false && playerAnimator.GetBool("recovering") == false || Input.GetMouseButtonDown(0) && playerAnimator.GetBool("attacking") == false && canAttack == false && canAttack2 == true && attacking == false && stringTimer > 0 && whichAttack == 3 && gm.weapon != 5 && recovering == false && recovering == false && playerAnimator.GetBool("recovering") == false)
+            if (Input.GetMouseButtonDown(0) && playerAnimator.GetBool("attacking") == false && canAttack == false && canAttack2 == true && attacking == false && stringTimer > 0 && whichAttack == 3 && gm.weapon != 2 && gm.weapon != 5 && recovering == false && recovering == false && playerAnimator.GetBool("recovering") == false)
             {
                 myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
                 playerAnimator.SetInteger("whichAttack", 4);
@@ -432,7 +432,7 @@ public class PlayerController : MonoBehaviour
                 {
                     chargeLevel = 1;
                 }
-                if (gm.weapon == 3 && drawSpeed > 66.67f && drawSpeed < 133.34)
+                if (gm.weapon == 3 && drawSpeed > 66.67f && drawSpeed < 133.34f)
                 {
                     chargeLevel = 2;
                 }
@@ -644,8 +644,8 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator WaitDraw()
     {
-         yield return new WaitForSeconds(1f);
-         drawSpeed--;
+         yield return new WaitForSeconds(0.5f);
+         drawSpeed -= Time.deltaTime * 60;
     }
 
     IEnumerator AttackStringCoolDown()
@@ -661,12 +661,14 @@ public class PlayerController : MonoBehaviour
     }
     IEnumerator HammerCoolDownCharge()
     {
+        drawSpeed = 200f;
         yield return new WaitForSeconds(1f);
         playerAnimator.SetBool("attacking", false);
         isCharging = false;
         chargeLevel = 0;
         canMove = true;
         canRotate = true;
+        drawSpeed = 200f;
         attacking = false;
         yield return new WaitForSeconds(2.7f);
         canAttack = true;
@@ -677,7 +679,7 @@ public class PlayerController : MonoBehaviour
         playerAnimator.SetBool("attacking", false);
         attacking = false;
         yield return new WaitForSeconds(2f);
-        drawSpeed = 100f;
+        drawSpeed = 50f;
         canAttack = true;
         isCooldownOver = true;
     }
@@ -688,7 +690,7 @@ public class PlayerController : MonoBehaviour
         playerAnimator.SetBool("attacking", false);
         attacking = false;
         yield return new WaitForSeconds(4f);
-        drawSpeed = 200f;
+        drawSpeed = 100f;
         canAttack = true;
         isCooldownOver = true;
     }

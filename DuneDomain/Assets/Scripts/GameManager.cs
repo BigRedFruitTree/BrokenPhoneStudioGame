@@ -219,7 +219,6 @@ public class GameManager : MonoBehaviour
                 {
                     timeUntilAttack = 0f;
                     bossAttack = UnityEngine.Random.Range(4, 0);
-                    Debug.Log("Hes doing number " + bossAttack);
                 }
 
                 if (bossAttack == 1 && bossDistance <= 30f && bossanimator.GetBool("Dodgeback") == false && canAttack == true && timeUntilEatPhase > 0f)
@@ -534,16 +533,12 @@ public class GameManager : MonoBehaviour
         bossanimator.SetBool("Isaggressive", true);
         yield return new WaitForSeconds(1f);
         bossRigidBody.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
-        bossAgent.speed = 5;
-        Vector3 lookDirection = (playerObject.transform.position - bossObject.transform.position);
-        lookDirection.y = 0f;
-        lookDirection.Normalize();
-        Quaternion awayRotation = Quaternion.LookRotation(lookDirection);
-        bossObject.transform.rotation = Quaternion.Euler(bossObject.transform.rotation.eulerAngles.x, awayRotation.eulerAngles.y, bossObject.transform.rotation.eulerAngles.z);
         bossanimator.SetBool("Issleeping", false);
         bossanimator.SetBool("Isaggressive", true);
         NotWaitingAlertScreen.SetActive(false);
         yield return new WaitForSeconds(2f);
+        bossAgent.speed = 5;
+        bossAgent.destination = playerObject.transform.position;
         bossUiStuff.SetActive(true);
         canRun = true;
         bossanimator.SetBool("Iswalking", true);
@@ -556,12 +551,10 @@ public class GameManager : MonoBehaviour
         int tempI = UnityEngine.Random.Range(1, 4);
         if (tempI == 2)
         {
-            Debug.Log("Its" + tempI);
             transitionAttack = true;
         }
         else
         {
-            Debug.Log("Its" + tempI);
             transitionAttack = false;
         }
         bossAgent.ResetPath();
@@ -613,12 +606,10 @@ public class GameManager : MonoBehaviour
         int tempI = UnityEngine.Random.Range(4, 0);
         if (tempI == 2)
         {
-            Debug.Log("Its " + tempI);
             transitionAttack = true;
         }
         else
         {
-            Debug.Log("Its " + tempI);
             transitionAttack = false;
         }
         bossAgent.ResetPath();
@@ -629,12 +620,13 @@ public class GameManager : MonoBehaviour
         bossanimator.SetBool("attacking", false);
         if (transitionAttack == true)
         {
-            bossAgent.speed = 0;
             bossAttack = 2;
             bossanimator.SetBool("attacking", true);
             bossanimator.SetBool("transitionAttack", true);
             areHandsActive = true;
             isHeadActive = false;
+            yield return new WaitForSeconds(1f);
+            bossAgent.speed = 0;
             yield return new WaitForSeconds(2.5f);
             bossAgent.speed = 5;
             bossAttack = 0;
@@ -670,12 +662,10 @@ public class GameManager : MonoBehaviour
         int tempI = UnityEngine.Random.Range(4, 1);
         if (tempI == 2)
         {
-            Debug.Log("Its " + tempI);
             transitionAttack = true;
         }
         else
         {
-            Debug.Log("Its " + tempI);
             transitionAttack = false;
         }
         bossAgent.ResetPath();
@@ -687,7 +677,7 @@ public class GameManager : MonoBehaviour
         bossanimator.SetBool("attacking", false);
         if (transitionAttack == true)
         {
-            bossAgent.speed = 0;
+            bossAgent.speed = 5;
             bossAttack = 3;
             bossAgent.destination = playerObject.transform.position;
             isHeadActive = true;
