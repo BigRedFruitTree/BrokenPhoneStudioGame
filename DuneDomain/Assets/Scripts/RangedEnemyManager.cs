@@ -170,7 +170,7 @@ public class RangedEnemyManager : MonoBehaviour
             StartCoroutine("WaitDamage");
         }
 
-        if (other.gameObject.name == "Hammer" && canTakeDamage == true && gm.GameOn == true && player.attacking == true)
+        if (other.gameObject.name == "Hammer" && canTakeDamage == true && gm.GameOn == true && player.attacking == true && player.chargeLevel == 0)
         {
             if (gm.enemyMovementPattern == 2)
             {
@@ -178,16 +178,11 @@ public class RangedEnemyManager : MonoBehaviour
             }
             else
             {
-                enemyRidigbody.AddForce(-lookDirection * 2500);
+                enemyRidigbody.AddForce(-lookDirection * 3000);
             }
             canTakeDamage = false;
             health -= 10;
-            StartCoroutine("WaitDamage");
-        }
-
-        if (other.gameObject.name == "Hammer" && canTakeDamage == true && gm.GameOn == true && player.attacking == true && player.chargeLevel == 1)
-        {
-            if (gm.enemyMovementPattern == 2)
+            if (player.chargeLevel == 1)
             {
                 enemyRidigbody.AddForce(lookDirection * 3000);
             }
@@ -197,12 +192,7 @@ public class RangedEnemyManager : MonoBehaviour
             }
             canTakeDamage = false;
             health -= 12;
-            StartCoroutine("WaitDamage");
-        }
-
-        if (other.gameObject.name == "Hammer" && canTakeDamage == true && gm.GameOn == true && player.attacking == true && player.chargeLevel == 2)
-        {
-            if (gm.enemyMovementPattern == 2)
+            if (player.chargeLevel == 2)
             {
                 enemyRidigbody.AddForce(lookDirection * 3500);
             }
@@ -212,12 +202,7 @@ public class RangedEnemyManager : MonoBehaviour
             }
             canTakeDamage = false;
             health -= 15;
-            StartCoroutine("WaitDamage");
-        }
-
-        if (other.gameObject.name == "Hammer" && canTakeDamage == true && gm.GameOn == true && player.attacking == true && player.chargeLevel == 3)
-        {
-            if (gm.enemyMovementPattern == 2)
+            if (player.chargeLevel == 3)
             {
                 enemyRidigbody.AddForce(lookDirection * 4000);
             }
@@ -227,6 +212,7 @@ public class RangedEnemyManager : MonoBehaviour
             }
             canTakeDamage = false;
             health -= 20;
+
             StartCoroutine("WaitDamage");
         }
 
