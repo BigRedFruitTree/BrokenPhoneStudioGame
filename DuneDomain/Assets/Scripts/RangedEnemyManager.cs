@@ -170,7 +170,7 @@ public class RangedEnemyManager : MonoBehaviour
             StartCoroutine("WaitDamage");
         }
 
-        if (other.gameObject.name == "Hammer" && canTakeDamage == true && gm.GameOn == true && player.attacking == true && player.chargeLevel == 0)
+        if (other.gameObject.name == "Hammer" && canTakeDamage == true && gm.GameOn == true && player.attacking == true)
         {
             if (gm.enemyMovementPattern == 2)
             {
