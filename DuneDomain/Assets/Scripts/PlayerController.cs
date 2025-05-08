@@ -675,6 +675,7 @@ public class PlayerController : MonoBehaviour
     }
     IEnumerator BowCoolDown()
     {
+        drawSpeed = 50f;
         isCooldownOver = false;
         playerAnimator.SetBool("attacking", false);
         attacking = false;
@@ -686,6 +687,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator CrossbowCoolDown()
     {
+        drawSpeed = 100f;
         isCooldownOver = false;
         playerAnimator.SetBool("attacking", false);
         attacking = false;
