@@ -93,7 +93,7 @@ public class PlayerController : MonoBehaviour
         playerAnimator.SetBool("IsDrawing", false);
         playerAnimator.SetBool("isMoving", false);
         playerAnimator.SetInteger("weapon", 0);
-        stringTimer = 2f;
+        stringTimer = 1f;
         speed = 7f;
         drawSpeed = 50f;
         stamina = 10;
@@ -249,7 +249,7 @@ public class PlayerController : MonoBehaviour
                 playerAnimator.SetInteger("whichAttack", 2);
                 playerAnimator.SetBool("attacking", true);
                 whichAttack = 2;
-                stringTimer = 2f;
+                stringTimer = 1f;
                 if (!recovering)
                 {
                     myRB.velocity += playerRotationHolder.transform.forward * 30f;
@@ -283,7 +283,7 @@ public class PlayerController : MonoBehaviour
                 playerAnimator.SetInteger("whichAttack", 3);
                 playerAnimator.SetBool("attacking", true);
                 whichAttack = 3;
-                stringTimer = 2f;
+                stringTimer = 1f;
                 if (!recovering)
                 {
                     myRB.velocity += playerRotationHolder.transform.forward * 30f;
@@ -317,7 +317,7 @@ public class PlayerController : MonoBehaviour
                 playerAnimator.SetInteger("whichAttack", 4);
                 playerAnimator.SetBool("attacking", true);
                 whichAttack = 4;
-                stringTimer = 2f;
+                stringTimer = 1f;
                 if (!recovering)
                 {
                     myRB.velocity += playerRotationHolder.transform.forward * 40f;
@@ -626,7 +626,7 @@ public class PlayerController : MonoBehaviour
         playerAnimator.SetBool("recovering", true);
         playerAnimator.SetBool("IsCharging", false);
         stringCount = false;
-        stringTimer = 2f;
+        stringTimer = 1f;
         yield return new WaitForSeconds(1f);
         playerAnimator.SetInteger("whichAttack", 0);
         myRB.constraints = RigidbodyConstraints.FreezeAll;
@@ -634,6 +634,7 @@ public class PlayerController : MonoBehaviour
         playerAnimator.SetBool("attacking", false);
         yield return new WaitForSeconds(1f);
         playerAnimator.SetBool("recovering", false);
+        yield return new WaitForSeconds(0.5f);
         recovering = false;
         attacking = false;
         canAttack = true;
