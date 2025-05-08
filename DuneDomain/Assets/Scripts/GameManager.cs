@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     public GameObject playerUiStuff;
     public Image pHealthBar;
     public Image pStaminaBar;
+    public Image marker1;
+    public Image marker2;
 
     [Header("Boss Stuff")]
     public float timeUntilAppearance;
@@ -88,6 +90,8 @@ public class GameManager : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().buildIndex > 0)
         {
+            marker1.enabled = false;
+            marker2.enabled = false;
             bossObject.SetActive(false);
             TutorialStuff.SetActive(true);
             TutorialScreen3.SetActive(true);
@@ -413,6 +417,8 @@ public class GameManager : MonoBehaviour
         }
         if (chosenWeapon == 3)
         {
+            marker1.enabled = true;
+            marker2.enabled = true;
             weaponScreen.SetActive(false);
             playerAnimator.SetInteger("weapon", 3);
             ChargeObject.SetActive(true);
