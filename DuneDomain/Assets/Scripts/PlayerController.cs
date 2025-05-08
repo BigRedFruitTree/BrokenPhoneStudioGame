@@ -153,7 +153,7 @@ public class PlayerController : MonoBehaviour
 
                 playerRotationHolder.transform.rotation = Quaternion.Euler(0f, 145f, 0f);
             }
-            if (horizontalMove < 0 && canRotate == true && recovering == false)
+            if (horizontalMove < 0 && canRotate == true && recovering == false && isCharging == false)
             {
                 if (canMove == true && recovering == false)
                     playerAnimator.SetBool("isMoving", true);
@@ -195,7 +195,7 @@ public class PlayerController : MonoBehaviour
 
             }
 
-            if (canMove == false)
+            if (canMove == false || isCharging == true)
                 playerAnimator.SetBool("isMoving", false);
 
             if (Input.GetMouseButtonDown(0) && canAttack == true && gm.weapon != 2 && gm.weapon != 5 && isDashing == false && attacking == false && isBlocking == false && recovering == false && playerAnimator.GetBool("recovering") == false)
