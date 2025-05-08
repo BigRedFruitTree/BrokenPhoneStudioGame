@@ -96,7 +96,7 @@ public class GameManager : MonoBehaviour
             TutorialStuff.SetActive(true);
             TutorialScreen3.SetActive(true);
             timeUntilAppearance = 6000f;
-            timeUntilEatPhase = 4000f;
+            timeUntilEatPhase = 3000f;
             timeUntilAttack = UnityEngine.Random.Range(200f, 300f);
             rounds = 1;
             spawnRange = 50f;
@@ -148,11 +148,11 @@ public class GameManager : MonoBehaviour
             enemyCorpseNumber = GameObject.FindGameObjectsWithTag("EnemyCorpse");
             rangedEnemyNumber = GameObject.FindGameObjectsWithTag("RangedEnemy");
 
-            while (meleeEnemyNumber.Length > 9)
+            while (meleeEnemyNumber.Length > 2)
             {
                 Destroy(GameObject.FindGameObjectWithTag("MeleeEnemy"));
             }
-            while (rangedEnemyNumber.Length > 9)
+            while (rangedEnemyNumber.Length > 2)
             {
                 Destroy(GameObject.FindGameObjectWithTag("RangedEnemy"));
             }
@@ -164,6 +164,11 @@ public class GameManager : MonoBehaviour
             else
             {
                 enemyMovementPattern = 1;
+            }
+
+            if (enemyCorpseNumber.Length > 24)
+            {
+                Destroy(GameObject.FindGameObjectWithTag("EnemyCorpse"));
             }
 
             if (timeUntilAppearance > 0f)
@@ -311,16 +316,16 @@ public class GameManager : MonoBehaviour
 
             if (bossEating == false && timeUntilEatPhase <= 0f && enemyCorpseNumber.Length == 0)
             {
-                if (meleeEnemyNumber.Length < 15)
+                if (meleeEnemyNumber.Length < 7)
                 {
                     SpawnMelee(1);
                 }
-                if (rangedEnemyNumber.Length < 15 && rounds >= 2)
+                if (rangedEnemyNumber.Length < 7)
                 {
                     SpawnRanged(1);
                 }
                 timeUntilAppearance = 6000f;
-                timeUntilEatPhase = 4000f;
+                timeUntilEatPhase = 3000f;
             }
 
             if (playerController.health <= 0)
@@ -581,28 +586,28 @@ public class GameManager : MonoBehaviour
             bossAgent.speed = 5;
             isTailActive = false;
             bossAttack = 0;
-            timeUntilAttack = UnityEngine.Random.Range(100f, 150f);
+            timeUntilAttack = UnityEngine.Random.Range(150f, 250f);
             bossAgent.destination = playerObject.transform.position;
             bossanimator.SetBool("attacking", false);
             bossanimator.SetBool("transitionAttack", false);
             bossanimator.SetInteger("whichAttack", 0);
             yield return new WaitForSeconds(2f);
             canAttack = true;
-            timeUntilAttack = UnityEngine.Random.Range(200f, 300f);
+            timeUntilAttack = UnityEngine.Random.Range(150f, 250f);
         }
         else
         {
             areHandsActive = false;
             bossAgent.speed = 5;
             bossAttack = 0;
-            timeUntilAttack = UnityEngine.Random.Range(100f, 150f);
+            timeUntilAttack = UnityEngine.Random.Range(150f, 250f);
             bossAgent.destination = playerObject.transform.position;
             bossanimator.SetBool("attacking", false);
             bossanimator.SetBool("transitionAttack", false);
             bossanimator.SetInteger("whichAttack", 0);
             yield return new WaitForSeconds(2f);
             canAttack = true;
-            timeUntilAttack = UnityEngine.Random.Range(200f, 300f);
+            timeUntilAttack = UnityEngine.Random.Range(150f, 250f);
         }
     }
     IEnumerator WaitAttack2()
@@ -636,7 +641,7 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(2.5f);
             bossAgent.speed = 5;
             bossAttack = 0;
-            timeUntilAttack = UnityEngine.Random.Range(100f, 150f);
+            timeUntilAttack = UnityEngine.Random.Range(150f, 250f);
             bossAgent.destination = playerObject.transform.position;
             bossanimator.SetBool("attacking", false);
             bossanimator.SetBool("transitionAttack", false);
@@ -644,13 +649,13 @@ public class GameManager : MonoBehaviour
             areHandsActive = false;
             yield return new WaitForSeconds(2f);
             canAttack = true;
-            timeUntilAttack = UnityEngine.Random.Range(200f, 300f);
+            timeUntilAttack = UnityEngine.Random.Range(150f, 250f);
         }
         else
         {
             bossAgent.speed = 5;
             bossAttack = 0;
-            timeUntilAttack = UnityEngine.Random.Range(100f, 150f);
+            timeUntilAttack = UnityEngine.Random.Range(150f, 250f);
             bossAgent.destination = playerObject.transform.position;
             bossanimator.SetBool("attacking", false);
             bossanimator.SetBool("transitionAttack", false);
@@ -658,7 +663,7 @@ public class GameManager : MonoBehaviour
             bossanimator.SetInteger("whichAttack", 0);
             yield return new WaitForSeconds(2f);
             canAttack = true;
-            timeUntilAttack = UnityEngine.Random.Range(200f, 300f);
+            timeUntilAttack = UnityEngine.Random.Range(150f, 250f);
         }
     }
     IEnumerator WaitAttack3()
@@ -695,27 +700,27 @@ public class GameManager : MonoBehaviour
             isHeadActive = false;
             areHandsActive = false;
             bossAttack = 0;
-            timeUntilAttack = UnityEngine.Random.Range(100f, 150f);
+            timeUntilAttack = UnityEngine.Random.Range(150f, 250f);
             bossAgent.destination = playerObject.transform.position;
             bossanimator.SetBool("attacking", false);
             bossanimator.SetBool("transitionAttack", false);
             bossanimator.SetInteger("whichAttack", 0);
             yield return new WaitForSeconds(2f);
             canAttack = true;
-            timeUntilAttack = UnityEngine.Random.Range(200f, 300f);
+            timeUntilAttack = UnityEngine.Random.Range(150f, 250f);
         }
         else
         {
             bossAgent.speed = 5;
             bossAttack = 0;
-            timeUntilAttack = UnityEngine.Random.Range(100f, 150f);
+            timeUntilAttack = UnityEngine.Random.Range(150f, 250f);
             bossAgent.destination = playerObject.transform.position;
             bossanimator.SetBool("attacking", false);
             bossanimator.SetBool("transitionAttack", false);
             bossanimator.SetInteger("whichAttack", 0);
             yield return new WaitForSeconds(2f);
             canAttack = true;
-            timeUntilAttack = UnityEngine.Random.Range(200f, 300f);
+            timeUntilAttack = UnityEngine.Random.Range(150f, 250f);
         }
     }
     IEnumerator WaitAttack4()
@@ -743,7 +748,7 @@ public class GameManager : MonoBehaviour
         bossAttack = 0;
         yield return new WaitForSeconds(2.5f);
         canAttack = true;
-        timeUntilAttack = UnityEngine.Random.Range(200f, 300f);
+        timeUntilAttack = UnityEngine.Random.Range(150f, 250f);
     }
     IEnumerator WaitBossAway()
     {

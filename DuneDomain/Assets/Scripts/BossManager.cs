@@ -30,7 +30,8 @@ public class BossManager : MonoBehaviour
     {
         player = GameObject.Find("Player").GetComponent<PlayerController>();
         bossAgent = GetComponent<NavMeshAgent>();
-
+        health = 200f;
+        maxHealth = 200f;
         bossObject.transform.position = bossSpawn.transform.position;
 
     }
@@ -52,63 +53,74 @@ public class BossManager : MonoBehaviour
     public void OnTriggerEnter(Collider other)
     {
 
-        if (other.gameObject.tag == "Shot" && canTakeDamage == true && gm.GameOn == true && gm.weapon == 2)
+        if (other.gameObject.tag == "Shot" && canTakeDamage == true && gm.GameOn == true)
         {
             canTakeDamage = false;
-            health -= 5;
+            if (gm.weapon == 5)
+            {
+                health -= 14;
+            }
+            else
+            {
+                health -= 10;
+            }
             StartCoroutine("WaitDamage");
-
-        }
-
-        if (other.gameObject.tag == "Shot" && canTakeDamage == true && gm.GameOn == true && gm.weapon == 5)
-        {
-           
-            canTakeDamage = false;
-            health -= 8;
-            StartCoroutine("WaitDamage");
-
         }
 
         if (other.gameObject.name == "Sword" && canTakeDamage == true && gm.GameOn == true && player.attacking == true)
         { 
             canTakeDamage = false;
-            health -= 6;
+            if (player.whichAttack == 4)
+            {
+                health -= 11;
+            }
+            else
+            {
+                health -= 7;
+            }
             StartCoroutine("WaitDamage");
         }
 
         if (other.gameObject.name == "Hammer" && canTakeDamage == true && gm.GameOn == true && player.attacking == true)
         {
-            
+            if (player.chargeLevel == 0)
+            {
+                if (player.whichAttack == 4)
+                {
+                    health -= 14;
+                }
+                else
+                {
+                    health -= 10;
+                }
+            }
+            else if (player.chargeLevel == 1)
+            {
+                health -= 12;
+            }
+            else if (player.chargeLevel == 2)
+            {
+                health -= 15;
+            }
+            else if (player.chargeLevel == 3)
+            {
+                health -= 20;
+            }
             canTakeDamage = false;
-            health -= 9;
-            StartCoroutine("WaitDamage");
-        }
-
-        if (other.gameObject.name == "Hammer" && canTakeDamage == true && gm.GameOn == true && player.attacking == true && player.chargeLevel == 1)
-        {     
-            canTakeDamage = false;
-            health -= 10;
-            StartCoroutine("WaitDamage");
-        }
-
-        if (other.gameObject.name == "Hammer" && canTakeDamage == true && gm.GameOn == true && player.attacking == true && player.chargeLevel == 2)
-        { 
-            canTakeDamage = false;
-            health -= 14;
-            StartCoroutine("WaitDamage");
-        }
-
-        if (other.gameObject.name == "Hammer" && canTakeDamage == true && gm.GameOn == true && player.attacking == true && player.chargeLevel == 3)
-        {  
-            canTakeDamage = false;
-            health -= 18;
             StartCoroutine("WaitDamage");
         }
 
         if (other.gameObject.name == "Spear" && canTakeDamage == true && gm.GameOn == true && player.attacking == true)
         {  
             canTakeDamage = false;
-            health -= 4;
+            if (player.whichAttack == 4)
+            {
+                health -= 9;
+            }
+            else
+            {
+                health -= 5;
+            }
             StartCoroutine("WaitDamage");
         }
 
@@ -117,14 +129,6 @@ public class BossManager : MonoBehaviour
             canTakeDamage = false;
         }
     }
-
-    IEnumerator WaitEat()
-    {
-        canEat = true;
-        yield return new WaitForSeconds(5f);
-        canEat = false;
-    }
-
     IEnumerator WaitDamage()
     {
         yield return new WaitForSeconds(1f);

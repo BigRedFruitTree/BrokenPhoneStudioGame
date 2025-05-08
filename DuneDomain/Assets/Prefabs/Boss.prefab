@@ -157,8 +157,8 @@ MonoBehaviour:
   bossAgent: {fileID: 6769200101655977866}
   animator: {fileID: 6039052311275119882}
   RB: {fileID: 8127233404491766053}
-  health: 100
-  maxHealth: 50
+  health: 200
+  maxHealth: 200
   damage: 5
   canTakeDamage: 1
   canEat: 0

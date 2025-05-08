@@ -662,9 +662,15 @@ public class PlayerController : MonoBehaviour
     }
     IEnumerator HammerCoolDownCharge()
     {
+        recovering = true;
+        playerAnimator.SetBool("recovering", true);
         drawSpeed = 200f;
         yield return new WaitForSeconds(1f);
         playerAnimator.SetBool("attacking", false);
+        yield return new WaitForSeconds(1f);
+        playerAnimator.SetBool("recovering", false);
+        yield return new WaitForSeconds(0.5f);
+        recovering = false;
         isCharging = false;
         chargeLevel = 0;
         canMove = true;

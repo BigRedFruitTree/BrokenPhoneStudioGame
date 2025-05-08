@@ -43,7 +43,7 @@ public class MeleeEnemyManager : MonoBehaviour
         player = GameObject.Find("Player").GetComponent<PlayerController>();
         playerObject = GameObject.Find("Player");
         enemyRidigbody = GetComponent<Rigidbody>();
-        speed = 6f + gm.rounds;
+        speed = 10f;
     }
   
     // Update is called once per frame
@@ -110,6 +110,12 @@ public class MeleeEnemyManager : MonoBehaviour
                 dead = true;
             }
 
+            if (maxHealth > 99)
+            {
+                maxHealth = 99;
+                health = 99;
+            }
+
         }
 
     }
@@ -137,11 +143,11 @@ public class MeleeEnemyManager : MonoBehaviour
             canTakeDamage = false;
             if (gm.weapon == 5)
             {
-                health -= 8;
+                health -= 12;
             }
             else
             {
-                health -= 6;
+                health -= 10;
             }
             StartCoroutine("WaitDamage");
         }
@@ -157,7 +163,14 @@ public class MeleeEnemyManager : MonoBehaviour
                 enemyRidigbody.AddForce(-lookDirection * 2000);
             }
             canTakeDamage = false;
-            health -= 7;
+            if (player.whichAttack == 4)
+            {
+                health -= 11;
+            }
+            else
+            {
+                health -= 7;
+            }
             StartCoroutine("WaitDamage");
         }
 
@@ -165,78 +178,71 @@ public class MeleeEnemyManager : MonoBehaviour
         {
             if (gm.enemyMovementPattern == 2)
             {
-                enemyRidigbody.AddForce(lookDirection * 2500);
+                if (player.chargeLevel == 0)
+                {
+                    enemyRidigbody.AddForce(lookDirection * 2500);
+                }
+                else if (player.chargeLevel == 1)
+                {
+                    enemyRidigbody.AddForce(lookDirection * 3000);
+                }
+                else if (player.chargeLevel == 2)
+                {
+                    enemyRidigbody.AddForce(lookDirection * 3500);
+                }
+                else if (player.chargeLevel == 3)
+                {
+                    enemyRidigbody.AddForce(lookDirection * 4000);
+                }
             }
             else
             {
-                enemyRidigbody.AddForce(-lookDirection * 2500);
+                if (player.chargeLevel == 0)
+                {
+                    enemyRidigbody.AddForce(-lookDirection * 2500);
+                }
+                else if (player.chargeLevel == 1)
+                {
+                    enemyRidigbody.AddForce(lookDirection * 3000);
+                }
+                else if (player.chargeLevel == 2)
+                {
+                    enemyRidigbody.AddForce(lookDirection * 3500);
+                }
+                else if (player.chargeLevel == 3)
+                {
+                    enemyRidigbody.AddForce(lookDirection * 4000);
+                }
+            }
+
+            if (player.chargeLevel == 0)
+            {
+                if (player.whichAttack == 4)
+                {
+                    health -= 14;
+                }
+                else
+                {
+                    health -= 10;
+                }
+            }
+            else if (player.chargeLevel == 1)
+            {
+                health -= 12;
+            }
+            else if (player.chargeLevel == 2)
+            {
+                health -= 15;
+            }
+            else if (player.chargeLevel == 3)
+            {
+                health -= 20;
             }
             canTakeDamage = false;
-            health -= 10;
             StartCoroutine("WaitDamage");
         }
 
-        if (other.gameObject.name == "Hammer" && canTakeDamage == true && gm.GameOn == true && player.attacking == true && player.chargeLevel == 1)
-        {
-            if (gm.enemyMovementPattern == 2)
-            {
-                enemyRidigbody.AddForce(lookDirection * 3000);
-            }
-            else
-            {
-                enemyRidigbody.AddForce(-lookDirection * 3000);
-            }
-            canTakeDamage = false;
-            health -= 12;
-            StartCoroutine("WaitDamage");
-        }
-
-        if (other.gameObject.name == "Hammer" && canTakeDamage == true && gm.GameOn == true && player.attacking == true && player.chargeLevel == 2)
-        {
-            if (gm.enemyMovementPattern == 2)
-            {
-                enemyRidigbody.AddForce(lookDirection * 3500);
-            }
-            else
-            {
-                enemyRidigbody.AddForce(-lookDirection * 3500);
-            }
-            canTakeDamage = false;
-            health -= 15;
-            StartCoroutine("WaitDamage");
-        }
-
-        if (other.gameObject.name == "Hammer" && canTakeDamage == true && gm.GameOn == true && player.attacking == true && player.chargeLevel == 3)
-        {
-            if (gm.enemyMovementPattern == 2)
-            {
-                enemyRidigbody.AddForce(lookDirection * 4000);
-            }
-            else
-            {
-                enemyRidigbody.AddForce(-lookDirection * 4000);
-            }
-            canTakeDamage = false;
-            health -= 20;
-            StartCoroutine("WaitDamage");
-        }
-
-        if (other.gameObject.name == "Spear" && canTakeDamage == true && gm.GameOn == true && player.attacking == true)
-        {
-            if (gm.enemyMovementPattern == 2)
-            {
-                enemyRidigbody.AddForce(lookDirection * 2000);
-            }
-            else
-            {
-                enemyRidigbody.AddForce(-lookDirection * 2000);
-            }
-            canTakeDamage = false;
-            health -= 5;
-            StartCoroutine("WaitDamage");
-        }
-
-        if (other.gameObject.name == "Shield" && canTakeDamage == true && gm.GameOn == true && player.attacking == true)
+        if (other.gameObject.name == "Spear" && canTakeDamage == true && gm.GameOn == true && player.attacking == true || other.gameObject.name == "Shield" && canTakeDamage == true && gm.GameOn == true && player.attacking == true)
         {
             if (gm.enemyMovementPattern == 2)
             {
@@ -247,7 +253,14 @@ public class MeleeEnemyManager : MonoBehaviour
                 enemyRidigbody.AddForce(-lookDirection * 2000);
             }
             canTakeDamage = false;
-            health -= 4;
+            if (player.whichAttack == 4)
+            {
+                health -= 9;
+            }
+            else
+            {
+                health -= 5;
+            }
             StartCoroutine("WaitDamage");
         }
 
