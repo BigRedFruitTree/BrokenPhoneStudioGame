@@ -5011,7 +5011,7 @@ MonoBehaviour:
   model: {fileID: 0}
   health: 10
   maxHealth: 10
-  speed: 10
+  speed: 15
   canTakeDamage: 1
   dead: 0
   timer: 0
