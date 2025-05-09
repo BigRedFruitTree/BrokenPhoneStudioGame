@@ -3854,7 +3854,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 155293509051133029, guid: b2073c2dd3c839a4b96e13b04881d603, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2399107711272898807, guid: b2073c2dd3c839a4b96e13b04881d603, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3906,7 +3906,7 @@ PrefabInstance:
       objectReference: {fileID: 1594994284}
     - target: {fileID: 9115681067979263703, guid: b2073c2dd3c839a4b96e13b04881d603, type: 3}
       propertyPath: m_Size.x
-      value: 0.77
+      value: 0.82
       objectReference: {fileID: 0}
     - target: {fileID: 9115681067979263703, guid: b2073c2dd3c839a4b96e13b04881d603, type: 3}
       propertyPath: m_Size.z
@@ -3914,7 +3914,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9115681067979263703, guid: b2073c2dd3c839a4b96e13b04881d603, type: 3}
       propertyPath: m_Center.x
-      value: 0.18
+      value: -0.08
       objectReference: {fileID: 0}
     - target: {fileID: 9115681067979263703, guid: b2073c2dd3c839a4b96e13b04881d603, type: 3}
       propertyPath: m_Center.z
@@ -8211,7 +8211,7 @@ MonoBehaviour:
   playerCtrls: {fileID: -944628639613478452, guid: c4f52b3abbe18ef4db31932b2cd0502d, type: 3}
   actionMapName: Player
   move: Move
-  primaryP: PrimaryActionPress
+  primarySword: Sword
   primaryH: PrimaryActionHold
   secondary: SecondaryAction
   roll: roll
@@ -8224,11 +8224,11 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
-  primaryActionP:
+  primaryActionSword:
     m_Name: 
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: cb12368a-14c7-4aeb-92cb-8aa4f9dd08a5
+    m_Id: c3671bd1-0268-46c9-bd6e-180ec00aa594
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
@@ -8260,7 +8260,7 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
-  primaryPressed: 0
+  primarySwordPressed: 0
 --- !u!1 &1975064854
 GameObject:
   m_ObjectHideFlags: 0
