@@ -148,11 +148,11 @@ public class GameManager : MonoBehaviour
             enemyCorpseNumber = GameObject.FindGameObjectsWithTag("EnemyCorpse");
             rangedEnemyNumber = GameObject.FindGameObjectsWithTag("RangedEnemy");
 
-            while (meleeEnemyNumber.Length > 2)
+            if (meleeEnemyNumber.Length > 7)
             {
-                Destroy(GameObject.FindGameObjectWithTag("MeleeEnemy"));
+               Destroy(GameObject.FindGameObjectWithTag("MeleeEnemy"));  
             }
-            while (rangedEnemyNumber.Length > 2)
+            if (rangedEnemyNumber.Length > 7)
             {
                 Destroy(GameObject.FindGameObjectWithTag("RangedEnemy"));
             }
@@ -166,10 +166,13 @@ public class GameManager : MonoBehaviour
                 enemyMovementPattern = 1;
             }
 
-            if (enemyCorpseNumber.Length > 24)
+            if (enemyCorpseNumber.Length > 14)
             {
+               
                 Destroy(GameObject.FindGameObjectWithTag("EnemyCorpse"));
-            }
+                
+
+            }     
 
             if (timeUntilAppearance > 0f)
             {
@@ -290,7 +293,7 @@ public class GameManager : MonoBehaviour
                         bossanimator.SetBool("Isaggressive", true);
                         bossanimator.SetBool("Iswalking", false);
                     }
-                    if (!isProcessingTarget && currentTarget != null && bossEating == true && !bossAgent.pathPending && bossAgent.remainingDistance <= bossAgent.stoppingDistance)
+                    if (!isProcessingTarget && currentTarget != null && bossEating == true && !bossAgent.pathPending && bossAgent.remainingDistance <= 10f)
                     {
                         StartCoroutine("WaitForEating");
                         bossEating = false;
@@ -479,9 +482,6 @@ public class GameManager : MonoBehaviour
         }
         playerAnimator.SetBool("gm", true);
     }
-
-    
-
     public void LoadScene(int SceneID)
     {
         SceneManager.LoadScene(SceneID);
