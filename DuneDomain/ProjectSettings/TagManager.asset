@@ -13,6 +13,7 @@ TagManager:
   - Environment
   - Rocks
   - Wall
+  - EnemySword
   layers:
   - Default
   - TransparentFX
