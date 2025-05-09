@@ -132,63 +132,63 @@ public class PlayerController : MonoBehaviour
                 myRB.velocity = (temp.x * transform.forward) + (temp.z * transform.right) + (temp.y * transform.up);
             }
 
-            if (horizontalMove > 0 && canRotate == true && recovering == false)
+            if (horizontalMove > 0 && canRotate == true && recovering == false && attacking == false)
             {
                 if (canMove == true && recovering == false)
                     playerAnimator.SetBool("isMoving", true);
 
                 playerRotationHolder.transform.rotation = Quaternion.Euler(0f, 90f, 0f);
             }
-            if (horizontalMove > 0 && verticalMove > 0 && canRotate == true && recovering == false)
+            if (horizontalMove > 0 && verticalMove > 0 && canRotate == true && recovering == false && attacking == false)
             {
                 if (canMove == true && recovering == false)
                     playerAnimator.SetBool("isMoving", true);
 
                 playerRotationHolder.transform.rotation = Quaternion.Euler(0f, 45f, 0f);
             }
-            if (horizontalMove > 0 && verticalMove < 0 && canRotate == true && recovering == false)
+            if (horizontalMove > 0 && verticalMove < 0 && canRotate == true && recovering == false && attacking == false)
             {
                 if (canMove == true && recovering == false)
                     playerAnimator.SetBool("isMoving", true);
 
                 playerRotationHolder.transform.rotation = Quaternion.Euler(0f, 145f, 0f);
             }
-            if (horizontalMove < 0 && canRotate == true && recovering == false && isCharging == false)
+            if (horizontalMove < 0 && canRotate == true && recovering == false && isCharging == false && attacking == false)
             {
                 if (canMove == true && recovering == false)
                     playerAnimator.SetBool("isMoving", true);
 
                 playerRotationHolder.transform.rotation = Quaternion.Euler(0f, -90f, 0f);
             }
-            if (horizontalMove < 0 && verticalMove > 0 && canRotate == true && recovering == false)
+            if (horizontalMove < 0 && verticalMove > 0 && canRotate == true && recovering == false && attacking == false)
             {
                 if (canMove == true && recovering == false)
                     playerAnimator.SetBool("isMoving", true);
 
                 playerRotationHolder.transform.rotation = Quaternion.Euler(0f, -45f, 0f);
             }
-            if (horizontalMove < 0 && verticalMove < 0 && canRotate == true && recovering == false)
+            if (horizontalMove < 0 && verticalMove < 0 && canRotate == true && recovering == false && attacking == false)
             {
                 if (canMove == true && recovering == false)
                     playerAnimator.SetBool("isMoving", true);
 
                 playerRotationHolder.transform.rotation = Quaternion.Euler(0f, -145f, 0f);
             }
-            if (verticalMove > 0 && horizontalMove == 0 && canRotate == true && recovering == false)
+            if (verticalMove > 0 && horizontalMove == 0 && canRotate == true && recovering == false && attacking == false)
             {
                 if (canMove == true && recovering == false)
                     playerAnimator.SetBool("isMoving", true);
 
                 playerRotationHolder.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
             }
-            if (verticalMove < 0 && horizontalMove == 0 && canRotate == true && recovering == false)
+            if (verticalMove < 0 && horizontalMove == 0 && canRotate == true && recovering == false && attacking == false)
             {
                 if (canMove == true && recovering == false)
                     playerAnimator.SetBool("isMoving", true);
 
                 playerRotationHolder.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
             }
-            if (verticalMove == 0 && horizontalMove == 0 && canRotate == true && recovering == false)
+            if (verticalMove == 0 && horizontalMove == 0 && canRotate == true && recovering == false && attacking == false)
             {
                 if (canMove == true && recovering == false)
                     playerAnimator.SetBool("isMoving", false);
