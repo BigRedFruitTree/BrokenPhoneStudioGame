@@ -3426,7 +3426,6 @@ GameObject:
   - component: {fileID: 1610296328301824140}
   - component: {fileID: 7388749027389276443}
   - component: {fileID: 674175292341571796}
-  - component: {fileID: 4166643343717809779}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -3487,7 +3486,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: c4f52b3abbe18ef4db31932b2cd0502d, type: 3}
-  m_NotificationBehavior: 0
+  m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -3501,14 +3500,13 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4883686352752382053}
-        m_TargetAssemblyTypeName: UnityEngine.InputSystem.PlayerInput, Unity.InputSystem
-        m_MethodName: set_actions
-        m_Mode: 2
+      - m_Target: {fileID: 7388749027389276443}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: FirstAttack
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: -944628639613478452, guid: c4f52b3abbe18ef4db31932b2cd0502d, type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.InputSystem.InputActionAsset,
-            Unity.InputSystem
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -3624,6 +3622,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: ff788952-4258-4f5f-ae0e-6bed6fdad88d
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 23480dbd-b109-453d-8cf2-5616a63267e1
+    m_ActionName: 'Player/CrossBow[/Mouse/leftButton]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: UI
@@ -3820,73 +3822,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &4166643343717809779
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3776295856104632847}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcefcd73fceb940419a4f11f64055adc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerController: {fileID: 7388749027389276443}
-  gm: {fileID: 0}
-  playerCtrls: {fileID: -944628639613478452, guid: c4f52b3abbe18ef4db31932b2cd0502d, type: 3}
-  actionMapName: Player
-  move: Move
-  primaryP: PrimaryActionPress
-  primaryH: PrimaryActionHold
-  secondary: SecondaryAction
-  roll: Roll
-  moveAction:
-    m_Name: Move
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 6909d733-88ee-4f76-a344-f1d44bb7b692
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  primaryActionP:
-    m_Name: Primary Action P
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 82b546c1-9900-4a62-9911-71f96bcc6d81
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  primaryActionH:
-    m_Name: Primary Action H
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: d8c50d1e-08d7-4c0b-8198-2aea8c767e21
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  secondaryAction:
-    m_Name: Secondary
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 1061fb18-99e2-4d48-aaa9-c024d1a26a8c
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  rollAction:
-    m_Name: Roll
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 8119168e-f17e-41ec-828e-90b6d522bcb8
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  primaryPressed: 0
 --- !u!1 &4006805917647185707
 GameObject:
   m_ObjectHideFlags: 0

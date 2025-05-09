@@ -721,5 +721,25 @@ public class PlayerController : MonoBehaviour
     {
          yield return new WaitForSeconds(0.5f);
          enemyScriptM = GetNearestTargetM();
-    }   
+    }
+
+    public void FirstAttack()
+    {
+
+    }
+
+    public void SecondAttack()
+    {
+
+    }
+
+    public void ThirdAttack()
+    {
+
+    }
+
+    public void FourthAttack()
+    {
+
+    }
 }

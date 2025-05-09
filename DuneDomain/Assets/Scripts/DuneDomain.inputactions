@@ -15,16 +15,16 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "PrimaryActionPress",
+                    "name": "Sword",
                     "type": "Button",
                     "id": "63835a30-bc04-4f7d-94ef-a9319eb1f7b6",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press(behavior=2)",
+                    "interactions": "Press",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "SecondaryAction",
+                    "name": "HammerCharge",
                     "type": "Value",
                     "id": "2b72e5bf-04d9-4176-91aa-0a00d9dd8c0f",
                     "expectedControlType": "Button",
@@ -42,12 +42,21 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "PrimaryActionHold",
-                    "type": "Value",
+                    "name": "Bow",
+                    "type": "Button",
                     "id": "ddbe625b-8d1f-42c5-86e1-c0bf1b819f7a",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press",
+                    "interactions": "Press,Hold",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "CrossBow",
+                    "type": "Button",
+                    "id": "23480dbd-b109-453d-8cf2-5616a63267e1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press,Hold",
                     "initialStateCheck": true
                 }
             ],
@@ -191,7 +200,7 @@
                     "interactions": "Press",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "PrimaryActionPress",
+                    "action": "Sword",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -202,7 +211,7 @@
                     "interactions": "Press",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "PrimaryActionPress",
+                    "action": "Sword",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -213,7 +222,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Touch",
-                    "action": "PrimaryActionPress",
+                    "action": "Sword",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -221,10 +230,10 @@
                     "name": "",
                     "id": "ee3d0cd2-254e-47a7-a8cb-bc94d9658c54",
                     "path": "<Joystick>/trigger",
-                    "interactions": "Hold,Press",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "Joystick",
-                    "action": "PrimaryActionPress",
+                    "action": "Sword",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -235,7 +244,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "XR",
-                    "action": "PrimaryActionPress",
+                    "action": "Sword",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -279,7 +288,7 @@
                     "interactions": "Hold",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "SecondaryAction",
+                    "action": "HammerCharge",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -290,7 +299,7 @@
                     "interactions": "Hold",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "SecondaryAction",
+                    "action": "HammerCharge",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -301,7 +310,7 @@
                     "interactions": "Hold",
                     "processors": "",
                     "groups": "Joystick",
-                    "action": "SecondaryAction",
+                    "action": "HammerCharge",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -312,7 +321,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "PrimaryActionHold",
+                    "action": "Bow",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -323,7 +332,7 @@
                     "interactions": "Hold,Press",
                     "processors": "",
                     "groups": "Joystick",
-                    "action": "PrimaryActionHold",
+                    "action": "Bow",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -334,7 +343,40 @@
                     "interactions": "Press",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "PrimaryActionHold",
+                    "action": "Bow",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "670d3463-b583-467a-b8f2-6e7028209ae0",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "CrossBow",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "00a0ad09-db73-4b21-8935-2e2f8f0d8084",
+                    "path": "<Joystick>/trigger",
+                    "interactions": "Hold,Press",
+                    "processors": "",
+                    "groups": "Joystick",
+                    "action": "CrossBow",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a36adcb9-4049-4769-8180-345f11a95867",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "CrossBow",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

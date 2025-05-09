@@ -13,20 +13,20 @@ public class InputHandler : MonoBehaviour
     [SerializeField] private InputActionAsset playerCtrls;
     [SerializeField] private string actionMapName = "Player";
     [SerializeField] private string move = "Move";
-    [SerializeField] private string primaryP = "PrimaryActionPress";
+    [SerializeField] private string primarySword = "Sword";
     [SerializeField] private string primaryH = "PrimaryActionHold";
     [SerializeField] private string secondary = "SecondaryAction";
     [SerializeField] private string roll = "Roll";
 
     [SerializeField] public InputAction moveAction;
-    [SerializeField] public InputAction primaryActionP;
+    [SerializeField] public InputAction primaryActionSword;
     [SerializeField] public InputAction primaryActionH;
     [SerializeField] public InputAction secondaryAction;
     [SerializeField] public InputAction rollAction;
 
-    public bool primaryPressed = false; 
+    public bool primarySwordPressed = false; 
     public Vector2 MoveInput {get; private set;}
-    public bool PrimaryInputP { get; private set; }
+    public bool PrimaryInputSword { get; private set; }
     public bool PrimaryInputH { get; private set; }
     public bool SecondaryInput { get; private set; }
     public bool RollInput { get; private set; }
@@ -41,13 +41,14 @@ public class InputHandler : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-        }else
+        }
+        else
         {
             Destroy(gameObject);
         }
         
        moveAction = playerCtrls.FindActionMap(actionMapName).FindAction(move);
-       primaryActionP = playerCtrls.FindActionMap(actionMapName).FindAction(primaryP);
+       primaryActionSword = playerCtrls.FindActionMap(actionMapName).FindAction(primarySword);
        primaryActionH = playerCtrls.FindActionMap(actionMapName).FindAction(primaryH);
        secondaryAction = playerCtrls.FindActionMap(actionMapName).FindAction(secondary);
        rollAction = playerCtrls.FindActionMap(actionMapName).FindAction(roll);
@@ -58,34 +59,34 @@ public class InputHandler : MonoBehaviour
         moveAction.performed += context => MoveInput = context.ReadValue<Vector2>();
         moveAction.canceled += context => MoveInput = Vector2.zero;
 
-        primaryActionP.performed += context => PrimaryInputP = true;
-        primaryActionP.canceled += context => PrimaryInputP = false;
+        primaryActionSword.performed += context => PrimaryInputSword = true;
+        primaryActionSword.canceled += context => PrimaryInputSword = false;
 
-        primaryActionH.performed += context => PrimaryInputH = true;
+        /*primaryActionH.performed += context => PrimaryInputH = true;
         primaryActionH.canceled += context => PrimaryInputH = false;
 
         secondaryAction.performed += context => SecondaryInput = true;
         secondaryAction.canceled += context => SecondaryInput = false;
 
         rollAction.performed += context => RollInput = true;
-        rollAction.canceled += context => RollInput = true;
+        rollAction.canceled += context => RollInput = true;*/
     }
 
     public void OnEnable()
     {
         moveAction.Enable();
-        primaryActionP.Enable();
-        primaryActionH.Enable();
+        primaryActionSword.Enable();
+        /*primaryActionH.Enable();
         secondaryAction.Enable();
-        rollAction.Enable();
+        rollAction.Enable();*/
     }
 
     public void OnDisable()
     {
         moveAction.Disable();
-        primaryActionP.Disable();
-        primaryActionH.Disable();
+        primaryActionSword.Disable();
+        /*primaryActionH.Disable();
         secondaryAction.Disable();
-        rollAction.Disable();
+        rollAction.Disable();*/
     }
 }
