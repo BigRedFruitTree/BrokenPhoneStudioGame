@@ -631,9 +631,9 @@ public class PlayerController : MonoBehaviour
         myRB.constraints = RigidbodyConstraints.FreezeAll;
         whichAttack = 0;
         playerAnimator.SetBool("attacking", false);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.75f);
         playerAnimator.SetBool("recovering", false);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.1f);
         recovering = false;
         attacking = false;
         canAttack = true;
