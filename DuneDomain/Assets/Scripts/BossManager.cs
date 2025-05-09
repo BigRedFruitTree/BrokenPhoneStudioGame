@@ -83,18 +83,7 @@ public class BossManager : MonoBehaviour
 
         if (other.gameObject.name == "Hammer" && canTakeDamage == true && gm.GameOn == true && player.attacking == true)
         {
-            if (player.chargeLevel == 0)
-            {
-                if (player.whichAttack == 4)
-                {
-                    health -= 14;
-                }
-                else
-                {
-                    health -= 10;
-                }
-            }
-            else if (player.chargeLevel == 1)
+            if (player.chargeLevel == 1)
             {
                 health -= 12;
             }
@@ -105,6 +94,17 @@ public class BossManager : MonoBehaviour
             else if (player.chargeLevel == 3)
             {
                 health -= 20;
+            }
+            else
+            {
+                if (player.whichAttack == 4)
+                {
+                    health -= 14;
+                }
+                else
+                {
+                    health -= 10;
+                }
             }
             canTakeDamage = false;
             StartCoroutine("WaitDamage");

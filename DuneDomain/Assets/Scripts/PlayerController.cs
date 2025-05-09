@@ -52,7 +52,6 @@ public class PlayerController : MonoBehaviour
     [Header("Input System")]
     public InputActionAsset playerCntrols;
     public InputHandler inputHandler;
-    public bool canPress = true;
 
     [Header("Animator Stuff")]
     public Animator playerAnimator;
@@ -201,7 +200,6 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0) && canAttack == true && gm.weapon != 2 && gm.weapon != 5 && isDashing == false && attacking == false && isBlocking == false && recovering == false && playerAnimator.GetBool("recovering") == false)
             {
-                canPress = false;
                 playerAnimator.SetBool("attacking", true);
                 playerAnimator.SetInteger("whichAttack", 1);
                 whichAttack = 1;
@@ -639,7 +637,6 @@ public class PlayerController : MonoBehaviour
         recovering = false;
         attacking = false;
         canAttack = true;
-        canPress = true;
         canAttack2 = true;
         myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
         canMove = true;
@@ -655,7 +652,6 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         playerAnimator.SetBool("attacking", false);
-        canPress = true;
         myRB.constraints = RigidbodyConstraints.FreezeAll;
         yield return new WaitForSeconds(0.3f);
         attacking = false;

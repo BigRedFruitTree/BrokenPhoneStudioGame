@@ -178,11 +178,7 @@ public class MeleeEnemyManager : MonoBehaviour
         {
             if (gm.enemyMovementPattern == 2)
             {
-                if (player.chargeLevel == 0)
-                {
-                    enemyRidigbody.AddForce(lookDirection * 2500);
-                }
-                else if (player.chargeLevel == 1)
+                if (player.chargeLevel == 1)
                 {
                     enemyRidigbody.AddForce(lookDirection * 3000);
                 }
@@ -193,40 +189,33 @@ public class MeleeEnemyManager : MonoBehaviour
                 else if (player.chargeLevel == 3)
                 {
                     enemyRidigbody.AddForce(lookDirection * 4000);
+                }
+                else
+                {
+                    enemyRidigbody.AddForce(lookDirection * 2500);
                 }
             }
             else
             {
-                if (player.chargeLevel == 0)
+                if (player.chargeLevel == 1)
                 {
-                    enemyRidigbody.AddForce(-lookDirection * 2500);
-                }
-                else if (player.chargeLevel == 1)
-                {
-                    enemyRidigbody.AddForce(lookDirection * 3000);
+                    enemyRidigbody.AddForce(-lookDirection * 3000);
                 }
                 else if (player.chargeLevel == 2)
                 {
-                    enemyRidigbody.AddForce(lookDirection * 3500);
+                    enemyRidigbody.AddForce(-lookDirection * 3500);
                 }
                 else if (player.chargeLevel == 3)
                 {
-                    enemyRidigbody.AddForce(lookDirection * 4000);
+                    enemyRidigbody.AddForce(-lookDirection * 4000);
+                }
+                else 
+                {
+                    enemyRidigbody.AddForce(-lookDirection * 2500);
                 }
             }
 
-            if (player.chargeLevel == 0)
-            {
-                if (player.whichAttack == 4)
-                {
-                    health -= 14;
-                }
-                else
-                {
-                    health -= 10;
-                }
-            }
-            else if (player.chargeLevel == 1)
+            if (player.chargeLevel == 1)
             {
                 health -= 12;
             }
@@ -237,6 +226,17 @@ public class MeleeEnemyManager : MonoBehaviour
             else if (player.chargeLevel == 3)
             {
                 health -= 20;
+            }
+            else 
+            {
+                if (player.whichAttack == 4)
+                {
+                    health -= 14;
+                }
+                else
+                {
+                    health -= 10;
+                }
             }
             canTakeDamage = false;
             StartCoroutine("WaitDamage");
