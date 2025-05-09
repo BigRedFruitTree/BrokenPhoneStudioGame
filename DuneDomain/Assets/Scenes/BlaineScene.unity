@@ -7016,72 +7016,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0fe039d5c65594458028dc2acb00ce4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1652962764
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1652962752}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcefcd73fceb940419a4f11f64055adc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerController: {fileID: 1652962759}
-  gm: {fileID: 624562655}
-  playerCtrls: {fileID: -944628639613478452, guid: c4f52b3abbe18ef4db31932b2cd0502d, type: 3}
-  actionMapName: Player
-  move: Move
-  primaryP: PrimaryActionPress
-  primaryH: PrimaryActionHold
-  secondary: SecondaryAction
-  roll: Roll
-  moveAction:
-    m_Name: Move
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 6909d733-88ee-4f76-a344-f1d44bb7b692
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  primaryActionP:
-    m_Name: Primary Action P
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 82b546c1-9900-4a62-9911-71f96bcc6d81
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  primaryActionH:
-    m_Name: Primary Action H
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: d8c50d1e-08d7-4c0b-8198-2aea8c767e21
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  secondaryAction:
-    m_Name: Secondary
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 1061fb18-99e2-4d48-aaa9-c024d1a26a8c
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  rollAction:
-    m_Name: Roll
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 8119168e-f17e-41ec-828e-90b6d522bcb8
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
 --- !u!114 &1703173216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8302,6 +8236,7 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
+  primaryPressed: 0
 --- !u!1 &1975064854
 GameObject:
   m_ObjectHideFlags: 0
@@ -9637,6 +9572,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4166643343717809779, guid: 5a82a0fe6b9e7434b92b6551918010e7, type: 3}
+      propertyPath: gm
+      value: 
+      objectReference: {fileID: 624562655}
     - target: {fileID: 4469701043182062426, guid: 5a82a0fe6b9e7434b92b6551918010e7, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.5
@@ -9700,10 +9639,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3776295856104632847, guid: 5a82a0fe6b9e7434b92b6551918010e7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1652962764}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a82a0fe6b9e7434b92b6551918010e7, type: 3}
 --- !u!1 &4184306037546528557
 GameObject:
