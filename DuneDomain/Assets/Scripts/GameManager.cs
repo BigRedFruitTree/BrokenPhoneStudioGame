@@ -309,7 +309,7 @@ public class GameManager : MonoBehaviour
             {
                 if (rounds > 0)
                 {
-                    audioSource.Stop();
+                    audioSource.volume = 0.4f;
                     bossUiStuff.SetActive(false);
                     StartCoroutine("WaitBossAway");
                     StartCoroutine("WaitWeaponScreen");
@@ -753,6 +753,7 @@ public class GameManager : MonoBehaviour
     IEnumerator WaitBossAway()
     {
         yield return new WaitForSeconds(2f);
+        audioSource.Stop();
         bossObject.transform.position = bossSpawn.transform.position;
         bossObject.SetActive(false);
         canRun = false;
