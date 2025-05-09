@@ -2575,16 +2575,18 @@ MonoBehaviour:
   playerUiStuff: {fileID: 1595543073}
   pHealthBar: {fileID: 497366808}
   pStaminaBar: {fileID: 1412704830}
+  marker1: {fileID: 0}
+  marker2: {fileID: 0}
   timeUntilAppearance: 0
   timeUntilEatPhase: 0
   timeUntilAttack: 0
   rounds: 0
   bossEating: 0
-  startCycle: 0
   canBossEat: 0
   isProcessingTarget: 0
   bossAttack: 0
   bossAttacking: 0
+  sleepDistance: 0
   bridgeDistance: 0
   canRun: 0
   canDash: 1
@@ -2618,12 +2620,12 @@ MonoBehaviour:
   deathScreen: {fileID: 1932823940}
   NotWaitingAlertScreen: {fileID: 266461543}
   winScreen: {fileID: 421609019}
-  weaponKeepButton: {fileID: 1153175055}
-  weaponKeepTXT: {fileID: 1415284487}
   TutorialStuff: {fileID: 26134198}
   TutorialScreen3: {fileID: 620542611}
   TutorialScreen4: {fileID: 1999404829}
   TutorialScreen5: {fileID: 1148482034}
+  ChargeObject: {fileID: 0}
+  ChargeMeter: {fileID: 0}
   bridge: {fileID: 4981776976151835456}
   canSpawnRocks: 1
   Rock1Prefab: {fileID: 8362784621349634397, guid: 7f2b8532666acc549896008347694d26, type: 3}
@@ -8219,9 +8221,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcefcd73fceb940419a4f11f64055adc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerController: {fileID: 0}
+  gm: {fileID: 0}
   playerCtrls: {fileID: -944628639613478452, guid: c4f52b3abbe18ef4db31932b2cd0502d, type: 3}
   actionMapName: Player
   move: Move
+  primarySword: Sword
+  primaryH: PrimaryActionHold
+  secondary: SecondaryAction
+  roll: Roll
   moveAction:
     m_Name: Move
     m_Type: 0
@@ -8231,6 +8239,43 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
+  primaryActionSword:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 321f3155-d1a2-41ca-bf02-4a7421bfba84
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  primaryActionH:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: f42aabb0-82c3-4443-933b-dfd7f5100b87
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  secondaryAction:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 196ff6b4-83e6-45aa-80b2-1777dbbe75f0
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  rollAction:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 4c87eef2-0f13-4404-a42d-c24ae9c353b1
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  primarySwordPressed: 0
 --- !u!1 &1975064854
 GameObject:
   m_ObjectHideFlags: 0
