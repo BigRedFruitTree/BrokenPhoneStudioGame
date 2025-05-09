@@ -15,22 +15,22 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "PrimaryAction",
+                    "name": "PrimaryActionPress",
                     "type": "Button",
                     "id": "63835a30-bc04-4f7d-94ef-a9319eb1f7b6",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Hold,Press(behavior=2)",
+                    "interactions": "Press(behavior=2)",
                     "initialStateCheck": false
                 },
                 {
                     "name": "SecondaryAction",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "2b72e5bf-04d9-4176-91aa-0a00d9dd8c0f",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Roll",
@@ -40,6 +40,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "PrimaryActionHold",
+                    "type": "Value",
+                    "id": "ddbe625b-8d1f-42c5-86e1-c0bf1b819f7a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -179,10 +188,10 @@
                     "name": "",
                     "id": "143bb1cd-cc10-4eca-a2f0-a3664166fe91",
                     "path": "<Gamepad>/rightTrigger",
-                    "interactions": "Press,Hold",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "PrimaryAction",
+                    "action": "PrimaryActionPress",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -190,10 +199,10 @@
                     "name": "",
                     "id": "05f6913d-c316-48b2-a6bb-e225f14c7960",
                     "path": "<Mouse>/leftButton",
-                    "interactions": "Hold,Press",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "PrimaryAction",
+                    "action": "PrimaryActionPress",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -204,7 +213,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Touch",
-                    "action": "PrimaryAction",
+                    "action": "PrimaryActionPress",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -215,7 +224,7 @@
                     "interactions": "Hold,Press",
                     "processors": "",
                     "groups": "Joystick",
-                    "action": "PrimaryAction",
+                    "action": "PrimaryActionPress",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -226,7 +235,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "XR",
-                    "action": "PrimaryAction",
+                    "action": "PrimaryActionPress",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -293,6 +302,39 @@
                     "processors": "",
                     "groups": "Joystick",
                     "action": "SecondaryAction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "424d13af-f094-4e3c-8513-0f03fee1507c",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "PrimaryActionHold",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "da18b193-18ef-4c60-8e08-b6dad486314b",
+                    "path": "<Joystick>/trigger",
+                    "interactions": "Hold,Press",
+                    "processors": "",
+                    "groups": "Joystick",
+                    "action": "PrimaryActionHold",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "88f23441-7368-47f5-b61b-d8a5d7e7061e",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "PrimaryActionHold",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
