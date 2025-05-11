@@ -50,7 +50,7 @@ public class BossManager : MonoBehaviour
 
     }
 
-    public void OnTriggerEnter(Collider other)
+    public void OnTriggerStay(Collider other)
     {
 
         if (other.gameObject.tag == "Shot" && canTakeDamage == true && gm.GameOn == true)
@@ -122,11 +122,6 @@ public class BossManager : MonoBehaviour
                 health -= 5;
             }
             StartCoroutine("WaitDamage");
-        }
-
-        if (animator.GetBool("Issleeping") == true || gm.sleepDistance > 4f)
-        {
-            canTakeDamage = false;
         }
     }
     IEnumerator WaitDamage()

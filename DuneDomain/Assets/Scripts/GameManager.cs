@@ -90,6 +90,7 @@ public class GameManager : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().buildIndex > 0)
         {
+            bossScript.canTakeDamage = false;
             marker1.enabled = false;
             marker2.enabled = false;
             bossObject.SetActive(false);
@@ -548,6 +549,7 @@ public class GameManager : MonoBehaviour
         bossanimator.SetBool("Isaggressive", true);
         NotWaitingAlertScreen.SetActive(false);
         yield return new WaitForSeconds(2f);
+        bossScript.canTakeDamage = true;
         bossAgent.speed = 5;
         bossAgent.destination = playerObject.transform.position;
         bossUiStuff.SetActive(true);
