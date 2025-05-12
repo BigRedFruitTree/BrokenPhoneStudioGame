@@ -8214,10 +8214,14 @@ MonoBehaviour:
   primarySword: Sword
   primaryHammer: HammerBasic
   secondaryHammer: HammerCharge
+  secondaryHammerUp: HammerChargeUp
   primarySpAnSh: SpearAnShieldBasic
   secondarySpAnSh: SpearAnShieldBlock
+  secondarySpAnShUp: SpearAnShieldBlockUp
   primaryBow: Bow
+  primaryBowUp: BowUp
   primaryCrBo: CrossBow
+  primaryCrBoUp: CrossBowUp
   roll: roll
   moveAction:
     m_Name: Move
@@ -8255,6 +8259,15 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
+  secondaryActionHammerUp:
+    m_Name: Secondary Action Hammer Up
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 370fcec6-e4d1-4d3e-9bf9-ceaa6d573e19
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
   primaryActionSpAnSh:
     m_Name: Primary Action Sp An Sh
     m_Type: 0
@@ -8273,6 +8286,15 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
+  secondaryActionSpAnShUp:
+    m_Name: Secondary Action Sp An Sh Up
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: a66794b3-27cd-451e-8ccf-161a010ec89a
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
   primaryActionBow:
     m_Name: Primary Action Bow
     m_Type: 0
@@ -8282,11 +8304,29 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
+  primaryActionBowUp:
+    m_Name: Primary Action Bow Up
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: e5c832d5-f40d-4e21-a25a-f01060a3f3d6
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
   primaryActionCrossB:
     m_Name: Primary Action Cross B
     m_Type: 0
     m_ExpectedControlType: 
     m_Id: c1c6b166-4913-4c89-be8f-5294465a5ef3
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  primaryActionCrossBUp:
+    m_Name: Primary Action Cross B Up
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: fd7febe9-1467-4209-977b-15ef2d9b3f55
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []

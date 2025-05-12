@@ -805,6 +805,10 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         bossAgent.speed = 0;
         bossAgent.destination = playerObject.transform.position;
+        Vector3 lookDirection = (playerObject.transform.position - bossObject.transform.position);
+        lookDirection.y = 0f;
+        lookDirection.Normalize();
+        bossRigidBody.AddForce(-lookDirection * 6000000f);
         yield return new WaitForSeconds(1f);
         bossanimator.SetBool("Iswalking", true);
         bossanimator.SetBool("Dodgeback", false);

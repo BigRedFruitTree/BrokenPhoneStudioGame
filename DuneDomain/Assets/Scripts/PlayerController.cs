@@ -215,7 +215,7 @@ public class PlayerController : MonoBehaviour
                 whichAttack = 1;
                 if (!recovering)
                 {
-                    myRB.velocity += playerRotationHolder.transform.forward * 30f;
+                    myRB.velocity += playerRotationHolder.transform.forward * 120f;
                 }
                 attacking = true;
                 canAttack = false;
@@ -251,7 +251,7 @@ public class PlayerController : MonoBehaviour
                 stringTimer = 1f;
                 if (!recovering)
                 {
-                    myRB.velocity += playerRotationHolder.transform.forward * 30f;
+                    myRB.velocity += playerRotationHolder.transform.forward * 120f;
                 }
                 attacking = true;
                 canAttack2 = false;
@@ -285,7 +285,7 @@ public class PlayerController : MonoBehaviour
                 stringTimer = 1f;
                 if (!recovering)
                 {
-                    myRB.velocity += playerRotationHolder.transform.forward * 30f;
+                    myRB.velocity += playerRotationHolder.transform.forward * 120f;
                 }
                 attacking = true;
                 canAttack2 = false;
@@ -319,7 +319,7 @@ public class PlayerController : MonoBehaviour
                 stringTimer = 1f;
                 if (!recovering)
                 {
-                    myRB.velocity += playerRotationHolder.transform.forward * 40f;
+                    myRB.velocity += playerRotationHolder.transform.forward * 130f;
                 }
                 attacking = true;
                 canAttack2 = false;
@@ -489,7 +489,7 @@ public class PlayerController : MonoBehaviour
 
             if(isDashing == true && attacking == false && isBlocking == false)
             {
-                myRB.velocity += playerRotationHolder.transform.forward * 3f;
+                myRB.velocity += playerRotationHolder.transform.forward * 9f;
             }
 
             if (Input.GetKeyDown(KeyCode.F) && stamina > 2 && isBlocking == false && canDash == true && attacking == false && playerAnimator.GetBool("attacking") == false && playerAnimator.GetInteger("whichAttack") == 0)
@@ -732,7 +732,7 @@ public class PlayerController : MonoBehaviour
             whichAttack = 1;
             if (!recovering)
             {
-                myRB.velocity += playerRotationHolder.transform.forward * 30f;
+                myRB.velocity += playerRotationHolder.transform.forward * 120f;
             }
             attacking = true;
             canAttack = false;
@@ -768,7 +768,7 @@ public class PlayerController : MonoBehaviour
             stringTimer = 1f;
             if (!recovering)
             {
-                myRB.velocity += playerRotationHolder.transform.forward * 30f;
+                myRB.velocity += playerRotationHolder.transform.forward * 120f;
             }
             attacking = true;
             canAttack2 = false;
@@ -802,7 +802,7 @@ public class PlayerController : MonoBehaviour
             stringTimer = 1f;
             if (!recovering)
             {
-                myRB.velocity += playerRotationHolder.transform.forward * 30f;
+                myRB.velocity += playerRotationHolder.transform.forward * 120f;
             }
             attacking = true;
             canAttack2 = false;
@@ -836,7 +836,7 @@ public class PlayerController : MonoBehaviour
             stringTimer = 1f;
             if (!recovering)
             {
-                myRB.velocity += playerRotationHolder.transform.forward * 40f;
+                myRB.velocity += playerRotationHolder.transform.forward * 130f;
             }
             attacking = true;
             canAttack2 = false;
