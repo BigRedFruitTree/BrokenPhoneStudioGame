@@ -31,8 +31,7 @@ public class InputHandler : MonoBehaviour
     [SerializeField] public InputAction primaryActionBow;
     [SerializeField] public InputAction primaryActionCrossB;
     [SerializeField] public InputAction rollAction;
-
-    public bool primarySwordPressed = false; 
+ 
     public Vector2 MoveInput {get; private set;}
     public bool PrimaryInputSword { get; private set; }
     public bool PrimaryInputHammer { get; private set; }
