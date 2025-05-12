@@ -24,12 +24,57 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "HammerBasic",
+                    "type": "Button",
+                    "id": "34a699b3-0d68-42a2-af60-263216329857",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "HammerCharge",
                     "type": "Value",
                     "id": "2b72e5bf-04d9-4176-91aa-0a00d9dd8c0f",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "SpearAnShieldBasic",
+                    "type": "Button",
+                    "id": "99f41049-b474-45f4-bb85-997786784f74",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SpearAnShieldBlock",
+                    "type": "Value",
+                    "id": "b7faeecb-b4c0-4408-bd25-da62bcd796c6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Bow",
+                    "type": "Value",
+                    "id": "ddbe625b-8d1f-42c5-86e1-c0bf1b819f7a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press,Hold",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "CrossBow",
+                    "type": "Value",
+                    "id": "23480dbd-b109-453d-8cf2-5616a63267e1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press,Hold",
                     "initialStateCheck": true
                 },
                 {
@@ -40,24 +85,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "Bow",
-                    "type": "Button",
-                    "id": "ddbe625b-8d1f-42c5-86e1-c0bf1b819f7a",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Press,Hold",
-                    "initialStateCheck": true
-                },
-                {
-                    "name": "CrossBow",
-                    "type": "Button",
-                    "id": "23480dbd-b109-453d-8cf2-5616a63267e1",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Press,Hold",
-                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -311,6 +338,149 @@
                     "processors": "",
                     "groups": "Joystick",
                     "action": "HammerCharge",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1d1b0f53-1003-43c1-919c-e2a2e028cc55",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "HammerBasic",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6d2aa47a-02de-4864-8ed0-291d78a1cb80",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "HammerBasic",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "14480e75-0014-4644-81ae-e92fc4d76456",
+                    "path": "<Touchscreen>/primaryTouch/tap",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Touch",
+                    "action": "HammerBasic",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "588d56ca-5e58-4fec-88e3-0c3a3acac11b",
+                    "path": "<Joystick>/trigger",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "Joystick",
+                    "action": "HammerBasic",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c0dce62f-6053-43aa-971e-f96837da15b2",
+                    "path": "<XRController>/{PrimaryAction}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "XR",
+                    "action": "HammerBasic",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "69757987-7076-4176-8613-fe35ae11dbb8",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "SpearAnShieldBasic",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2e71efd9-84df-4863-824a-28bbd1f3d24f",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "SpearAnShieldBasic",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "44a60008-ba94-4f7f-bd12-20432f4e9a70",
+                    "path": "<Touchscreen>/primaryTouch/tap",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Touch",
+                    "action": "SpearAnShieldBasic",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "63ce4128-4253-46f5-8edc-4a54ee98e366",
+                    "path": "<Joystick>/trigger",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "Joystick",
+                    "action": "SpearAnShieldBasic",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "66f2933c-5ad9-4df4-ad36-6eb62a82afa6",
+                    "path": "<XRController>/{PrimaryAction}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "XR",
+                    "action": "SpearAnShieldBasic",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3210fd2d-a3bb-4e75-b1b7-98d250627fb1",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "Hold",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "SpearAnShieldBlock",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "15313c74-f954-4f16-bffb-f6c1153a7f54",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "Hold",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "SpearAnShieldBlock",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cc04c13d-9cd2-4ff7-aac1-a5f961d2f161",
+                    "path": "<Joystick>/{SecondaryAction}",
+                    "interactions": "Hold",
+                    "processors": "",
+                    "groups": "Joystick",
+                    "action": "SpearAnShieldBlock",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

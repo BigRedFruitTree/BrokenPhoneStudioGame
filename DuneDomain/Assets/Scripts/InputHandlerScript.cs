@@ -14,21 +14,33 @@ public class InputHandler : MonoBehaviour
     [SerializeField] private string actionMapName = "Player";
     [SerializeField] private string move = "Move";
     [SerializeField] private string primarySword = "Sword";
-    [SerializeField] private string primaryH = "PrimaryActionHold";
-    [SerializeField] private string secondary = "SecondaryAction";
+    [SerializeField] private string primaryHammer = "PrimaryHammer";
+    [SerializeField] private string secondaryHammer = "SecondaryHammer";
+    [SerializeField] private string primarySpAnSh = "PrimarySpAnSh";
+    [SerializeField] private string secondarySpAnSh = "SecondarySpAnSh";
+    [SerializeField] private string primaryBow = "Bow";
+    [SerializeField] private string primaryCrBo = "CrossBow";
     [SerializeField] private string roll = "Roll";
 
     [SerializeField] public InputAction moveAction;
     [SerializeField] public InputAction primaryActionSword;
-    [SerializeField] public InputAction primaryActionH;
-    [SerializeField] public InputAction secondaryAction;
+    [SerializeField] public InputAction primaryActionHammer;
+    [SerializeField] public InputAction secondaryActionHammer;
+    [SerializeField] public InputAction primaryActionSpAnSh;
+    [SerializeField] public InputAction secondaryActionSpAnSh;
+    [SerializeField] public InputAction primaryActionBow;
+    [SerializeField] public InputAction primaryActionCrossB;
     [SerializeField] public InputAction rollAction;
 
     public bool primarySwordPressed = false; 
     public Vector2 MoveInput {get; private set;}
     public bool PrimaryInputSword { get; private set; }
-    public bool PrimaryInputH { get; private set; }
-    public bool SecondaryInput { get; private set; }
+    public bool PrimaryInputHammer { get; private set; }
+    public bool SecondaryInputHammer { get; private set; }
+    public bool PrimaryInputSpAnSh { get; private set; }
+    public bool SecondaryInputSpAnSh { get; private set; }
+    public bool PrimaryInputBow { get; private set; }
+    public bool PrimaryInputCrossB { get; private set; }
     public bool RollInput { get; private set; }
 
 
@@ -47,12 +59,16 @@ public class InputHandler : MonoBehaviour
             Destroy(gameObject);
         }
         
-       moveAction = playerCtrls.FindActionMap(actionMapName).FindAction(move);
-       primaryActionSword = playerCtrls.FindActionMap(actionMapName).FindAction(primarySword);
-       primaryActionH = playerCtrls.FindActionMap(actionMapName).FindAction(primaryH);
-       secondaryAction = playerCtrls.FindActionMap(actionMapName).FindAction(secondary);
-       rollAction = playerCtrls.FindActionMap(actionMapName).FindAction(roll);
-       RegisterInputActions();
+        moveAction = playerCtrls.FindActionMap(actionMapName).FindAction(move);
+        primaryActionSword = playerCtrls.FindActionMap(actionMapName).FindAction(primarySword);
+        primaryActionHammer = playerCtrls.FindActionMap(actionMapName).FindAction(primaryHammer);
+        secondaryActionHammer = playerCtrls.FindActionMap(actionMapName).FindAction(secondaryHammer);
+        primaryActionSpAnSh = playerCtrls.FindActionMap(actionMapName).FindAction(primarySpAnSh);
+        secondaryActionSpAnSh = playerCtrls.FindActionMap(actionMapName).FindAction(secondarySpAnSh);
+        primaryActionBow = playerCtrls.FindActionMap(actionMapName).FindAction(primaryBow);
+        primaryActionCrossB = playerCtrls.FindActionMap(actionMapName).FindAction(primaryCrBo);
+        rollAction = playerCtrls.FindActionMap(actionMapName).FindAction(roll);
+        RegisterInputActions();
     }
     public void RegisterInputActions()
     {

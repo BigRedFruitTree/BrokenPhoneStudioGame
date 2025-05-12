@@ -8212,8 +8212,12 @@ MonoBehaviour:
   actionMapName: Player
   move: Move
   primarySword: Sword
-  primaryH: PrimaryActionHold
-  secondary: SecondaryAction
+  primaryHammer: PrimaryHammer
+  secondaryHammer: SecondaryHammer
+  primarySpAnSh: PrimarySpAnSh
+  secondarySpAnSh: SecondarySpAnSh
+  primaryBow: Bow
+  primaryCrBo: CrossBow
   roll: roll
   moveAction:
     m_Name: Move
@@ -8225,7 +8229,7 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
   primaryActionSword:
-    m_Name: 
+    m_Name: Primary Action Sword
     m_Type: 0
     m_ExpectedControlType: 
     m_Id: c3671bd1-0268-46c9-bd6e-180ec00aa594
@@ -8233,26 +8237,62 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
-  primaryActionH:
+  primaryActionHammer:
     m_Name: 
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 23ad030c-8ad2-44c5-8fca-e97d0f7cece7
+    m_Id: 4f4aba58-fce1-40d4-858c-d3463c6317ee
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
-  secondaryAction:
+  secondaryActionHammer:
     m_Name: 
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 732d6b88-cb67-4f77-a880-7b245a31ddaf
+    m_Id: 62d38dd7-7c9f-499b-b7b1-02ce6dfd1c07
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  primaryActionSpAnSh:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: aa9e44d6-1e39-43ef-b587-7b10050d0543
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  secondaryActionSpAnSh:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 2a2427d9-f566-428d-8cd1-f378dbc5cdfc
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  primaryActionBow:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 4484a802-a11b-4c18-81bf-cb28212fb499
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  primaryActionCrossB:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: c1c6b166-4913-4c89-be8f-5294465a5ef3
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
   rollAction:
-    m_Name: 
+    m_Name: Roll
     m_Type: 0
     m_ExpectedControlType: 
     m_Id: 1034c7c1-aeff-4a04-8800-2cdd1c8ccf37
