@@ -7040,17 +7040,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0fe039d5c65594458028dc2acb00ce4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1652962762 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4883686352752382053, guid: 5a82a0fe6b9e7434b92b6551918010e7, type: 3}
-  m_PrefabInstance: {fileID: 3515194967970773192}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1652962752}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1703173216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8217,16 +8206,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcefcd73fceb940419a4f11f64055adc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerController: {fileID: 0}
-  gm: {fileID: 0}
+  playerController: {fileID: 1652962759}
+  gm: {fileID: 624562655}
   playerCtrls: {fileID: -944628639613478452, guid: c4f52b3abbe18ef4db31932b2cd0502d, type: 3}
   actionMapName: Player
   move: Move
   primarySword: Sword
-  primaryHammer: PrimaryHammer
-  secondaryHammer: SecondaryHammer
-  primarySpAnSh: PrimarySpAnSh
-  secondarySpAnSh: SecondarySpAnSh
+  primaryHammer: HammerBasic
+  secondaryHammer: HammerCharge
+  primarySpAnSh: SpearAnShieldBasic
+  secondarySpAnSh: SpearAnShieldBlock
   primaryBow: Bow
   primaryCrBo: CrossBow
   roll: roll
@@ -8249,7 +8238,7 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
   primaryActionHammer:
-    m_Name: 
+    m_Name: Primary Action Hammer
     m_Type: 0
     m_ExpectedControlType: 
     m_Id: 4f4aba58-fce1-40d4-858c-d3463c6317ee
@@ -8258,7 +8247,7 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
   secondaryActionHammer:
-    m_Name: 
+    m_Name: Secondary Action Hammer
     m_Type: 0
     m_ExpectedControlType: 
     m_Id: 62d38dd7-7c9f-499b-b7b1-02ce6dfd1c07
@@ -8267,7 +8256,7 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
   primaryActionSpAnSh:
-    m_Name: 
+    m_Name: Primary Action Sp An Sh
     m_Type: 0
     m_ExpectedControlType: 
     m_Id: aa9e44d6-1e39-43ef-b587-7b10050d0543
@@ -8276,7 +8265,7 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
   secondaryActionSpAnSh:
-    m_Name: 
+    m_Name: Secondary Action Sp An Sh
     m_Type: 0
     m_ExpectedControlType: 
     m_Id: 2a2427d9-f566-428d-8cd1-f378dbc5cdfc
@@ -8285,7 +8274,7 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
   primaryActionBow:
-    m_Name: 
+    m_Name: Primary Action Bow
     m_Type: 0
     m_ExpectedControlType: 
     m_Id: 4484a802-a11b-4c18-81bf-cb28212fb499
@@ -8294,7 +8283,7 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
   primaryActionCrossB:
-    m_Name: 
+    m_Name: Primary Action Cross B
     m_Type: 0
     m_ExpectedControlType: 
     m_Id: c1c6b166-4913-4c89-be8f-5294465a5ef3
@@ -9646,10 +9635,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 4166643343717809779, guid: 5a82a0fe6b9e7434b92b6551918010e7, type: 3}
-      propertyPath: gm
-      value: 
-      objectReference: {fileID: 624562655}
     - target: {fileID: 4469701043182062426, guid: 5a82a0fe6b9e7434b92b6551918010e7, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.5
@@ -9699,80 +9684,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 282891391}
     - target: {fileID: 4883686352752382053, guid: 5a82a0fe6b9e7434b92b6551918010e7, type: 3}
-      propertyPath: m_ActionEvents.Array.size
-      value: 19
-      objectReference: {fileID: 0}
-    - target: {fileID: 4883686352752382053, guid: 5a82a0fe6b9e7434b92b6551918010e7, type: 3}
-      propertyPath: m_ActionEvents.Array.data[16].m_ActionId
-      value: 34a699b3-0d68-42a2-af60-263216329857
-      objectReference: {fileID: 0}
-    - target: {fileID: 4883686352752382053, guid: 5a82a0fe6b9e7434b92b6551918010e7, type: 3}
-      propertyPath: m_ActionEvents.Array.data[17].m_ActionId
-      value: 99f41049-b474-45f4-bb85-997786784f74
-      objectReference: {fileID: 0}
-    - target: {fileID: 4883686352752382053, guid: 5a82a0fe6b9e7434b92b6551918010e7, type: 3}
-      propertyPath: m_ActionEvents.Array.data[18].m_ActionId
-      value: b7faeecb-b4c0-4408-bd25-da62bcd796c6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4883686352752382053, guid: 5a82a0fe6b9e7434b92b6551918010e7, type: 3}
-      propertyPath: m_ActionEvents.Array.data[16].m_ActionName
-      value: 'Player/HammerBasic[/XInputControllerWindows1/rightTrigger,/Mouse/leftButton]'
-      objectReference: {fileID: 0}
-    - target: {fileID: 4883686352752382053, guid: 5a82a0fe6b9e7434b92b6551918010e7, type: 3}
-      propertyPath: m_ActionEvents.Array.data[17].m_ActionName
-      value: 'Player/SpearAnShieldBasic[/XInputControllerWindows1/rightTrigger,/Mouse/leftButton]'
-      objectReference: {fileID: 0}
-    - target: {fileID: 4883686352752382053, guid: 5a82a0fe6b9e7434b92b6551918010e7, type: 3}
-      propertyPath: m_ActionEvents.Array.data[18].m_ActionName
-      value: 'Player/SpearAnShieldBlock[/Mouse/rightButton,/XInputControllerWindows1/leftTrigger]'
-      objectReference: {fileID: 0}
-    - target: {fileID: 4883686352752382053, guid: 5a82a0fe6b9e7434b92b6551918010e7, type: 3}
-      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4883686352752382053, guid: 5a82a0fe6b9e7434b92b6551918010e7, type: 3}
-      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4883686352752382053, guid: 5a82a0fe6b9e7434b92b6551918010e7, type: 3}
-      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1652962762}
-    - target: {fileID: 4883686352752382053, guid: 5a82a0fe6b9e7434b92b6551918010e7, type: 3}
-      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1652962759}
-    - target: {fileID: 4883686352752382053, guid: 5a82a0fe6b9e7434b92b6551918010e7, type: 3}
-      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: set_actions
-      objectReference: {fileID: 0}
-    - target: {fileID: 4883686352752382053, guid: 5a82a0fe6b9e7434b92b6551918010e7, type: 3}
       propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: FirstAttack
-      objectReference: {fileID: 0}
-    - target: {fileID: 4883686352752382053, guid: 5a82a0fe6b9e7434b92b6551918010e7, type: 3}
-      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UnityEngine.InputSystem.PlayerInput, Unity.InputSystem
-      objectReference: {fileID: 0}
-    - target: {fileID: 4883686352752382053, guid: 5a82a0fe6b9e7434b92b6551918010e7, type: 3}
-      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: PlayerController, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 4883686352752382053, guid: 5a82a0fe6b9e7434b92b6551918010e7, type: 3}
-      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
-      value: 
-      objectReference: {fileID: -944628639613478452, guid: c4f52b3abbe18ef4db31932b2cd0502d, type: 3}
-    - target: {fileID: 4883686352752382053, guid: 5a82a0fe6b9e7434b92b6551918010e7, type: 3}
-      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4883686352752382053, guid: 5a82a0fe6b9e7434b92b6551918010e7, type: 3}
-      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.InputSystem.InputActionAsset, Unity.InputSystem
-      objectReference: {fileID: 0}
-    - target: {fileID: 4883686352752382053, guid: 5a82a0fe6b9e7434b92b6551918010e7, type: 3}
-      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
+      value: SwordAttack
       objectReference: {fileID: 0}
     - target: {fileID: 7388749027389276443, guid: 5a82a0fe6b9e7434b92b6551918010e7, type: 3}
       propertyPath: gm

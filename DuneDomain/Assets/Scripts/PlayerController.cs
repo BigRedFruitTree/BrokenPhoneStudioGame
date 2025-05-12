@@ -723,7 +723,7 @@ public class PlayerController : MonoBehaviour
          enemyScriptM = GetNearestTargetM();
     }
 
-    public void FirstAttack()
+    public void SwordAttack()
     {
         if (canAttack == true && gm.weapon != 2 && gm.weapon != 5 && isDashing == false && attacking == false && isBlocking == false && recovering == false && playerAnimator.GetBool("recovering") == false)
         {
@@ -858,18 +858,4 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void SecondAttack()
-    {
-
-    }
-
-    public void ThirdAttack()
-    {
-
-    }
-
-    public void FourthAttack()
-    {
-
-    }
 }

@@ -14,10 +14,10 @@ public class InputHandler : MonoBehaviour
     [SerializeField] private string actionMapName = "Player";
     [SerializeField] private string move = "Move";
     [SerializeField] private string primarySword = "Sword";
-    [SerializeField] private string primaryHammer = "PrimaryHammer";
-    [SerializeField] private string secondaryHammer = "SecondaryHammer";
-    [SerializeField] private string primarySpAnSh = "PrimarySpAnSh";
-    [SerializeField] private string secondarySpAnSh = "SecondarySpAnSh";
+    [SerializeField] private string primaryHammer = "HammerBasic";
+    [SerializeField] private string secondaryHammer = "HammerCharge";
+    [SerializeField] private string primarySpAnSh = "SpearAnShieldBasic";
+    [SerializeField] private string secondarySpAnSh = "SpearAnShieldBlock";
     [SerializeField] private string primaryBow = "Bow";
     [SerializeField] private string primaryCrBo = "CrossBow";
     [SerializeField] private string roll = "Roll";
@@ -77,31 +77,51 @@ public class InputHandler : MonoBehaviour
         primaryActionSword.performed += context => PrimaryInputSword = true;
         primaryActionSword.canceled += context => PrimaryInputSword = false;
 
-        /*primaryActionH.performed += context => PrimaryInputH = true;
-        primaryActionH.canceled += context => PrimaryInputH = false;
+        primaryActionHammer.performed += context => PrimaryInputHammer = true;
+        primaryActionHammer.canceled += context => PrimaryInputHammer = false;
 
-        secondaryAction.performed += context => SecondaryInput = true;
-        secondaryAction.canceled += context => SecondaryInput = false;
+        secondaryActionHammer.performed += context => SecondaryInputHammer = true;
+        secondaryActionHammer.canceled += context => SecondaryInputHammer = false;
+
+        primaryActionSpAnSh.performed += context => PrimaryInputSpAnSh = true;
+        primaryActionSpAnSh.canceled += context => PrimaryInputSpAnSh = false;
+
+        secondaryActionSpAnSh.performed += context => SecondaryInputSpAnSh = true;
+        secondaryActionSpAnSh.canceled += context => SecondaryInputSpAnSh = false;
+
+        primaryActionBow.performed += context => PrimaryInputBow = true;
+        primaryActionBow.canceled += context => PrimaryInputBow = false;
+
+        primaryActionCrossB.performed += context => PrimaryInputCrossB = true;
+        primaryActionCrossB.canceled += context => PrimaryInputCrossB = false;
 
         rollAction.performed += context => RollInput = true;
-        rollAction.canceled += context => RollInput = true;*/
+        rollAction.canceled += context => RollInput = true;
     }
 
     public void OnEnable()
     {
         moveAction.Enable();
         primaryActionSword.Enable();
-        /*primaryActionH.Enable();
-        secondaryAction.Enable();
-        rollAction.Enable();*/
+        primaryActionHammer.Enable();
+        secondaryActionHammer.Enable();
+        primaryActionSpAnSh.Enable();
+        secondaryActionSpAnSh.Enable();
+        primaryActionBow.Enable();
+        primaryActionCrossB.Enable();
+        rollAction.Enable();
     }
 
     public void OnDisable()
     {
         moveAction.Disable();
         primaryActionSword.Disable();
-        /*primaryActionH.Disable();
-        secondaryAction.Disable();
-        rollAction.Disable();*/
+        primaryActionHammer.Disable();
+        secondaryActionHammer.Disable();
+        primaryActionSpAnSh.Disable();
+        secondaryActionSpAnSh.Disable();
+        primaryActionBow.Disable();
+        primaryActionCrossB.Disable();
+        rollAction.Disable();
     }
 }
