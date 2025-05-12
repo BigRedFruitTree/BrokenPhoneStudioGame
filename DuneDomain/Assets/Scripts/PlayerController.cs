@@ -215,7 +215,7 @@ public class PlayerController : MonoBehaviour
                 whichAttack = 1;
                 if (!recovering)
                 {
-                    myRB.velocity += playerRotationHolder.transform.forward * 120f;
+                    myRB.velocity += playerRotationHolder.transform.forward * 60f;
                 }
                 attacking = true;
                 canAttack = false;
@@ -232,7 +232,7 @@ public class PlayerController : MonoBehaviour
                     AudioSource.clip = hammersound;
                     AudioSource.Play();
                 }
-                else if (gm.weapon == 5)
+                else if (gm.weapon == 4)
                 {
                     AudioSource.clip = stabsound;
                     AudioSource.Play();
@@ -251,7 +251,7 @@ public class PlayerController : MonoBehaviour
                 stringTimer = 1f;
                 if (!recovering)
                 {
-                    myRB.velocity += playerRotationHolder.transform.forward * 120f;
+                    myRB.velocity += playerRotationHolder.transform.forward * 60f;
                 }
                 attacking = true;
                 canAttack2 = false;
@@ -268,7 +268,7 @@ public class PlayerController : MonoBehaviour
                     AudioSource.clip = hammersound;
                     AudioSource.Play();
                 }
-                else if (gm.weapon == 5)
+                else if (gm.weapon == 4)
                 {
                     AudioSource.clip = stabsound;
                     AudioSource.Play();
@@ -285,7 +285,7 @@ public class PlayerController : MonoBehaviour
                 stringTimer = 1f;
                 if (!recovering)
                 {
-                    myRB.velocity += playerRotationHolder.transform.forward * 120f;
+                    myRB.velocity += playerRotationHolder.transform.forward * 60f;
                 }
                 attacking = true;
                 canAttack2 = false;
@@ -302,7 +302,7 @@ public class PlayerController : MonoBehaviour
                     AudioSource.clip = hammersound;
                     AudioSource.Play();
                 }
-                else if (gm.weapon == 5)
+                else if (gm.weapon == 4)
                 {
                     AudioSource.clip = stabsound;
                     AudioSource.Play();
@@ -319,14 +319,14 @@ public class PlayerController : MonoBehaviour
                 stringTimer = 1f;
                 if (!recovering)
                 {
-                    myRB.velocity += playerRotationHolder.transform.forward * 130f;
+                    myRB.velocity += playerRotationHolder.transform.forward * 70f;
                 }
                 attacking = true;
                 canAttack2 = false;
                 canMove = false;
                 canRotate = false;
                 stringCount = true;
-                if (gm.weapon == 1 || gm.weapon == 5)
+                if (gm.weapon == 1 || gm.weapon == 4)
                 {
                     AudioSource.clip = Slash;
                     AudioSource.Play();
@@ -723,7 +723,7 @@ public class PlayerController : MonoBehaviour
          enemyScriptM = GetNearestTargetM();
     }
 
-    public void SwordAttack()
+    public void BasicAttack()
     {
         if (canAttack == true && gm.weapon != 2 && gm.weapon != 5 && isDashing == false && attacking == false && isBlocking == false && recovering == false && playerAnimator.GetBool("recovering") == false)
         {
@@ -732,7 +732,7 @@ public class PlayerController : MonoBehaviour
             whichAttack = 1;
             if (!recovering)
             {
-                myRB.velocity += playerRotationHolder.transform.forward * 120f;
+                myRB.velocity += playerRotationHolder.transform.forward * 60f;
             }
             attacking = true;
             canAttack = false;
@@ -749,7 +749,7 @@ public class PlayerController : MonoBehaviour
                 AudioSource.clip = hammersound;
                 AudioSource.Play();
             }
-            else if (gm.weapon == 5)
+            else if (gm.weapon == 4)
             {
                 AudioSource.clip = stabsound;
                 AudioSource.Play();
@@ -768,7 +768,7 @@ public class PlayerController : MonoBehaviour
             stringTimer = 1f;
             if (!recovering)
             {
-                myRB.velocity += playerRotationHolder.transform.forward * 120f;
+                myRB.velocity += playerRotationHolder.transform.forward * 60f;
             }
             attacking = true;
             canAttack2 = false;
@@ -785,7 +785,7 @@ public class PlayerController : MonoBehaviour
                 AudioSource.clip = hammersound;
                 AudioSource.Play();
             }
-            else if (gm.weapon == 5)
+            else if (gm.weapon == 4)
             {
                 AudioSource.clip = stabsound;
                 AudioSource.Play();
@@ -802,7 +802,7 @@ public class PlayerController : MonoBehaviour
             stringTimer = 1f;
             if (!recovering)
             {
-                myRB.velocity += playerRotationHolder.transform.forward * 120f;
+                myRB.velocity += playerRotationHolder.transform.forward * 60f;
             }
             attacking = true;
             canAttack2 = false;
@@ -819,7 +819,7 @@ public class PlayerController : MonoBehaviour
                 AudioSource.clip = hammersound;
                 AudioSource.Play();
             }
-            else if (gm.weapon == 5)
+            else if (gm.weapon == 4)
             {
                 AudioSource.clip = stabsound;
                 AudioSource.Play();
@@ -836,14 +836,14 @@ public class PlayerController : MonoBehaviour
             stringTimer = 1f;
             if (!recovering)
             {
-                myRB.velocity += playerRotationHolder.transform.forward * 130f;
+                myRB.velocity += playerRotationHolder.transform.forward * 70f;
             }
             attacking = true;
             canAttack2 = false;
             canMove = false;
             canRotate = false;
             stringCount = true;
-            if (gm.weapon == 1 || gm.weapon == 5)
+            if (gm.weapon == 1 || gm.weapon == 4)
             {
                 AudioSource.clip = Slash;
                 AudioSource.Play();
@@ -857,5 +857,6 @@ public class PlayerController : MonoBehaviour
             StartCoroutine("WaitEndString");
         }
     }
+
 
 }

@@ -248,7 +248,7 @@
                 {
                     "name": "up",
                     "id": "f78538e2-dced-42fa-9677-f5a0ed8c8649",
-                    "path": "<Gamepad>/buttonNorth",
+                    "path": "<Joystick>/stick/left",
                     "interactions": "",
                     "processors": "",
                     "groups": "Joystick",
@@ -259,7 +259,7 @@
                 {
                     "name": "down",
                     "id": "772b7479-02e6-42c8-a7d3-0dcc083a4bb8",
-                    "path": "<Gamepad>/buttonSouth",
+                    "path": "<Joystick>/stick/down",
                     "interactions": "",
                     "processors": "",
                     "groups": "Joystick",
@@ -270,7 +270,7 @@
                 {
                     "name": "left",
                     "id": "a92302f3-bec7-4655-a4e2-a6e305ba1a6f",
-                    "path": "<Gamepad>/buttonWest",
+                    "path": "<Joystick>/stick/up",
                     "interactions": "",
                     "processors": "",
                     "groups": "Joystick",
@@ -281,7 +281,7 @@
                 {
                     "name": "right",
                     "id": "e66b8999-c7a4-4a7f-8789-1e8f615c55fe",
-                    "path": "<Gamepad>/buttonEast",
+                    "path": "<Joystick>/stick/right",
                     "interactions": "",
                     "processors": "",
                     "groups": "Joystick",
