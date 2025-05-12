@@ -85,6 +85,8 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        canAttack = false;
+        canAttack2 = false;
         playerAnimator.SetInteger("whichAttack", 0);
         playerAnimator.SetBool("gm", false);
         playerAnimator.SetBool("attacking", false);
@@ -103,9 +105,9 @@ public class PlayerController : MonoBehaviour
         myRB = GetComponent<Rigidbody>();
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-        canMove = true;
-        canRotate = true;
-        canDash = true;
+        canMove = false;
+        canRotate = false;
+        canDash = false;
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
@@ -208,7 +210,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            if (Input.GetMouseButtonDown(0) && canAttack == true && gm.weapon != 2 && gm.weapon != 5 && isDashing == false && attacking == false && isBlocking == false && recovering == false && playerAnimator.GetBool("recovering") == false)
+            if (Input.GetMouseButtonDown(0) && canAttack == true && gm.weapon != 2 && gm.weapon != 5 && isDashing == false && attacking == false && isBlocking == false && recovering == false && playerAnimator.GetBool("recovering") == false && gm.started == true)
             {
                 playerAnimator.SetBool("attacking", true);
                 playerAnimator.SetInteger("whichAttack", 1);
@@ -855,6 +857,24 @@ public class PlayerController : MonoBehaviour
             }
             StartCoroutine("AttackStringCoolDown");
             StartCoroutine("WaitEndString");
+        }
+    }
+
+    public void Roll()
+    {
+        if (stamina > 2 && isBlocking == false && canDash == true && attacking == false && playerAnimator.GetBool("attacking") == false && playerAnimator.GetInteger("whichAttack") == 0)
+        {
+            AudioSource.clip = Woosh;
+            AudioSource.Play();
+            playerAnimator.SetBool("isDashing", true);
+            canTakeDamage = false;
+            canMove = false;
+            canRotate = false;
+            canDash = false;
+            isDashing = true;
+            stamina -= 3;
+            StartCoroutine("WaitDash");
+            StartCoroutine("WaitDamage");
         }
     }
 

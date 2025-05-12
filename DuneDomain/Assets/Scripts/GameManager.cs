@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using UnityEngine.SocialPlatforms.Impl;
 using Cinemachine.Utility;
 using System;
+using Unity.VisualScripting;
 
 public class GameManager : MonoBehaviour
 {
@@ -402,6 +403,11 @@ public class GameManager : MonoBehaviour
             audioSource.clip = cultistTheme;
             audioSource.Play();
             weapon = chosenWeapon;
+            playerController.canAttack = true;
+            playerController.canAttack2 = true;
+            playerController.canMove = true;
+            playerController.canRotate = true;
+            playerController.canDash = true;
             GameOn = true;
             started = true;
         }
@@ -421,6 +427,11 @@ public class GameManager : MonoBehaviour
             audioSource.clip = cultistTheme;
             audioSource.Play();
             weapon = chosenWeapon;
+            playerController.canAttack = true;
+            playerController.canAttack2 = true;
+            playerController.canMove = true;
+            playerController.canRotate = true;
+            playerController.canDash = true;
             GameOn = true;
             started = true;
         }
@@ -442,6 +453,11 @@ public class GameManager : MonoBehaviour
             audioSource.clip = cultistTheme;
             audioSource.Play();
             weapon = chosenWeapon;
+            playerController.canAttack = true;
+            playerController.canAttack2 = true;
+            playerController.canMove = true;
+            playerController.canRotate = true;
+            playerController.canDash = true;
             GameOn = true;
             started = true;
         }
@@ -459,6 +475,11 @@ public class GameManager : MonoBehaviour
             audioSource.clip = cultistTheme;
             audioSource.Play();
             weapon = chosenWeapon;
+            playerController.canAttack = true;
+            playerController.canAttack2 = true;
+            playerController.canMove = true;
+            playerController.canRotate = true;
+            playerController.canDash = true;
             GameOn = true;
             started = true;
         }
@@ -478,6 +499,11 @@ public class GameManager : MonoBehaviour
             audioSource.clip = cultistTheme;
             audioSource.Play();
             weapon = chosenWeapon;
+            playerController.canAttack = true;
+            playerController.canAttack2 = true;
+            playerController.canMove = true;
+            playerController.canRotate = true;
+            playerController.canDash = true;
             GameOn = true;
             started = true;
         }
