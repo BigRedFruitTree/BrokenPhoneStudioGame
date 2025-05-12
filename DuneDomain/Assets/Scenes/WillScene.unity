@@ -1477,7 +1477,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 701388782}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: ChooseWeapon
         m_Mode: 3
@@ -2985,7 +2985,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 701388782}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: ContinueToTutorialScreen5
         m_Mode: 1
@@ -3342,8 +3342,8 @@ MonoBehaviour:
   playerUiStuff: {fileID: 1439940672}
   pHealthBar: {fileID: 1171731902}
   pStaminaBar: {fileID: 1188537565}
-  marker1: {fileID: 0}
-  marker2: {fileID: 0}
+  marker1: {fileID: 932610739}
+  marker2: {fileID: 2117197270}
   timeUntilAppearance: 0
   timeUntilEatPhase: 0
   timeUntilAttack: 0
@@ -3386,13 +3386,13 @@ MonoBehaviour:
   weaponScreen: {fileID: 1947232526}
   deathScreen: {fileID: 965426039}
   NotWaitingAlertScreen: {fileID: 744393916}
-  winScreen: {fileID: 0}
+  winScreen: {fileID: 1831902192}
   TutorialStuff: {fileID: 811741683}
   TutorialScreen3: {fileID: 918734867}
   TutorialScreen4: {fileID: 241234373}
   TutorialScreen5: {fileID: 720364982}
   ChargeObject: {fileID: 0}
-  ChargeMeter: {fileID: 0}
+  ChargeMeter: {fileID: 397694466}
   bridge: {fileID: 1695947645}
   canSpawnRocks: 1
   Rock1Prefab: {fileID: 8362784621349634397, guid: 06bfa0e5a3fb5e44eafcfa5ebcaa0e0d, type: 3}
@@ -4579,7 +4579,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 701388782}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: ChooseWeapon
         m_Mode: 3
@@ -5367,7 +5367,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 701388782}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: ChooseWeapon
         m_Mode: 3
@@ -5530,7 +5530,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 701388782}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: ChooseWeapon
         m_Mode: 3
@@ -8205,7 +8205,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 701388782}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: FinishButton
         m_Mode: 1
@@ -8758,8 +8758,12 @@ MonoBehaviour:
   actionMapName: Player
   move: Move
   primarySword: Sword
-  primaryH: PrimaryActionHold
-  secondary: SecondaryAction
+  primaryHammer: PrimaryHammer
+  secondaryHammer: SecondaryHammer
+  primarySpAnSh: PrimarySpAnSh
+  secondarySpAnSh: SecondarySpAnSh
+  primaryBow: Bow
+  primaryCrBo: CrossBow
   roll: Roll
   moveAction:
     m_Name: Move
@@ -8779,20 +8783,56 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
-  primaryActionH:
+  primaryActionHammer:
     m_Name: 
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: f58aab25-ba50-4990-9f5a-31ee3d37f611
+    m_Id: c2470b1d-9891-4bab-adf8-935c538c9c4c
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
-  secondaryAction:
+  secondaryActionHammer:
     m_Name: 
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 4f17ede8-7c1b-4e22-8360-c240b31ad1c6
+    m_Id: 2d236977-4395-403c-9218-42e92564addf
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  primaryActionSpAnSh:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: b4f1765a-3d59-420b-bb79-f134585d2310
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  secondaryActionSpAnSh:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 4858f155-38e2-46b7-a36a-b6509a5df495
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  primaryActionBow:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: ae6d578e-f7ec-469c-92d5-9b4e1ab1e169
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  primaryActionCrossB:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: d743e836-e84d-4930-9211-dec255f4bd32
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
@@ -8806,7 +8846,6 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
-  primarySwordPressed: 0
 --- !u!4 &1747783862
 Transform:
   m_ObjectHideFlags: 0
@@ -9106,7 +9145,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 701388782}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: ChooseWeapon
         m_Mode: 3
@@ -9421,7 +9460,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1947232527
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9617,7 +9656,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 701388782}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: ContinueToTutorialScreen4
         m_Mode: 1
