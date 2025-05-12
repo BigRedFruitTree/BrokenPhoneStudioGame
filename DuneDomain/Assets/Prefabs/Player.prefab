@@ -3448,6 +3448,7 @@ Transform:
   m_Children:
   - {fileID: 1588028620003665528}
   - {fileID: 8858097246741084800}
+  - {fileID: 4984999477302763514}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &2872021817064166238
@@ -3519,7 +3520,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7388749027389276443}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: FirstAttack
+        m_MethodName: BasicAttack
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3627,17 +3628,57 @@ MonoBehaviour:
     m_ActionId: 23480dbd-b109-453d-8cf2-5616a63267e1
     m_ActionName: 'Player/CrossBow[/Mouse/leftButton]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7388749027389276443}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: BasicAttack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 34a699b3-0d68-42a2-af60-263216329857
     m_ActionName: 'Player/HammerBasic[/XInputControllerWindows1/rightTrigger,/Mouse/leftButton]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7388749027389276443}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: BasicAttack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 99f41049-b474-45f4-bb85-997786784f74
     m_ActionName: 'Player/SpearAnShieldBasic[/XInputControllerWindows1/rightTrigger,/Mouse/leftButton]'
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: b7faeecb-b4c0-4408-bd25-da62bcd796c6
     m_ActionName: 'Player/SpearAnShieldBlock[/Mouse/rightButton,/XInputControllerWindows1/leftTrigger]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: bc8ebfeb-5597-4f83-a5e3-a7b5021bd1e9
+    m_ActionName: 'Player/HammerChargeUp[/Mouse/rightButton,/XInputControllerWindows1/rightTrigger]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: de540890-453a-4987-b5cc-5c969d3ad65c
+    m_ActionName: 'Player/SpearAnShieldBlockUp[/Mouse/rightButton,/XInputControllerWindows1/rightTrigger]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: aa2beddf-bdb3-4fb3-a30f-f8bc547ec92f
+    m_ActionName: 'Player/BowUp[/Mouse/leftButton,/XInputControllerWindows1/rightTrigger]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d40972b8-cfd9-4a40-934b-b2546bfc4c9f
+    m_ActionName: 'Player/CrossBowUp[/Mouse/leftButton,/XInputControllerWindows1/rightTrigger]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: UI
@@ -7936,6 +7977,95 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &9007348231854789117
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4984999477302763514}
+  - component: {fileID: 1432653445753981007}
+  - component: {fileID: 6902445350160757045}
+  m_Layer: 0
+  m_Name: PlayerMarker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &4984999477302763514
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9007348231854789117}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4469701043182062426}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 17.29}
+  m_SizeDelta: {x: 1, y: 1}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!23 &1432653445753981007
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9007348231854789117}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &6902445350160757045
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9007348231854789117}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &9100835787694786311
 GameObject:
   m_ObjectHideFlags: 0
