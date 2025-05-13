@@ -1333,7 +1333,7 @@ MonoBehaviour:
   m_TrackedDeviceOrientationAction: {fileID: 4903299273660151952, guid: c4f52b3abbe18ef4db31932b2cd0502d, type: 3}
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
-  m_CursorLockBehavior: 0
+  m_CursorLockBehavior: 1
 --- !u!1 &303062247
 GameObject:
   m_ObjectHideFlags: 0
@@ -8031,8 +8031,8 @@ MonoBehaviour:
   charging: 0
   playerCtrls: {fileID: -944628639613478452, guid: c4f52b3abbe18ef4db31932b2cd0502d, type: 3}
   currentActionMap:
-    m_Name: 
-    m_Id: 
+    m_Name: Current
+    m_Id: 0bbecb6e-09c1-49b8-bc70-c97395481e4a
     m_Asset: {fileID: 0}
     m_Actions: []
     m_Bindings: []
@@ -8063,6 +8063,16 @@ MonoBehaviour:
   primaryCrBo: CrossBow
   primaryCrBoUp: CrossBowUp
   roll: roll
+  navigate: Navigate
+  navigateAction:
+    m_Name: Navigate
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 2800d9c9-4acb-46e4-8c2f-59db740ab3af
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
   moveAction:
     m_Name: Move
     m_Type: 0
@@ -9636,24 +9646,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 282891391}
     - target: {fileID: 4883686352752382053, guid: 5a82a0fe6b9e7434b92b6551918010e7, type: 3}
+      propertyPath: m_DefaultControlScheme
+      value: Gamepad
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883686352752382053, guid: 5a82a0fe6b9e7434b92b6551918010e7, type: 3}
       propertyPath: m_NeverAutoSwitchControlSchemes
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4883686352752382053, guid: 5a82a0fe6b9e7434b92b6551918010e7, type: 3}
-      propertyPath: m_ControlsChangedEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4883686352752382053, guid: 5a82a0fe6b9e7434b92b6551918010e7, type: 3}
-      propertyPath: m_ControlsChangedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1964590173}
-    - target: {fileID: 4883686352752382053, guid: 5a82a0fe6b9e7434b92b6551918010e7, type: 3}
-      propertyPath: m_ControlsChangedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SwitchToActionMap
-      objectReference: {fileID: 0}
-    - target: {fileID: 4883686352752382053, guid: 5a82a0fe6b9e7434b92b6551918010e7, type: 3}
-      propertyPath: m_ControlsChangedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: InputHandler, Assembly-CSharp
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7388749027389276443, guid: 5a82a0fe6b9e7434b92b6551918010e7, type: 3}
       propertyPath: gm

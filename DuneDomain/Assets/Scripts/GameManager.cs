@@ -397,6 +397,8 @@ public class GameManager : MonoBehaviour
     {
         if (chosenWeapon == 1)
         {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
             weaponScreen.SetActive(false);
             ChargeObject.SetActive(false);
             playerController.sword.SetActive(true);
@@ -419,6 +421,8 @@ public class GameManager : MonoBehaviour
         }
         if (chosenWeapon == 2)
         {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
             playerController.drawSpeed = 50f;
             playerController.maxdrawSpeed = 50f;
             playerAnimator.SetInteger("weapon", 2);
@@ -444,6 +448,8 @@ public class GameManager : MonoBehaviour
         }
         if (chosenWeapon == 3)
         {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
             marker1.enabled = true;
             marker2.enabled = true;
             weaponScreen.SetActive(false);
@@ -471,6 +477,8 @@ public class GameManager : MonoBehaviour
         }
         if (chosenWeapon == 4)
         {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
             weaponScreen.SetActive(false);
             playerAnimator.SetInteger("weapon", 4);
             ChargeObject.SetActive(false);
@@ -493,6 +501,8 @@ public class GameManager : MonoBehaviour
         }
         if (chosenWeapon == 5)
         {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
             playerController.maxdrawSpeed = 100f;
             playerController.drawSpeed = 100f;
             playerAnimator.SetInteger("weapon", 5);
@@ -825,6 +835,8 @@ public class GameManager : MonoBehaviour
         playerAnimator.SetBool("isMoving", false);
         GameOn = false;
         weaponScreen.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         rounds += 1;
     }
 

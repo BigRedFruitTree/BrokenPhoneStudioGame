@@ -32,7 +32,9 @@ public class InputHandler : MonoBehaviour
     [SerializeField] private string primaryCrBo = "CrossBow";
     [SerializeField] private string primaryCrBoUp = "CrossBowUp";
     [SerializeField] private string roll = "Roll";
+    [SerializeField] private string navigate = "Navigate";
 
+    [SerializeField] public InputAction navigateAction;
     [SerializeField] public InputAction moveAction;
     [SerializeField] public InputAction primaryActionSword;
     [SerializeField] public InputAction primaryActionHammer;
@@ -47,6 +49,7 @@ public class InputHandler : MonoBehaviour
     [SerializeField] public InputAction primaryActionCrossBUp;
     [SerializeField] public InputAction rollAction;
 
+    public Vector2 NavInput { get; private set; }
     public Vector2 MoveInput { get; private set; }
     public bool PrimaryInputSword { get; private set; }
     public bool PrimaryInputHammer { get; private set; }
@@ -79,6 +82,7 @@ public class InputHandler : MonoBehaviour
         Player = playerCtrls.FindActionMap(actionMapName);
         UI = playerCtrls.FindActionMap(actionMapNameUI);
         UIMap();
+        navigateAction = playerCtrls.FindActionMap(actionMapNameUI).FindAction(navigate);
         moveAction = playerCtrls.FindActionMap(actionMapName).FindAction(move);
         primaryActionSword = playerCtrls.FindActionMap(actionMapName).FindAction(primarySword);
         primaryActionHammer = playerCtrls.FindActionMap(actionMapName).FindAction(primaryHammer);
@@ -98,6 +102,9 @@ public class InputHandler : MonoBehaviour
     {
         moveAction.performed += context => MoveInput = context.ReadValue<Vector2>();
         moveAction.canceled += context => MoveInput = Vector2.zero;
+
+        navigateAction.performed += context => NavInput = context.ReadValue<Vector2>();
+        navigateAction.canceled += context => NavInput = Vector2.zero;
 
         primaryActionSword.performed += context => PrimaryInputSword = true;
         primaryActionSword.canceled += context => PrimaryInputSword = false;
@@ -170,6 +177,7 @@ public class InputHandler : MonoBehaviour
     public void OnEnable()
     {
         moveAction.Enable();
+        navigateAction.Enable();
         primaryActionSword.Enable();
         primaryActionHammer.Enable();
         secondaryActionHammer.Enable();
@@ -186,6 +194,7 @@ public class InputHandler : MonoBehaviour
 
     public void OnDisable()
     {
+        navigateAction.Disable();
         moveAction.Disable();
         primaryActionSword.Disable();
         primaryActionHammer.Disable();
