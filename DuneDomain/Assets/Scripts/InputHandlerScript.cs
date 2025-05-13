@@ -81,7 +81,6 @@ public class InputHandler : MonoBehaviour
 
         Player = playerCtrls.FindActionMap(actionMapName);
         UI = playerCtrls.FindActionMap(actionMapNameUI);
-        //UIMap();
         navigateAction = playerCtrls.FindActionMap(actionMapNameUI).FindAction(navigate);
         moveAction = playerCtrls.FindActionMap(actionMapName).FindAction(move);
         primaryActionSword = playerCtrls.FindActionMap(actionMapName).FindAction(primarySword);

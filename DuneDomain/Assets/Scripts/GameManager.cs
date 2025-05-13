@@ -96,6 +96,8 @@ public class GameManager : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().buildIndex > 0)
         {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
             bossScript.canTakeDamage = false;
             marker1.enabled = false;
             marker2.enabled = false;
@@ -141,6 +143,8 @@ public class GameManager : MonoBehaviour
                 audioSource.clip = endSong;
                 audioSource.Play();
                 winScreen.SetActive(true);
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
                 Time.timeScale = 0;
                 GameOn = false;
             }
@@ -346,6 +350,8 @@ public class GameManager : MonoBehaviour
                 GameOn = false;
                 GameOver = true;
                 deathScreen.SetActive(true);
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
                 Time.timeScale = 0;
             }
         }
@@ -841,6 +847,7 @@ public class GameManager : MonoBehaviour
         playerAnimator.SetBool("isMoving", false);
         GameOn = false;
         weaponScreen.SetActive(true);
+        EvSy.SetSelectedGameObject(GameObject.Find("SwordButton"));
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         rounds += 1;
