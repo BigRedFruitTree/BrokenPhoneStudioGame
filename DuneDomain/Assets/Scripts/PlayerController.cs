@@ -665,14 +665,12 @@ public class PlayerController : MonoBehaviour
     {
         recovering = true;
         playerAnimator.SetBool("recovering", true);
-        drawSpeed = 200f;
         yield return new WaitForSeconds(1f);
         playerAnimator.SetBool("attacking", false);
+        drawSpeed = 200f;
         yield return new WaitForSeconds(1f);
         playerAnimator.SetBool("recovering", false);
         yield return new WaitForSeconds(0.5f);
-        drawSpeed = 200f;
-        yield return new WaitForSeconds(0.1f);
         recovering = false;
         isCharging = false;
         chargeLevel = 0;
@@ -850,7 +848,7 @@ public class PlayerController : MonoBehaviour
             stringCount = true;
             if (gm.weapon == 1 || gm.weapon == 4)
             {
-                AudioSource.clip = Slash;
+                AudioSource.clip = stabsound;
                 AudioSource.Play();
             }
             else if (gm.weapon == 3)
@@ -993,6 +991,55 @@ public class PlayerController : MonoBehaviour
             canMove = true;
             canBlock = true;
             canUnblock = false;
+        }
+    }
+
+    public void Charging()
+    {
+        if (canMove == true && isBlocking == false && gm.weapon == 3)
+        {
+            playerAnimator.SetBool("IsCharging", true);
+            isCharging = true;
+            myRB.constraints = RigidbodyConstraints.FreezeAll;
+            isDashing = false;
+            canAttack = false;
+            canMove = true;
+            StartCoroutine("WaitDraw");
+        }
+    }
+    public void ChargeSound()
+    {
+        if (isCharging == true)
+        {
+            AudioSource.PlayOneShot(hammerchargesound);
+        }
+    }
+    public void ReleaseCharge()
+    {
+        if (gm.weapon == 3 && isDashing == false && isBlocking == false)
+        {
+            AudioSource.Stop();
+            if (gm.weapon == 3 && drawSpeed >= 133.34f)
+            {
+                chargeLevel = 1;
+            }
+            if (gm.weapon == 3 && drawSpeed > 66.67f && drawSpeed < 133.34f)
+            {
+                chargeLevel = 2;
+            }
+            if (gm.weapon == 3 && drawSpeed <= 66.67f)
+            {
+                chargeLevel = 3;
+            }
+            playerAnimator.SetBool("IsCharging", false);
+            playerAnimator.SetBool("attacking", true);
+            isCharging = false;
+            attacking = true;
+            canAttack = false;
+            AudioSource.clip = hammersound;
+            AudioSource.Play();
+            myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
+            StartCoroutine("HammerCoolDownCharge");
         }
     }
 

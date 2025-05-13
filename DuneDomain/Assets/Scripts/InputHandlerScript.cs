@@ -10,6 +10,7 @@ public class InputHandler : MonoBehaviour
     public GameManager gm;
     public bool isDrawing = false;
     public bool blocking = false;
+    public bool charging = false;
 
     [Header("Input Action Stuff")]
     [SerializeField] private InputActionAsset playerCtrls;
@@ -98,8 +99,8 @@ public class InputHandler : MonoBehaviour
         primaryActionHammer.performed += context => PrimaryInputHammer = true;
         primaryActionHammer.canceled += context => PrimaryInputHammer = false;
 
-        secondaryActionHammer.performed += context => SecondaryInputHammer = true;
-        secondaryActionHammer.canceled += context => SecondaryInputHammer = false;
+        secondaryActionHammer.performed += context => StartingToCharge();
+        secondaryActionHammer.canceled += context => ChargingDone();
 
         secondaryActionHammerUp.performed += context => SecondaryInputHammerUp = true;
         secondaryActionHammerUp.canceled += context => SecondaryInputHammerUp = false;
@@ -143,6 +144,15 @@ public class InputHandler : MonoBehaviour
         if (blocking == true)
         {
             playerController.Blocking();
+        }
+        else
+        {
+
+        }
+
+        if (charging == true)
+        {
+            playerController.Charging();
         }
         else
         {
@@ -203,5 +213,15 @@ public class InputHandler : MonoBehaviour
     public void BlockingDone()
     {
         blocking = false;
+    }
+
+    public void StartingToCharge()
+    {
+        charging = true;
+    }
+
+    public void ChargingDone()
+    {
+        charging = false;
     }
 }

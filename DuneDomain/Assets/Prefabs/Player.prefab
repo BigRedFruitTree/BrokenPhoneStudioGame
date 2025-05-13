@@ -3567,14 +3567,13 @@ MonoBehaviour:
     m_ActionName: 'Player/Roll[/Keyboard/f,/XInputControllerWindows/rightStickPress]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4883686352752382053}
-        m_TargetAssemblyTypeName: UnityEngine.InputSystem.PlayerInput, Unity.InputSystem
-        m_MethodName: set_actions
-        m_Mode: 2
+      - m_Target: {fileID: 7388749027389276443}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: 
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: -944628639613478452, guid: c4f52b3abbe18ef4db31932b2cd0502d, type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.InputSystem.InputActionAsset,
-            Unity.InputSystem
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -3623,7 +3622,19 @@ MonoBehaviour:
     m_ActionId: ff788952-4258-4f5f-ae0e-6bed6fdad88d
     m_ActionName: UI/TrackedDeviceOrientation
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7388749027389276443}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 23480dbd-b109-453d-8cf2-5616a63267e1
     m_ActionName: 'Player/CrossBow[/Mouse/leftButton]'
   - m_PersistentCalls:
@@ -3659,7 +3670,19 @@ MonoBehaviour:
     m_ActionId: 99f41049-b474-45f4-bb85-997786784f74
     m_ActionName: 'Player/SpearAnShieldBasic[/XInputControllerWindows1/rightTrigger,/Mouse/leftButton]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4883686352752382053}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: b7faeecb-b4c0-4408-bd25-da62bcd796c6
     m_ActionName: 'Player/SpearAnShieldBlock[/Mouse/rightButton,/XInputControllerWindows1/leftTrigger]'
   - m_PersistentCalls:
@@ -3667,15 +3690,51 @@ MonoBehaviour:
     m_ActionId: bc8ebfeb-5597-4f83-a5e3-a7b5021bd1e9
     m_ActionName: 'Player/HammerChargeUp[/Mouse/rightButton,/XInputControllerWindows1/rightTrigger]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7388749027389276443}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: ReleaseBlock
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: de540890-453a-4987-b5cc-5c969d3ad65c
     m_ActionName: 'Player/SpearAnShieldBlockUp[/Mouse/rightButton,/XInputControllerWindows1/rightTrigger]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7388749027389276443}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: ReleaseRangedWeapon
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: aa2beddf-bdb3-4fb3-a30f-f8bc547ec92f
     m_ActionName: 'Player/BowUp[/Mouse/leftButton,/XInputControllerWindows1/rightTrigger]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7388749027389276443}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: ReleaseRangedWeapon
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: d40972b8-cfd9-4a40-934b-b2546bfc4c9f
     m_ActionName: 'Player/CrossBowUp[/Mouse/leftButton,/XInputControllerWindows1/rightTrigger]'
   m_NeverAutoSwitchControlSchemes: 0
