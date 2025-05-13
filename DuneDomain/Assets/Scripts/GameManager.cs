@@ -4,10 +4,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.AI;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 using UnityEngine.SocialPlatforms.Impl;
 using Cinemachine.Utility;
 using System;
 using Unity.VisualScripting;
+using UnityEngine.EventSystems;
 
 public class GameManager : MonoBehaviour
 {
@@ -63,6 +65,7 @@ public class GameManager : MonoBehaviour
     public int enemyMovementPattern = 0;
 
     [Header("GameManager Stuff")]
+    public EventSystem EvSy;
     public bool GameOn = false;
     public bool GameOver = false;
     public int weapon = 0;

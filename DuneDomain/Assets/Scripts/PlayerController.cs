@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using Cinemachine;
 using JetBrains.Annotations;
+using UnityEngine.InputSystem.HID;
 
 public class PlayerController : MonoBehaviour
 {
@@ -80,11 +81,14 @@ public class PlayerController : MonoBehaviour
     public AudioClip hammersound;
     public AudioClip hammerchargesound;
     public AudioClip shieldblock;
+    private RaycastHit hit;
+    public GameObject Marker;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        Marker.SetActive(false);
         canAttack = false;
         canAttack2 = false;
         playerAnimator.SetInteger("whichAttack", 0);
@@ -117,6 +121,19 @@ public class PlayerController : MonoBehaviour
         if (gm.GameOn == true && gm.GameOver == false && gm.started == true)
         {
             playerCam.transform.position = cameraHolder.transform.position;
+
+            if (Physics.Raycast(playerCam.transform.position, playerCam.transform.forward, out hit, Mathf.Infinity))
+            {
+                GameObject hitObject = hit.collider.gameObject;
+                if (hitObject.tag != "Player" && hitObject.tag != "MeleeEnemy" && hitObject.tag != "RangedEnemy")
+                {
+                    Marker.SetActive(true);
+                }
+                else
+                {
+                    Marker.SetActive(false);
+                }
+            }
 
             Vector3 temp = myRB.velocity;
 

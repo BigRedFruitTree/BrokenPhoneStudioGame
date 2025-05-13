@@ -14,7 +14,10 @@ public class InputHandler : MonoBehaviour
 
     [Header("Input Action Stuff")]
     [SerializeField] private InputActionAsset playerCtrls;
+    [SerializeField] private InputActionMap Player;
+    [SerializeField] private InputActionMap UI;
     [SerializeField] private string actionMapName = "Player";
+    [SerializeField] private string actionMapNameUI = "UI";
     [SerializeField] private string move = "Move";
     [SerializeField] private string primarySword = "Sword";
     [SerializeField] private string primaryHammer = "HammerBasic";
@@ -57,10 +60,7 @@ public class InputHandler : MonoBehaviour
     public bool PrimaryInputCrossBUp { get; private set; }
     public bool RollInput { get; private set; }
 
-
     public static InputHandler Instance { get; private set; }
-
-
     public void Awake()
     {
         if (Instance == null)
@@ -73,6 +73,8 @@ public class InputHandler : MonoBehaviour
             Destroy(gameObject);
         }
 
+        Player = playerCtrls.FindActionMap(actionMapName);
+        UI = playerCtrls.FindActionMap(actionMapNameUI);
         moveAction = playerCtrls.FindActionMap(actionMapName).FindAction(move);
         primaryActionSword = playerCtrls.FindActionMap(actionMapName).FindAction(primarySword);
         primaryActionHammer = playerCtrls.FindActionMap(actionMapName).FindAction(primaryHammer);
@@ -86,6 +88,7 @@ public class InputHandler : MonoBehaviour
         primaryActionCrossB = playerCtrls.FindActionMap(actionMapName).FindAction(primaryCrBo);
         primaryActionCrossBUp = playerCtrls.FindActionMap(actionMapName).FindAction(primaryCrBoUp);
         rollAction = playerCtrls.FindActionMap(actionMapName).FindAction(roll);
+        SwitchToUI();
         RegisterInputActions();
     }
     public void RegisterInputActions()
@@ -132,13 +135,22 @@ public class InputHandler : MonoBehaviour
 
     public void Update()
     {
+        if (gm.GameOn == false)
+        {
+            SwitchToUI();
+        }
+        else
+        {
+            SwitchToPlayer();
+        }
+
         if (isDrawing == true)
         {
             playerController.DrawRangedWeapon();
         }
         else
         {
-            
+
         }
 
         if (blocking == true)
@@ -223,5 +235,17 @@ public class InputHandler : MonoBehaviour
     public void ChargingDone()
     {
         charging = false;
+    }
+
+    public void SwitchToPlayer()
+    {
+        Player.Enable();
+        UI.Disable();
+    }
+
+    public void SwitchToUI()
+    {
+        Player.Disable();
+        UI.Enable();
     }
 }
