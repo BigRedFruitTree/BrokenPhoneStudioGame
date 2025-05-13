@@ -94,6 +94,13 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            EvSy.SetSelectedGameObject(GameObject.Find("StartGameButton"));
+        }
+
         if (SceneManager.GetActiveScene().buildIndex > 0)
         {
             Cursor.lockState = CursorLockMode.Locked;
@@ -143,8 +150,9 @@ public class GameManager : MonoBehaviour
                 audioSource.clip = endSong;
                 audioSource.Play();
                 winScreen.SetActive(true);
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+                EvSy.SetSelectedGameObject(GameObject.Find("BacktoMenu"));
                 Time.timeScale = 0;
                 GameOn = false;
             }
@@ -350,8 +358,9 @@ public class GameManager : MonoBehaviour
                 GameOn = false;
                 GameOver = true;
                 deathScreen.SetActive(true);
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.Locked;
+                EvSy.SetSelectedGameObject(GameObject.Find("BackToMainMenu"));
+                Cursor.visible = false;
                 Time.timeScale = 0;
             }
         }
