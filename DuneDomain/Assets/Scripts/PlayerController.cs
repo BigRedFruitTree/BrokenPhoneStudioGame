@@ -971,4 +971,29 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void Blocking()
+    {
+        if (canMove == true && isBlocking == false && gm.weapon == 4)
+        {
+            playerAnimator.SetBool("IsBlocking", true);
+            myRB.constraints = RigidbodyConstraints.FreezeAll;
+            canBlock = false;
+            isBlocking = true;
+            canMove = true;
+            canUnblock = true;
+        }
+    }
+    public void ReleaseBlock()
+    {
+        if (isBlocking == true && canUnblock == true && canBlock == false && gm.weapon == 4)
+        {
+            playerAnimator.SetBool("IsBlocking", false);
+            myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
+            isBlocking = false;
+            canMove = true;
+            canBlock = true;
+            canUnblock = false;
+        }
+    }
+
 }

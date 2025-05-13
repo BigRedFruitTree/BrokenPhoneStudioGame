@@ -9,6 +9,7 @@ public class InputHandler : MonoBehaviour
     public PlayerController playerController;
     public GameManager gm;
     public bool isDrawing = false;
+    public bool blocking = false;
 
     [Header("Input Action Stuff")]
     [SerializeField] private InputActionAsset playerCtrls;
@@ -106,8 +107,8 @@ public class InputHandler : MonoBehaviour
         primaryActionSpAnSh.performed += context => PrimaryInputSpAnSh = true;
         primaryActionSpAnSh.canceled += context => PrimaryInputSpAnSh = false;
 
-        secondaryActionSpAnSh.performed += context => SecondaryInputSpAnSh = true;
-        secondaryActionSpAnSh.canceled += context => SecondaryInputSpAnSh = false;
+        secondaryActionSpAnSh.performed += context => StartingToBlock();
+        secondaryActionSpAnSh.canceled += context => BlockingDone();
 
         secondaryActionSpAnShUp.performed += context => SecondaryInputSpAnShUp = true;
         secondaryActionSpAnShUp.canceled += context => SecondaryInputSpAnShUp = false;
@@ -138,7 +139,16 @@ public class InputHandler : MonoBehaviour
         {
             
         }
-            
+
+        if (blocking == true)
+        {
+            playerController.Blocking();
+        }
+        else
+        {
+
+        }
+
     }
 
     public void OnEnable()
@@ -183,5 +193,15 @@ public class InputHandler : MonoBehaviour
     public void DrawingDone()
     {
         isDrawing = false;
+    }
+
+    public void StartingToBlock()
+    {
+        blocking = true;
+    }
+
+    public void BlockingDone()
+    {
+        blocking = false;
     }
 }
