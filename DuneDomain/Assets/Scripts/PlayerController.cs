@@ -508,7 +508,7 @@ public class PlayerController : MonoBehaviour
 
             if(isDashing == true && attacking == false && isBlocking == false)
             {
-                myRB.velocity += playerRotationHolder.transform.forward * 9f;
+                myRB.velocity += playerRotationHolder.transform.forward * 5f;
             }
 
             if (Input.GetKeyDown(KeyCode.F) && stamina > 2 && isBlocking == false && canDash == true && attacking == false && playerAnimator.GetBool("attacking") == false && playerAnimator.GetInteger("whichAttack") == 0)
