@@ -80,6 +80,7 @@ public class GameManager : MonoBehaviour
     public GameObject TutorialScreen4;
     public GameObject TutorialScreen5;
     public GameObject ChargeObject;
+    public GameObject ChargeText;
     public Image ChargeMeter;
     public GameObject bridge;
     public bool canSpawnRocks = true;
@@ -95,6 +96,7 @@ public class GameManager : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().buildIndex > 0)
         {
+            inputHandler.UIMap();
             bossScript.canTakeDamage = false;
             marker1.enabled = false;
             marker2.enabled = false;
@@ -141,7 +143,6 @@ public class GameManager : MonoBehaviour
                 audioSource.Play();
                 winScreen.SetActive(true);
                 Time.timeScale = 0;
-                inputHandler.SwitchToActionMap("UI");
                 GameOn = false;
             }
 
@@ -340,12 +341,12 @@ public class GameManager : MonoBehaviour
 
             if (playerController.health <= 0)
             {
+                ChargeText.SetActive(false);
                 ChargeObject.SetActive(false);
                 playerUiStuff.SetActive(false);
                 GameOn = false;
                 GameOver = true;
                 deathScreen.SetActive(true);
-                inputHandler.SwitchToActionMap("UI");
                 Time.timeScale = 0;
             }
         }
@@ -415,7 +416,6 @@ public class GameManager : MonoBehaviour
             playerController.canDash = true;
             GameOn = true;
             started = true;
-            inputHandler.SwitchToActionMap("Player");
         }
         if (chosenWeapon == 2)
         {
@@ -423,6 +423,7 @@ public class GameManager : MonoBehaviour
             playerController.maxdrawSpeed = 50f;
             playerAnimator.SetInteger("weapon", 2);
             ChargeObject.SetActive(true);
+            ChargeText.SetActive(true);
             playerController.bow.SetActive(true);
             playerController.sword.SetActive(false);
             playerController.crossbow.SetActive(false);
@@ -440,7 +441,6 @@ public class GameManager : MonoBehaviour
             playerController.canDash = true;
             GameOn = true;
             started = true;
-            inputHandler.SwitchToActionMap("Player");
         }
         if (chosenWeapon == 3)
         {
@@ -449,6 +449,7 @@ public class GameManager : MonoBehaviour
             weaponScreen.SetActive(false);
             playerAnimator.SetInteger("weapon", 3);
             ChargeObject.SetActive(true);
+            ChargeText.SetActive(true);
             playerController.hammer.SetActive(true);
             playerController.bow.SetActive(false);
             playerController.sword.SetActive(false);
@@ -467,7 +468,6 @@ public class GameManager : MonoBehaviour
             playerController.canDash = true;
             GameOn = true;
             started = true;
-            inputHandler.SwitchToActionMap("Player");
         }
         if (chosenWeapon == 4)
         {
@@ -490,7 +490,6 @@ public class GameManager : MonoBehaviour
             playerController.canDash = true;
             GameOn = true;
             started = true;
-            inputHandler.SwitchToActionMap("Player");
         }
         if (chosenWeapon == 5)
         {
@@ -498,6 +497,7 @@ public class GameManager : MonoBehaviour
             playerController.drawSpeed = 100f;
             playerAnimator.SetInteger("weapon", 5);
             ChargeObject.SetActive(true);
+            ChargeText.SetActive(true);
             playerController.crossbow.SetActive(true); 
             playerController.bow.SetActive(false);
             playerController.sword.SetActive(false);
@@ -515,7 +515,6 @@ public class GameManager : MonoBehaviour
             playerController.canDash = true;
             GameOn = true;
             started = true;
-            inputHandler.SwitchToActionMap("Player");
         }
         playerAnimator.SetBool("gm", true);
     }
@@ -825,7 +824,6 @@ public class GameManager : MonoBehaviour
         playerAnimator.SetBool("IsDrawing", false);
         playerAnimator.SetBool("isMoving", false);
         GameOn = false;
-        inputHandler.SwitchToActionMap("UI");
         weaponScreen.SetActive(true);
         rounds += 1;
     }

@@ -14,9 +14,9 @@ public class InputHandler : MonoBehaviour
 
     [Header("Input Action Stuff")]
     [SerializeField] private InputActionAsset playerCtrls;
-    private InputActionMap currentActionMap;
+    [SerializeField] public InputActionMap currentActionMap;
     [SerializeField] private InputActionMap Player;
-    [SerializeField] private InputActionMap UI;
+    [SerializeField] public InputActionMap UI;
     [SerializeField] private string actionMapName = "Player";
     [SerializeField] private string actionMapNameUI = "UI";
     [SerializeField] private string move = "Move";
@@ -63,13 +63,9 @@ public class InputHandler : MonoBehaviour
 
     public static InputHandler Instance { get; private set; }
 
-    private void Start()
-    {
-        currentActionMap = UI;
-
-    }
     public void Awake()
     {
+
         if (Instance == null)
         {
             Instance = this;
@@ -82,6 +78,7 @@ public class InputHandler : MonoBehaviour
 
         Player = playerCtrls.FindActionMap(actionMapName);
         UI = playerCtrls.FindActionMap(actionMapNameUI);
+        UIMap();
         moveAction = playerCtrls.FindActionMap(actionMapName).FindAction(move);
         primaryActionSword = playerCtrls.FindActionMap(actionMapName).FindAction(primarySword);
         primaryActionHammer = playerCtrls.FindActionMap(actionMapName).FindAction(primaryHammer);
@@ -234,19 +231,16 @@ public class InputHandler : MonoBehaviour
         charging = false;
     }
 
-    public void SwitchToActionMap(string actionMapName)
+    public void PlayerMap()
     {
-        currentActionMap.Disable();
-
-        currentActionMap = playerCtrls.FindActionMap(actionMapName);
-        if (currentActionMap != null)
-        {
-            currentActionMap.Enable();
-            Debug.Log($"Switched to action map: {actionMapName}");
-        }
-        else
-        {
-            Debug.LogError($"Action map '{actionMapName}' not found.");
-        }
+        Player.Enable();
+        UI.Disable();
     }
+
+    public void UIMap()
+    {
+        Player.Disable();
+        UI.Enable();
+    }
+
 }
