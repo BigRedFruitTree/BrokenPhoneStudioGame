@@ -671,12 +671,13 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(1f);
         playerAnimator.SetBool("recovering", false);
         yield return new WaitForSeconds(0.5f);
+        drawSpeed = 200f;
+        yield return new WaitForSeconds(0.1f);
         recovering = false;
         isCharging = false;
         chargeLevel = 0;
         canMove = true;
         canRotate = true;
-        drawSpeed = 200f;
         attacking = false;
         yield return new WaitForSeconds(2.7f);
         canAttack = true;
@@ -687,8 +688,9 @@ public class PlayerController : MonoBehaviour
         isCooldownOver = false;
         playerAnimator.SetBool("attacking", false);
         attacking = false;
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.5f);
         drawSpeed = 50f;
+        yield return new WaitForSeconds(1.5f);
         canAttack = true;
         isCooldownOver = true;
     }
@@ -699,8 +701,9 @@ public class PlayerController : MonoBehaviour
         isCooldownOver = false;
         playerAnimator.SetBool("attacking", false);
         attacking = false;
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(0.5f);
         drawSpeed = 100f;
+        yield return new WaitForSeconds(3.5f);
         canAttack = true;
         isCooldownOver = true;
     }
@@ -878,5 +881,94 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void DrawRangedWeapon()
+    {
+        if (isCooldownOver == true && gm.weapon > 0 && isDashing == false && isBlocking == false)
+        {
+            if (gm.weapon == 2)
+            {
+                playerAnimator.SetBool("IsDrawing", true);
+                myRB.constraints = RigidbodyConstraints.FreezeAll;
+                isDashing = false;
+                canAttack = false;
+                canMove = true;
+                canRotate = true;
+                StartCoroutine("WaitDraw");
+            }
+
+            if (gm.weapon == 5)
+            {
+                playerAnimator.SetBool("IsDrawing", true);
+                myRB.constraints = RigidbodyConstraints.FreezeAll;
+                isDashing = false;
+                canAttack = false;
+                canMove = true;
+                canRotate = true;
+                StartCoroutine("WaitDraw");
+            }
+        }
+    }
+
+    public void ReleaseRangedWeapon()
+    {
+        if (gm.weapon > 0 && isDashing == false && isBlocking == false)
+        {
+            if (gm.weapon == 2 && drawSpeed <= 0f)
+            {
+                playerAnimator.SetBool("attacking", true);
+                playerAnimator.SetBool("IsDrawing", false);
+                attacking = true;
+                arrowSpeed = 2500;
+                arrow.SetActive(true);
+                AudioSource.clip = Woosh;
+                AudioSource.Play();
+                GameObject arrowSummon = Instantiate(arrow, arrowSpawnB.transform.position, playerRotationHolder.transform.rotation);
+                arrowSummon.transform.Rotate(90f, 180f, 0f);
+                arrowSummon.GetComponent<Rigidbody>().AddForce(playerRotationHolder.transform.forward * arrowSpeed);
+                canAttack = false;
+                drawSpeed = 50f;
+                Destroy(arrowSummon, 200f);
+                myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
+                StartCoroutine("BowCoolDown");
+            }
+            if (gm.weapon == 2 && drawSpeed > 0f)
+            {
+                playerAnimator.SetBool("attacking", true);
+                playerAnimator.SetBool("IsDrawing", false);
+                attacking = true;
+                drawSpeed = 50f;
+                myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
+                StartCoroutine("BowCoolDown");
+            }
+
+            if (gm.weapon == 5 && drawSpeed > 0f)
+            {
+                playerAnimator.SetBool("attacking", true);
+                playerAnimator.SetBool("IsDrawing", false);
+                attacking = true;
+                drawSpeed = 100f;
+                myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
+                StartCoroutine("CrossbowCoolDown");
+            }
+            if (gm.weapon == 5 && drawSpeed <= 0)
+            {
+                playerAnimator.SetBool("attacking", true);
+                playerAnimator.SetBool("IsDrawing", false);
+                attacking = true;
+                AudioSource.clip = Woosh;
+                AudioSource.Play();
+                arrowSpeed = 4500;
+                arrow.SetActive(true);
+                GameObject arrowSummon = Instantiate(arrow, arrowSpawnC.transform.position, playerRotationHolder.transform.rotation);
+                arrowSummon.transform.Rotate(90f, 180f, 0f);
+                arrowSummon.GetComponent<Rigidbody>().AddForce(playerRotationHolder.transform.forward * arrowSpeed);
+                Destroy(arrowSummon, 2f);
+                canAttack = false;
+                drawSpeed = 100f;
+                myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
+                StartCoroutine("CrossbowCoolDown");
+            }
+        }
+    }
 
 }

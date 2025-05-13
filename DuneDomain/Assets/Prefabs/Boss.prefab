@@ -105,12 +105,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 8
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1.5974072}
-  m_Center: {x: 6.632558e-16, y: 0, z: 0.29870388}
+  m_Size: {x: 0.82, y: 1, z: 1.82}
+  m_Center: {x: -0.08, y: 0, z: 0.31}
 --- !u!54 &8127233404491766053
 Rigidbody:
   m_ObjectHideFlags: 0

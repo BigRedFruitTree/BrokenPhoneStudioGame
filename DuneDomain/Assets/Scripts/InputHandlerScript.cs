@@ -8,6 +8,7 @@ public class InputHandler : MonoBehaviour
 {
     public PlayerController playerController;
     public GameManager gm;
+    public bool isDrawing = false;
 
     [Header("Input Action Stuff")]
     [SerializeField] private InputActionAsset playerCtrls;
@@ -39,8 +40,8 @@ public class InputHandler : MonoBehaviour
     [SerializeField] public InputAction primaryActionCrossB;
     [SerializeField] public InputAction primaryActionCrossBUp;
     [SerializeField] public InputAction rollAction;
- 
-    public Vector2 MoveInput {get; private set;}
+
+    public Vector2 MoveInput { get; private set; }
     public bool PrimaryInputSword { get; private set; }
     public bool PrimaryInputHammer { get; private set; }
     public bool SecondaryInputHammer { get; private set; }
@@ -55,12 +56,12 @@ public class InputHandler : MonoBehaviour
     public bool RollInput { get; private set; }
 
 
-    public static InputHandler Instance {get; private set;}
+    public static InputHandler Instance { get; private set; }
 
 
     public void Awake()
     {
-        if(Instance == null)
+        if (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
@@ -69,7 +70,7 @@ public class InputHandler : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        
+
         moveAction = playerCtrls.FindActionMap(actionMapName).FindAction(move);
         primaryActionSword = playerCtrls.FindActionMap(actionMapName).FindAction(primarySword);
         primaryActionHammer = playerCtrls.FindActionMap(actionMapName).FindAction(primaryHammer);
@@ -111,8 +112,8 @@ public class InputHandler : MonoBehaviour
         secondaryActionSpAnShUp.performed += context => SecondaryInputSpAnShUp = true;
         secondaryActionSpAnShUp.canceled += context => SecondaryInputSpAnShUp = false;
 
-        primaryActionBow.performed += context => PrimaryInputBow = true;
-        primaryActionBow.canceled += context => PrimaryInputBow = false;
+        primaryActionBow.performed += context => StartingToDraw();
+        primaryActionBow.canceled += context => DrawingDone();
 
         primaryActionBowUp.performed += context => PrimaryInputBowUp = true;
         primaryActionBowUp.canceled += context => PrimaryInputBowUp = false;
@@ -125,6 +126,19 @@ public class InputHandler : MonoBehaviour
 
         rollAction.performed += context => RollInput = true;
         rollAction.canceled += context => RollInput = true;
+    }
+
+    public void Update()
+    {
+        if (isDrawing == true)
+        {
+            playerController.DrawRangedWeapon();
+        }
+        else
+        {
+            
+        }
+            
     }
 
     public void OnEnable()
@@ -159,5 +173,15 @@ public class InputHandler : MonoBehaviour
         primaryActionCrossB.Disable();
         primaryActionCrossBUp.Disable();
         rollAction.Disable();
+    }
+
+    public void StartingToDraw()
+    {
+        isDrawing = true;
+    }
+
+    public void DrawingDone()
+    {
+        isDrawing = false;
     }
 }
