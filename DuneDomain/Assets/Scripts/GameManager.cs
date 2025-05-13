@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     [Header("Player Stuff")]
     public PlayerController playerController;
     public Animator playerAnimator;
+    public InputHandler inputHandler;
     public GameObject playerObject;
     public GameObject playerUiStuff;
     public Image pHealthBar;
@@ -140,6 +141,7 @@ public class GameManager : MonoBehaviour
                 audioSource.Play();
                 winScreen.SetActive(true);
                 Time.timeScale = 0;
+                inputHandler.SwitchToActionMap("UI");
                 GameOn = false;
             }
 
@@ -343,6 +345,7 @@ public class GameManager : MonoBehaviour
                 GameOn = false;
                 GameOver = true;
                 deathScreen.SetActive(true);
+                inputHandler.SwitchToActionMap("UI");
                 Time.timeScale = 0;
             }
         }
@@ -364,7 +367,6 @@ public class GameManager : MonoBehaviour
             Instantiate(rangedEnemyPrefab, GenerateSpawnPos(), rangedEnemyPrefab.transform.rotation);
         }
     }
-
     public Vector3 GenerateSpawnPos()
     {
         float spawnPosX = UnityEngine.Random.Range(-spawnRange, spawnRange);
@@ -413,6 +415,7 @@ public class GameManager : MonoBehaviour
             playerController.canDash = true;
             GameOn = true;
             started = true;
+            inputHandler.SwitchToActionMap("Player");
         }
         if (chosenWeapon == 2)
         {
@@ -437,6 +440,7 @@ public class GameManager : MonoBehaviour
             playerController.canDash = true;
             GameOn = true;
             started = true;
+            inputHandler.SwitchToActionMap("Player");
         }
         if (chosenWeapon == 3)
         {
@@ -463,6 +467,7 @@ public class GameManager : MonoBehaviour
             playerController.canDash = true;
             GameOn = true;
             started = true;
+            inputHandler.SwitchToActionMap("Player");
         }
         if (chosenWeapon == 4)
         {
@@ -485,6 +490,7 @@ public class GameManager : MonoBehaviour
             playerController.canDash = true;
             GameOn = true;
             started = true;
+            inputHandler.SwitchToActionMap("Player");
         }
         if (chosenWeapon == 5)
         {
@@ -509,6 +515,7 @@ public class GameManager : MonoBehaviour
             playerController.canDash = true;
             GameOn = true;
             started = true;
+            inputHandler.SwitchToActionMap("Player");
         }
         playerAnimator.SetBool("gm", true);
     }
@@ -818,6 +825,7 @@ public class GameManager : MonoBehaviour
         playerAnimator.SetBool("IsDrawing", false);
         playerAnimator.SetBool("isMoving", false);
         GameOn = false;
+        inputHandler.SwitchToActionMap("UI");
         weaponScreen.SetActive(true);
         rounds += 1;
     }

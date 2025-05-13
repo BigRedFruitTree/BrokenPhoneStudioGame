@@ -425,7 +425,7 @@
                     "name": "",
                     "id": "3ed55c9b-e7f1-4583-a4da-c1de556b80c8",
                     "path": "<Gamepad>/rightStickPress",
-                    "interactions": "Press",
+                    "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Roll",

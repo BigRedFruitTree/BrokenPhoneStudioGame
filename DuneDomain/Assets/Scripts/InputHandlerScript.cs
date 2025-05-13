@@ -14,6 +14,7 @@ public class InputHandler : MonoBehaviour
 
     [Header("Input Action Stuff")]
     [SerializeField] private InputActionAsset playerCtrls;
+    private InputActionMap currentActionMap;
     [SerializeField] private InputActionMap Player;
     [SerializeField] private InputActionMap UI;
     [SerializeField] private string actionMapName = "Player";
@@ -61,6 +62,12 @@ public class InputHandler : MonoBehaviour
     public bool RollInput { get; private set; }
 
     public static InputHandler Instance { get; private set; }
+
+    private void Start()
+    {
+        currentActionMap = UI;
+
+    }
     public void Awake()
     {
         if (Instance == null)
@@ -88,7 +95,6 @@ public class InputHandler : MonoBehaviour
         primaryActionCrossB = playerCtrls.FindActionMap(actionMapName).FindAction(primaryCrBo);
         primaryActionCrossBUp = playerCtrls.FindActionMap(actionMapName).FindAction(primaryCrBoUp);
         rollAction = playerCtrls.FindActionMap(actionMapName).FindAction(roll);
-        SwitchToUI();
         RegisterInputActions();
     }
     public void RegisterInputActions()
@@ -135,15 +141,6 @@ public class InputHandler : MonoBehaviour
 
     public void Update()
     {
-        if (gm.GameOn == false)
-        {
-            SwitchToUI();
-        }
-        else
-        {
-            SwitchToPlayer();
-        }
-
         if (isDrawing == true)
         {
             playerController.DrawRangedWeapon();
@@ -237,15 +234,19 @@ public class InputHandler : MonoBehaviour
         charging = false;
     }
 
-    public void SwitchToPlayer()
+    public void SwitchToActionMap(string actionMapName)
     {
-        Player.Enable();
-        UI.Disable();
-    }
+        currentActionMap.Disable();
 
-    public void SwitchToUI()
-    {
-        Player.Disable();
-        UI.Enable();
+        currentActionMap = playerCtrls.FindActionMap(actionMapName);
+        if (currentActionMap != null)
+        {
+            currentActionMap.Enable();
+            Debug.Log($"Switched to action map: {actionMapName}");
+        }
+        else
+        {
+            Debug.LogError($"Action map '{actionMapName}' not found.");
+        }
     }
 }
