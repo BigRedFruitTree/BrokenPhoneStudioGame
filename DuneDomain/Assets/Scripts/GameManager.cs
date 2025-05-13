@@ -96,7 +96,6 @@ public class GameManager : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().buildIndex > 0)
         {
-            inputHandler.UIMap();
             bossScript.canTakeDamage = false;
             marker1.enabled = false;
             marker2.enabled = false;
@@ -562,14 +561,19 @@ public class GameManager : MonoBehaviour
     }
     public void ContinueToTutorialScreen4()
     {
+        
         TutorialScreen3.SetActive(false);
         TutorialScreen4.SetActive(true);
+
+        EvSy.SetSelectedGameObject(GameObject.Find("Button"));
     }
 
     public void ContinueToTutorialScreen5()
     {
         TutorialScreen4.SetActive(false);
         TutorialScreen5.SetActive(true);
+
+        EvSy.SetSelectedGameObject(GameObject.Find("Button"));
     }
 
     public void FinishButton()
@@ -577,6 +581,8 @@ public class GameManager : MonoBehaviour
         TutorialStuff.SetActive(false);
         TutorialScreen5.SetActive(false);
         weaponScreen.SetActive(true);
+
+        EvSy.SetSelectedGameObject(GameObject.Find("SwordButton"));
     }
 
     IEnumerator Wait()
