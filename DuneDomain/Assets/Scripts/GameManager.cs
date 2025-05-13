@@ -107,7 +107,7 @@ public class GameManager : MonoBehaviour
             timeUntilEatPhase = 3000f;
             timeUntilAttack = UnityEngine.Random.Range(200f, 300f);
             rounds = 1;
-            spawnRange = 50f;
+            spawnRange = 25f;
             Time.timeScale = 1;
 
             if (enemyCorpseNumber == null || enemyCorpseNumber.Length == 0) return;
