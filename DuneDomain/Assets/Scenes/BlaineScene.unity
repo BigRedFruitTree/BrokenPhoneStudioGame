@@ -9713,6 +9713,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4215806602859319779, guid: 5a82a0fe6b9e7434b92b6551918010e7, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
     - target: {fileID: 4469701043182062426, guid: 5a82a0fe6b9e7434b92b6551918010e7, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.5
@@ -9765,6 +9769,18 @@ PrefabInstance:
       propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 282891391}
+    - target: {fileID: 5523780235168596561, guid: 5a82a0fe6b9e7434b92b6551918010e7, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5523780235168596561, guid: 5a82a0fe6b9e7434b92b6551918010e7, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5523780235168596561, guid: 5a82a0fe6b9e7434b92b6551918010e7, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5523780235168596561, guid: 5a82a0fe6b9e7434b92b6551918010e7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
