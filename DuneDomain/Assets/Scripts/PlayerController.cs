@@ -461,6 +461,7 @@ public class PlayerController : MonoBehaviour
                 AudioSource.clip = Woosh;
                 AudioSource.Play();
                 playerAnimator.SetBool("isDashing", true);
+                playerAnimator.SetBool("isMoving", true);
                 canTakeDamage = false;
                 canMove = false;
                 canRotate = false;
@@ -775,6 +776,7 @@ public class PlayerController : MonoBehaviour
             AudioSource.clip = Woosh;
             AudioSource.Play();
             playerAnimator.SetBool("isDashing", true);
+            playerAnimator.SetBool("isMoving", true);
             canTakeDamage = false;
             canMove = false;
             canRotate = false;
