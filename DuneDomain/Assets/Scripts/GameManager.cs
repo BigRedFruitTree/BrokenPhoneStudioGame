@@ -867,8 +867,8 @@ public class GameManager : MonoBehaviour
         started = false;
         weaponScreen.SetActive(true);
         EvSy.SetSelectedGameObject(GameObject.Find("SwordButton"));
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         rounds += 1;
     }
 
