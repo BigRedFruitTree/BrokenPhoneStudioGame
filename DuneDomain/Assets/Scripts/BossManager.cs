@@ -93,19 +93,19 @@ public class BossManager : MonoBehaviour
         {
             if (player.chargeLevel == 1)
             {
-                health -= 12;
+                health -= 10;
                 player.AudioSource.clip = player.hammersound;
                 player.AudioSource.Play();
             }
             else if (player.chargeLevel == 2)
             {
-                health -= 15;
+                health -= 12;
                 player.AudioSource.clip = player.hammersound;
                 player.AudioSource.Play();
             }
             else if (player.chargeLevel == 3)
             {
-                health -= 20;
+                health -= 15;
                 player.AudioSource.clip = player.hammersound;
                 player.AudioSource.Play();
             }
@@ -113,13 +113,13 @@ public class BossManager : MonoBehaviour
             {
                 if (player.whichAttack == 4)
                 {
-                    health -= 14;
+                    health -= 8;
                     player.AudioSource.clip = player.hammersound;
                     player.AudioSource.Play();
                 }
                 else
                 {
-                    health -= 10;
+                    health -= 8;
                     player.AudioSource.clip = player.hammersound;
                     player.AudioSource.Play();
                 }
@@ -133,13 +133,13 @@ public class BossManager : MonoBehaviour
             canTakeDamage = false;
             if (player.whichAttack == 4)
             {
-                health -= 9;
+                health -= 6;
                 player.AudioSource.clip = player.stabsound;
                 player.AudioSource.Play();
             }
             else
             {
-                health -= 5;
+                health -= 6;
                 player.AudioSource.clip = player.stabsound;
                 player.AudioSource.Play();
             }
