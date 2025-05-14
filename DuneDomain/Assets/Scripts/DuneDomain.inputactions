@@ -413,7 +413,7 @@
                 {
                     "name": "",
                     "id": "3a7424d3-db98-4a2b-9e33-c9b341425018",
-                    "path": "<Joystick>/{PrimaryTrigger}",
+                    "path": "<Joystick>/trigger",
                     "interactions": "Press",
                     "processors": "",
                     "groups": "Joystick",
@@ -556,7 +556,7 @@
                 {
                     "name": "",
                     "id": "63ce4128-4253-46f5-8edc-4a54ee98e366",
-                    "path": "<Joystick>/trigger",
+                    "path": "<Joystick>/{PrimaryAction}",
                     "interactions": "Press",
                     "processors": "",
                     "groups": "Joystick",

@@ -3618,8 +3618,8 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5068329869143380585, guid: 5a82a0fe6b9e7434b92b6551918010e7, type: 3}
   m_PrefabInstance: {fileID: 3515194967970773192}
   m_PrefabAsset: {fileID: 0}
---- !u!64 &1024416426
-MeshCollider:
+--- !u!65 &1024416426
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -3636,10 +3636,9 @@ MeshCollider:
   m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -6280669117017369944, guid: c4bf6f8ffbcde0148952f283207cb1ce, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 0.04715212, y: 0.20396157, z: 1.2536914}
+  m_Center: {x: -0.00014159633, y: 0.00011529077, z: -0.42753163}
 --- !u!1001 &1039655222
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9769,6 +9768,10 @@ PrefabInstance:
       propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 282891391}
+    - target: {fileID: 5068329869143380585, guid: 5a82a0fe6b9e7434b92b6551918010e7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5523780235168596561, guid: 5a82a0fe6b9e7434b92b6551918010e7, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.5

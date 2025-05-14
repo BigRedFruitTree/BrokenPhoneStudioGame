@@ -306,13 +306,13 @@ public class GameManager : MonoBehaviour
                     {
                         SetNextTarget();
                     }
-                    if (!isProcessingTarget && currentTarget != null && !bossAgent.pathPending && bossAgent.remainingDistance <= 10f)
+                    if (!isProcessingTarget && currentTarget != null && !bossAgent.pathPending && bossAgent.remainingDistance <= 15f)
                     {
                         bossEating = true;
                         bossanimator.SetBool("Isaggressive", true);
                         bossanimator.SetBool("Iswalking", false);
                     }
-                    if (!isProcessingTarget && currentTarget != null && bossEating == true && !bossAgent.pathPending && bossAgent.remainingDistance <= 10f)
+                    if (!isProcessingTarget && currentTarget != null && bossEating == true && !bossAgent.pathPending && bossAgent.remainingDistance <= 15f)
                     {
                         StartCoroutine("WaitForEating");
                         bossEating = false;
@@ -555,7 +555,16 @@ public class GameManager : MonoBehaviour
 
         currentTarget = GetNearestTarget();
 
-        bossAgent.destination = currentTarget.transform.position;
+        if (bossAgent.remainingDistance <= 15f)
+        {
+            bossAgent.destination = bossObject.transform.position;
+            bossAgent.speed = 0;
+        }
+        else
+        {
+            bossAgent.destination = currentTarget.transform.position;
+            bossAgent.speed = 5;
+        } 
     }
 
     public GameObject GetNearestTarget()
@@ -855,6 +864,7 @@ public class GameManager : MonoBehaviour
         playerAnimator.SetBool("IsDrawing", false);
         playerAnimator.SetBool("isMoving", false);
         GameOn = false;
+        started = false;
         weaponScreen.SetActive(true);
         EvSy.SetSelectedGameObject(GameObject.Find("SwordButton"));
         Cursor.lockState = CursorLockMode.None;

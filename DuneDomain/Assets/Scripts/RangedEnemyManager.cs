@@ -109,6 +109,28 @@ public class RangedEnemyManager : MonoBehaviour
                 StartCoroutine("Attack");
             }
 
+            if (gm.enemyMovementPattern == 2)
+            {
+                animator.SetBool("attacking", false);
+                attacking = false;
+                canAttack = false;
+                doneAttacking = false;
+                canWalk = true;
+                timer2 = 5f;
+                timer = Random.Range(7f, 9f);
+            }
+
+            if (gm.started == false || gm.GameOn == false)
+            {
+                animator.SetBool("attacking", true);
+                attacking = false;
+                canAttack = true;
+                doneAttacking = true;
+                canWalk = true;
+                timer2 = 5f;
+                timer = Random.Range(7f, 9f);
+            }
+
             if (health <= 0 && dead == false)
             {
                 Destroy(enemyObject);
@@ -259,7 +281,7 @@ public class RangedEnemyManager : MonoBehaviour
                 }
                 else
                 {
-                    health -= 8;
+                    health -= 7;
                     player.AudioSource.clip = player.hammersound;
                     player.AudioSource.Play();
                 }

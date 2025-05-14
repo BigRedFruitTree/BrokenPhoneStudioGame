@@ -119,7 +119,7 @@ public class BossManager : MonoBehaviour
                 }
                 else
                 {
-                    health -= 8;
+                    health -= 7;
                     player.AudioSource.clip = player.hammersound;
                     player.AudioSource.Play();
                 }

@@ -456,12 +456,12 @@ public class PlayerController : MonoBehaviour
                 myRB.velocity += playerRotationHolder.transform.forward * 5f;
             }
 
-            if (Input.GetKeyDown(KeyCode.F) && stamina > 2 && isBlocking == false && canDash == true && attacking == false && playerAnimator.GetBool("attacking") == false && playerAnimator.GetInteger("whichAttack") == 0)
+            if (Input.GetKeyDown(KeyCode.F) && stamina > 3 && isBlocking == false && canDash == true && attacking == false && playerAnimator.GetBool("attacking") == false && playerAnimator.GetInteger("whichAttack") == 0)
             {
                 AudioSource.clip = Woosh;
                 AudioSource.Play();
                 playerAnimator.SetBool("isDashing", true);
-                playerAnimator.SetBool("isMoving", true);
+                playerAnimator.SetBool("isMoving", false);
                 canTakeDamage = false;
                 canMove = false;
                 canRotate = false;
@@ -509,7 +509,7 @@ public class PlayerController : MonoBehaviour
            canTakeDamage = false;
            if (isBlocking == true)
            {
-               health -= 5;
+               health -= 3;
            }
            else
            {
@@ -523,7 +523,7 @@ public class PlayerController : MonoBehaviour
            canTakeDamage = false;
            if (isBlocking == true)
            {
-                health -= 5;
+                health -= 3;
            }
            else
            {
@@ -537,7 +537,7 @@ public class PlayerController : MonoBehaviour
            canTakeDamage = false;
            if (isBlocking == true)
            {
-               health -= 10;
+               health -= 8;
            }
            else
            {
@@ -551,7 +551,7 @@ public class PlayerController : MonoBehaviour
            canTakeDamage = false;
            if (isBlocking == true)
            {
-               health -= 15;
+               health -= 13;
            }
            else
            {
@@ -771,12 +771,12 @@ public class PlayerController : MonoBehaviour
 
     public void Roll()
     {
-        if (stamina > 2 && isBlocking == false && canDash == true && attacking == false && playerAnimator.GetBool("attacking") == false && playerAnimator.GetInteger("whichAttack") == 0)
+        if (stamina > 3 && isBlocking == false && canDash == true && attacking == false && playerAnimator.GetBool("attacking") == false && playerAnimator.GetInteger("whichAttack") == 0)
         {
             AudioSource.clip = Woosh;
             AudioSource.Play();
             playerAnimator.SetBool("isDashing", true);
-            playerAnimator.SetBool("isMoving", true);
+            playerAnimator.SetBool("isMoving", false);
             canTakeDamage = false;
             canMove = false;
             canRotate = false;
