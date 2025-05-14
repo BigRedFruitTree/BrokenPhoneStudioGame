@@ -133,7 +133,7 @@ public class BossManager : MonoBehaviour
             canTakeDamage = false;
             if (player.whichAttack == 4)
             {
-                health -= 6;
+                health -= 8;
                 player.AudioSource.clip = player.stabsound;
                 player.AudioSource.Play();
             }
