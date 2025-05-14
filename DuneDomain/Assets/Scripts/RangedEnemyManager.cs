@@ -112,6 +112,7 @@ public class RangedEnemyManager : MonoBehaviour
             if (gm.enemyMovementPattern == 2)
             {
                 animator.SetBool("attacking", false);
+                animator.SetBool("charging", false);
                 attacking = false;
                 canAttack = false;
                 doneAttacking = false;
