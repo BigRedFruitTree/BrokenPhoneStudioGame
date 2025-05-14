@@ -159,7 +159,7 @@ public class GameManager : MonoBehaviour
 
             if (started == true && canSpawnRocks == true)
             {
-                SpawnRock1atRandomPosition(5);
+                SpawnRock1atRandomPosition(10);
                 canSpawnRocks = false;
             }  
 
