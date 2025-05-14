@@ -111,8 +111,8 @@ public class GameManager : MonoBehaviour
             bossObject.SetActive(false);
             TutorialStuff.SetActive(true);
             TutorialScreen3.SetActive(true);
-            timeUntilAppearance = 6000f;
-            timeUntilEatPhase = 3000f;
+            timeUntilAppearance = 3000f;
+            timeUntilEatPhase = 2000f;
             timeUntilAttack = UnityEngine.Random.Range(200f, 300f);
             rounds = 1;
             spawnRange = 25f;
@@ -346,8 +346,8 @@ public class GameManager : MonoBehaviour
                 {
                     SpawnRanged(1);
                 }
-                timeUntilAppearance = 6000f;
-                timeUntilEatPhase = 3000f;
+                timeUntilAppearance = 3000f;
+                timeUntilEatPhase = 2000f;
             }
 
             if (playerController.health <= 0)

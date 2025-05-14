@@ -134,11 +134,10 @@ public class RangedEnemyManager : MonoBehaviour
             {
                 enemyRidigbody.AddForce(lookDirection * 2500);
             }
-            else if(gm.enemyMovementPattern == 1 && gm.weapon == 5)
+            else if (gm.enemyMovementPattern == 1 && gm.weapon == 5)
             {
                 enemyRidigbody.AddForce(-lookDirection * 2500);
             }
-           
             if (gm.enemyMovementPattern == 2 && gm.weapon == 2)
             {
                 enemyRidigbody.AddForce(lookDirection * 2000);
@@ -147,18 +146,20 @@ public class RangedEnemyManager : MonoBehaviour
             {
                 enemyRidigbody.AddForce(-lookDirection * 2000);
             }
-            
-            if(gm.weapon == 5)
+            canTakeDamage = false;
+            if (gm.weapon == 5)
             {
-               health -= 12;
+                health -= 12;
+                player.AudioSource.clip = player.stabsound;
+                player.AudioSource.Play();
             }
             else
             {
                 health -= 10;
+                player.AudioSource.clip = player.stabsound;
+                player.AudioSource.Play();
             }
-            canTakeDamage = false;
             StartCoroutine("WaitDamage");
-
         }
 
         if (other.gameObject.name == "Sword" && canTakeDamage == true && gm.GameOn == true && player.attacking == true)
@@ -172,15 +173,20 @@ public class RangedEnemyManager : MonoBehaviour
                 enemyRidigbody.AddForce(-lookDirection * 2000);
             }
             canTakeDamage = false;
-            if(player.whichAttack == 4)
+            if (player.whichAttack == 4)
             {
                 health -= 11;
+                player.AudioSource.clip = player.stabsound;
+                player.AudioSource.Play();
+
             }
             else
             {
-               health -= 7;
+                health -= 7;
+                player.AudioSource.clip = player.Slash;
+                player.AudioSource.Play();
+
             }
-                
             StartCoroutine("WaitDamage");
         }
 
@@ -228,24 +234,34 @@ public class RangedEnemyManager : MonoBehaviour
             if (player.chargeLevel == 1)
             {
                 health -= 12;
+                player.AudioSource.clip = player.hammersound;
+                player.AudioSource.Play();
             }
             else if (player.chargeLevel == 2)
             {
                 health -= 15;
+                player.AudioSource.clip = player.hammersound;
+                player.AudioSource.Play();
             }
             else if (player.chargeLevel == 3)
             {
                 health -= 20;
+                player.AudioSource.clip = player.hammersound;
+                player.AudioSource.Play();
             }
             else
             {
                 if (player.whichAttack == 4)
                 {
                     health -= 14;
+                    player.AudioSource.clip = player.hammersound;
+                    player.AudioSource.Play();
                 }
                 else
                 {
                     health -= 10;
+                    player.AudioSource.clip = player.hammersound;
+                    player.AudioSource.Play();
                 }
             }
             canTakeDamage = false;
@@ -266,10 +282,16 @@ public class RangedEnemyManager : MonoBehaviour
             if (player.whichAttack == 4)
             {
                 health -= 9;
+                player.AudioSource.clip = player.stabsound;
+                player.AudioSource.Play();
+
             }
             else
             {
                 health -= 5;
+                player.AudioSource.clip = player.stabsound;
+                player.AudioSource.Play();
+
             }
             StartCoroutine("WaitDamage");
         }

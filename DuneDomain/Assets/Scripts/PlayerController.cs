@@ -241,21 +241,6 @@ public class PlayerController : MonoBehaviour
                 canMove = false;
                 canRotate = false;
                 stringCount = true;
-                if (gm.weapon == 1)
-                {
-                    AudioSource.clip = Slash;
-                    AudioSource.Play();
-                }
-                else if (gm.weapon == 3)
-                {
-                    AudioSource.clip = hammersound;
-                    AudioSource.Play();
-                }
-                else if (gm.weapon == 4)
-                {
-                    AudioSource.clip = stabsound;
-                    AudioSource.Play();
-                }
                 StartCoroutine("AttackStringCoolDown");
                 
                 
@@ -277,21 +262,6 @@ public class PlayerController : MonoBehaviour
                 canMove = false;
                 canRotate = false;
                 stringCount = true;
-                if (gm.weapon == 1)
-                {
-                    AudioSource.clip = Slash;
-                    AudioSource.Play();
-                }
-                else if (gm.weapon == 3)
-                {
-                    AudioSource.clip = hammersound;
-                    AudioSource.Play();
-                }
-                else if (gm.weapon == 4)
-                {
-                    AudioSource.clip = stabsound;
-                    AudioSource.Play();
-                }
                 StartCoroutine("AttackStringCoolDown");  
             }
 
@@ -311,21 +281,6 @@ public class PlayerController : MonoBehaviour
                 canMove = false;
                 canRotate = false;
                 stringCount = true;
-                if (gm.weapon == 1)
-                {
-                    AudioSource.clip = Slash;
-                    AudioSource.Play();
-                }
-                else if (gm.weapon == 3)
-                {
-                    AudioSource.clip = hammersound;
-                    AudioSource.Play();
-                }
-                else if (gm.weapon == 4)
-                {
-                    AudioSource.clip = stabsound;
-                    AudioSource.Play();
-                }
                 StartCoroutine("AttackStringCoolDown");  
             }
 
@@ -345,16 +300,6 @@ public class PlayerController : MonoBehaviour
                 canMove = false;
                 canRotate = false;
                 stringCount = true;
-                if (gm.weapon == 1 || gm.weapon == 4)
-                {
-                    AudioSource.clip = Slash;
-                    AudioSource.Play();
-                }
-                else if (gm.weapon == 3)
-                {
-                    AudioSource.clip = hammersound;
-                    AudioSource.Play();
-                }
                 StartCoroutine("AttackStringCoolDown"); 
                 StartCoroutine("WaitEndString");  
             }
@@ -759,21 +704,6 @@ public class PlayerController : MonoBehaviour
             canMove = false;
             canRotate = false;
             stringCount = true;
-            if (gm.weapon == 1)
-            {
-                AudioSource.clip = Slash;
-                AudioSource.Play();
-            }
-            else if (gm.weapon == 3)
-            {
-                AudioSource.clip = hammersound;
-                AudioSource.Play();
-            }
-            else if (gm.weapon == 4)
-            {
-                AudioSource.clip = stabsound;
-                AudioSource.Play();
-            }
             StartCoroutine("AttackStringCoolDown");
 
 
@@ -795,21 +725,6 @@ public class PlayerController : MonoBehaviour
             canMove = false;
             canRotate = false;
             stringCount = true;
-            if (gm.weapon == 1)
-            {
-                AudioSource.clip = Slash;
-                AudioSource.Play();
-            }
-            else if (gm.weapon == 3)
-            {
-                AudioSource.clip = hammersound;
-                AudioSource.Play();
-            }
-            else if (gm.weapon == 4)
-            {
-                AudioSource.clip = stabsound;
-                AudioSource.Play();
-            }
             StartCoroutine("AttackStringCoolDown");
         }
 
@@ -829,21 +744,6 @@ public class PlayerController : MonoBehaviour
             canMove = false;
             canRotate = false;
             stringCount = true;
-            if (gm.weapon == 1)
-            {
-                AudioSource.clip = Slash;
-                AudioSource.Play();
-            }
-            else if (gm.weapon == 3)
-            {
-                AudioSource.clip = hammersound;
-                AudioSource.Play();
-            }
-            else if (gm.weapon == 4)
-            {
-                AudioSource.clip = stabsound;
-                AudioSource.Play();
-            }
             StartCoroutine("AttackStringCoolDown");
         }
 
@@ -863,16 +763,6 @@ public class PlayerController : MonoBehaviour
             canMove = false;
             canRotate = false;
             stringCount = true;
-            if (gm.weapon == 1 || gm.weapon == 4)
-            {
-                AudioSource.clip = stabsound;
-                AudioSource.Play();
-            }
-            else if (gm.weapon == 3)
-            {
-                AudioSource.clip = hammersound;
-                AudioSource.Play();
-            }
             StartCoroutine("AttackStringCoolDown");
             StartCoroutine("WaitEndString");
         }
@@ -1054,8 +944,6 @@ public class PlayerController : MonoBehaviour
             isCharging = false;
             attacking = true;
             canAttack = false;
-            AudioSource.clip = hammersound;
-            AudioSource.Play();
             myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
             StartCoroutine("HammerCoolDownCharge");
         }

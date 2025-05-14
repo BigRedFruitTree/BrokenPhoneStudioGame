@@ -144,10 +144,14 @@ public class MeleeEnemyManager : MonoBehaviour
             if (gm.weapon == 5)
             {
                 health -= 12;
+                player.AudioSource.clip = player.stabsound;
+                player.AudioSource.Play();
             }
             else
             {
                 health -= 10;
+                player.AudioSource.clip = player.stabsound;
+                player.AudioSource.Play();
             }
             StartCoroutine("WaitDamage");
         }
@@ -166,10 +170,16 @@ public class MeleeEnemyManager : MonoBehaviour
             if (player.whichAttack == 4)
             {
                 health -= 11;
+                player.AudioSource.clip = player.stabsound;
+                player.AudioSource.Play();
+                
             }
             else
             {
                 health -= 7;
+                player.AudioSource.clip = player.Slash;
+                player.AudioSource.Play();
+                
             }
             StartCoroutine("WaitDamage");
         }
@@ -218,24 +228,34 @@ public class MeleeEnemyManager : MonoBehaviour
             if (player.chargeLevel == 1)
             {
                 health -= 12;
+                player.AudioSource.clip = player.hammersound;
+                player.AudioSource.Play();
             }
             else if (player.chargeLevel == 2)
             {
                 health -= 15;
+                player.AudioSource.clip = player.hammersound;
+                player.AudioSource.Play();
             }
             else if (player.chargeLevel == 3)
             {
                 health -= 20;
+                player.AudioSource.clip = player.hammersound;
+                player.AudioSource.Play();
             }
             else 
             {
                 if (player.whichAttack == 4)
                 {
                     health -= 14;
+                    player.AudioSource.clip = player.hammersound;
+                    player.AudioSource.Play();
                 }
                 else
                 {
                     health -= 10;
+                    player.AudioSource.clip = player.hammersound;
+                    player.AudioSource.Play();
                 }
             }
             canTakeDamage = false;
@@ -256,10 +276,16 @@ public class MeleeEnemyManager : MonoBehaviour
             if (player.whichAttack == 4)
             {
                 health -= 9;
+                player.AudioSource.clip = player.stabsound;
+                player.AudioSource.Play();
+               
             }
             else
             {
                 health -= 5;
+                player.AudioSource.clip = player.stabsound;
+                player.AudioSource.Play();
+                
             }
             StartCoroutine("WaitDamage");
         }
