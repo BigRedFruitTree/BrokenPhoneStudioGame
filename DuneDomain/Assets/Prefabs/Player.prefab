@@ -1188,7 +1188,7 @@ GameObject:
   - component: {fileID: 7190590678941090238}
   m_Layer: 6
   m_Name: Bow.002
-  m_TagString: Untagged
+  m_TagString: PlayerWeapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2670,7 +2670,7 @@ GameObject:
   - component: {fileID: 4411267573595600923}
   m_Layer: 6
   m_Name: Sword
-  m_TagString: Untagged
+  m_TagString: PlayerWeapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3581,7 +3581,21 @@ MonoBehaviour:
     m_ActionId: ddbe625b-8d1f-42c5-86e1-c0bf1b819f7a
     m_ActionName: Player/PrimaryActionHold
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.InputSystem.UI.InputSystemUIInputModule,
+          Unity.InputSystem
+        m_MethodName: set_move
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: -137588012984732309, guid: c4f52b3abbe18ef4db31932b2cd0502d, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.InputSystem.InputActionReference,
+            Unity.InputSystem
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 6e06e227-adce-4e56-b5f5-4e1c7c10045e
     m_ActionName: 'UI/Navigate[/XInputControllerWindows/leftStick/up,/XInputControllerWindows/rightStick/up,/XInputControllerWindows/leftStick/down,/XInputControllerWindows/rightStick/down,/XInputControllerWindows/leftStick/left,/XInputControllerWindows/rightStick/left,/XInputControllerWindows/leftStick/right,/XInputControllerWindows/rightStick/right,/XInputControllerWindows/dpad,/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]'
   - m_PersistentCalls:
@@ -4330,7 +4344,7 @@ GameObject:
   - component: {fileID: 7489976946743138598}
   m_Layer: 6
   m_Name: Crossbow
-  m_TagString: Untagged
+  m_TagString: PlayerWeapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5165,7 +5179,7 @@ GameObject:
   - component: {fileID: 5205261237778699055}
   m_Layer: 6
   m_Name: Spear
-  m_TagString: Untagged
+  m_TagString: PlayerWeapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7452,7 +7466,7 @@ GameObject:
   - component: {fileID: 6013885845001176041}
   m_Layer: 6
   m_Name: Shield
-  m_TagString: Untagged
+  m_TagString: PlayerWeapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7655,7 +7669,7 @@ GameObject:
   - component: {fileID: 436761936052146203}
   m_Layer: 6
   m_Name: Hammer
-  m_TagString: Untagged
+  m_TagString: PlayerWeapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

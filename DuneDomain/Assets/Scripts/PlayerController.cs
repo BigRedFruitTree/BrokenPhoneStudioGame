@@ -125,7 +125,7 @@ public class PlayerController : MonoBehaviour
             if (Physics.Raycast(playerCam.transform.position, playerCam.transform.forward, out hit, Mathf.Infinity))
             {
                 GameObject hitObject = hit.collider.gameObject;
-                if (hitObject.tag != "Player" && hitObject.tag != "MeleeEnemy" && hitObject.tag != "RangedEnemy")
+                if (hitObject.tag != "Player" && hitObject.tag != "MeleeEnemy" && hitObject.tag != "RangedEnemy" && hitObject.tag != "Rocks" && hitObject.tag != "PlayerWeapon" && hitObject.tag != "EnemySword")
                 {
                     Marker.SetActive(true);
                 }
