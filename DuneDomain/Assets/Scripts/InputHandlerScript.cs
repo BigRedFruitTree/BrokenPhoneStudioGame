@@ -171,6 +171,11 @@ public class InputHandler : MonoBehaviour
 
         }
 
+        if (secondaryActionHammerUp.triggered)
+        {
+            playerController.ReleaseBlock();
+        }
+
     }
 
     public void OnEnable()

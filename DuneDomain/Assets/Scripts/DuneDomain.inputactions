@@ -43,12 +43,12 @@
                 },
                 {
                     "name": "HammerChargeUp",
-                    "type": "Value",
+                    "type": "Button",
                     "id": "bc8ebfeb-5597-4f83-a5e3-a7b5021bd1e9",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true
+                    "initialStateCheck": false
                 },
                 {
                     "name": "SpearAnShieldBasic",
@@ -458,7 +458,7 @@
                     "name": "",
                     "id": "88df56a1-ae52-4531-a7c2-3490fec7a310",
                     "path": "<Joystick>/{SecondaryAction}",
-                    "interactions": "Hold",
+                    "interactions": "",
                     "processors": "",
                     "groups": "Joystick",
                     "action": "HammerCharge",

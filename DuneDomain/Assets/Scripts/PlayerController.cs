@@ -1021,6 +1021,7 @@ public class PlayerController : MonoBehaviour
             isDashing = false;
             canAttack = false;
             canMove = true;
+            canRotate = true;
             StartCoroutine("WaitDraw");
         }
     }
