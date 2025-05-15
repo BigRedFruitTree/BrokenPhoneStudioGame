@@ -424,7 +424,7 @@
                 {
                     "name": "",
                     "id": "61d6103a-d90f-441b-abae-087a99d5df85",
-                    "path": "<HID::Twin USB Gamepad      >/button3",
+                    "path": "<HID::DragonRise Inc.   Generic   USB  Joystick  >/button3",
                     "interactions": "Press",
                     "processors": "",
                     "groups": "Joystick",
@@ -446,7 +446,7 @@
                 {
                     "name": "",
                     "id": "5de0f8a6-d2ce-4c27-b281-5cafaaf94146",
-                    "path": "<HID::Twin USB Gamepad      >/button2",
+                    "path": "<HID::DragonRise Inc.   Generic   USB  Joystick  >/button2",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
@@ -589,7 +589,7 @@
                 {
                     "name": "",
                     "id": "15313c74-f954-4f16-bffb-f6c1153a7f54",
-                    "path": "<HID::Twin USB Gamepad      >/button2",
+                    "path": "<HID::DragonRise Inc.   Generic   USB  Joystick  >/button2",
                     "interactions": "Hold",
                     "processors": "",
                     "groups": "Gamepad",
@@ -688,7 +688,7 @@
                 {
                     "name": "",
                     "id": "29cb22f8-5b7e-44a3-b915-62ffc940ec41",
-                    "path": "<HID::Twin USB Gamepad      >/button2",
+                    "path": "<HID::DragonRise Inc.   Generic   USB  Joystick  >/button2",
                     "interactions": "Press(behavior=1)",
                     "processors": "",
                     "groups": "Gamepad",
@@ -721,7 +721,7 @@
                 {
                     "name": "",
                     "id": "eb9c56fc-d38f-4468-a792-7a8b612dbf44",
-                    "path": "<HID::Twin USB Gamepad      >/button2",
+                    "path": "<HID::DragonRise Inc.   Generic   USB  Joystick  >/button2",
                     "interactions": "Press(behavior=1)",
                     "processors": "",
                     "groups": "Gamepad",
