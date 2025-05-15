@@ -411,6 +411,7 @@ public class GameManager : MonoBehaviour
     {
         if (chosenWeapon == 1)
         {
+            playerAnimator.SetInteger("weapon", 1);
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             weaponScreen.SetActive(false);
@@ -854,7 +855,12 @@ public class GameManager : MonoBehaviour
     }
 
     IEnumerator WaitWeaponScreen()
-    { 
+    {
+        GameOn = false;
+        started = false;
+        EvSy.SetSelectedGameObject(GameObject.Find("SwordButton"));
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         yield return new WaitForSeconds(3f);
         playerAnimator.SetBool("gm", false);
         playerAnimator.SetInteger("whichAttack", 0);
