@@ -246,7 +246,7 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "up",
+                    "name": "left",
                     "id": "f78538e2-dced-42fa-9677-f5a0ed8c8649",
                     "path": "<Joystick>/stick/up",
                     "interactions": "",
@@ -257,9 +257,9 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "down",
+                    "name": "up",
                     "id": "772b7479-02e6-42c8-a7d3-0dcc083a4bb8",
-                    "path": "<Joystick>/stick/down",
+                    "path": "<Joystick>/stick/right",
                     "interactions": "",
                     "processors": "",
                     "groups": "Joystick",
@@ -268,7 +268,7 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "left",
+                    "name": "down",
                     "id": "a92302f3-bec7-4655-a4e2-a6e305ba1a6f",
                     "path": "<Joystick>/stick/left",
                     "interactions": "",
@@ -281,7 +281,7 @@
                 {
                     "name": "right",
                     "id": "e66b8999-c7a4-4a7f-8789-1e8f615c55fe",
-                    "path": "<Joystick>/stick/right",
+                    "path": "<Joystick>/stick/down",
                     "interactions": "",
                     "processors": "",
                     "groups": "Joystick",
@@ -328,7 +328,7 @@
                     "path": "<Gamepad>/leftStick/left",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Gamepad",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -982,7 +982,7 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "down",
+                    "name": "right",
                     "id": "0cb3e13e-3d90-4178-8ae6-d9c5501d653f",
                     "path": "<Joystick>/stick/down",
                     "interactions": "",
@@ -993,7 +993,7 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "left",
+                    "name": "up",
                     "id": "0392d399-f6dd-4c82-8062-c1e9c0d34835",
                     "path": "<Joystick>/stick/left",
                     "interactions": "",
