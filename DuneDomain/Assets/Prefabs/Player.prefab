@@ -2667,7 +2667,7 @@ GameObject:
   - component: {fileID: 3556026921704144877}
   - component: {fileID: 344274589666364780}
   - component: {fileID: 3726838241258879983}
-  - component: {fileID: 4411267573595600923}
+  - component: {fileID: 788118564276019401}
   m_Layer: 6
   m_Name: Sword
   m_TagString: PlayerWeapon
@@ -2744,8 +2744,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &4411267573595600923
-BoxCollider:
+--- !u!64 &788118564276019401
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -2762,9 +2762,10 @@ BoxCollider:
   m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.025016172, y: 0.041477136, z: 0.08008406}
-  m_Center: {x: -0.0047078785, y: 0.000008993781, z: 0.0011045472}
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4686849319519084627, guid: c4bf6f8ffbcde0148952f283207cb1ce, type: 3}
 --- !u!1 &3361620940143923400
 GameObject:
   m_ObjectHideFlags: 0
@@ -3823,9 +3824,8 @@ MonoBehaviour:
   canUnblock: 0
   stringTimer: 0
   whichAttack: 1
+  canUncharge: 0
   isCharging: 0
-  canCharge: 0
-  isGoingtoCharge: 0
   chargeLevel: 0
   stringCount: 0
   canRotate: 0
@@ -3875,7 +3875,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -3986,8 +3986,8 @@ Transform:
   m_GameObject: {fileID: 3981321861312997543}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.199, y: 20, z: 0}
-  m_LocalScale: {x: 0.05, y: 1, z: 0.05}
+  m_LocalPosition: {x: 0, y: 20, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.1, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4469701043182062426}
@@ -3999,7 +3999,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3981321861312997543}
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &5930207364782099199
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4022,7 +4022,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 1485db6f3d5980143a1da528af64bd72, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5176,7 +5176,7 @@ GameObject:
   - component: {fileID: 6177370761584517982}
   - component: {fileID: 8510368607014022104}
   - component: {fileID: 497528502838852568}
-  - component: {fileID: 5205261237778699055}
+  - component: {fileID: 483563705298337554}
   m_Layer: 6
   m_Name: Spear
   m_TagString: PlayerWeapon
@@ -5252,7 +5252,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &5205261237778699055
+--- !u!65 &483563705298337554
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5271,8 +5271,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.044708278, y: 0.20151773, z: 1.2512476}
-  m_Center: {x: -0.00014159633, y: 0.00011517156, z: -0.42753163}
+  m_Size: {x: 0.04715212, y: 0.20396157, z: 1.2536914}
+  m_Center: {x: -0.00014159633, y: 0.00011529077, z: -0.42753163}
 --- !u!1 &5093629923554430561
 GameObject:
   m_ObjectHideFlags: 0
@@ -7463,7 +7463,7 @@ GameObject:
   - component: {fileID: 7159236985037098108}
   - component: {fileID: 1715312659655215059}
   - component: {fileID: 3158762796998184301}
-  - component: {fileID: 6013885845001176041}
+  - component: {fileID: 7010896212732767962}
   m_Layer: 6
   m_Name: Shield
   m_TagString: PlayerWeapon
@@ -7539,8 +7539,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &6013885845001176041
-BoxCollider:
+--- !u!64 &7010896212732767962
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -7557,9 +7557,10 @@ BoxCollider:
   m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.004802151, y: 0.015098072, z: 0.041600034}
-  m_Center: {x: -0.0010608146, y: 0.000114611335, z: -1.2828478e-11}
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -1272481795433867914, guid: c4bf6f8ffbcde0148952f283207cb1ce, type: 3}
 --- !u!1 &7959423601629108911
 GameObject:
   m_ObjectHideFlags: 0
@@ -7666,7 +7667,7 @@ GameObject:
   - component: {fileID: 1901110854790044290}
   - component: {fileID: 5933233413796603124}
   - component: {fileID: 2624016331503078582}
-  - component: {fileID: 436761936052146203}
+  - component: {fileID: 3706246764540793093}
   m_Layer: 6
   m_Name: Hammer
   m_TagString: PlayerWeapon
@@ -7743,8 +7744,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &436761936052146203
-BoxCollider:
+--- !u!64 &3706246764540793093
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -7761,9 +7762,10 @@ BoxCollider:
   m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.17321894, y: 0.36788425, z: 0.031139819}
-  m_Center: {x: 0.0023756796, y: -0.030171525, z: 0.0033579888}
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 8164388750953057965, guid: c4bf6f8ffbcde0148952f283207cb1ce, type: 3}
 --- !u!1 &8225600639243796099
 GameObject:
   m_ObjectHideFlags: 0

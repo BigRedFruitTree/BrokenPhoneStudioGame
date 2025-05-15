@@ -132,8 +132,8 @@ public class InputHandler : MonoBehaviour
         primaryActionBowUp.performed += context => PrimaryInputBowUp = true;
         primaryActionBowUp.canceled += context => PrimaryInputBowUp = false;
 
-        primaryActionCrossB.performed += context => PrimaryInputCrossB = true;
-        primaryActionCrossB.canceled += context => PrimaryInputCrossB = false;
+        primaryActionCrossB.performed += context => StartingToDraw();
+        primaryActionCrossB.canceled += context => DrawingDone();
 
         primaryActionCrossBUp.performed += context => PrimaryInputCrossBUp = true;
         primaryActionCrossBUp.canceled += context => PrimaryInputCrossBUp = false;
@@ -170,6 +170,7 @@ public class InputHandler : MonoBehaviour
         {
 
         }
+
 
     }
 
@@ -238,5 +239,4 @@ public class InputHandler : MonoBehaviour
     {
         charging = false;
     }
-
 }

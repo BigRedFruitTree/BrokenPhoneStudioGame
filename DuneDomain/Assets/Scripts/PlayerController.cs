@@ -34,9 +34,8 @@ public class PlayerController : MonoBehaviour
     public bool canUnblock = false;
     public float stringTimer;
     public int whichAttack = 1;
+    public bool canUncharge = false;
     public bool isCharging = false;
-    public bool canCharge = false;
-    public bool isGoingtoCharge = false;
     public int chargeLevel = 0;
     public bool stringCount = false;
     public bool canRotate = false;
@@ -388,7 +387,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            if (Input.GetMouseButtonUp(1) && gm.weapon == 3 && isDashing == false && isBlocking == false)
+            if (Input.GetMouseButtonUp(1) && gm.weapon == 3 && isDashing == false && isBlocking == false && canUncharge == true)
             {
                 AudioSource.Stop();
                 if (gm.weapon == 3 && drawSpeed >= 133.34f)
@@ -408,6 +407,7 @@ public class PlayerController : MonoBehaviour
                 isCharging = false;
                 attacking = true;
                 canAttack = false;
+                canUncharge = false;
                 drawSpeed = 200f;
                 AudioSource.clip = hammersound;
                 AudioSource.Play();
@@ -433,6 +433,7 @@ public class PlayerController : MonoBehaviour
                 isDashing = false;
                 canAttack = false;
                 canMove = true;
+                canUncharge = true;
                 StartCoroutine("WaitDraw");
             }
 
@@ -914,6 +915,7 @@ public class PlayerController : MonoBehaviour
             canAttack = false;
             canMove = true;
             canRotate = true;
+            canUncharge = true;
             StartCoroutine("WaitDraw");
         }
     }
@@ -926,7 +928,7 @@ public class PlayerController : MonoBehaviour
     }
     public void ReleaseCharge()
     {
-        if (gm.weapon == 3 && isDashing == false && isBlocking == false)
+        if (gm.weapon == 3 && isDashing == false && isBlocking == false && canUncharge == true)
         {
             AudioSource.Stop();
             if (gm.weapon == 3 && drawSpeed >= 133.34f)
@@ -945,6 +947,7 @@ public class PlayerController : MonoBehaviour
             playerAnimator.SetBool("attacking", true);
             isCharging = false;
             attacking = true;
+            canUncharge = false;
             canAttack = false;
             myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
             StartCoroutine("HammerCoolDownCharge");
