@@ -528,7 +528,7 @@ public class PlayerController : MonoBehaviour
            }
            else
            {
-                health -= 7;
+                health -= 6;
            }
            StartCoroutine("WaitDamage"); 
        }
