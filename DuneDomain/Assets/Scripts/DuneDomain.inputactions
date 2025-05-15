@@ -1126,6 +1126,17 @@
                 },
                 {
                     "name": "",
+                    "id": "91413fd8-8275-4728-9b01-d03f6d6a5a11",
+                    "path": "<Joystick>/trigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Joystick",
+                    "action": "Submit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "82627dcc-3b13-4ba9-841d-e4b746d6553e",
                     "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
