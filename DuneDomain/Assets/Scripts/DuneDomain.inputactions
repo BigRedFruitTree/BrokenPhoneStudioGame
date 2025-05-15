@@ -43,12 +43,12 @@
                 },
                 {
                     "name": "HammerChargeUp",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "bc8ebfeb-5597-4f83-a5e3-a7b5021bd1e9",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "SpearAnShieldBasic",

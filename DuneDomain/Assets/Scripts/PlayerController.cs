@@ -671,7 +671,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator WaitDash()
     {
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.5f);
         isDashing = false;
         playerAnimator.SetBool("isDashing", false);
         dashingEnd = true;
