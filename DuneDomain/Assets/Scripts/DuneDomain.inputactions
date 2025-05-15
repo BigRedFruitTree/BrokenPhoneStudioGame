@@ -412,22 +412,22 @@
                 },
                 {
                     "name": "",
-                    "id": "3a7424d3-db98-4a2b-9e33-c9b341425018",
-                    "path": "<Joystick>/trigger",
-                    "interactions": "Press",
+                    "id": "3ed55c9b-e7f1-4583-a4da-c1de556b80c8",
+                    "path": "<Gamepad>/rightStickPress",
+                    "interactions": "",
                     "processors": "",
-                    "groups": "Joystick",
+                    "groups": "Gamepad",
                     "action": "Roll",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "3ed55c9b-e7f1-4583-a4da-c1de556b80c8",
-                    "path": "<Gamepad>/rightStickPress",
-                    "interactions": "",
+                    "id": "61d6103a-d90f-441b-abae-087a99d5df85",
+                    "path": "<HID::Twin USB Gamepad      >/button3",
+                    "interactions": "Press",
                     "processors": "",
-                    "groups": "Gamepad",
+                    "groups": "Joystick",
                     "action": "Roll",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -446,7 +446,7 @@
                 {
                     "name": "",
                     "id": "5de0f8a6-d2ce-4c27-b281-5cafaaf94146",
-                    "path": "<Gamepad>/rightTrigger",
+                    "path": "<HID::Twin USB Gamepad      >/button2",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
@@ -556,7 +556,7 @@
                 {
                     "name": "",
                     "id": "63ce4128-4253-46f5-8edc-4a54ee98e366",
-                    "path": "<Joystick>/{PrimaryAction}",
+                    "path": "<Joystick>/trigger",
                     "interactions": "Press",
                     "processors": "",
                     "groups": "Joystick",
@@ -589,7 +589,7 @@
                 {
                     "name": "",
                     "id": "15313c74-f954-4f16-bffb-f6c1153a7f54",
-                    "path": "<Gamepad>/rightTrigger",
+                    "path": "<HID::Twin USB Gamepad      >/button2",
                     "interactions": "Hold",
                     "processors": "",
                     "groups": "Gamepad",
@@ -688,7 +688,7 @@
                 {
                     "name": "",
                     "id": "29cb22f8-5b7e-44a3-b915-62ffc940ec41",
-                    "path": "<Gamepad>/rightTrigger",
+                    "path": "<HID::Twin USB Gamepad      >/button2",
                     "interactions": "Press(behavior=1)",
                     "processors": "",
                     "groups": "Gamepad",
@@ -721,7 +721,7 @@
                 {
                     "name": "",
                     "id": "eb9c56fc-d38f-4468-a792-7a8b612dbf44",
-                    "path": "<Gamepad>/rightTrigger",
+                    "path": "<HID::Twin USB Gamepad      >/button2",
                     "interactions": "Press(behavior=1)",
                     "processors": "",
                     "groups": "Gamepad",
