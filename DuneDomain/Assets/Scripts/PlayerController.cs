@@ -510,11 +510,11 @@ public class PlayerController : MonoBehaviour
            canTakeDamage = false;
            if (isBlocking == true)
            {
-               health -= 3;
+               health -= 4;
            }
            else
            {
-               health -= 6;
+               health -= 7;
            }
            StartCoroutine("WaitDamage"); 
        }
@@ -524,11 +524,11 @@ public class PlayerController : MonoBehaviour
            canTakeDamage = false;
            if (isBlocking == true)
            {
-                health -= 3;
+                health -= 4;
            }
            else
            {
-                health -= 6;
+                health -= 7;
            }
            StartCoroutine("WaitDamage"); 
        }
