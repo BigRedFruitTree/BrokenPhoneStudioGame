@@ -542,7 +542,7 @@ public class PlayerController : MonoBehaviour
            }
            else
            {
-               health -= 15;
+               health -= 20;
            }
            StartCoroutine("WaitDamage");
        }
@@ -556,7 +556,7 @@ public class PlayerController : MonoBehaviour
            }
            else
            {
-               health -= 20;
+               health -= 25;
            }
            StartCoroutine("WaitDamage");
        }
