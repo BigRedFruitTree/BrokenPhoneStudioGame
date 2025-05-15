@@ -306,13 +306,13 @@ public class GameManager : MonoBehaviour
                     {
                         SetNextTarget();
                     }
-                    if (!isProcessingTarget && currentTarget != null && !bossAgent.pathPending && bossAgent.remainingDistance <= 15f)
+                    if (!isProcessingTarget && currentTarget != null && !bossAgent.pathPending && bossAgent.remainingDistance <= 25f)
                     {
                         bossEating = true;
                         bossanimator.SetBool("Isaggressive", true);
                         bossanimator.SetBool("Iswalking", false);
                     }
-                    if (!isProcessingTarget && currentTarget != null && bossEating == true && !bossAgent.pathPending && bossAgent.remainingDistance <= 15f)
+                    if (!isProcessingTarget && currentTarget != null && bossEating == true && !bossAgent.pathPending && bossAgent.remainingDistance <= 25f)
                     {
                         StartCoroutine("WaitForEating");
                         bossEating = false;
@@ -555,7 +555,7 @@ public class GameManager : MonoBehaviour
 
         currentTarget = GetNearestTarget();
 
-        if (bossAgent.remainingDistance <= 15f)
+        if (bossAgent.remainingDistance <= 25f)
         {
             bossAgent.destination = bossObject.transform.position;
             bossAgent.speed = 0;
