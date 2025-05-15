@@ -246,7 +246,7 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "left",
+                    "name": "right",
                     "id": "f78538e2-dced-42fa-9677-f5a0ed8c8649",
                     "path": "<Joystick>/stick/up",
                     "interactions": "",
@@ -257,7 +257,7 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "up",
+                    "name": "down",
                     "id": "772b7479-02e6-42c8-a7d3-0dcc083a4bb8",
                     "path": "<Joystick>/stick/right",
                     "interactions": "",
@@ -268,7 +268,7 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "down",
+                    "name": "up",
                     "id": "a92302f3-bec7-4655-a4e2-a6e305ba1a6f",
                     "path": "<Joystick>/stick/left",
                     "interactions": "",
@@ -279,7 +279,7 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "right",
+                    "name": "left",
                     "id": "e66b8999-c7a4-4a7f-8789-1e8f615c55fe",
                     "path": "<Joystick>/stick/down",
                     "interactions": "",
