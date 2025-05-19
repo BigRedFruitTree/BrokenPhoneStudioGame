@@ -146,6 +146,104 @@ public class BossManager : MonoBehaviour
             StartCoroutine("WaitDamage");
         }
     }
+
+    public void OnTriggerEnter(Collider other)
+    {
+
+        if (other.gameObject.tag == "Shot" && canTakeDamage == true && gm.GameOn == true)
+        {
+            canTakeDamage = false;
+            if (gm.weapon == 5)
+            {
+                health -= 14;
+                player.AudioSource.clip = player.stabsound;
+                player.AudioSource.Play();
+            }
+            else
+            {
+                health -= 10;
+                player.AudioSource.clip = player.stabsound;
+                player.AudioSource.Play();
+            }
+            StartCoroutine("WaitDamage");
+        }
+
+        if (other.gameObject.name == "Sword" && canTakeDamage == true && gm.GameOn == true && player.attacking == true)
+        {
+            canTakeDamage = false;
+            if (player.whichAttack == 4)
+            {
+                health -= 11;
+                player.AudioSource.clip = player.stabsound;
+                player.AudioSource.Play();
+            }
+            else
+            {
+                health -= 7;
+                player.AudioSource.clip = player.Slash;
+                player.AudioSource.Play();
+            }
+            StartCoroutine("WaitDamage");
+        }
+
+        if (other.gameObject.name == "Hammer" && canTakeDamage == true && gm.GameOn == true && player.attacking == true)
+        {
+            if (player.chargeLevel == 1)
+            {
+                health -= 10;
+                player.AudioSource.clip = player.hammersound;
+                player.AudioSource.Play();
+            }
+            else if (player.chargeLevel == 2)
+            {
+                health -= 12;
+                player.AudioSource.clip = player.hammersound;
+                player.AudioSource.Play();
+            }
+            else if (player.chargeLevel == 3)
+            {
+                health -= 15;
+                player.AudioSource.clip = player.hammersound;
+                player.AudioSource.Play();
+            }
+            else
+            {
+                if (player.whichAttack == 4)
+                {
+                    health -= 8;
+                    player.AudioSource.clip = player.hammersound;
+                    player.AudioSource.Play();
+                }
+                else
+                {
+                    health -= 7;
+                    player.AudioSource.clip = player.hammersound;
+                    player.AudioSource.Play();
+                }
+            }
+            canTakeDamage = false;
+            StartCoroutine("WaitDamage");
+        }
+
+        if (other.gameObject.name == "Spear" && canTakeDamage == true && gm.GameOn == true && player.attacking == true)
+        {
+            canTakeDamage = false;
+            if (player.whichAttack == 4)
+            {
+                health -= 8;
+                player.AudioSource.clip = player.stabsound;
+                player.AudioSource.Play();
+            }
+            else
+            {
+                health -= 6;
+                player.AudioSource.clip = player.stabsound;
+                player.AudioSource.Play();
+            }
+            StartCoroutine("WaitDamage");
+        }
+    }
+
     IEnumerator WaitDamage()
     {
         yield return new WaitForSeconds(1f);

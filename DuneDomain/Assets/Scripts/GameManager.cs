@@ -111,8 +111,8 @@ public class GameManager : MonoBehaviour
             bossObject.SetActive(false);
             TutorialStuff.SetActive(true);
             TutorialScreen3.SetActive(true);
-            timeUntilAppearance = 3000f;
-            timeUntilEatPhase = 2000f;
+            timeUntilAppearance = 5000f;
+            timeUntilEatPhase = 3000f;
             timeUntilAttack = UnityEngine.Random.Range(200f, 300f);
             rounds = 1;
             spawnRange = 25f;
@@ -136,7 +136,7 @@ public class GameManager : MonoBehaviour
         {
             pHealthBar.fillAmount = Mathf.Clamp((float)playerController.health / (float)playerController.maxHealth, 0, 1);
             ChargeMeter.fillAmount = Mathf.Clamp((float)playerController.drawSpeed / (float)playerController.maxdrawSpeed, 0, 1);
-            bossBar.fillAmount = Mathf.Clamp((float)bossScript.health / (float)100, 0, 1);
+            bossBar.fillAmount = Mathf.Clamp((float)bossScript.health / (float)200, 0, 1);
             pStaminaBar.fillAmount = Mathf.Clamp((float)playerController.stamina / (float)10, 0, 1);
             playerUiStuff.SetActive(true);
             bossDistance = Vector3.Distance(bossObject.transform.position, playerObject.transform.position);
@@ -346,8 +346,8 @@ public class GameManager : MonoBehaviour
                 {
                     SpawnRanged(1);
                 }
-                timeUntilAppearance = 3000f;
-                timeUntilEatPhase = 2000f;
+                timeUntilAppearance = 5000f;
+                timeUntilEatPhase = 3000f;
             }
 
             if (playerController.health <= 0)
