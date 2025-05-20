@@ -592,12 +592,12 @@ public class PlayerController : MonoBehaviour
         playerAnimator.SetBool("IsCharging", false);
         stringCount = false;
         stringTimer = 1f;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.2f);
         playerAnimator.SetInteger("whichAttack", 0);
         myRB.constraints = RigidbodyConstraints.FreezeAll;
         whichAttack = 0;
         playerAnimator.SetBool("attacking", false);
-        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(0.1f);
         playerAnimator.SetBool("recovering", false);
         yield return new WaitForSeconds(0.1f);
         recovering = false;
@@ -616,12 +616,12 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator AttackStringCoolDown()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.4f);
         playerAnimator.SetBool("attacking", false);
         myRB.constraints = RigidbodyConstraints.FreezeAll;
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.2f);
         attacking = false;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.4f);
         canRotate = true;
         canAttack2 = true;
     }
