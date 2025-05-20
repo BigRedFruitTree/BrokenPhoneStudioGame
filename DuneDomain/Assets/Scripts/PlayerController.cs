@@ -299,8 +299,7 @@ public class PlayerController : MonoBehaviour
                 canMove = false;
                 canRotate = false;
                 stringCount = true;
-                StartCoroutine("AttackStringCoolDown"); 
-                StartCoroutine("WaitEndString");  
+                StartCoroutine("AttackStringCoolDown");  
             }
 
             if (Input.GetMouseButton(0) && isCooldownOver == true && gm.weapon > 0 && isDashing == false && isBlocking == false)
