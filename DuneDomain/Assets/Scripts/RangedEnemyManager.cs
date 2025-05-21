@@ -50,7 +50,7 @@ public class RangedEnemyManager : MonoBehaviour
         player = GameObject.Find("Player").GetComponent<PlayerController>();
         playerObject = GameObject.Find("Player");
         enemyRidigbody = GetComponent<Rigidbody>();
-        speed = 10f;
+        speed = 7f;
     }
 
     // Update is called once per frame
