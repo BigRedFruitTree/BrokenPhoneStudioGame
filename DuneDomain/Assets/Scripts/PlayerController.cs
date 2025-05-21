@@ -112,6 +112,7 @@ public class PlayerController : MonoBehaviour
         canRotate = false;
         canDash = false;
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+        whichAttack = 0;
     }
 
     // Update is called once per frame
@@ -598,13 +599,14 @@ public class PlayerController : MonoBehaviour
         playerAnimator.SetBool("attacking", false);
         yield return new WaitForSeconds(0.1f);
         playerAnimator.SetBool("recovering", false);
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.3f);
         recovering = false;
         attacking = false;
-        canAttack = true;
-        canAttack2 = true;
         myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
         canMove = true;
+        yield return new WaitForSeconds(1.5f);
+        canAttack = true;
+        canAttack2 = true;
     }
 
     IEnumerator WaitDraw()
@@ -691,7 +693,7 @@ public class PlayerController : MonoBehaviour
 
     public void BasicAttack()
     {
-        if (canAttack == true && gm.weapon != 2 && gm.weapon != 5 && isDashing == false && attacking == false && isBlocking == false && recovering == false && playerAnimator.GetBool("recovering") == false)
+        if (canAttack == true && gm.weapon != 2 && gm.weapon != 5 && isDashing == false && attacking == false && isBlocking == false && recovering == false && playerAnimator.GetBool("recovering") == false && whichAttack == 0)
         {
             playerAnimator.SetBool("attacking", true);
             playerAnimator.SetInteger("whichAttack", 1);
@@ -765,7 +767,6 @@ public class PlayerController : MonoBehaviour
             canRotate = false;
             stringCount = true;
             StartCoroutine("AttackStringCoolDown");
-            StartCoroutine("WaitEndString");
         }
     }
 
