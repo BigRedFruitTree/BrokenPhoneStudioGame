@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.AI;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class MeleeEnemyManager : MonoBehaviour
 {
@@ -51,6 +53,7 @@ public class MeleeEnemyManager : MonoBehaviour
     {
         if (gm.GameOn == true && gm.GameOver == false)
         {
+
             float distance = Vector3.Distance(transform.position, playerObject.transform.position);
             if (gm.enemyMovementPattern == 2 && canMove == true && dead == false && attacking == false && animator.GetBool("attacking") == false)
             {
@@ -108,6 +111,10 @@ public class MeleeEnemyManager : MonoBehaviour
                 Destroy(enemyObject);
                 Instantiate(corpsePrefab, new Vector3(enemyObject.transform.position.x, enemyObject.transform.position.y - 1f, enemyObject.transform.position.z), Quaternion.Euler(0, 0, -90));
                 dead = true;
+            }
+
+            if (health < 10 && health > 0 && dead == false)
+            {
             }
 
             if (maxHealth > 99)
