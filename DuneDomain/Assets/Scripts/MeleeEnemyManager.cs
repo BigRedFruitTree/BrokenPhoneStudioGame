@@ -56,6 +56,7 @@ public class MeleeEnemyManager : MonoBehaviour
     {
         if (gm.GameOn == true && gm.GameOver == false)
         {
+            var main = bloodParticle.main;
 
             float distance = Vector3.Distance(transform.position, playerObject.transform.position);
             if (gm.enemyMovementPattern == 2 && canMove == true && dead == false && attacking == false && animator.GetBool("attacking") == false)
@@ -114,10 +115,17 @@ public class MeleeEnemyManager : MonoBehaviour
                 Destroy(enemyObject);
                 Instantiate(corpsePrefab, new Vector3(enemyObject.transform.position.x, enemyObject.transform.position.y - 1f, enemyObject.transform.position.z), Quaternion.Euler(0, 0, -90));
                 dead = true;
+                bloodParticle.Stop();
             }
 
             if (health < 10 && health > 0 && dead == false)
             {
+                main.loop = true;
+                bloodParticle.Play();
+            }
+            else
+            {
+                main.loop = false;
             }
 
             if (maxHealth > 99)
@@ -311,6 +319,7 @@ public class MeleeEnemyManager : MonoBehaviour
         bloodParticle.Play();
         yield return new WaitForSeconds(0.5f);
         canTakeDamage = true;
+        bloodParticle.Stop();
     }
 
     IEnumerator WaitAttack()
