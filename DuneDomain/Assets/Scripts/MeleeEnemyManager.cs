@@ -18,6 +18,7 @@ public class MeleeEnemyManager : MonoBehaviour
     public GameObject corpsePrefab;
     public Animator animator;
     public GameObject model;
+    public ParticleSystem bloodParticle;
 
     [Header("Stats")]
     public int health;
@@ -37,6 +38,8 @@ public class MeleeEnemyManager : MonoBehaviour
     {
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
         model = enemyObject.transform.GetChild(0).gameObject;
+        bloodParticle = enemyObject.transform.Find("BloodParticle").GetComponentInChildren<ParticleSystem>();
+        bloodParticle.Stop();
         animator = model.GetComponent<Animator>();
         agent = enemyObject.GetComponent<NavMeshAgent>();
         timer = Random.Range(3f, 5f);
@@ -305,6 +308,7 @@ public class MeleeEnemyManager : MonoBehaviour
 
     IEnumerator WaitDamage()
     {
+        bloodParticle.Play();
         yield return new WaitForSeconds(0.5f);
         canTakeDamage = true;
     }
