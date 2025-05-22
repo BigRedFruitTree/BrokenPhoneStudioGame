@@ -19,6 +19,7 @@ public class RangedEnemyManager : MonoBehaviour
     public GameObject arrowSpawner;
     public Animator animator;
     public GameObject model;
+    public ParticleSystem bloodParticle;
 
     [Header("Stats")]
     public int health;
@@ -42,6 +43,7 @@ public class RangedEnemyManager : MonoBehaviour
         model = enemyObject.transform.GetChild(0).gameObject;
         animator = model.GetComponent<Animator>();
         arrowSpawner = model.transform.GetChild(0).gameObject;
+        bloodParticle = enemyObject.transform.Find("BloodParticleR").GetComponentInChildren<ParticleSystem>();
         agent = enemyObject.GetComponent<NavMeshAgent>();
         timer = Random.Range(7f, 9f);
         timer2 = 5f;
@@ -58,6 +60,7 @@ public class RangedEnemyManager : MonoBehaviour
     {
         if (gm.GameOn == true && gm.GameOver == false)
         {
+            var main = bloodParticle.main;
 
             float distance = Vector3.Distance(transform.position, playerObject.transform.position);
             if (gm.enemyMovementPattern == 2 && gm.GameOn == true && canWalk == true && dead == false || distance < 5 && gm.GameOn == true && canWalk == true && dead == false)
@@ -137,6 +140,13 @@ public class RangedEnemyManager : MonoBehaviour
                 Destroy(enemyObject);
                 Instantiate(corpsePrefab, new Vector3(enemyObject.transform.position.x, enemyObject.transform.position.y - 1f, enemyObject.transform.position.z), Quaternion.Euler(0, 0, -90));
                 dead = true;
+                bloodParticle.Stop();
+            }
+
+            if (health < 10 && health > 0 && dead == false)
+            {
+                main.loop = true;
+                bloodParticle.Play();
             }
 
             if (maxHealth > 99)
@@ -327,6 +337,7 @@ public class RangedEnemyManager : MonoBehaviour
 
     IEnumerator WaitDamage()
     {
+        bloodParticle.Play();
         yield return new WaitForSeconds(0.5f);
         canTakeDamage = true;
     }

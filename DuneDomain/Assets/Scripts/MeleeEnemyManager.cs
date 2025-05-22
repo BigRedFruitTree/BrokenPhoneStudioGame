@@ -39,7 +39,6 @@ public class MeleeEnemyManager : MonoBehaviour
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
         model = enemyObject.transform.GetChild(0).gameObject;
         bloodParticle = enemyObject.transform.Find("BloodParticle").GetComponentInChildren<ParticleSystem>();
-        bloodParticle.Stop();
         animator = model.GetComponent<Animator>();
         agent = enemyObject.GetComponent<NavMeshAgent>();
         timer = Random.Range(3f, 5f);
@@ -122,10 +121,6 @@ public class MeleeEnemyManager : MonoBehaviour
             {
                 main.loop = true;
                 bloodParticle.Play();
-            }
-            else
-            {
-                main.loop = false;
             }
 
             if (maxHealth > 99)
@@ -319,7 +314,6 @@ public class MeleeEnemyManager : MonoBehaviour
         bloodParticle.Play();
         yield return new WaitForSeconds(0.5f);
         canTakeDamage = true;
-        bloodParticle.Stop();
     }
 
     IEnumerator WaitAttack()
