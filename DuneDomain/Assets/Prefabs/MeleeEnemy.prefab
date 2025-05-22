@@ -1454,7 +1454,7 @@ GameObject:
   - component: {fileID: 5381442319150647532}
   - component: {fileID: 4209673960278383600}
   m_Layer: 0
-  m_Name: BloodParticle
+  m_Name: BloodParticleM
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2312,7 +2312,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 100
       minScalar: 10
       maxCurve:
         serializedVersion: 2

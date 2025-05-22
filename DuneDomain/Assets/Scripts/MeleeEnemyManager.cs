@@ -38,7 +38,7 @@ public class MeleeEnemyManager : MonoBehaviour
     {
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
         model = enemyObject.transform.GetChild(0).gameObject;
-        bloodParticle = enemyObject.transform.Find("BloodParticle").GetComponentInChildren<ParticleSystem>();
+        bloodParticle = enemyObject.transform.Find("BloodParticleM").GetComponentInChildren<ParticleSystem>();
         animator = model.GetComponent<Animator>();
         agent = enemyObject.GetComponent<NavMeshAgent>();
         timer = Random.Range(3f, 5f);
@@ -55,7 +55,19 @@ public class MeleeEnemyManager : MonoBehaviour
     {
         if (gm.GameOn == true && gm.GameOver == false)
         {
+
             var main = bloodParticle.main;
+
+            if (health == maxHealth)
+            {
+                main.startSize = 0.5f;
+                main.startLifetime = 0.5f;
+            }
+            else if(health == maxHealth / 1.1f)
+            {
+                main.startSize = 1f;
+                main.startLifetime = 1f;
+            }
 
             float distance = Vector3.Distance(transform.position, playerObject.transform.position);
             if (gm.enemyMovementPattern == 2 && canMove == true && dead == false && attacking == false && animator.GetBool("attacking") == false)
@@ -123,10 +135,10 @@ public class MeleeEnemyManager : MonoBehaviour
                 bloodParticle.Play();
             }
 
-            if (maxHealth > 99)
+            if (maxHealth > 100)
             {
-                maxHealth = 99;
-                health = 99;
+                maxHealth = 100;
+                health = 100;
             }
 
         }

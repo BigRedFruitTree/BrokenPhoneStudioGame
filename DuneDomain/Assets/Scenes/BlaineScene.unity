@@ -2573,7 +2573,7 @@ MonoBehaviour:
   ChargeMeter: {fileID: 1855049442}
   bridge: {fileID: 4981776976151835456}
   canSpawnRocks: 1
-  Rock1Prefab: {fileID: 8362784621349634397, guid: 7f2b8532666acc549896008347694d26, type: 3}
+  Rock1Prefab: {fileID: 8362784621349634397, guid: 06bfa0e5a3fb5e44eafcfa5ebcaa0e0d, type: 3}
   audioSource: {fileID: 624562657}
   bossThemeIntro: {fileID: 8300000, guid: 143b321767c5e424788d89940a310cc1, type: 3}
   bossThemeLoop: {fileID: 8300000, guid: 1349d407a69147a4e8f47a8a17603bcf, type: 3}
@@ -9825,6 +9825,10 @@ PrefabInstance:
     - target: {fileID: 3729309429417477046, guid: dbb47fb935dcd884a92b5bea53302ed0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5381442319150647532, guid: dbb47fb935dcd884a92b5bea53302ed0, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8703838743317718710, guid: dbb47fb935dcd884a92b5bea53302ed0, type: 3}
       propertyPath: m_Name
