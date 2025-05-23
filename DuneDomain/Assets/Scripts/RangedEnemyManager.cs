@@ -52,7 +52,7 @@ public class RangedEnemyManager : MonoBehaviour
         player = GameObject.Find("Player").GetComponent<PlayerController>();
         playerObject = GameObject.Find("Player");
         enemyRidigbody = GetComponent<Rigidbody>();
-        speed = 7f;
+        speed = 6f;
     }
 
     // Update is called once per frame
@@ -149,10 +149,10 @@ public class RangedEnemyManager : MonoBehaviour
                 bloodParticle.Play();
             }
 
-            if (maxHealth > 99)
+            if (maxHealth > 100)
             {
-                maxHealth = 99;
-                health = 99;
+                maxHealth = 100;
+                health = 100;
             }
 
         }

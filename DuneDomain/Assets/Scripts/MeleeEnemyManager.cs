@@ -68,6 +68,16 @@ public class MeleeEnemyManager : MonoBehaviour
                 main.startSize = 1f;
                 main.startLifetime = 1f;
             }
+            else if (health == maxHealth / 1.2f)
+            {
+                main.startSize = 1.5f;
+                main.startLifetime = 1.5f;
+            }
+            else if (health == maxHealth / 1.3f)
+            {
+                main.startSize = 2f;
+                main.startLifetime = 2f;
+            }
 
             float distance = Vector3.Distance(transform.position, playerObject.transform.position);
             if (gm.enemyMovementPattern == 2 && canMove == true && dead == false && attacking == false && animator.GetBool("attacking") == false)
