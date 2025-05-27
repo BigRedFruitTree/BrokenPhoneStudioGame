@@ -35,6 +35,11 @@ public class RangedEnemyManager : MonoBehaviour
     public bool canRotate = true;
     public bool doneAttacking = true;
     public Vector3 lookDirection;
+    public float minBSize = 0.1f;
+    public float maxBSize = 1.0f;
+    public float minBLifetime = 0.5f;
+    public float maxBLifetime = 2.0f;
+    private ParticleSystem.MainModule main;
 
     // Start is called before the first frame update
     void Start()
@@ -60,7 +65,7 @@ public class RangedEnemyManager : MonoBehaviour
     {
         if (gm.GameOn == true && gm.GameOver == false)
         {
-            var main = bloodParticle.main;
+            main = bloodParticle.main;
 
             float distance = Vector3.Distance(transform.position, playerObject.transform.position);
             if (gm.enemyMovementPattern == 2 && gm.GameOn == true && canWalk == true && dead == false || distance < 5 && gm.GameOn == true && canWalk == true && dead == false)
@@ -163,6 +168,7 @@ public class RangedEnemyManager : MonoBehaviour
     {
         if (other.gameObject.tag == "Shot" && canTakeDamage == true && gm.GameOn == true)
         {
+            UpdateParticleSystem();
             if (gm.enemyMovementPattern == 2 && gm.weapon == 5)
             {
                 enemyRidigbody.AddForce(lookDirection * 2500);
@@ -197,6 +203,7 @@ public class RangedEnemyManager : MonoBehaviour
 
         if (other.gameObject.name == "Sword" && canTakeDamage == true && gm.GameOn == true && player.attacking == true)
         {
+            UpdateParticleSystem();
             if (gm.enemyMovementPattern == 2)
             {
                 enemyRidigbody.AddForce(lookDirection * 2000);
@@ -225,6 +232,7 @@ public class RangedEnemyManager : MonoBehaviour
 
         if (other.gameObject.name == "Hammer" && canTakeDamage == true && gm.GameOn == true && player.attacking == true)
         {
+            UpdateParticleSystem();
             if (gm.enemyMovementPattern == 2)
             {
                 if (player.chargeLevel == 1)
@@ -303,6 +311,7 @@ public class RangedEnemyManager : MonoBehaviour
 
         if (other.gameObject.name == "Spear" && canTakeDamage == true && gm.GameOn == true && player.attacking == true || other.gameObject.name == "Shield" && canTakeDamage == true && gm.GameOn == true && player.attacking == true)
         {
+            UpdateParticleSystem();
             if (gm.enemyMovementPattern == 2)
             {
                 enemyRidigbody.AddForce(lookDirection * 2000);
@@ -334,14 +343,19 @@ public class RangedEnemyManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
+    void UpdateParticleSystem()
+    {
+        float healthPercent = (float)health / maxHealth;
+        float effectStrength = 1.5f - healthPercent;
+        main.startSize = Mathf.Lerp(minBSize, maxBSize, effectStrength);
+        main.startLifetime = Mathf.Lerp(minBLifetime, maxBLifetime, effectStrength);
+    }
     IEnumerator WaitDamage()
     {
         bloodParticle.Play();
         yield return new WaitForSeconds(0.5f);
         canTakeDamage = true;
     }
-
     IEnumerator Attack()
     {
         canAttack = false;
