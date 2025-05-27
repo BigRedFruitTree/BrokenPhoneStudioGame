@@ -625,12 +625,12 @@ public class GameManager : MonoBehaviour
         bossanimator.SetBool("Isaggressive", true);
         NotWaitingAlertScreen.SetActive(false);
         yield return new WaitForSeconds(2f);
+        bossanimator.SetBool("Iswalking", true);
         bossScript.canTakeDamage = true;
         bossAgent.speed = 5;
         bossAgent.destination = playerObject.transform.position;
         bossUiStuff.SetActive(true);
         canRun = true;
-        bossanimator.SetBool("Iswalking", true);
     }
     IEnumerator WaitAttack1()
     {
