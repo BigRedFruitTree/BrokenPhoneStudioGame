@@ -20,6 +20,9 @@ public class MeleeEnemyManager : MonoBehaviour
     public Animator animator;
     public GameObject model;
     public ParticleSystem bloodParticle;
+    private ParticleSystem.MainModule main;
+    public AudioSource audioSource;
+    public AudioClip deathSFX;
 
     [Header("Stats")]
     public int health;
@@ -37,7 +40,6 @@ public class MeleeEnemyManager : MonoBehaviour
     public float maxBSize = 1.0f;
     public float minBLifetime = 0.5f;
     public float maxBLifetime = 2.0f;
-    private ParticleSystem.MainModule main;
 
     // Start is called before the first frame update
     void Start()
@@ -53,6 +55,7 @@ public class MeleeEnemyManager : MonoBehaviour
         player = GameObject.Find("Player").GetComponent<PlayerController>();
         playerObject = GameObject.Find("Player");
         enemyRidigbody = GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
         speed = 7f;
     }
   
@@ -119,6 +122,7 @@ public class MeleeEnemyManager : MonoBehaviour
 
             if (health <= 0 && dead == false)
             {
+                audioSource.Play();
                 Destroy(enemyObject);
                 Instantiate(corpsePrefab, new Vector3(enemyObject.transform.position.x, enemyObject.transform.position.y - 1f, enemyObject.transform.position.z), Quaternion.Euler(0, 0, -90));
                 dead = true;
@@ -331,6 +335,13 @@ public class MeleeEnemyManager : MonoBehaviour
         bloodParticle.Play();
         yield return new WaitForSeconds(0.5f);
         canTakeDamage = true;
+    }
+    IEnumerator WaitDeath()
+    {
+        audioSource.clip = deathSFX;
+        audioSource.Play();
+        yield return new WaitForSeconds(1f);
+        
     }
     IEnumerator WaitAttack()
     {
