@@ -5,18 +5,16 @@ using UnityEngine;
 
 public class BossManager : MonoBehaviour
 {
-
+    [Header("Ref's")]
     public GameManager gm;
-
     public GameObject bossSpawn;
     public GameObject bossObject;
-
     public PlayerController player;
     public NavMeshAgent bossAgent;
-
     public Animator animator;
-
     public Rigidbody RB;
+    public AudioSource audioSource;
+    public AudioClip roarSFX;
 
     [Header("Stats")]
     public float health = 200f;

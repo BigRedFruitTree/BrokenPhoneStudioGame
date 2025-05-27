@@ -2547,6 +2547,8 @@ MonoBehaviour:
   areHandsActive: 0
   isHeadActive: 0
   isTailActive: 0
+  bossAudioSource: {fileID: 1039655227}
+  bossRoarSFX: {fileID: 8300000, guid: 5ad31d7d91e0a394f89725f14c1b30ab, type: 3}
   spawnRange: 0
   enemyScript: {fileID: 5037234301272502123}
   meleeEnemyPrefab: {fileID: 8703838743317718710, guid: dbb47fb935dcd884a92b5bea53302ed0, type: 3}
@@ -2574,7 +2576,7 @@ MonoBehaviour:
   bridge: {fileID: 4981776976151835456}
   canSpawnRocks: 1
   Rock1Prefab: {fileID: 8362784621349634397, guid: 06bfa0e5a3fb5e44eafcfa5ebcaa0e0d, type: 3}
-  audioSource: {fileID: 624562657}
+  GMAudioSource: {fileID: 624562657}
   bossThemeIntro: {fileID: 8300000, guid: 143b321767c5e424788d89940a310cc1, type: 3}
   bossThemeLoop: {fileID: 8300000, guid: 1349d407a69147a4e8f47a8a17603bcf, type: 3}
   cultistTheme: {fileID: 8300000, guid: c57043e6719ccaa45b1ed2e96c3f3162, type: 3}
@@ -3648,6 +3650,11 @@ Animator:
 --- !u!54 &1039655226 stripped
 Rigidbody:
   m_CorrespondingSourceObject: {fileID: 8127233404491766053, guid: b2073c2dd3c839a4b96e13b04881d603, type: 3}
+  m_PrefabInstance: {fileID: 1039655222}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1039655227 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 8566793437803302665, guid: b2073c2dd3c839a4b96e13b04881d603, type: 3}
   m_PrefabInstance: {fileID: 1039655222}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1056997657

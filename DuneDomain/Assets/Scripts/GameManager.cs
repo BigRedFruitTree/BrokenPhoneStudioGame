@@ -54,6 +54,8 @@ public class GameManager : MonoBehaviour
     public bool areHandsActive = false;
     public bool isHeadActive = false;
     public bool isTailActive = false;
+    public AudioSource bossAudioSource;
+    public AudioClip bossRoarSFX;
 
     [Header("Enemy Stuff")]
     public float spawnRange;
@@ -85,7 +87,7 @@ public class GameManager : MonoBehaviour
     public GameObject bridge;
     public bool canSpawnRocks = true;
     public GameObject Rock1Prefab;
-    public AudioSource audioSource;
+    public AudioSource GMAudioSource;
     public AudioClip bossThemeIntro;
     public AudioClip bossThemeLoop;
     public AudioClip cultistTheme;
@@ -117,6 +119,7 @@ public class GameManager : MonoBehaviour
             rounds = 1;
             spawnRange = 25f;
             Time.timeScale = 1;
+            bossAudioSource.clip = bossRoarSFX;
 
             if (enemyCorpseNumber == null || enemyCorpseNumber.Length == 0) return;
 
@@ -147,8 +150,8 @@ public class GameManager : MonoBehaviour
             {
                 bossUiStuff.SetActive(false);
                 playerUiStuff.SetActive(false);
-                audioSource.clip = endSong;
-                audioSource.Play();
+                GMAudioSource.clip = endSong;
+                GMAudioSource.Play();
                 winScreen.SetActive(true);
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
@@ -219,8 +222,8 @@ public class GameManager : MonoBehaviour
                     if (bridgeDistance <= 29 && bossanimator.GetBool("Isaggressive") == false)
                     {
                         StartCoroutine("WaitStart");
-                        audioSource.clip = bossThemeLoop;
-                        audioSource.Play();
+                        GMAudioSource.clip = bossThemeLoop;
+                        GMAudioSource.Play();
                     }
                 }
             }
@@ -230,8 +233,8 @@ public class GameManager : MonoBehaviour
                 bossObject.SetActive(true);
                 bossAgent.speed = 5;
                 canRun = true;
-                audioSource.clip = bossThemeLoop;
-                audioSource.Play();
+                GMAudioSource.clip = bossThemeLoop;
+                GMAudioSource.Play();
                 bossanimator.SetBool("Isaggressive", true);
                 bossanimator.SetBool("Iswalking", true);
                 bossanimator.SetBool("Issleeping", false);
@@ -328,7 +331,7 @@ public class GameManager : MonoBehaviour
             {
                 if (rounds > 0)
                 {
-                    audioSource.volume = 0.4f;
+                    GMAudioSource.volume = 0.4f;
                     bossUiStuff.SetActive(false);
                     StartCoroutine("WaitBossAway");
                     StartCoroutine("WaitWeaponScreen");
@@ -423,8 +426,8 @@ public class GameManager : MonoBehaviour
             playerController.shield.SetActive(false);
             playerController.hammer.SetActive(false);
             playerAnimator.SetInteger("weapon", 1);
-            audioSource.clip = cultistTheme;
-            audioSource.Play();
+            GMAudioSource.clip = cultistTheme;
+            GMAudioSource.Play();
             weapon = chosenWeapon;
             playerController.canAttack = true;
             playerController.canAttack2 = true;
@@ -450,8 +453,8 @@ public class GameManager : MonoBehaviour
             playerController.shield.SetActive(false);
             playerController.hammer.SetActive(false);
             weaponScreen.SetActive(false);
-            audioSource.clip = cultistTheme;
-            audioSource.Play();
+            GMAudioSource.clip = cultistTheme;
+            GMAudioSource.Play();
             weapon = chosenWeapon;
             playerController.canAttack = true;
             playerController.canAttack2 = true;
@@ -479,8 +482,8 @@ public class GameManager : MonoBehaviour
             playerController.shield.SetActive(false);
             playerController.maxdrawSpeed = 200f;
             playerController.drawSpeed = 200f;
-            audioSource.clip = cultistTheme;
-            audioSource.Play();
+            GMAudioSource.clip = cultistTheme;
+            GMAudioSource.Play();
             weapon = chosenWeapon;
             playerController.canAttack = true;
             playerController.canAttack2 = true;
@@ -503,8 +506,8 @@ public class GameManager : MonoBehaviour
             playerController.sword.SetActive(false);
             playerController.crossbow.SetActive(false);
             playerController.hammer.SetActive(false);
-            audioSource.clip = cultistTheme;
-            audioSource.Play();
+            GMAudioSource.clip = cultistTheme;
+            GMAudioSource.Play();
             weapon = chosenWeapon;
             playerController.canAttack = true;
             playerController.canAttack2 = true;
@@ -530,8 +533,8 @@ public class GameManager : MonoBehaviour
             playerController.shield.SetActive(false);
             playerController.hammer.SetActive(false);
             weaponScreen.SetActive(false);
-            audioSource.clip = cultistTheme;
-            audioSource.Play();
+            GMAudioSource.clip = cultistTheme;
+            GMAudioSource.Play();
             weapon = chosenWeapon;
             playerController.canAttack = true;
             playerController.canAttack2 = true;
@@ -619,11 +622,16 @@ public class GameManager : MonoBehaviour
     IEnumerator WaitStart()
     {
         bossanimator.SetBool("Isaggressive", true);
+        yield return new WaitForSeconds(0.8f);
+        bossAudioSource.clip = bossRoarSFX;
+        bossAudioSource.PlayOneShot(bossRoarSFX);
         yield return new WaitForSeconds(1f);
         bossRigidBody.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
         bossanimator.SetBool("Issleeping", false);
         bossanimator.SetBool("Isaggressive", true);
         NotWaitingAlertScreen.SetActive(false);
+        yield return new WaitForSeconds(0.4f);
+        bossAudioSource.Stop();
         yield return new WaitForSeconds(2f);
         bossanimator.SetBool("Iswalking", true);
         bossScript.canTakeDamage = true;
@@ -831,7 +839,7 @@ public class GameManager : MonoBehaviour
     IEnumerator WaitBossAway()
     {
         yield return new WaitForSeconds(2f);
-        audioSource.Stop();
+        GMAudioSource.Stop();
         bossObject.transform.position = bossSpawn.transform.position;
         bossObject.SetActive(false);
         canRun = false;
