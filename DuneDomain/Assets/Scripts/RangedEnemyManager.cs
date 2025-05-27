@@ -20,6 +20,9 @@ public class RangedEnemyManager : MonoBehaviour
     public Animator animator;
     public GameObject model;
     public ParticleSystem bloodParticle;
+    public AudioSource audioSource;
+    public AudioClip deathSFX;
+    private ParticleSystem.MainModule main;
 
     [Header("Stats")]
     public int health;
@@ -39,7 +42,6 @@ public class RangedEnemyManager : MonoBehaviour
     public float maxBSize = 1.0f;
     public float minBLifetime = 0.5f;
     public float maxBLifetime = 2.0f;
-    private ParticleSystem.MainModule main;
 
     // Start is called before the first frame update
     void Start()
@@ -58,6 +60,8 @@ public class RangedEnemyManager : MonoBehaviour
         playerObject = GameObject.Find("Player");
         enemyRidigbody = GetComponent<Rigidbody>();
         speed = 6f;
+        audioSource = GetComponent<AudioSource>();
+        model.SetActive(true);
     }
 
     // Update is called once per frame
@@ -142,10 +146,8 @@ public class RangedEnemyManager : MonoBehaviour
 
             if (health <= 0 && dead == false)
             {
-                Destroy(enemyObject);
-                Instantiate(corpsePrefab, new Vector3(enemyObject.transform.position.x, enemyObject.transform.position.y - 1f, enemyObject.transform.position.z), Quaternion.Euler(0, 0, -90));
-                dead = true;
                 bloodParticle.Stop();
+                StartCoroutine("WaitDeath");
             }
 
             if (health < 10 && health > 0 && dead == false)
@@ -355,6 +357,17 @@ public class RangedEnemyManager : MonoBehaviour
         bloodParticle.Play();
         yield return new WaitForSeconds(0.5f);
         canTakeDamage = true;
+    }
+    IEnumerator WaitDeath()
+    {
+        dead = true;
+        audioSource.clip = deathSFX;
+        audioSource.Play();
+        Instantiate(corpsePrefab, new Vector3(enemyObject.transform.position.x, enemyObject.transform.position.y - 1f, enemyObject.transform.position.z), Quaternion.Euler(0, 0, -90));
+        model.SetActive(false);
+        yield return new WaitForSeconds(1f);
+        Destroy(enemyObject);
+
     }
     IEnumerator Attack()
     {

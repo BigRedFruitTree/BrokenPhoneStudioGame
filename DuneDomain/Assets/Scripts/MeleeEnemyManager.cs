@@ -57,6 +57,7 @@ public class MeleeEnemyManager : MonoBehaviour
         enemyRidigbody = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
         speed = 7f;
+        model.SetActive(true);
     }
   
     // Update is called once per frame
@@ -122,11 +123,8 @@ public class MeleeEnemyManager : MonoBehaviour
 
             if (health <= 0 && dead == false)
             {
-                audioSource.Play();
-                Destroy(enemyObject);
-                Instantiate(corpsePrefab, new Vector3(enemyObject.transform.position.x, enemyObject.transform.position.y - 1f, enemyObject.transform.position.z), Quaternion.Euler(0, 0, -90));
-                dead = true;
                 bloodParticle.Stop();
+                StartCoroutine("WaitDeath");
             }
 
             if (health < 10 && health > 0 && dead == false)
@@ -323,6 +321,7 @@ public class MeleeEnemyManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
     void UpdateParticleSystem()
     {
         float healthPercent = (float)health / maxHealth;
@@ -338,10 +337,14 @@ public class MeleeEnemyManager : MonoBehaviour
     }
     IEnumerator WaitDeath()
     {
+        dead = true;
         audioSource.clip = deathSFX;
         audioSource.Play();
+        Instantiate(corpsePrefab, new Vector3(enemyObject.transform.position.x, enemyObject.transform.position.y - 1f, enemyObject.transform.position.z), Quaternion.Euler(0, 0, -90));
+        model.SetActive(false);
         yield return new WaitForSeconds(1f);
-        
+        Destroy(enemyObject);
+
     }
     IEnumerator WaitAttack()
     {
