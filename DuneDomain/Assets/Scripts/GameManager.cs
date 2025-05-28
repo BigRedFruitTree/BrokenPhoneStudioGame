@@ -87,6 +87,7 @@ public class GameManager : MonoBehaviour
     public GameObject bridge;
     public bool canSpawnRocks = true;
     public GameObject Rock1Prefab;
+    public GameObject Rock2Prefab;
     public AudioSource GMAudioSource;
     public AudioClip bossThemeIntro;
     public AudioClip bossThemeLoop;
@@ -117,7 +118,7 @@ public class GameManager : MonoBehaviour
             timeUntilEatPhase = 3000f;
             timeUntilAttack = UnityEngine.Random.Range(200f, 300f);
             rounds = 1;
-            spawnRange = 25f;
+            spawnRange = 35f;
             Time.timeScale = 1;
             bossAudioSource.clip = bossRoarSFX;
 
@@ -162,7 +163,8 @@ public class GameManager : MonoBehaviour
 
             if (started == true && canSpawnRocks == true)
             {
-                SpawnRock1atRandomPosition(10);
+                SpawnRock1atRandomPosition(5);
+                SpawnRock2atRandomPosition(5);
                 canSpawnRocks = false;
             }  
 
@@ -398,7 +400,14 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < numberToSpawn; i++)
         {
-            Instantiate(Rock1Prefab, RandomRockPosition(), Rock1Prefab.transform.rotation);
+            Instantiate(Rock1Prefab, RandomRockPosition(), RandomRockRotation());
+        }
+    }
+    public void SpawnRock2atRandomPosition(int numberToSpawn)
+    {
+        for (int i = 0; i < numberToSpawn; i++)
+        {
+            Instantiate(Rock2Prefab, RandomRockPosition(), RandomRockRotation());
         }
     }
     public Vector3 RandomRockPosition()
@@ -409,12 +418,12 @@ public class GameManager : MonoBehaviour
         return randomPos;
 
     }
-    public Vector3 RandomRockRotation()
+    public Quaternion RandomRockRotation()
     {
-        float spawnPosX = UnityEngine.Random.Range(-spawnRange, spawnRange);
-        float spawnPosZ = UnityEngine.Random.Range(-spawnRange, spawnRange);
-        Vector3 randomPos = new Vector3(spawnPosX, 3.5f, spawnPosZ);
-        return randomPos;
+        float spawnRotY = UnityEngine.Random.Range(-180f, 180f);
+        Quaternion randomRot = Quaternion.identity;
+        randomRot.eulerAngles = new Vector3(-90f, spawnRotY, 0f);
+        return randomRot;
 
     }
 
