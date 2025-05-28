@@ -252,7 +252,8 @@ public class GameManager : MonoBehaviour
                 if (timeUntilAttack <= 0f && bossAttack == 0 && bossDistance <= 30f && bossanimator.GetBool("Dodgeback") == false && canAttack == true && timeUntilEatPhase > 0f)
                 {
                     timeUntilAttack = 0f;
-                    bossAttack = UnityEngine.Random.Range(4, 0);
+                    //bossAttack = UnityEngine.Random.Range(4, 0);
+                    bossAttack = 1;
                 }
 
                 if (bossAttack == 1 && bossDistance <= 30f && bossanimator.GetBool("Dodgeback") == false && canAttack == true && timeUntilEatPhase > 0f)
@@ -646,7 +647,7 @@ public class GameManager : MonoBehaviour
         areHandsActive = true;
         canAttack = false;
         int tempI = UnityEngine.Random.Range(1, 4);
-        if (tempI == 2)
+        if (/*tempI == 2*/ tempI > 0)
         {
             transitionAttack = true;
         }
@@ -668,7 +669,11 @@ public class GameManager : MonoBehaviour
             isTailActive = true;
             bossanimator.SetBool("attacking", true);
             bossanimator.SetBool("transitionAttack", true);
-            yield return new WaitForSeconds(2.5f);
+            yield return new WaitForSeconds(1.8f);
+            bossAudioSource.clip = bossRoarSFX;
+            bossAudioSource.Play();
+            yield return new WaitForSeconds(0.7f);
+            bossAudioSource.Stop();
             bossAgent.speed = 5;
             isTailActive = false;
             bossAttack = 0;
