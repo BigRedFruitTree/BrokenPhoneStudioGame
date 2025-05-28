@@ -304,34 +304,23 @@ public class PlayerController : MonoBehaviour
             }
 
             if (Input.GetMouseButton(0) && isCooldownOver == true && gm.weapon > 0 && isDashing == false && isBlocking == false)
-            {
-                if (gm.weapon == 2)
-                {
-                    playerAnimator.SetBool("IsDrawing", true);
-                    myRB.constraints = RigidbodyConstraints.FreezeAll;
-                    isDashing = false;
-                    canAttack = false;
-                    canMove = true;
-                    canRotate = true;
-                    StartCoroutine("WaitDraw");
-                }
-
-                if (gm.weapon == 5)
-                {
-                    playerAnimator.SetBool("IsDrawing", true);
-                    myRB.constraints = RigidbodyConstraints.FreezeAll;
-                    isDashing = false;
-                    canAttack = false;
-                    canMove = true;
-                    canRotate = true;
-                    StartCoroutine("WaitDraw");
-                }
+            {             
+                playerAnimator.SetBool("IsDrawing", true);
+                myRB.constraints = RigidbodyConstraints.FreezeAll;
+                isDashing = false;
+                canAttack = false;
+                canMove = true;
+                canRotate = true;
+                canUncharge = true;
+                StartCoroutine("WaitDraw");
+                
             }
 
-            if (Input.GetMouseButtonUp(0) && gm.weapon > 0 && isDashing == false && isBlocking == false)
+            if (Input.GetMouseButtonUp(0) && gm.weapon > 0 && isDashing == false && isBlocking == false && canUncharge == true)
             {
                 if (gm.weapon == 2 && drawSpeed <= 0f)
                 {
+                    canUncharge = false;
                     playerAnimator.SetBool("attacking", true);
                     playerAnimator.SetBool("IsDrawing", false);
                     attacking = true;
@@ -350,6 +339,7 @@ public class PlayerController : MonoBehaviour
                 }
                 if (gm.weapon == 2 && drawSpeed > 0f)
                 {
+                    canUncharge = false;
                     playerAnimator.SetBool("attacking", true);
                     playerAnimator.SetBool("IsDrawing", false);
                     attacking = true;
@@ -360,6 +350,7 @@ public class PlayerController : MonoBehaviour
 
                 if (gm.weapon == 5 && drawSpeed > 0f)
                 {
+                    canUncharge = false;
                     playerAnimator.SetBool("attacking", true);
                     playerAnimator.SetBool("IsDrawing", false);
                     attacking = true;
@@ -369,6 +360,7 @@ public class PlayerController : MonoBehaviour
                 }
                 if (gm.weapon == 5 && drawSpeed <= 0)
                 {
+                    canUncharge = false;
                     playerAnimator.SetBool("attacking", true);
                     playerAnimator.SetBool("IsDrawing", false);
                     attacking = true;
@@ -793,36 +785,24 @@ public class PlayerController : MonoBehaviour
     {
         if (isCooldownOver == true && gm.weapon > 0 && isDashing == false && isBlocking == false)
         {
-            if (gm.weapon == 2)
-            {
-                playerAnimator.SetBool("IsDrawing", true);
-                myRB.constraints = RigidbodyConstraints.FreezeAll;
-                isDashing = false;
-                canAttack = false;
-                canMove = true;
-                canRotate = true;
-                StartCoroutine("WaitDraw");
-            }
-
-            if (gm.weapon == 5)
-            {
-                playerAnimator.SetBool("IsDrawing", true);
-                myRB.constraints = RigidbodyConstraints.FreezeAll;
-                isDashing = false;
-                canAttack = false;
-                canMove = true;
-                canRotate = true;
-                StartCoroutine("WaitDraw");
-            }
+            canUncharge = true;
+            playerAnimator.SetBool("IsDrawing", true);
+            myRB.constraints = RigidbodyConstraints.FreezeAll;
+            isDashing = false;
+            canAttack = false;
+            canMove = true;
+            canRotate = true;
+            StartCoroutine("WaitDraw");
         }
     }
 
     public void ReleaseRangedWeapon()
     {
-        if (gm.weapon > 0 && isDashing == false && isBlocking == false)
+        if (gm.weapon > 0 && isDashing == false && isBlocking == false && canUncharge == true)
         {
             if (gm.weapon == 2 && drawSpeed <= 0f)
             {
+                canUncharge = false;
                 playerAnimator.SetBool("attacking", true);
                 playerAnimator.SetBool("IsDrawing", false);
                 attacking = true;
@@ -841,6 +821,7 @@ public class PlayerController : MonoBehaviour
             }
             if (gm.weapon == 2 && drawSpeed > 0f)
             {
+                canUncharge = false;
                 playerAnimator.SetBool("attacking", true);
                 playerAnimator.SetBool("IsDrawing", false);
                 attacking = true;
@@ -851,6 +832,7 @@ public class PlayerController : MonoBehaviour
 
             if (gm.weapon == 5 && drawSpeed > 0f)
             {
+                canUncharge = false;
                 playerAnimator.SetBool("attacking", true);
                 playerAnimator.SetBool("IsDrawing", false);
                 attacking = true;
@@ -860,6 +842,7 @@ public class PlayerController : MonoBehaviour
             }
             if (gm.weapon == 5 && drawSpeed <= 0)
             {
+                canUncharge = false;
                 playerAnimator.SetBool("attacking", true);
                 playerAnimator.SetBool("IsDrawing", false);
                 attacking = true;
