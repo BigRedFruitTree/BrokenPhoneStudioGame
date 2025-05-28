@@ -405,7 +405,15 @@ public class GameManager : MonoBehaviour
     {
         float spawnPosX = UnityEngine.Random.Range(-spawnRange, spawnRange);
         float spawnPosZ = UnityEngine.Random.Range(-spawnRange, spawnRange);
-        Vector3 randomPos = new Vector3(spawnPosX, 1.5f, spawnPosZ);
+        Vector3 randomPos = new Vector3(spawnPosX, 3.5f, spawnPosZ);
+        return randomPos;
+
+    }
+    public Vector3 RandomRockRotation()
+    {
+        float spawnPosX = UnityEngine.Random.Range(-spawnRange, spawnRange);
+        float spawnPosZ = UnityEngine.Random.Range(-spawnRange, spawnRange);
+        Vector3 randomPos = new Vector3(spawnPosX, 3.5f, spawnPosZ);
         return randomPos;
 
     }
@@ -661,7 +669,7 @@ public class GameManager : MonoBehaviour
         bossanimator.SetBool("attacking", false);
         if (transitionAttack == true)
         {
-            bossAgent.speed = 0;
+            bossAgent.speed = 3;
             bossAttack = 1;
             bossAgent.destination = playerObject.transform.position;
             areHandsActive = false;
