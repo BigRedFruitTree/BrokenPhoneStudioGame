@@ -252,8 +252,7 @@ public class GameManager : MonoBehaviour
                 if (timeUntilAttack <= 0f && bossAttack == 0 && bossDistance <= 30f && bossanimator.GetBool("Dodgeback") == false && canAttack == true && timeUntilEatPhase > 0f)
                 {
                     timeUntilAttack = 0f;
-                    //bossAttack = UnityEngine.Random.Range(4, 0);
-                    bossAttack = 1;
+                    bossAttack = UnityEngine.Random.Range(4, 0);
                 }
 
                 if (bossAttack == 1 && bossDistance <= 30f && bossanimator.GetBool("Dodgeback") == false && canAttack == true && timeUntilEatPhase > 0f)
@@ -647,7 +646,7 @@ public class GameManager : MonoBehaviour
         areHandsActive = true;
         canAttack = false;
         int tempI = UnityEngine.Random.Range(1, 4);
-        if (/*tempI == 2*/ tempI > 0)
+        if (tempI == 2)
         {
             transitionAttack = true;
         }
