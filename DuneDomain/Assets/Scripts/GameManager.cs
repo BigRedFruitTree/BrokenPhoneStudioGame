@@ -140,7 +140,7 @@ public class GameManager : MonoBehaviour
         {
             pHealthBar.fillAmount = Mathf.Clamp((float)playerController.health / (float)playerController.maxHealth, 0, 1);
             ChargeMeter.fillAmount = Mathf.Clamp((float)playerController.drawSpeed / (float)playerController.maxdrawSpeed, 0, 1);
-            bossBar.fillAmount = Mathf.Clamp((float)bossScript.health / (float)200, 0, 1);
+            bossBar.fillAmount = Mathf.Clamp((float)bossScript.health / (float)2000, 0, 1);
             pStaminaBar.fillAmount = Mathf.Clamp((float)playerController.stamina / (float)10, 0, 1);
             playerUiStuff.SetActive(true);
             bossDistance = Vector3.Distance(bossObject.transform.position, playerObject.transform.position);
@@ -311,13 +311,13 @@ public class GameManager : MonoBehaviour
                     {
                         SetNextTarget();
                     }
-                    if (!isProcessingTarget && currentTarget != null && !bossAgent.pathPending && bossAgent.remainingDistance <= 25f)
+                    if (!isProcessingTarget && currentTarget != null && !bossAgent.pathPending && bossAgent.remainingDistance <= 15f)
                     {
                         bossEating = true;
                         bossanimator.SetBool("Isaggressive", true);
                         bossanimator.SetBool("Iswalking", false);
                     }
-                    if (!isProcessingTarget && currentTarget != null && bossEating == true && !bossAgent.pathPending && bossAgent.remainingDistance <= 25f)
+                    if (!isProcessingTarget && currentTarget != null && bossEating == true && !bossAgent.pathPending && bossAgent.remainingDistance <= 15f)
                     {
                         StartCoroutine("WaitForEating");
                         bossEating = false;
@@ -414,7 +414,7 @@ public class GameManager : MonoBehaviour
     {
         float spawnPosX = UnityEngine.Random.Range(-spawnRange, spawnRange);
         float spawnPosZ = UnityEngine.Random.Range(-spawnRange, spawnRange);
-        Vector3 randomPos = new Vector3(spawnPosX, 3.5f, spawnPosZ);
+        Vector3 randomPos = new Vector3(spawnPosX, 3.7f, spawnPosZ);
         return randomPos;
 
     }
@@ -576,7 +576,7 @@ public class GameManager : MonoBehaviour
 
         currentTarget = GetNearestTarget();
 
-        if (bossAgent.remainingDistance <= 25f)
+        if (bossAgent.remainingDistance <= 15f)
         {
             bossAgent.destination = bossObject.transform.position;
             bossAgent.speed = 0;

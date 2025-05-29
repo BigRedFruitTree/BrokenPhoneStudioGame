@@ -17,8 +17,8 @@ public class BossManager : MonoBehaviour
     public AudioClip roarSFX;
 
     [Header("Stats")]
-    public float health = 200f;
-    public float maxHealth = 200f;
+    public float health = 2000f;
+    public float maxHealth = 2000f;
     public int damage = 5;
     public bool canTakeDamage = true;
     public bool canEat = false;
@@ -28,8 +28,8 @@ public class BossManager : MonoBehaviour
     {
         player = GameObject.Find("Player").GetComponent<PlayerController>();
         bossAgent = GetComponent<NavMeshAgent>();
-        health = 200f;
-        maxHealth = 200f;
+        health = 2000f;
+        maxHealth = 2000f;
         bossObject.transform.position = bossSpawn.transform.position;
 
     }

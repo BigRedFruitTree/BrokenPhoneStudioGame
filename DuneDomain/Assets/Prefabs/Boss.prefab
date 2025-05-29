@@ -131,7 +131,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 264
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
@@ -160,8 +160,8 @@ MonoBehaviour:
   RB: {fileID: 8127233404491766053}
   audioSource: {fileID: 0}
   roarSFX: {fileID: 0}
-  health: 200
-  maxHealth: 200
+  health: 2000
+  maxHealth: 2000
   damage: 5
   canTakeDamage: 1
   canEat: 0
@@ -179,7 +179,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 200
-  m_StoppingDistance: 0
+  m_StoppingDistance: 1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1

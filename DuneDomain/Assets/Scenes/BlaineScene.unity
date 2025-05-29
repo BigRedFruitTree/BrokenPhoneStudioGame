@@ -871,7 +871,7 @@ GameObject:
   m_Component:
   - component: {fileID: 185004628}
   - component: {fileID: 185004629}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ColliderReplacement (6)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -1703,7 +1703,7 @@ GameObject:
   m_Component:
   - component: {fileID: 393429841}
   - component: {fileID: 393429842}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ColliderReplacement (12)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -2076,7 +2076,7 @@ GameObject:
   m_Component:
   - component: {fileID: 541173008}
   - component: {fileID: 541173009}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ColliderReplacement (13)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -2129,7 +2129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 560770826}
   - component: {fileID: 560770827}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ColliderReplacement (7)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -2182,7 +2182,7 @@ GameObject:
   m_Component:
   - component: {fileID: 591851383}
   - component: {fileID: 591851384}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ColliderReplacement (4)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -2847,7 +2847,7 @@ GameObject:
   m_Component:
   - component: {fileID: 703831942}
   - component: {fileID: 703831943}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ColliderReplacement (5)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -2971,7 +2971,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 766238907}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ColliderReplacements
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5229,7 +5229,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1428939416}
   - component: {fileID: 1428939417}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ColliderReplacement (8)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -5551,7 +5551,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1489978142}
   - component: {fileID: 1489978143}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ColliderReplacement (9)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -5874,7 +5874,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1539242556}
   - component: {fileID: 1539242557}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ColliderReplacement (2)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -6929,7 +6929,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1737890033}
   - component: {fileID: 1737890034}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ColliderReplacement (3)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -7481,7 +7481,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1854163327}
   - component: {fileID: 1854163328}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ColliderReplacement (1)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -8099,7 +8099,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1972107647}
   - component: {fileID: 1972107648}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ColliderReplacement (10)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -8437,7 +8437,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2027002976}
   - component: {fileID: 2027002977}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ColliderReplacement (11)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -8781,7 +8781,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2058167944}
   - component: {fileID: 2058167945}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ColliderReplacement
   m_TagString: Wall
   m_Icon: {fileID: 0}
