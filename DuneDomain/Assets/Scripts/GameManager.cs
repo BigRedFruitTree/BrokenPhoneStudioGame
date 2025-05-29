@@ -870,6 +870,7 @@ public class GameManager : MonoBehaviour
     {
         isProcessingTarget = true;
         bossanimator.SetBool("Isaggressive", true);
+        bossanimator.SetBool("eating", true);
         bossanimator.SetBool("Iswalking", false);
         yield return new WaitForSeconds(5f);
         if (currentTarget != null)
@@ -879,6 +880,7 @@ public class GameManager : MonoBehaviour
         currentTarget = null;
         SetNextTarget();
         bossanimator.SetBool("Isaggressive", true);
+        bossanimator.SetBool("eating", false);
         bossanimator.SetBool("Iswalking", true);
         isProcessingTarget = false;
     }

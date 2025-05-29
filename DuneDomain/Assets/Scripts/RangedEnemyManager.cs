@@ -365,7 +365,7 @@ public class RangedEnemyManager : MonoBehaviour
         audioSource.Play();
         Instantiate(corpsePrefab, new Vector3(enemyObject.transform.position.x, enemyObject.transform.position.y - 1f, enemyObject.transform.position.z), Quaternion.Euler(0, 0, -90));
         model.SetActive(false);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         Destroy(enemyObject);
 
     }
