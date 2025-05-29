@@ -99,8 +99,8 @@ public class GameManager : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().buildIndex == 1)
         {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
             EvSy.SetSelectedGameObject(GameObject.Find("StartGameButton"));
         }
 
@@ -154,8 +154,8 @@ public class GameManager : MonoBehaviour
                 GMAudioSource.clip = endSong;
                 GMAudioSource.Play();
                 winScreen.SetActive(true);
-                Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
                 EvSy.SetSelectedGameObject(GameObject.Find("BacktoMenu"));
                 Time.timeScale = 0;
                 GameOn = false;
@@ -363,9 +363,9 @@ public class GameManager : MonoBehaviour
                 GameOn = false;
                 GameOver = true;
                 deathScreen.SetActive(true);
-                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.lockState = CursorLockMode.None;
                 EvSy.SetSelectedGameObject(GameObject.Find("BackToMainMenu"));
-                Cursor.visible = false;
+                Cursor.visible = true;
                 Time.timeScale = 0;
             }
         }
@@ -904,8 +904,8 @@ public class GameManager : MonoBehaviour
         started = false;
         weaponScreen.SetActive(true);
         EvSy.SetSelectedGameObject(GameObject.Find("SwordButton"));
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         rounds += 1;
     }
 
