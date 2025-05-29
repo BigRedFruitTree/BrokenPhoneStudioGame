@@ -56,6 +56,7 @@ public class GameManager : MonoBehaviour
     public bool isTailActive = false;
     public AudioSource bossAudioSource;
     public AudioClip bossRoarSFX;
+    public Vector3 lookDirectionB;
 
     [Header("Enemy Stuff")]
     public float spawnRange;
@@ -307,20 +308,21 @@ public class GameManager : MonoBehaviour
                 timeUntilEatPhase = 0f;
                 if (enemyCorpseNumber.Length > 0)
                 {
-                    if (bossEating == false)
+                    if (bossEating == false && isProcessingTarget == false && canBossEat == false && currentTarget == null)
                     {
                         SetNextTarget();
                     }
                     if (!isProcessingTarget && currentTarget != null && !bossAgent.pathPending && bossAgent.remainingDistance <= 15f)
                     {
+                        canBossEat = true;
                         bossEating = true;
                         bossanimator.SetBool("Isaggressive", true);
                         bossanimator.SetBool("Iswalking", false);
                     }
-                    if (!isProcessingTarget && currentTarget != null && bossEating == true && !bossAgent.pathPending && bossAgent.remainingDistance <= 15f)
+                    if (!isProcessingTarget && currentTarget != null && bossEating == true && !bossAgent.pathPending && bossAgent.remainingDistance <= 15f && canBossEat == true)
                     {
                         StartCoroutine("WaitForEating");
-                        bossEating = false;
+                        canBossEat = false;
                     }
                 }
                 else
@@ -371,7 +373,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    //This Generates a random spawn position for the 2 enemy types
     public void SpawnMelee(int numberToSpawn)
     {
         for (int i = 0; i < numberToSpawn; i++)
@@ -379,6 +380,7 @@ public class GameManager : MonoBehaviour
             Instantiate(meleeEnemyPrefab, GenerateSpawnPos(), meleeEnemyPrefab.transform.rotation);
         }
     }
+
     public void SpawnRanged(int numberToSpawn)
     {
 
@@ -387,6 +389,7 @@ public class GameManager : MonoBehaviour
             Instantiate(rangedEnemyPrefab, GenerateSpawnPos(), rangedEnemyPrefab.transform.rotation);
         }
     }
+
     public Vector3 GenerateSpawnPos()
     {
         float spawnPosX = UnityEngine.Random.Range(-spawnRange, spawnRange);
@@ -395,7 +398,6 @@ public class GameManager : MonoBehaviour
         return randomPos;
     }
 
-    //This Generates a random position of rocks throughout the arena
     public void SpawnRock1atRandomPosition(int numberToSpawn)
     {
         for (int i = 0; i < numberToSpawn; i++)
@@ -403,6 +405,7 @@ public class GameManager : MonoBehaviour
             Instantiate(Rock1Prefab, RandomRockPosition(), RandomRockRotation());
         }
     }
+
     public void SpawnRock2atRandomPosition(int numberToSpawn)
     {
         for (int i = 0; i < numberToSpawn; i++)
@@ -410,6 +413,7 @@ public class GameManager : MonoBehaviour
             Instantiate(Rock2Prefab, RandomRockPosition(), RandomRockRotation());
         }
     }
+
     public Vector3 RandomRockPosition()
     {
         float spawnPosX = UnityEngine.Random.Range(-spawnRange, spawnRange);
@@ -418,6 +422,7 @@ public class GameManager : MonoBehaviour
         return randomPos;
 
     }
+
     public Quaternion RandomRockRotation()
     {
         float spawnRotY = UnityEngine.Random.Range(-180f, 180f);
@@ -585,7 +590,7 @@ public class GameManager : MonoBehaviour
         {
             bossAgent.destination = currentTarget.transform.position;
             bossAgent.speed = 5;
-        } 
+        }
     }
 
     public GameObject GetNearestTarget()
@@ -857,6 +862,7 @@ public class GameManager : MonoBehaviour
         canAttack = true;
         timeUntilAttack = UnityEngine.Random.Range(150f, 250f);
     }
+
     IEnumerator WaitBossAway()
     {
         yield return new WaitForSeconds(2f);
@@ -869,19 +875,23 @@ public class GameManager : MonoBehaviour
     IEnumerator WaitForEating()
     {
         isProcessingTarget = true;
+        canBossEat = false;
+        lookDirectionB = (currentTarget.transform.position - bossObject.transform.position).normalized;
+        Quaternion awayRotation = Quaternion.LookRotation(lookDirectionB);
+        bossObject.transform.rotation = Quaternion.Euler(bossObject.transform.rotation.eulerAngles.x, awayRotation.eulerAngles.y, bossObject.transform.rotation.eulerAngles.z);
         bossanimator.SetBool("Isaggressive", true);
         bossanimator.SetBool("eating", true);
         bossanimator.SetBool("Iswalking", false);
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(3f);
         if (currentTarget != null)
         {
             Destroy(currentTarget);
         }
-        currentTarget = null;
-        SetNextTarget();
+        bossEating = false;
         bossanimator.SetBool("Isaggressive", true);
         bossanimator.SetBool("eating", false);
         bossanimator.SetBool("Iswalking", true);
+        currentTarget = null;
         isProcessingTarget = false;
     }
 
