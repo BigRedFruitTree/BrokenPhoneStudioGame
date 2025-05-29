@@ -303,7 +303,7 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine("AttackStringCoolDown");  
             }
 
-            if (Input.GetMouseButton(0) && isCooldownOver == true && gm.weapon > 0 && isDashing == false && isBlocking == false)
+            if (Input.GetMouseButton(0) && isCooldownOver == true && gm.weapon != 1 && isDashing == false && isBlocking == false && gm.weapon != 4 && gm.weapon != 3)
             {             
                 playerAnimator.SetBool("IsDrawing", true);
                 myRB.constraints = RigidbodyConstraints.FreezeAll;
@@ -685,7 +685,7 @@ public class PlayerController : MonoBehaviour
 
     public void BasicAttack()
     {
-        if (canAttack == true && gm.weapon != 2 && gm.weapon != 5 && isDashing == false && attacking == false && isBlocking == false && recovering == false && playerAnimator.GetBool("recovering") == false && whichAttack == 0)
+        if (canAttack == true && gm.weapon != 2 && gm.weapon != 5 && isDashing == false && attacking == false && isBlocking == false && recovering == false && playerAnimator.GetBool("recovering") == false && whichAttack == 0 && gm.GameOn == true && gm.GameOver == false && gm.started == true)
         {
             playerAnimator.SetBool("attacking", true);
             playerAnimator.SetInteger("whichAttack", 1);
@@ -704,7 +704,7 @@ public class PlayerController : MonoBehaviour
 
         }
 
-        if (playerAnimator.GetBool("attacking") == false && canAttack == false && canAttack2 == true && attacking == false && stringTimer > 0 && whichAttack == 1 && gm.weapon != 2 && gm.weapon != 5 && recovering == false && recovering == false && playerAnimator.GetBool("recovering") == false)
+        if (playerAnimator.GetBool("attacking") == false && canAttack == false && canAttack2 == true && attacking == false && stringTimer > 0 && whichAttack == 1 && gm.weapon != 2 && gm.weapon != 5 && recovering == false && recovering == false && playerAnimator.GetBool("recovering") == false && gm.GameOn == true && gm.GameOver == false && gm.started == true)
         {
             myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
             playerAnimator.SetInteger("whichAttack", 2);
@@ -723,7 +723,7 @@ public class PlayerController : MonoBehaviour
             StartCoroutine("AttackStringCoolDown");
         }
 
-        if (playerAnimator.GetBool("attacking") == false && canAttack == false && canAttack2 == true && attacking == false && stringTimer > 0 && whichAttack == 2 && gm.weapon != 2 && gm.weapon != 5 && recovering == false && recovering == false && playerAnimator.GetBool("recovering") == false)
+        if (playerAnimator.GetBool("attacking") == false && canAttack == false && canAttack2 == true && attacking == false && stringTimer > 0 && whichAttack == 2 && gm.weapon != 2 && gm.weapon != 5 && recovering == false && recovering == false && playerAnimator.GetBool("recovering") == false && gm.GameOn == true && gm.GameOver == false && gm.started == true)
         {
             myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
             playerAnimator.SetInteger("whichAttack", 3);
@@ -742,7 +742,7 @@ public class PlayerController : MonoBehaviour
             StartCoroutine("AttackStringCoolDown");
         }
 
-        if (playerAnimator.GetBool("attacking") == false && canAttack == false && canAttack2 == true && attacking == false && stringTimer > 0 && whichAttack == 3 && gm.weapon != 2 && gm.weapon != 5 && recovering == false && recovering == false && playerAnimator.GetBool("recovering") == false)
+        if (playerAnimator.GetBool("attacking") == false && canAttack == false && canAttack2 == true && attacking == false && stringTimer > 0 && whichAttack == 3 && gm.weapon != 2 && gm.weapon != 5 && recovering == false && recovering == false && playerAnimator.GetBool("recovering") == false && gm.GameOn == true && gm.GameOver == false && gm.started == true)
         {
             myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
             playerAnimator.SetInteger("whichAttack", 4);
@@ -764,7 +764,7 @@ public class PlayerController : MonoBehaviour
 
     public void Roll()
     {
-        if (stamina > 3 && isBlocking == false && canDash == true && attacking == false && playerAnimator.GetBool("attacking") == false && playerAnimator.GetInteger("whichAttack") == 0)
+        if (stamina > 3 && isBlocking == false && canDash == true && attacking == false && playerAnimator.GetBool("attacking") == false && playerAnimator.GetInteger("whichAttack") == 0 && gm.GameOn == true && gm.GameOver == false && gm.started == true)
         {
             AudioSource.clip = Woosh;
             AudioSource.Play();
@@ -783,7 +783,7 @@ public class PlayerController : MonoBehaviour
 
     public void DrawRangedWeapon()
     {
-        if (isCooldownOver == true && gm.weapon > 0 && isDashing == false && isBlocking == false)
+        if (isCooldownOver == true && gm.weapon != 1 && isDashing == false && isBlocking == false && gm.weapon != 4 && gm.weapon != 3 && gm.GameOn == true && gm.GameOver == false && gm.started == true)
         {
             canUncharge = true;
             playerAnimator.SetBool("IsDrawing", true);
@@ -798,7 +798,7 @@ public class PlayerController : MonoBehaviour
 
     public void ReleaseRangedWeapon()
     {
-        if (gm.weapon > 0 && isDashing == false && isBlocking == false && canUncharge == true)
+        if (gm.weapon > 0 && isDashing == false && isBlocking == false && canUncharge == true && gm.GameOn == true && gm.GameOver == false && gm.started == true)
         {
             if (gm.weapon == 2 && drawSpeed <= 0f)
             {
@@ -819,7 +819,7 @@ public class PlayerController : MonoBehaviour
                 myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
                 StartCoroutine("BowCoolDown");
             }
-            if (gm.weapon == 2 && drawSpeed > 0f)
+            if (gm.weapon == 2 && drawSpeed > 0f && gm.GameOn == true && gm.GameOver == false && gm.started == true)
             {
                 canUncharge = false;
                 playerAnimator.SetBool("attacking", true);
@@ -830,7 +830,7 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine("BowCoolDown");
             }
 
-            if (gm.weapon == 5 && drawSpeed > 0f)
+            if (gm.weapon == 5 && drawSpeed > 0f && gm.GameOn == true && gm.GameOver == false && gm.started == true)
             {
                 canUncharge = false;
                 playerAnimator.SetBool("attacking", true);
@@ -840,7 +840,7 @@ public class PlayerController : MonoBehaviour
                 myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
                 StartCoroutine("CrossbowCoolDown");
             }
-            if (gm.weapon == 5 && drawSpeed <= 0)
+            if (gm.weapon == 5 && drawSpeed <= 0 && gm.GameOn == true && gm.GameOver == false && gm.started == true)
             {
                 canUncharge = false;
                 playerAnimator.SetBool("attacking", true);
@@ -864,7 +864,7 @@ public class PlayerController : MonoBehaviour
 
     public void Blocking()
     {
-        if (canMove == true && isBlocking == false && gm.weapon == 4)
+        if (canMove == true && isBlocking == false && gm.weapon == 4 && gm.GameOn == true && gm.GameOver == false && gm.started == true)
         {
             playerAnimator.SetBool("IsBlocking", true);
             myRB.constraints = RigidbodyConstraints.FreezeAll;
@@ -876,7 +876,7 @@ public class PlayerController : MonoBehaviour
     }
     public void ReleaseBlock()
     {
-        if (isBlocking == true && canUnblock == true && canBlock == false && gm.weapon == 4)
+        if (isBlocking == true && canUnblock == true && canBlock == false && gm.weapon == 4 && gm.GameOn == true && gm.GameOver == false && gm.started == true)
         {
             playerAnimator.SetBool("IsBlocking", false);
             myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
@@ -889,7 +889,7 @@ public class PlayerController : MonoBehaviour
 
     public void Charging()
     {
-        if (canMove == true && isBlocking == false && gm.weapon == 3)
+        if (canMove == true && isBlocking == false && gm.weapon == 3 && gm.GameOn == true && gm.GameOver == false && gm.started == true)
         {
             playerAnimator.SetBool("IsCharging", true);
             isCharging = true;
@@ -904,14 +904,14 @@ public class PlayerController : MonoBehaviour
     }
     public void ChargeSound()
     {
-        if (isCharging == true)
+        if (isCharging == true && gm.GameOn == true && gm.GameOver == false && gm.started == true)
         {
             AudioSource.PlayOneShot(hammerchargesound);
         }
     }
     public void ReleaseCharge()
     {
-        if (gm.weapon == 3 && isDashing == false && isBlocking == false && canUncharge == true)
+        if (gm.weapon == 3 && isDashing == false && isBlocking == false && canUncharge == true && gm.GameOn == true && gm.GameOver == false && gm.started == true)
         {
             AudioSource.Stop();
             if (gm.weapon == 3 && drawSpeed >= 133.34f)
