@@ -308,7 +308,7 @@ public class GameManager : MonoBehaviour
                 timeUntilEatPhase = 0f;
                 if (enemyCorpseNumber.Length > 0)
                 {
-                    if (bossEating == false && isProcessingTarget == false && canBossEat == false && currentTarget == null)
+                    if (bossEating == false)
                     {
                         SetNextTarget();
                     }
@@ -319,9 +319,10 @@ public class GameManager : MonoBehaviour
                         bossanimator.SetBool("Isaggressive", true);
                         bossanimator.SetBool("Iswalking", false);
                     }
-                    if (!isProcessingTarget && currentTarget != null && bossEating == true && !bossAgent.pathPending && bossAgent.remainingDistance <= 15f && canBossEat == true)
+                    if (!isProcessingTarget && currentTarget != null && bossEating == true && !bossAgent.pathPending && bossAgent.remainingDistance <= 15f)
                     {
                         StartCoroutine("WaitForEating");
+                        bossEating = false;
                         canBossEat = false;
                     }
                 }
