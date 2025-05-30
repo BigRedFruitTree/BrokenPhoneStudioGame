@@ -2547,6 +2547,7 @@ MonoBehaviour:
   areHandsActive: 0
   isHeadActive: 0
   isTailActive: 0
+  isChoosigTarget: 0
   bossAudioSource: {fileID: 1039655227}
   bossRoarSFX: {fileID: 8300000, guid: 5ad31d7d91e0a394f89725f14c1b30ab, type: 3}
   lookDirectionB: {x: 0, y: 0, z: 0}
@@ -2577,7 +2578,7 @@ MonoBehaviour:
   bridge: {fileID: 4981776976151835456}
   canSpawnRocks: 1
   Rock2Prefab: {fileID: 8666239281560299940, guid: 58910682ee91a0c4a8526f5424586a77, type: 3}
-  Rock1Prefab: {fileID: 8362784621349634397, guid: 7f2b8532666acc549896008347694d26, type: 3}
+  Rock1Prefab: {fileID: 8362784621349634397, guid: 06bfa0e5a3fb5e44eafcfa5ebcaa0e0d, type: 3}
   GMAudioSource: {fileID: 624562657}
   bossThemeIntro: {fileID: 8300000, guid: 143b321767c5e424788d89940a310cc1, type: 3}
   bossThemeLoop: {fileID: 8300000, guid: 1349d407a69147a4e8f47a8a17603bcf, type: 3}
