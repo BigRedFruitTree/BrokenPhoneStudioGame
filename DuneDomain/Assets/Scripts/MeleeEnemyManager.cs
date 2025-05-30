@@ -340,7 +340,7 @@ public class MeleeEnemyManager : MonoBehaviour
         dead = true;
         audioSource.clip = deathSFX;
         audioSource.Play();
-        Instantiate(corpsePrefab, new Vector3(enemyObject.transform.position.x, enemyObject.transform.position.y - 1f, enemyObject.transform.position.z), Quaternion.Euler(0, 0, -90));
+        Instantiate(corpsePrefab, new Vector3(enemyObject.transform.position.x, enemyObject.transform.position.y, enemyObject.transform.position.z), Quaternion.Euler(0, 0, 0));
         model.SetActive(false);
         yield return new WaitForSeconds(0.5f);
         Destroy(enemyObject);

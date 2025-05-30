@@ -8980,7 +8980,7 @@ MonoBehaviour:
   enemyObject: {fileID: 6878104952680005038}
   agent: {fileID: 0}
   enemyRidigbody: {fileID: 0}
-  corpsePrefab: {fileID: 4340697808561044741, guid: a2261d378dfad0248b81f73b795db54a, type: 3}
+  corpsePrefab: {fileID: 9008704321791497721, guid: 347e500bef1833144bb0223eb4a7ea30, type: 3}
   arrow: {fileID: 7613350594052414490, guid: ab5fc5447a871b44cb2766eed461304b, type: 3}
   arrowSpawner: {fileID: 0}
   animator: {fileID: 0}
