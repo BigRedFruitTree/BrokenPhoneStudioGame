@@ -374,6 +374,7 @@ public class GameManager : MonoBehaviour
             {
                 ChargeText.SetActive(false);
                 ChargeObject.SetActive(false);
+                bossUiStuff.SetActive(false);
                 playerUiStuff.SetActive(false);
                 GameOn = false;
                 GameOver = true;
