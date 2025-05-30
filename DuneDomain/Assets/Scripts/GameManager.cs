@@ -54,6 +54,7 @@ public class GameManager : MonoBehaviour
     public bool areHandsActive = false;
     public bool isHeadActive = false;
     public bool isTailActive = false;
+    public bool isChoosigTarget = false;
     public AudioSource bossAudioSource;
     public AudioClip bossRoarSFX;
     public Vector3 lookDirectionB;
@@ -308,22 +309,33 @@ public class GameManager : MonoBehaviour
                 timeUntilEatPhase = 0f;
                 if (enemyCorpseNumber.Length > 0)
                 {
-                    if (bossEating == false)
+                    if (bossEating == false && isProcessingTarget == false && currentTarget == null && isChoosigTarget == false)
                     {
-                        SetNextTarget();
+                        StartCoroutine("WaitSetTarget");
                     }
-                    if (!isProcessingTarget && currentTarget != null && !bossAgent.pathPending && bossAgent.remainingDistance <= 15f && bossEating == false)
+                    if (!isProcessingTarget && currentTarget != null && !bossAgent.pathPending && bossAgent.remainingDistance <= 15f && bossEating == false && isChoosigTarget == false)
                     {
                         canBossEat = true;
                         bossEating = true;
                         bossanimator.SetBool("Isaggressive", true);
                         bossanimator.SetBool("Iswalking", false);
                     }
-                    if (!isProcessingTarget && currentTarget != null && bossEating == true && !bossAgent.pathPending && bossAgent.remainingDistance <= 15f)
+                    if (!isProcessingTarget && currentTarget != null && bossEating == true && !bossAgent.pathPending && bossAgent.remainingDistance <= 15f && isChoosigTarget == false)
                     {
                         StartCoroutine("WaitForEating");
                         bossEating = false;
                         canBossEat = false;
+                    }
+
+                    if (bossAgent.remainingDistance <= 15f && isChoosigTarget == false)
+                    {
+                        bossAgent.destination = bossObject.transform.position;
+                        bossAgent.speed = 0;
+                    }
+                    else if(currentTarget != null && isChoosigTarget == false)
+                    {
+                        bossAgent.destination = currentTarget.transform.position;
+                        bossAgent.speed = 5;
                     }
                 }
                 else
@@ -582,16 +594,6 @@ public class GameManager : MonoBehaviour
 
         currentTarget = GetNearestTarget();
 
-        if (bossAgent.remainingDistance <= 15f)
-        {
-            bossAgent.destination = bossObject.transform.position;
-            bossAgent.speed = 0;
-        }
-        else
-        {
-            bossAgent.destination = currentTarget.transform.position;
-            bossAgent.speed = 5;
-        }
     }
 
     public GameObject GetNearestTarget()
@@ -873,6 +875,16 @@ public class GameManager : MonoBehaviour
         canRun = false;
     }
 
+    IEnumerator WaitSetTarget()
+    {
+        isChoosigTarget = true;
+        yield return new WaitForSeconds(0.5f);
+        SetNextTarget();
+        yield return new WaitForSeconds(0.5f);
+        isChoosigTarget = false;
+
+    }
+
     IEnumerator WaitForEating()
     {
         isProcessingTarget = true;
@@ -892,6 +904,7 @@ public class GameManager : MonoBehaviour
         bossanimator.SetBool("Isaggressive", true);
         bossanimator.SetBool("eating", false);
         bossanimator.SetBool("Iswalking", true);
+        yield return new WaitForSeconds(1f);
         currentTarget = null;
         isProcessingTarget = false;
     }
