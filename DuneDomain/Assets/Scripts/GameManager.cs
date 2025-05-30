@@ -231,7 +231,7 @@ public class GameManager : MonoBehaviour
                     }
                 }
             }
-            else if (rounds > 1 && timeUntilAppearance <= 0f && canRun == false)
+            else if (rounds > 1 && timeUntilAppearance <= 0f && canRun == false && GameOn == true && GameOver == false && started == true)
             {
                 bossUiStuff.SetActive(true);
                 bossObject.SetActive(true);
