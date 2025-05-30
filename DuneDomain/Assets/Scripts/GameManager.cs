@@ -87,8 +87,8 @@ public class GameManager : MonoBehaviour
     public Image ChargeMeter;
     public GameObject bridge;
     public bool canSpawnRocks = true;
-    public GameObject Rock1Prefab;
     public GameObject Rock2Prefab;
+    public GameObject Rock1Prefab;
     public AudioSource GMAudioSource;
     public AudioClip bossThemeIntro;
     public AudioClip bossThemeLoop;
@@ -312,7 +312,7 @@ public class GameManager : MonoBehaviour
                     {
                         SetNextTarget();
                     }
-                    if (!isProcessingTarget && currentTarget != null && !bossAgent.pathPending && bossAgent.remainingDistance <= 15f)
+                    if (!isProcessingTarget && currentTarget != null && !bossAgent.pathPending && bossAgent.remainingDistance <= 15f && bossEating == false)
                     {
                         canBossEat = true;
                         bossEating = true;
