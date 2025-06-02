@@ -256,7 +256,8 @@ public class GameManager : MonoBehaviour
                 if (timeUntilAttack <= 0f && bossAttack == 0 && bossDistance <= 30f && bossanimator.GetBool("Dodgeback") == false && canAttack == true && timeUntilEatPhase > 0f)
                 {
                     timeUntilAttack = 0f;
-                    bossAttack = UnityEngine.Random.Range(4, 0);
+                    //bossAttack = UnityEngine.Random.Range(4, 0);
+                    bossAttack = 3;
                 }
 
                 if (bossAttack == 1 && bossDistance <= 30f && bossanimator.GetBool("Dodgeback") == false && canAttack == true && timeUntilEatPhase > 0f)
@@ -808,7 +809,7 @@ public class GameManager : MonoBehaviour
             bossAttack = 3;
             bossAgent.destination = playerObject.transform.position;
             isHeadActive = true;
-            areHandsActive = false;
+            areHandsActive = true;
             bossanimator.SetBool("attacking", true);
             bossanimator.SetBool("transitionAttack", true);
             yield return new WaitForSeconds(2.5f);
