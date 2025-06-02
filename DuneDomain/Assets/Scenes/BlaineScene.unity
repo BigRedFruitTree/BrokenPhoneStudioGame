@@ -1991,6 +1991,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 447311614}
   m_CullTransparentMesh: 1
+--- !u!4 &490195089 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3915684783258796164, guid: b2073c2dd3c839a4b96e13b04881d603, type: 3}
+  m_PrefabInstance: {fileID: 1039655222}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &497366806
 GameObject:
   m_ObjectHideFlags: 0
@@ -2172,6 +2177,37 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.2500007, y: 1, z: 15.999984}
   m_Center: {x: 0.124999724, y: 0.0000000681196, z: 7.500087}
+--- !u!1 &565003038
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 565003039}
+  m_Layer: 0
+  m_Name: EatPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &565003039
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 565003038}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.31979498, y: -0.21826205, z: -0.69285756, w: 0.6083101}
+  m_LocalPosition: {x: -0.00315, y: -0.00017, z: -0.00247}
+  m_LocalScale: {x: 0.05647216, y: 0.051159106, z: 0.051058725}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 490195089}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &591851382
 GameObject:
   m_ObjectHideFlags: 0
@@ -2547,10 +2583,11 @@ MonoBehaviour:
   areHandsActive: 0
   isHeadActive: 0
   isTailActive: 0
-  isChoosigTarget: 0
+  isChoosingTarget: 0
   bossAudioSource: {fileID: 1039655227}
   bossRoarSFX: {fileID: 8300000, guid: 5ad31d7d91e0a394f89725f14c1b30ab, type: 3}
   lookDirectionB: {x: 0, y: 0, z: 0}
+  bossEatPoint: {fileID: 0}
   spawnRange: 0
   enemyScript: {fileID: 5037234301272502123}
   meleeEnemyPrefab: {fileID: 8703838743317718710, guid: dbb47fb935dcd884a92b5bea53302ed0, type: 3}
@@ -3577,6 +3614,10 @@ PrefabInstance:
       value: Boss
       objectReference: {fileID: 0}
     - target: {fileID: 155293509051133029, guid: b2073c2dd3c839a4b96e13b04881d603, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 155293509051133029, guid: b2073c2dd3c839a4b96e13b04881d603, type: 3}
       propertyPath: m_TagString
       value: Boss
       objectReference: {fileID: 0}
@@ -3634,7 +3675,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 3915684783258796164, guid: b2073c2dd3c839a4b96e13b04881d603, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 565003039}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2073c2dd3c839a4b96e13b04881d603, type: 3}
 --- !u!195 &1039655223 stripped

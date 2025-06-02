@@ -54,10 +54,11 @@ public class GameManager : MonoBehaviour
     public bool areHandsActive = false;
     public bool isHeadActive = false;
     public bool isTailActive = false;
-    public bool isChoosigTarget = false;
+    public bool isChoosingTarget = false;
     public AudioSource bossAudioSource;
     public AudioClip bossRoarSFX;
     public Vector3 lookDirectionB;
+    public GameObject bossEatPoint;
 
     [Header("Enemy Stuff")]
     public float spawnRange;
@@ -256,8 +257,7 @@ public class GameManager : MonoBehaviour
                 if (timeUntilAttack <= 0f && bossAttack == 0 && bossDistance <= 30f && bossanimator.GetBool("Dodgeback") == false && canAttack == true && timeUntilEatPhase > 0f)
                 {
                     timeUntilAttack = 0f;
-                    //bossAttack = UnityEngine.Random.Range(4, 0);
-                    bossAttack = 3;
+                    bossAttack = UnityEngine.Random.Range(4, 0);
                 }
 
                 if (bossAttack == 1 && bossDistance <= 30f && bossanimator.GetBool("Dodgeback") == false && canAttack == true && timeUntilEatPhase > 0f)
@@ -310,30 +310,30 @@ public class GameManager : MonoBehaviour
                 timeUntilEatPhase = 0f;
                 if (enemyCorpseNumber.Length > 0)
                 {
-                    if (bossEating == false && isProcessingTarget == false && currentTarget == null && isChoosigTarget == false)
+                    if (bossEating == false && isProcessingTarget == false && currentTarget == null && isChoosingTarget == false)
                     {
                         StartCoroutine("WaitSetTarget");
                     }
-                    if (!isProcessingTarget && currentTarget != null && !bossAgent.pathPending && bossAgent.remainingDistance <= 15f && bossEating == false && isChoosigTarget == false)
+                    if (!isProcessingTarget && currentTarget != null && !bossAgent.pathPending && bossAgent.remainingDistance <= 15f && bossEating == false && isChoosingTarget == false)
                     {
                         canBossEat = true;
                         bossEating = true;
                         bossanimator.SetBool("Isaggressive", true);
                         bossanimator.SetBool("Iswalking", false);
                     }
-                    if (!isProcessingTarget && currentTarget != null && bossEating == true && !bossAgent.pathPending && bossAgent.remainingDistance <= 15f && isChoosigTarget == false)
+                    if (!isProcessingTarget && currentTarget != null && bossEating == true && !bossAgent.pathPending && bossAgent.remainingDistance <= 15f && isChoosingTarget == false)
                     {
                         StartCoroutine("WaitForEating");
                         bossEating = false;
                         canBossEat = false;
                     }
 
-                    if (bossAgent.remainingDistance <= 15f && isChoosigTarget == false)
+                    if (bossAgent.remainingDistance <= 15f && isChoosingTarget == false)
                     {
                         bossAgent.destination = bossObject.transform.position;
                         bossAgent.speed = 0;
                     }
-                    else if(currentTarget != null && isChoosigTarget == false)
+                    else if(currentTarget != null && isChoosingTarget == false)
                     {
                         bossAgent.destination = currentTarget.transform.position;
                         bossAgent.speed = 5;
@@ -879,11 +879,11 @@ public class GameManager : MonoBehaviour
 
     IEnumerator WaitSetTarget()
     {
-        isChoosigTarget = true;
+        isChoosingTarget = true;
         yield return new WaitForSeconds(0.5f);
         SetNextTarget();
         yield return new WaitForSeconds(0.5f);
-        isChoosigTarget = false;
+        isChoosingTarget = false;
 
     }
 
@@ -897,6 +897,8 @@ public class GameManager : MonoBehaviour
         bossanimator.SetBool("Isaggressive", true);
         bossanimator.SetBool("eating", true);
         bossanimator.SetBool("Iswalking", false);
+        yield return new WaitForSeconds(2f);
+        currentTarget.gameObject.transform.position = bossEatPoint.transform.position;
         yield return new WaitForSeconds(3f);
         if (currentTarget != null)
         {
