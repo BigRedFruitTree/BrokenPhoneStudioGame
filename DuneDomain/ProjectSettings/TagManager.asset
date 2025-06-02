@@ -15,6 +15,7 @@ TagManager:
   - Wall
   - EnemySword
   - PlayerWeapon
+  - Boss
   layers:
   - Default
   - TransparentFX

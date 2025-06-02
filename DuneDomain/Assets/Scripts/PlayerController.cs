@@ -122,10 +122,10 @@ public class PlayerController : MonoBehaviour
         {
             playerCam.transform.position = cameraHolder.transform.position;
 
-            if (Physics.Raycast(playerCam.transform.position, playerCam.transform.forward, out hit, Mathf.Infinity))
+            if (Physics.Raycast(playerObject.transform.position, playerObject.transform.up, out hit, Mathf.Infinity))
             {
-                GameObject hitObject = hit.collider.gameObject;
-                if (hitObject.tag != "Player" && hitObject.tag != "MeleeEnemy" && hitObject.tag != "RangedEnemy" && hitObject.tag != "Rocks" && hitObject.tag != "PlayerWeapon" && hitObject.tag != "EnemySword")
+                GameObject hitObject = hit.transform.gameObject;
+                if (hitObject.layer != LayerMask.GetMask("Player") && hitObject.tag != "MeleeEnemy" && hitObject.tag != "RangedEnemy" && hitObject.layer != LayerMask.GetMask("Rock") && hitObject.tag != "PlayerWeapon" && hitObject.tag != "EnemySword" && hitObject.tag == "Boss" && hitObject.name != "PlayerMarker")
                 {
                     Marker.SetActive(true);
                 }

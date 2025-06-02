@@ -3576,6 +3576,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss
       objectReference: {fileID: 0}
+    - target: {fileID: 155293509051133029, guid: b2073c2dd3c839a4b96e13b04881d603, type: 3}
+      propertyPath: m_TagString
+      value: Boss
+      objectReference: {fileID: 0}
     - target: {fileID: 2399107711272898807, guid: b2073c2dd3c839a4b96e13b04881d603, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.7508745
@@ -3624,6 +3628,10 @@ PrefabInstance:
       propertyPath: bossSpawn
       value: 
       objectReference: {fileID: 1594994284}
+    - target: {fileID: 9166246601942359775, guid: b2073c2dd3c839a4b96e13b04881d603, type: 3}
+      propertyPath: m_TagString
+      value: Boss
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
