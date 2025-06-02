@@ -50,8 +50,8 @@ public class MeleeEnemyManager : MonoBehaviour
         animator = model.GetComponent<Animator>();
         agent = enemyObject.GetComponent<NavMeshAgent>();
         timer = Random.Range(3f, 5f);
-        health = 50 + gm.rounds;
-        maxHealth = 50 + gm.rounds;
+        health = 35 + gm.rounds;
+        maxHealth = 35 + gm.rounds;
         player = GameObject.Find("Player").GetComponent<PlayerController>();
         playerObject = GameObject.Find("Player");
         enemyRidigbody = GetComponent<Rigidbody>();
