@@ -861,6 +861,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 134158107}
   m_CullTransparentMesh: 1
+--- !u!1 &166266039 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3981321861312997543, guid: 5a82a0fe6b9e7434b92b6551918010e7, type: 3}
+  m_PrefabInstance: {fileID: 3515194967970773192}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &166266043
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 166266039}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: -0.000015258789, z: 0}
 --- !u!1 &185004627
 GameObject:
   m_ObjectHideFlags: 0
@@ -2587,7 +2613,7 @@ MonoBehaviour:
   bossAudioSource: {fileID: 1039655227}
   bossRoarSFX: {fileID: 8300000, guid: 5ad31d7d91e0a394f89725f14c1b30ab, type: 3}
   lookDirectionB: {x: 0, y: 0, z: 0}
-  bossEatPoint: {fileID: 0}
+  bossEatPoint: {fileID: 565003038}
   spawnRange: 0
   enemyScript: {fileID: 5037234301272502123}
   meleeEnemyPrefab: {fileID: 8703838743317718710, guid: dbb47fb935dcd884a92b5bea53302ed0, type: 3}
@@ -9656,6 +9682,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3981321861312997543, guid: 5a82a0fe6b9e7434b92b6551918010e7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4469701043182062426, guid: 5a82a0fe6b9e7434b92b6551918010e7, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.5
@@ -9731,7 +9761,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3981321861312997543, guid: 5a82a0fe6b9e7434b92b6551918010e7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 166266043}
   m_SourcePrefab: {fileID: 100100000, guid: 5a82a0fe6b9e7434b92b6551918010e7, type: 3}
 --- !u!1 &4184306037546528557
 GameObject:
