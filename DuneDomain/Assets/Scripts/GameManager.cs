@@ -96,6 +96,9 @@ public class GameManager : MonoBehaviour
     public AudioClip bossThemeLoop;
     public AudioClip cultistTheme;
     public AudioClip endSong;
+    public AudioClip deathSong;
+    public AudioClip buttonClick;
+    public AudioClip buttonSwitch;
 
     // Start is called before the first frame update
     void Start()
@@ -377,6 +380,8 @@ public class GameManager : MonoBehaviour
                 ChargeObject.SetActive(false);
                 bossUiStuff.SetActive(false);
                 playerUiStuff.SetActive(false);
+                GMAudioSource.clip = deathSong;
+                GMAudioSource.Play();
                 GameOn = false;
                 GameOver = true;
                 deathScreen.SetActive(true);
@@ -616,7 +621,7 @@ public class GameManager : MonoBehaviour
     }
     public void ContinueToTutorialScreen4()
     {
-        
+        GMAudioSource.PlayOneShot(buttonClick);
         TutorialScreen3.SetActive(false);
         TutorialScreen4.SetActive(true);
 
@@ -625,6 +630,7 @@ public class GameManager : MonoBehaviour
 
     public void ContinueToTutorialScreen5()
     {
+        GMAudioSource.PlayOneShot(buttonClick);
         TutorialScreen4.SetActive(false);
         TutorialScreen5.SetActive(true);
 
@@ -633,6 +639,7 @@ public class GameManager : MonoBehaviour
 
     public void FinishButton()
     {
+        GMAudioSource.PlayOneShot(buttonClick);
         TutorialStuff.SetActive(false);
         TutorialScreen5.SetActive(false);
         weaponScreen.SetActive(true);
