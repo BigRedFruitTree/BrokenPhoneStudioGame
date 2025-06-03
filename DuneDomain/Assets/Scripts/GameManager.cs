@@ -99,6 +99,10 @@ public class GameManager : MonoBehaviour
     public AudioClip deathSong;
     public AudioClip buttonClick;
     public AudioClip buttonSwitch;
+    public GameObject DirectionalLight;
+    public bool rotatetime = true;
+    public float lightrotation = 60f;
+
 
     // Start is called before the first frame update
     void Start()
@@ -120,6 +124,7 @@ public class GameManager : MonoBehaviour
             bossObject.SetActive(false);
             TutorialStuff.SetActive(true);
             TutorialScreen3.SetActive(true);
+            rotatetime = true;
             timeUntilAppearance = 5000f;
             timeUntilEatPhase = 3000f;
             timeUntilAttack = UnityEngine.Random.Range(200f, 300f);
@@ -390,6 +395,14 @@ public class GameManager : MonoBehaviour
                 Cursor.visible = true;
                 Time.timeScale = 0;
             }
+
+            if (rotatetime == true && GameOn == true)
+            {
+                rotatetime = false;
+                DirectionalLight.transform.rotation = Quaternion.Euler(lightrotation, -30, 0);
+                lightrotation += 0.1f;
+                StartCoroutine("RotateWait");
+            }
         }
     }
 
@@ -651,6 +664,12 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
         started = true;
+    }
+
+    IEnumerator RotateWait()
+    {
+        yield return new WaitForSeconds(0.1f);
+        rotatetime = true;
     }
 
     IEnumerator WaitStart()

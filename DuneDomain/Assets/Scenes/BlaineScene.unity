@@ -2680,6 +2680,9 @@ MonoBehaviour:
   deathSong: {fileID: 0}
   buttonClick: {fileID: 0}
   buttonSwitch: {fileID: 0}
+  DirectionalLight: {fileID: 21460872}
+  rotatetime: 1
+  lightrotation: 60
 --- !u!4 &624562656
 Transform:
   m_ObjectHideFlags: 0
@@ -10854,6 +10857,7 @@ SceneRoots:
   - {fileID: 21460874}
   - {fileID: 1367688412}
   - {fileID: 1964590172}
+  - {fileID: 1337997114}
   - {fileID: 282891390}
   - {fileID: 624562656}
   - {fileID: 9119150562385714126}
@@ -10865,4 +10869,3 @@ SceneRoots:
   - {fileID: 4447996425935423500}
   - {fileID: 8465752943783992123}
   - {fileID: 1039655222}
-  - {fileID: 1337997114}
