@@ -102,6 +102,7 @@ public class GameManager : MonoBehaviour
     public GameObject DirectionalLight;
     public bool rotatetime = true;
     public float lightrotation = 60f;
+    public bool corpseSet = false;
 
 
     // Start is called before the first frame update
@@ -202,11 +203,8 @@ public class GameManager : MonoBehaviour
             }
 
             if (enemyCorpseNumber.Length > 14)
-            {
-               
-                Destroy(GameObject.FindGameObjectWithTag("EnemyCorpse"));
-                
-
+            { 
+                Destroy(GameObject.FindGameObjectWithTag("EnemyCorpse"));   
             }     
 
             if (timeUntilAppearance > 0f)
@@ -400,8 +398,14 @@ public class GameManager : MonoBehaviour
             {
                 rotatetime = false;
                 DirectionalLight.transform.rotation = Quaternion.Euler(lightrotation, -30, 0);
-                lightrotation += 0.1f;
+                lightrotation += 0.01f;
                 StartCoroutine("RotateWait");
+            }
+
+            if (corpseSet == true)
+            {
+                currentTarget.GetComponent<Rigidbody>().useGravity = false;
+                currentTarget.gameObject.transform.position = bossEatPoint.transform.position;
             }
         }
     }
@@ -923,9 +927,10 @@ public class GameManager : MonoBehaviour
         bossanimator.SetBool("Isaggressive", true);
         bossanimator.SetBool("eating", true);
         bossanimator.SetBool("Iswalking", false);
-        yield return new WaitForSeconds(2f);
-        currentTarget.gameObject.transform.position = bossEatPoint.transform.position;
+        yield return new WaitForSeconds(1f);
+        corpseSet = true;
         yield return new WaitForSeconds(3f);
+        corpseSet = false;
         if (currentTarget != null)
         {
             Destroy(currentTarget);
