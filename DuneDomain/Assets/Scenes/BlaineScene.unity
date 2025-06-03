@@ -2329,6 +2329,7 @@ GameObject:
   - component: {fileID: 599594395}
   - component: {fileID: 599594394}
   - component: {fileID: 599594393}
+  - component: {fileID: 599594396}
   m_Layer: 5
   m_Name: BackToMainMenu
   m_TagString: Untagged
@@ -2450,6 +2451,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 599594391}
   m_CullTransparentMesh: 1
+--- !u!114 &599594396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 599594391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1337997113}
+          m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+          m_MethodName: PlayOneShot
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 8300000, guid: 2022ad6064ba72f48bf49fe70bd582fa, type: 3}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &616388054
 GameObject:
   m_ObjectHideFlags: 0
@@ -2680,6 +2710,9 @@ MonoBehaviour:
   deathSong: {fileID: 8300000, guid: 70f708c8f28c0e84fbe22af7b89dbe92, type: 3}
   buttonClick: {fileID: 8300000, guid: 367cc57efbf1ed74a9ed9974351421de, type: 3}
   buttonSwitch: {fileID: 8300000, guid: 2022ad6064ba72f48bf49fe70bd582fa, type: 3}
+  DirectionalLight: {fileID: 0}
+  rotatetime: 1
+  lightrotation: 60
 --- !u!4 &624562656
 Transform:
   m_ObjectHideFlags: 0
@@ -10856,6 +10889,7 @@ SceneRoots:
   - {fileID: 1964590172}
   - {fileID: 282891390}
   - {fileID: 624562656}
+  - {fileID: 1337997114}
   - {fileID: 9119150562385714126}
   - {fileID: 110707460}
   - {fileID: 1816818568}
@@ -10865,4 +10899,3 @@ SceneRoots:
   - {fileID: 4447996425935423500}
   - {fileID: 8465752943783992123}
   - {fileID: 1039655222}
-  - {fileID: 1337997114}

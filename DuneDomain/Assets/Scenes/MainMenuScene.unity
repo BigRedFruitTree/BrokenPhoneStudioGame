@@ -544,6 +544,11 @@ MonoBehaviour:
   areHandsActive: 0
   isHeadActive: 0
   isTailActive: 0
+  isChoosingTarget: 0
+  bossAudioSource: {fileID: 0}
+  bossRoarSFX: {fileID: 0}
+  lookDirectionB: {x: 0, y: 0, z: 0}
+  bossEatPoint: {fileID: 0}
   spawnRange: 0
   enemyScript: {fileID: 0}
   meleeEnemyPrefab: {fileID: 0}
@@ -570,12 +575,19 @@ MonoBehaviour:
   ChargeMeter: {fileID: 0}
   bridge: {fileID: 0}
   canSpawnRocks: 1
+  Rock2Prefab: {fileID: 0}
   Rock1Prefab: {fileID: 0}
-  audioSource: {fileID: 0}
+  GMAudioSource: {fileID: 0}
   bossThemeIntro: {fileID: 0}
   bossThemeLoop: {fileID: 0}
   cultistTheme: {fileID: 0}
   endSong: {fileID: 0}
+  deathSong: {fileID: 0}
+  buttonClick: {fileID: 0}
+  buttonSwitch: {fileID: 0}
+  DirectionalLight: {fileID: 0}
+  rotatetime: 1
+  lightrotation: 60
 --- !u!114 &642810557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -602,6 +614,7 @@ GameObject:
   - component: {fileID: 664479098}
   - component: {fileID: 664479097}
   - component: {fileID: 664479096}
+  - component: {fileID: 664479099}
   m_Layer: 0
   m_Name: StartGameButton
   m_TagString: Untagged
@@ -723,6 +736,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 664479094}
   m_CullTransparentMesh: 1
+--- !u!114 &664479099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 664479094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1675600564}
+          m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+          m_MethodName: PlayOneShot
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 8300000, guid: 2022ad6064ba72f48bf49fe70bd582fa, type: 3}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!114 &728221680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -931,6 +973,11 @@ MonoBehaviour:
   areHandsActive: 0
   isHeadActive: 0
   isTailActive: 0
+  isChoosingTarget: 0
+  bossAudioSource: {fileID: 0}
+  bossRoarSFX: {fileID: 0}
+  lookDirectionB: {x: 0, y: 0, z: 0}
+  bossEatPoint: {fileID: 0}
   spawnRange: 0
   enemyScript: {fileID: 0}
   meleeEnemyPrefab: {fileID: 0}
@@ -957,12 +1004,19 @@ MonoBehaviour:
   ChargeMeter: {fileID: 0}
   bridge: {fileID: 0}
   canSpawnRocks: 1
+  Rock2Prefab: {fileID: 0}
   Rock1Prefab: {fileID: 0}
-  audioSource: {fileID: 0}
+  GMAudioSource: {fileID: 0}
   bossThemeIntro: {fileID: 0}
   bossThemeLoop: {fileID: 0}
   cultistTheme: {fileID: 0}
   endSong: {fileID: 0}
+  deathSong: {fileID: 0}
+  buttonClick: {fileID: 0}
+  buttonSwitch: {fileID: 0}
+  DirectionalLight: {fileID: 0}
+  rotatetime: 1
+  lightrotation: 60
 --- !u!4 &1511709477
 Transform:
   m_ObjectHideFlags: 0
@@ -1307,6 +1361,135 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1675600563
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1675600565}
+  - component: {fileID: 1675600564}
+  m_Layer: 0
+  m_Name: Audiomanager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &1675600564
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1675600563}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &1675600565
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1675600563}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1339.96, y: 450.55276, z: -1340.6742}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1760643660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1484,14 +1667,14 @@ RectTransform:
   m_GameObject: {fileID: 1903450224}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 2, z: 2}
+  m_LocalScale: {x: 6.9062996, y: 4.6042, z: 4.6042}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 250338860}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -608, y: -323}
+  m_AnchoredPosition: {x: 960, y: -469}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1903450226
@@ -1567,3 +1750,4 @@ SceneRoots:
   - {fileID: 1511709477}
   - {fileID: 250338860}
   - {fileID: 1625777167}
+  - {fileID: 1675600565}
