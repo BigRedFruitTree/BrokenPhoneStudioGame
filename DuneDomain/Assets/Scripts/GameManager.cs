@@ -930,7 +930,6 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         corpseSet = true;
         yield return new WaitForSeconds(3f);
-        corpseSet = false;
         if (currentTarget != null)
         {
             Destroy(currentTarget);
@@ -939,6 +938,8 @@ public class GameManager : MonoBehaviour
         bossanimator.SetBool("Isaggressive", true);
         bossanimator.SetBool("eating", false);
         bossanimator.SetBool("Iswalking", true);
+        yield return new WaitForSeconds(1f);
+        corpseSet = false;
         yield return new WaitForSeconds(1f);
         currentTarget = null;
         isProcessingTarget = false;
