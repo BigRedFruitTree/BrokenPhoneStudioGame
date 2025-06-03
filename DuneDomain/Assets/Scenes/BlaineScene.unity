@@ -2710,7 +2710,7 @@ MonoBehaviour:
   deathSong: {fileID: 8300000, guid: 70f708c8f28c0e84fbe22af7b89dbe92, type: 3}
   buttonClick: {fileID: 8300000, guid: 367cc57efbf1ed74a9ed9974351421de, type: 3}
   buttonSwitch: {fileID: 8300000, guid: 2022ad6064ba72f48bf49fe70bd582fa, type: 3}
-  DirectionalLight: {fileID: 0}
+  DirectionalLight: {fileID: 21460872}
   rotatetime: 1
   lightrotation: 60
 --- !u!4 &624562656
