@@ -88,9 +88,10 @@ public class GameManager : MonoBehaviour
     public GameObject ChargeText;
     public Image ChargeMeter;
     public GameObject bridge;
-    public bool canSpawnRocks = true;
+    public bool canSpawnDecorations = true;
     public GameObject Rock2Prefab;
     public GameObject Rock1Prefab;
+    public GameObject CactusPrefab;
     public AudioSource GMAudioSource;
     public AudioClip bossThemeIntro;
     public AudioClip bossThemeLoop;
@@ -173,11 +174,11 @@ public class GameManager : MonoBehaviour
                 GameOn = false;
             }
 
-            if (started == true && canSpawnRocks == true)
+            if (started == true && canSpawnDecorations == true)
             {
-                SpawnRock1atRandomPosition(5);
-                SpawnRock2atRandomPosition(5);
-                canSpawnRocks = false;
+                SpawnRocksatRandomPosition(5);
+                SpawnCactusAtRandomPosition(3);
+                canSpawnDecorations = false;
             }  
 
             meleeEnemyNumber = GameObject.FindGameObjectsWithTag("MeleeEnemy");
@@ -435,19 +436,20 @@ public class GameManager : MonoBehaviour
         return randomPos;
     }
 
-    public void SpawnRock1atRandomPosition(int numberToSpawn)
+    public void SpawnRocksatRandomPosition(int numberToSpawn)
     {
         for (int i = 0; i < numberToSpawn; i++)
         {
             Instantiate(Rock1Prefab, RandomRockPosition(), RandomRockRotation());
+            Instantiate(Rock2Prefab, RandomRockPosition(), RandomRockRotation());
         }
     }
 
-    public void SpawnRock2atRandomPosition(int numberToSpawn)
+    public void SpawnCactusAtRandomPosition(int numberToSpawn)
     {
         for (int i = 0; i < numberToSpawn; i++)
         {
-            Instantiate(Rock2Prefab, RandomRockPosition(), RandomRockRotation());
+            Instantiate(CactusPrefab, RandomCactusPosition(), RandomCactusRotation());
         }
     }
 
@@ -465,6 +467,24 @@ public class GameManager : MonoBehaviour
         float spawnRotY = UnityEngine.Random.Range(-180f, 180f);
         Quaternion randomRot = Quaternion.identity;
         randomRot.eulerAngles = new Vector3(-90f, spawnRotY, 0f);
+        return randomRot;
+
+    }
+
+    public Vector3 RandomCactusPosition()
+    {
+        float spawnPosX = UnityEngine.Random.Range(-spawnRange, spawnRange);
+        float spawnPosZ = UnityEngine.Random.Range(-spawnRange, spawnRange);
+        Vector3 randomPos = new Vector3(spawnPosX, 3.7f, spawnPosZ);
+        return randomPos;
+
+    }
+
+    public Quaternion RandomCactusRotation()
+    {
+        float spawnRotY = UnityEngine.Random.Range(-180f, 180f);
+        Quaternion randomRot = Quaternion.identity;
+        randomRot.eulerAngles = new Vector3(0f, spawnRotY, 0f);
         return randomRot;
 
     }
