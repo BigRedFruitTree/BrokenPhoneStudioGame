@@ -702,7 +702,7 @@ public class GameManager : MonoBehaviour
         bossanimator.SetInteger("whichAttack", 1);
         areHandsActive = true;
         canAttack = false;
-        int tempI = UnityEngine.Random.Range(1, 4);
+        int tempI = UnityEngine.Random.Range(1, 4); 
         if (tempI == 2)
         {
             transitionAttack = true;
@@ -722,10 +722,11 @@ public class GameManager : MonoBehaviour
             bossAttack = 1;
             bossAgent.destination = playerObject.transform.position;
             areHandsActive = false;
-            isTailActive = true;
             bossanimator.SetBool("attacking", true);
             bossanimator.SetBool("transitionAttack", true);
-            yield return new WaitForSeconds(1.8f);
+            yield return new WaitForSeconds(0.5f);
+            isTailActive = true;
+            yield return new WaitForSeconds(1.3f);
             bossAudioSource.clip = bossRoarSFX;
             bossAudioSource.Play();
             yield return new WaitForSeconds(0.7f);
