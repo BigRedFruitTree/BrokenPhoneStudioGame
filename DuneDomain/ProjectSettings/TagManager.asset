@@ -16,6 +16,7 @@ TagManager:
   - EnemySword
   - PlayerWeapon
   - Boss
+  - Cactus
   layers:
   - Default
   - TransparentFX
@@ -26,7 +27,7 @@ TagManager:
   - Player
   - Corpse
   - Walls
-  - 
+  - Cactus
   - 
   - 
   - 
