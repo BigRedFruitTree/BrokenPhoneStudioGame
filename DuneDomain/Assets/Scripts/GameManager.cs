@@ -177,7 +177,7 @@ public class GameManager : MonoBehaviour
             if (started == true && canSpawnDecorations == true)
             {
                 SpawnRocksatRandomPosition(5);
-                SpawnCactusAtRandomPosition(3);
+                SpawnCactusAtRandomPosition(5);
                 canSpawnDecorations = false;
             }  
 
