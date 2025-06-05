@@ -23,11 +23,11 @@ public class RangedEnemyManager : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip deathSFX;
     private ParticleSystem.MainModule main;
+    public BoxCollider nearestWall;
 
     [Header("Stats")]
     public int health;
     public int maxHealth;
-    public float speed;
     public bool canTakeDamage = true;
     public bool dead = false;
     public float timer;
@@ -35,13 +35,14 @@ public class RangedEnemyManager : MonoBehaviour
     public bool attacking = false;
     public bool canAttack = true;
     public bool canWalk = true;
-    public bool canRotate = true;
+    public bool canMove = true;
     public bool doneAttacking = true;
     public Vector3 lookDirection;
     public float minBSize = 0.1f;
     public float maxBSize = 1.0f;
     public float minBLifetime = 0.5f;
     public float maxBLifetime = 2.0f;
+    public bool canRotate;
 
     // Start is called before the first frame update
     void Start()
@@ -59,9 +60,9 @@ public class RangedEnemyManager : MonoBehaviour
         player = GameObject.Find("Player").GetComponent<PlayerController>();
         playerObject = GameObject.Find("Player");
         enemyRidigbody = GetComponent<Rigidbody>();
-        speed = 6f;
         audioSource = GetComponent<AudioSource>();
         model.SetActive(true);
+        canRotate = true;
     }
 
     // Update is called once per frame
@@ -72,30 +73,29 @@ public class RangedEnemyManager : MonoBehaviour
             main = bloodParticle.main;
 
             float distance = Vector3.Distance(transform.position, playerObject.transform.position);
-            if (gm.enemyMovementPattern == 2 && gm.GameOn == true && canWalk == true && dead == false || distance < 5 && gm.GameOn == true && canWalk == true && dead == false)
+            if (gm.enemyMovementPattern == 2 && canMove == true && dead == false && attacking == false && animator.GetBool("attacking") == false)
             {
+                nearestWall = GetNearestWall();
                 animator.SetBool("moving", true);
-                lookDirection = (enemyObject.transform.position - playerObject.transform.position).normalized;
-                enemyRidigbody.AddForce(lookDirection * speed);
+                agent.destination = nearestWall.transform.position;
             }
-            else if (gm.enemyMovementPattern == 1 && gm.GameOn == true && canWalk == true && dead == false)
+            else if (gm.enemyMovementPattern == 1 && canMove == true && dead == false && attacking == false && animator.GetBool("attacking") == false && animator.GetBool("charging") == false)
             {
                 animator.SetBool("moving", true);
-                lookDirection = (playerObject.transform.position - enemyObject.transform.position).normalized;
-                enemyRidigbody.AddForce(lookDirection * speed);
+                agent.destination = playerObject.transform.position;
             }
             else
             {
                 animator.SetBool("moving", false);
             }
 
-            if (gm.enemyMovementPattern == 2 && gm.GameOn == true && canRotate == true && dead == false)
+            if (gm.enemyMovementPattern == 2 && canRotate == true && dead == false)
             {
-                lookDirection = (enemyObject.transform.position - playerObject.transform.position).normalized;
+                lookDirection = (nearestWall.transform.position - enemyObject.transform.position).normalized;
                 Quaternion awayRotation = Quaternion.LookRotation(lookDirection);
                 enemyObject.transform.rotation = Quaternion.Euler(enemyObject.transform.rotation.eulerAngles.x, awayRotation.eulerAngles.y, enemyObject.transform.rotation.eulerAngles.z);
             }
-            else if (gm.enemyMovementPattern == 1 && gm.GameOn == true && canRotate == true && dead == false)
+            else if (gm.enemyMovementPattern == 1 && canRotate == true && dead == false)
             {
                 lookDirection = (playerObject.transform.position - enemyObject.transform.position).normalized;
                 Quaternion awayRotation = Quaternion.LookRotation(lookDirection);
@@ -109,6 +109,7 @@ public class RangedEnemyManager : MonoBehaviour
 
             if (timer <= 0f && timer2 > 0f && gm.enemyMovementPattern == 1)
             {
+                agent.speed = 0;
                 animator.SetBool("charging", true);
                 canWalk = false;
                 timer = 0f;
@@ -352,6 +353,25 @@ public class RangedEnemyManager : MonoBehaviour
         main.startSize = Mathf.Lerp(minBSize, maxBSize, effectStrength);
         main.startLifetime = Mathf.Lerp(minBLifetime, maxBLifetime, effectStrength);
     }
+
+    public BoxCollider GetNearestWall()
+    {
+        BoxCollider nearestTarget = null;
+        float nearestDistance = Mathf.Infinity;
+
+        foreach (var wall in gm.walls)
+        {
+            float distance = Vector3.Distance(enemyObject.transform.position, wall.transform.position);
+            if (distance < nearestDistance)
+            {
+                nearestDistance = distance;
+                nearestTarget = wall.GetComponent<BoxCollider>();
+            }
+        }
+
+        return nearestTarget;
+    }
+
     IEnumerator WaitDamage()
     {
         bloodParticle.Play();
@@ -373,6 +393,7 @@ public class RangedEnemyManager : MonoBehaviour
     {
         canAttack = false;
         doneAttacking = false;
+        agent.speed = 0;
         yield return new WaitForSeconds(0.1f);
         animator.SetBool("charging", false);
         animator.SetBool("attacking", true);
@@ -383,6 +404,7 @@ public class RangedEnemyManager : MonoBehaviour
         arrow.SetActive(true);
         Destroy(arrowSummon, 2f);
         yield return new WaitForSeconds(0.1f);
+        agent.speed = 3;
         attacking = false;
         animator.SetBool("attacking", false);
         doneAttacking = true;

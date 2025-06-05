@@ -9792,16 +9792,15 @@ MonoBehaviour:
   bloodParticle: {fileID: 0}
   audioSource: {fileID: 0}
   deathSFX: {fileID: 8300000, guid: 6a29bdb4d44d9ac4bbbb5ece5f91cc57, type: 3}
+  nearestWall: {fileID: 0}
   health: 10
   maxHealth: 10
-  speed: 15
   canTakeDamage: 1
   dead: 0
   timer: 0
   attacking: 0
   canAttack: 1
   canMove: 1
-  canRotate: 1
   lookDirection: {x: 0, y: 0, z: 0}
   minBSize: 0.1
   maxBSize: 1

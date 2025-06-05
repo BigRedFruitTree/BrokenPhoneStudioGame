@@ -68,6 +68,7 @@ public class GameManager : MonoBehaviour
     public GameObject[] meleeEnemyNumber;
     public GameObject[] rangedEnemyNumber;
     public GameObject[] enemyCorpseNumber;
+    public GameObject[] walls;
     public int enemyMovementPattern = 0;
 
     [Header("GameManager Stuff")]
@@ -184,6 +185,7 @@ public class GameManager : MonoBehaviour
             meleeEnemyNumber = GameObject.FindGameObjectsWithTag("MeleeEnemy");
             enemyCorpseNumber = GameObject.FindGameObjectsWithTag("EnemyCorpse");
             rangedEnemyNumber = GameObject.FindGameObjectsWithTag("RangedEnemy");
+            walls = GameObject.FindGameObjectsWithTag("Wall");
 
             if (meleeEnemyNumber.Length > 7)
             {

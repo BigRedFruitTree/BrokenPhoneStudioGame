@@ -8950,7 +8950,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 2
-  m_Speed: 1
+  m_Speed: 3
   m_Acceleration: 1
   avoidancePriority: 50
   m_AngularSpeed: 1
@@ -8988,9 +8988,9 @@ MonoBehaviour:
   bloodParticle: {fileID: 0}
   audioSource: {fileID: 0}
   deathSFX: {fileID: 8300000, guid: 6a29bdb4d44d9ac4bbbb5ece5f91cc57, type: 3}
+  nearestWall: {fileID: 0}
   health: 0
   maxHealth: 0
-  speed: 15
   canTakeDamage: 1
   dead: 0
   timer: 0
@@ -8998,7 +8998,7 @@ MonoBehaviour:
   attacking: 0
   canAttack: 1
   canWalk: 1
-  canRotate: 1
+  canMove: 1
   doneAttacking: 1
   lookDirection: {x: 0, y: 0, z: 0}
   minBSize: 0.1
