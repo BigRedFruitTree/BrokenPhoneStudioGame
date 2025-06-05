@@ -491,6 +491,7 @@ public class GameManager : MonoBehaviour
 
     public void ChooseWeapon(int chosenWeapon)
     {
+        GMAudioSource.PlayOneShot(buttonClick, 0.35f);
         if (chosenWeapon == 1)
         {
             playerAnimator.SetInteger("weapon", 1);
@@ -628,6 +629,7 @@ public class GameManager : MonoBehaviour
     public void LoadScene(int SceneID)
     {
         SceneManager.LoadScene(SceneID);
+        GMAudioSource.PlayOneShot(buttonClick, 0.35f);
     }
 
 
@@ -658,7 +660,7 @@ public class GameManager : MonoBehaviour
     }
     public void ContinueToTutorialScreen4()
     {
-        GMAudioSource.PlayOneShot(buttonClick);
+        GMAudioSource.PlayOneShot(buttonClick , 0.35f);
         TutorialScreen3.SetActive(false);
         TutorialScreen4.SetActive(true);
 
@@ -667,7 +669,7 @@ public class GameManager : MonoBehaviour
 
     public void ContinueToTutorialScreen5()
     {
-        GMAudioSource.PlayOneShot(buttonClick);
+        GMAudioSource.PlayOneShot(buttonClick, 0.35f);
         TutorialScreen4.SetActive(false);
         TutorialScreen5.SetActive(true);
 
@@ -676,7 +678,7 @@ public class GameManager : MonoBehaviour
 
     public void FinishButton()
     {
-        GMAudioSource.PlayOneShot(buttonClick);
+        GMAudioSource.PlayOneShot(buttonClick, 0.35f);
         TutorialStuff.SetActive(false);
         TutorialScreen5.SetActive(false);
         weaponScreen.SetActive(true);
