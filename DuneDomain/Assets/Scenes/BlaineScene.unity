@@ -8685,6 +8685,14 @@ PrefabInstance:
       propertyPath: bossSpawn
       value: 
       objectReference: {fileID: 1594994284}
+    - target: {fileID: 6769200101655977866, guid: b2073c2dd3c839a4b96e13b04881d603, type: 3}
+      propertyPath: m_Speed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8127233404491766053, guid: b2073c2dd3c839a4b96e13b04881d603, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 776
+      objectReference: {fileID: 0}
     - target: {fileID: 9166246601942359775, guid: b2073c2dd3c839a4b96e13b04881d603, type: 3}
       propertyPath: m_TagString
       value: Boss
@@ -15297,6 +15305,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5005518419687059911, guid: dbb47fb935dcd884a92b5bea53302ed0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5005518419687059911, guid: dbb47fb935dcd884a92b5bea53302ed0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5005518419687059911, guid: dbb47fb935dcd884a92b5bea53302ed0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
     - target: {fileID: 8703838743317718710, guid: dbb47fb935dcd884a92b5bea53302ed0, type: 3}
       propertyPath: m_Name
       value: MeleeEnemy
@@ -15923,6 +15943,18 @@ PrefabInstance:
       propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minCurve.m_Curve.Array.data[1].value
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3498616959612337617, guid: 3647edb2f01b6ed45b735e5ce92e49b1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498616959612337617, guid: 3647edb2f01b6ed45b735e5ce92e49b1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498616959612337617, guid: 3647edb2f01b6ed45b735e5ce92e49b1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6240044195884441929, guid: 3647edb2f01b6ed45b735e5ce92e49b1, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.63
@@ -16098,9 +16130,9 @@ SceneRoots:
   - {fileID: 9119150562385714126}
   - {fileID: 110707460}
   - {fileID: 1816818568}
-  - {fileID: 3515194967970773192}
   - {fileID: 1594994285}
   - {fileID: 1758422791}
+  - {fileID: 3515194967970773192}
   - {fileID: 4447996425935423500}
   - {fileID: 8465752943783992123}
   - {fileID: 1039655222}

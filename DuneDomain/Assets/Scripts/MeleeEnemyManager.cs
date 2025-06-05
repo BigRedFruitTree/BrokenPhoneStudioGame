@@ -27,14 +27,12 @@ public class MeleeEnemyManager : MonoBehaviour
     [Header("Stats")]
     public int health;
     public int maxHealth;
-    public float speed;
     public bool canTakeDamage = true;
     public bool dead = false;
     public float timer;
     public bool attacking = false;
     public bool canAttack = true;
     public bool canMove = true;
-    public bool canRotate = true;
     public Vector3 lookDirection;
     public float minBSize = 0.1f;
     public float maxBSize = 1.0f;
@@ -56,7 +54,6 @@ public class MeleeEnemyManager : MonoBehaviour
         playerObject = GameObject.Find("Player");
         enemyRidigbody = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
-        speed = 7f;
         model.SetActive(true);
     }
   
@@ -73,27 +70,12 @@ public class MeleeEnemyManager : MonoBehaviour
             if (gm.enemyMovementPattern == 2 && canMove == true && dead == false && attacking == false && animator.GetBool("attacking") == false)
             {
                 animator.SetBool("moving", true);
-                lookDirection = (enemyObject.transform.position - playerObject.transform.position).normalized;
-                enemyRidigbody.AddForce(lookDirection * speed);
+                agent.destination = -playerObject.transform.position;
             }
             else if (gm.enemyMovementPattern == 1 && canMove == true && dead == false && attacking == false && animator.GetBool("attacking") == false)
             {
                 animator.SetBool("moving", true);
-                lookDirection = (playerObject.transform.position - enemyObject.transform.position).normalized;
-                enemyRidigbody.AddForce(lookDirection * speed);
-            }
-
-            if (gm.enemyMovementPattern == 2 && canRotate == true && dead == false)
-            {
-                lookDirection = (enemyObject.transform.position - playerObject.transform.position).normalized;
-                Quaternion awayRotation = Quaternion.LookRotation(lookDirection);
-                enemyObject.transform.rotation = Quaternion.Euler(enemyObject.transform.rotation.eulerAngles.x, awayRotation.eulerAngles.y, enemyObject.transform.rotation.eulerAngles.z);
-            }
-            else if (gm.enemyMovementPattern == 1 && canRotate == true && dead == false)
-            {
-                lookDirection = (playerObject.transform.position - enemyObject.transform.position).normalized;
-                Quaternion awayRotation = Quaternion.LookRotation(lookDirection);
-                enemyObject.transform.rotation = Quaternion.Euler(enemyObject.transform.rotation.eulerAngles.x, awayRotation.eulerAngles.y, enemyObject.transform.rotation.eulerAngles.z);
+                agent.destination = playerObject.transform.position;
             }
 
             if (gm.GameOn == true && dead == false && distance < 10 && gm.enemyMovementPattern == 1)
@@ -349,7 +331,7 @@ public class MeleeEnemyManager : MonoBehaviour
     IEnumerator WaitAttack()
     {
         canMove = false;
-        canRotate = false;
+        agent.speed = 0;
         yield return new WaitForSeconds(0.5f);
         animator.SetBool("attacking", true);
         animator.SetInteger("whichAttack", 1);
@@ -361,11 +343,9 @@ public class MeleeEnemyManager : MonoBehaviour
         animator.SetInteger("whichAttack", 0);
         attacking = false;
         canAttack = false;
-        canRotate = false;
         yield return new WaitForSeconds(0.5f);
         animator.SetBool("attacking", true);
         animator.SetInteger("whichAttack", 2);
-        canRotate = false;
         attacking = true;
         enemyRidigbody.velocity += transform.forward * 20;
         yield return new WaitForSeconds(0.5f);
@@ -373,12 +353,11 @@ public class MeleeEnemyManager : MonoBehaviour
         animator.SetInteger("whichAttack", 0);
         attacking = false;
         canAttack = false;
-        canRotate = false;
         canMove = true;
+        agent.speed = 7;
         yield return new WaitForSeconds(0.5f);
         animator.SetBool("attacking", true);
         animator.SetInteger("whichAttack", 3);
-        canRotate = false;
         attacking = true;
         enemyRidigbody.velocity += transform.forward * 20;
         yield return new WaitForSeconds(0.5f);
@@ -386,20 +365,19 @@ public class MeleeEnemyManager : MonoBehaviour
         animator.SetInteger("whichAttack", 0);
         attacking = false;
         canAttack = false;
-        canRotate = false;
         canMove = false;
+        agent.speed = 0;
         yield return new WaitForSeconds(0.5f);
         animator.SetBool("attacking", true);
         animator.SetInteger("whichAttack", 4);
-        canRotate = false;
         attacking = true;
         enemyRidigbody.velocity += transform.forward * 20;
         yield return new WaitForSeconds(0.5f);
         animator.SetBool("attacking", false);
         animator.SetInteger("whichAttack", 0);
         attacking = false;
-        canRotate = true;
         canMove = true;
+        agent.speed = 7;
         yield return new WaitForSeconds(2f);
         canAttack = true;
         timer = Random.Range(3f, 5f);

@@ -264,7 +264,7 @@ public class GameManager : MonoBehaviour
                 if (timeUntilAttack <= 0f && bossAttack == 0 && bossDistance <= 30f && bossanimator.GetBool("Dodgeback") == false && canAttack == true && timeUntilEatPhase > 0f)
                 {
                     timeUntilAttack = 0f;
-                    bossAttack = UnityEngine.Random.Range(4, 0);
+                    bossAttack = 4; // UnityEngine.Random.Range(4, 0);
                 }
 
                 if (bossAttack == 1 && bossDistance <= 30f && bossanimator.GetBool("Dodgeback") == false && canAttack == true && timeUntilEatPhase > 0f)
@@ -902,7 +902,9 @@ public class GameManager : MonoBehaviour
         bossAgent.ResetPath();
         bossAgent.speed = 0;
         bossAgent.destination = playerObject.transform.position;
-        yield return new WaitForSeconds(2f); 
+        yield return new WaitForSeconds(0.5f);
+        bossAgent.speed = 5;
+        yield return new WaitForSeconds(1.5f); 
         bossAgent.speed = 5;
         bossAttack = 4;
         bossAgent.destination = playerObject.transform.position;
@@ -961,9 +963,8 @@ public class GameManager : MonoBehaviour
         bossanimator.SetBool("Isaggressive", true);
         bossanimator.SetBool("eating", false);
         bossanimator.SetBool("Iswalking", true);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         corpseSet = false;
-        yield return new WaitForSeconds(1f);
         currentTarget = null;
         isProcessingTarget = false;
     }
