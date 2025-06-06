@@ -509,6 +509,7 @@ public class GameManager : MonoBehaviour
             playerController.hammer.SetActive(false);
             playerAnimator.SetInteger("weapon", 1);
             GMAudioSource.clip = cultistTheme;
+            GMAudioSource.volume = 1f;
             GMAudioSource.Play();
             weapon = chosenWeapon;
             playerController.canAttack = true;
@@ -536,6 +537,7 @@ public class GameManager : MonoBehaviour
             playerController.hammer.SetActive(false);
             weaponScreen.SetActive(false);
             GMAudioSource.clip = cultistTheme;
+            GMAudioSource.volume = 1f;
             GMAudioSource.Play();
             weapon = chosenWeapon;
             playerController.canAttack = true;
@@ -565,6 +567,7 @@ public class GameManager : MonoBehaviour
             playerController.maxdrawSpeed = 200f;
             playerController.drawSpeed = 200f;
             GMAudioSource.clip = cultistTheme;
+            GMAudioSource.volume = 1f;
             GMAudioSource.Play();
             weapon = chosenWeapon;
             playerController.canAttack = true;
@@ -589,6 +592,7 @@ public class GameManager : MonoBehaviour
             playerController.crossbow.SetActive(false);
             playerController.hammer.SetActive(false);
             GMAudioSource.clip = cultistTheme;
+            GMAudioSource.volume = 1f;
             GMAudioSource.Play();
             weapon = chosenWeapon;
             playerController.canAttack = true;
@@ -616,6 +620,7 @@ public class GameManager : MonoBehaviour
             playerController.hammer.SetActive(false);
             weaponScreen.SetActive(false);
             GMAudioSource.clip = cultistTheme;
+            GMAudioSource.volume = 1f;
             GMAudioSource.Play();
             weapon = chosenWeapon;
             playerController.canAttack = true;
