@@ -238,8 +238,8 @@ public class PlayerController : MonoBehaviour
                 }
                 attacking = true;
                 canAttack = false;
-                canMove = false;
-                canRotate = false;
+                canMove = true;
+                canRotate = true;
                 stringCount = true;
                 StartCoroutine("AttackStringCoolDown");
                 
@@ -278,8 +278,8 @@ public class PlayerController : MonoBehaviour
                 }
                 attacking = true;
                 canAttack2 = false;
-                canMove = false;
-                canRotate = false;
+                canMove = true;
+                canRotate = true;
                 stringCount = true;
                 StartCoroutine("AttackStringCoolDown");  
             }
@@ -297,8 +297,8 @@ public class PlayerController : MonoBehaviour
                 }
                 attacking = true;
                 canAttack2 = false;
-                canMove = false;
-                canRotate = false;
+                canMove = true;
+                canRotate = true;
                 stringCount = true;
                 StartCoroutine("AttackStringCoolDown");  
             }
@@ -696,8 +696,8 @@ public class PlayerController : MonoBehaviour
             }
             attacking = true;
             canAttack = false;
-            canMove = false;
-            canRotate = false;
+            canMove = true;
+            canRotate = true;
             stringCount = true;
             StartCoroutine("AttackStringCoolDown");
 
@@ -736,8 +736,8 @@ public class PlayerController : MonoBehaviour
             }
             attacking = true;
             canAttack2 = false;
-            canMove = false;
-            canRotate = false;
+            canMove = true;
+            canRotate = true;
             stringCount = true;
             StartCoroutine("AttackStringCoolDown");
         }
@@ -755,8 +755,8 @@ public class PlayerController : MonoBehaviour
             }
             attacking = true;
             canAttack2 = false;
-            canMove = false;
-            canRotate = false;
+            canMove = true;
+            canRotate = true;
             stringCount = true;
             StartCoroutine("AttackStringCoolDown");
         }
