@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
     public float sleepDistance;
     private float bossDistance;
     public float bridgeDistance;
+    public float corpseDistance;
     public bool canRun;
     public bool canDash = true;
     public NavMeshAgent bossAgent;
@@ -160,6 +161,14 @@ public class GameManager : MonoBehaviour
             bossDistance = Vector3.Distance(bossObject.transform.position, playerObject.transform.position);
             bridgeDistance = Vector3.Distance(bridge.transform.position, playerObject.transform.position);
             sleepDistance = Vector3.Distance(bossSleepPoint.transform.position, bossObject.transform.position);
+            if(currentTarget != null)
+            {
+                corpseDistance = Vector3.Distance(bossEatPoint.transform.position, currentTarget.transform.position);
+            }
+            else
+            {
+
+            }
 
             if (bossScript.health <= 0)
             {
@@ -266,7 +275,7 @@ public class GameManager : MonoBehaviour
                 if (timeUntilAttack <= 0f && bossAttack == 0 && bossDistance <= 30f && bossanimator.GetBool("Dodgeback") == false && canAttack == true && timeUntilEatPhase > 0f)
                 {
                     timeUntilAttack = 0f;
-                    bossAttack = 4; // UnityEngine.Random.Range(4, 0);
+                    bossAttack = UnityEngine.Random.Range(4, 0);
                 }
 
                 if (bossAttack == 1 && bossDistance <= 30f && bossanimator.GetBool("Dodgeback") == false && canAttack == true && timeUntilEatPhase > 0f)
@@ -323,21 +332,21 @@ public class GameManager : MonoBehaviour
                     {
                         StartCoroutine("WaitSetTarget");
                     }
-                    if (!isProcessingTarget && currentTarget != null && !bossAgent.pathPending && bossAgent.remainingDistance <= 15f && bossEating == false && isChoosingTarget == false)
+                    if (!isProcessingTarget && currentTarget != null && !bossAgent.pathPending && corpseDistance <= 15f && bossEating == false && isChoosingTarget == false)
                     {
                         canBossEat = true;
                         bossEating = true;
                         bossanimator.SetBool("Isaggressive", true);
                         bossanimator.SetBool("Iswalking", false);
                     }
-                    if (!isProcessingTarget && currentTarget != null && bossEating == true && !bossAgent.pathPending && bossAgent.remainingDistance <= 15f && isChoosingTarget == false)
+                    if (!isProcessingTarget && currentTarget != null && bossEating == true && !bossAgent.pathPending && corpseDistance <= 15f && isChoosingTarget == false)
                     {
                         StartCoroutine("WaitForEating");
                         bossEating = false;
                         canBossEat = false;
                     }
 
-                    if (bossAgent.remainingDistance <= 15f && isChoosingTarget == false)
+                    if (corpseDistance <= 15f && isChoosingTarget == false)
                     {
                         bossAgent.destination = bossObject.transform.position;
                         bossAgent.speed = 0;
@@ -407,7 +416,6 @@ public class GameManager : MonoBehaviour
 
             if (corpseSet == true)
             {
-                currentTarget.GetComponent<Rigidbody>().useGravity = false;
                 currentTarget.gameObject.transform.position = bossEatPoint.transform.position;
             }
         }

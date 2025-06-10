@@ -2713,6 +2713,7 @@ MonoBehaviour:
   bossAttacking: 0
   sleepDistance: 0
   bridgeDistance: 0
+  corpseDistance: 0
   canRun: 0
   canDash: 1
   bossAgent: {fileID: 1039655223}
@@ -2762,7 +2763,7 @@ MonoBehaviour:
   bridge: {fileID: 4981776976151835456}
   canSpawnDecorations: 1
   Rock2Prefab: {fileID: 8666239281560299940, guid: 58910682ee91a0c4a8526f5424586a77, type: 3}
-  Rock1Prefab: {fileID: 8362784621349634397, guid: 7f2b8532666acc549896008347694d26, type: 3}
+  Rock1Prefab: {fileID: 8362784621349634397, guid: 06bfa0e5a3fb5e44eafcfa5ebcaa0e0d, type: 3}
   CactusPrefab: {fileID: 8404990221035213335, guid: 7527aebd9410e07489ae4541e1a22421, type: 3}
   GMAudioSource: {fileID: 624562657}
   bossThemeIntro: {fileID: 8300000, guid: 143b321767c5e424788d89940a310cc1, type: 3}
@@ -3800,7 +3801,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 155293509051133029, guid: b2073c2dd3c839a4b96e13b04881d603, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 155293509051133029, guid: b2073c2dd3c839a4b96e13b04881d603, type: 3}
       propertyPath: m_TagString
