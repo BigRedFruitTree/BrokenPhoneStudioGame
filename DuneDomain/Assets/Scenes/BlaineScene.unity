@@ -2777,6 +2777,7 @@ MonoBehaviour:
   rotatetime: 1
   lightrotation: 60
   corpseSet: 0
+  DustParticles: {fileID: 0}
 --- !u!4 &624562656
 Transform:
   m_ObjectHideFlags: 0
@@ -3868,7 +3869,8 @@ PrefabInstance:
       value: Boss
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3212198615724760466, guid: b2073c2dd3c839a4b96e13b04881d603, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 2399107711272898807, guid: b2073c2dd3c839a4b96e13b04881d603, type: 3}
       insertIndex: -1
@@ -4885,7 +4887,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1291924215
 Transform:
   m_ObjectHideFlags: 0

@@ -107,6 +107,9 @@ public class GameManager : MonoBehaviour
     public float lightrotation = 60f;
     public bool corpseSet = false;
 
+    [Header("Particle Stuff")]
+    private ParticleSystem.MainModule MainParticles;
+    public ParticleSystem DustParticles;
 
     // Start is called before the first frame update
     void Start()
@@ -144,6 +147,7 @@ public class GameManager : MonoBehaviour
             bossAgent.speed = 3;
 
             playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+            DustParticles = bossObject.transform.Find("Dust").GetComponent<ParticleSystem>();
 
         }
     }
