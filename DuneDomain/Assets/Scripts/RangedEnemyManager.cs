@@ -148,7 +148,11 @@ public class RangedEnemyManager : MonoBehaviour
             if (health <= 0 && dead == false)
             {
                 bloodParticle.Stop();
-                StartCoroutine("WaitDeath");
+                dead = true;
+                audioSource.clip = deathSFX;
+                audioSource.Play();
+                Destroy(enemyObject);
+                Instantiate(corpsePrefab, new Vector3(enemyObject.transform.position.x, enemyObject.transform.position.y, enemyObject.transform.position.z), Quaternion.Euler(0, 0, 0));
             }
 
             if (health < 10 && health > 0 && dead == false)
@@ -377,17 +381,6 @@ public class RangedEnemyManager : MonoBehaviour
         bloodParticle.Play();
         yield return new WaitForSeconds(0.5f);
         canTakeDamage = true;
-    }
-    IEnumerator WaitDeath()
-    {
-        dead = true;
-        audioSource.clip = deathSFX;
-        audioSource.Play();
-        Instantiate(corpsePrefab, new Vector3(enemyObject.transform.position.x, enemyObject.transform.position.y, enemyObject.transform.position.z), Quaternion.Euler(0, 0, 0));
-        model.SetActive(false);
-        yield return new WaitForSeconds(0.5f);
-        Destroy(enemyObject);
-
     }
     IEnumerator Attack()
     {
