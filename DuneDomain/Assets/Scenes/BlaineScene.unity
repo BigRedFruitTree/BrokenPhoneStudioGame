@@ -3801,7 +3801,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 155293509051133029, guid: b2073c2dd3c839a4b96e13b04881d603, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 155293509051133029, guid: b2073c2dd3c839a4b96e13b04881d603, type: 3}
       propertyPath: m_TagString
@@ -4895,8 +4895,8 @@ Transform:
   m_GameObject: {fileID: 1291924214}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.241, y: -0.648, z: 0.585}
-  m_LocalScale: {x: 12.398841, y: 2.2, z: 0.44517}
+  m_LocalPosition: {x: 0.241, y: -0.74, z: 0.585}
+  m_LocalScale: {x: 11.89, y: 2.2, z: 0.44517}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2053574858}
@@ -4985,7 +4985,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1291924214}
   serializedVersion: 8
-  lengthInSec: 5
+  lengthInSec: 1
   simulationSpeed: 0.7
   stopAction: 1
   cullingMode: 0
@@ -5052,7 +5052,7 @@ ParticleSystem:
       m_RotationOrder: 4
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
-  scalingMode: 1
+  scalingMode: 2
   randomSeed: 0
   InitialModule:
     serializedVersion: 3
@@ -5060,7 +5060,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 8
+      scalar: 1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -5616,7 +5616,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 1.44, y: 12.04, z: 6.07}
+    m_Scale: {x: 0.118773356, y: 0.9731715, z: 0.1548168}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
