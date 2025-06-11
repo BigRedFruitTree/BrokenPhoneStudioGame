@@ -688,6 +688,7 @@ public class PlayerController : MonoBehaviour
         if (canAttack == true && gm.weapon != 2 && gm.weapon != 5 && isDashing == false && attacking == false && isBlocking == false && recovering == false && playerAnimator.GetBool("recovering") == false && whichAttack == 0 && gm.GameOn == true && gm.GameOver == false && gm.started == true)
         {
             playerAnimator.SetBool("attacking", true);
+            playerAnimator.SetBool("isMoving", false);
             playerAnimator.SetInteger("whichAttack", 1);
             whichAttack = 1;
             if (!recovering)
@@ -709,6 +710,7 @@ public class PlayerController : MonoBehaviour
             myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
             playerAnimator.SetInteger("whichAttack", 2);
             playerAnimator.SetBool("attacking", true);
+            playerAnimator.SetBool("isMoving", false);
             whichAttack = 2;
             stringTimer = 1f;
             if (!recovering)
@@ -747,6 +749,7 @@ public class PlayerController : MonoBehaviour
             myRB.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
             playerAnimator.SetInteger("whichAttack", 4);
             playerAnimator.SetBool("attacking", true);
+            playerAnimator.SetBool("isMoving", false);
             whichAttack = 4;
             stringTimer = 1f;
             if (!recovering)
