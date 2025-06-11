@@ -277,7 +277,7 @@ public class GameManager : MonoBehaviour
                 if (timeUntilAttack <= 0f && bossAttack == 0 && bossDistance <= 30f && bossanimator.GetBool("Dodgeback") == false && canAttack == true && timeUntilEatPhase > 0f)
                 {
                     timeUntilAttack = 0f;
-                    bossAttack = 4;//UnityEngine.Random.Range(4, 0);
+                    bossAttack = UnityEngine.Random.Range(4, 0);
                 }
 
                 if (bossAttack == 1 && bossDistance <= 30f && bossanimator.GetBool("Dodgeback") == false && canAttack == true && timeUntilEatPhase > 0f)
@@ -334,21 +334,21 @@ public class GameManager : MonoBehaviour
                     {
                         StartCoroutine("WaitSetTarget");
                     }
-                    if (!isProcessingTarget && currentTarget != null && !bossAgent.pathPending && corpseDistance <= 15f && bossEating == false && isChoosingTarget == false)
+                    if (!isProcessingTarget && currentTarget != null && !bossAgent.pathPending && corpseDistance <= 7f && bossEating == false && isChoosingTarget == false)
                     {
                         canBossEat = true;
                         bossEating = true;
                         bossanimator.SetBool("Isaggressive", true);
                         bossanimator.SetBool("Iswalking", false);
                     }
-                    if (!isProcessingTarget && currentTarget != null && bossEating == true && !bossAgent.pathPending && corpseDistance <= 15f && isChoosingTarget == false)
+                    if (!isProcessingTarget && currentTarget != null && bossEating == true && !bossAgent.pathPending && corpseDistance <= 7f && isChoosingTarget == false)
                     {
                         StartCoroutine("WaitForEating");
                         bossEating = false;
                         canBossEat = false;
                     }
 
-                    if (corpseDistance <= 15f && isChoosingTarget == false)
+                    if (corpseDistance <= 7f && isChoosingTarget == false)
                     {
                         bossAgent.destination = bossObject.transform.position;
                         bossAgent.speed = 0;
