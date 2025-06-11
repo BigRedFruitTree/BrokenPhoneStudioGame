@@ -109,7 +109,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Particle Stuff")]
     private ParticleSystem.MainModule MainParticles;
-    public ParticleSystem DustParticles;
+    public ParticleSystem dustParticles;
 
     // Start is called before the first frame update
     void Start()
@@ -147,8 +147,6 @@ public class GameManager : MonoBehaviour
             bossAgent.speed = 3;
 
             playerController = GameObject.Find("Player").GetComponent<PlayerController>();
-            DustParticles = bossObject.transform.Find("Dust").GetComponent<ParticleSystem>();
-
         }
     }
 
@@ -167,7 +165,7 @@ public class GameManager : MonoBehaviour
             sleepDistance = Vector3.Distance(bossSleepPoint.transform.position, bossObject.transform.position);
             if(currentTarget != null)
             {
-                corpseDistance = Vector3.Distance(bossEatPoint.transform.position, currentTarget.transform.position);
+               corpseDistance = Vector3.Distance(bossEatPoint.transform.position, currentTarget.transform.position);
             }
             else
             {
@@ -279,7 +277,7 @@ public class GameManager : MonoBehaviour
                 if (timeUntilAttack <= 0f && bossAttack == 0 && bossDistance <= 30f && bossanimator.GetBool("Dodgeback") == false && canAttack == true && timeUntilEatPhase > 0f)
                 {
                     timeUntilAttack = 0f;
-                    bossAttack = UnityEngine.Random.Range(4, 0);
+                    bossAttack = 4;//UnityEngine.Random.Range(4, 0);
                 }
 
                 if (bossAttack == 1 && bossDistance <= 30f && bossanimator.GetBool("Dodgeback") == false && canAttack == true && timeUntilEatPhase > 0f)
@@ -930,6 +928,7 @@ public class GameManager : MonoBehaviour
         bossanimator.SetBool("attacking", true);
         yield return new WaitForSeconds(2f);
         bossanimator.SetBool("transitionAttack", true);
+        dustParticles.Play();
         yield return new WaitForSeconds(2.5f);
         bossAgent.speed = 5;
         bossanimator.SetBool("transitionAttack", false);
